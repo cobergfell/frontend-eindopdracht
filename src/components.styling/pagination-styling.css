@@ -1,0 +1,44 @@
+/*https://gridbyexample.com/examples/example5/*/
+
+
+
+.painting-tiles {
+    font-family: var(--font-family);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    color: var(--drk-grey);
+    background-color: var(--milky-white);
+    width: 100%;
+    border-top: 2px dotted var(--milky-white);
+    border-bottom: 2px dotted var(--milky-white);
+}
+
+
+.pagination-container {
+    /*font-family: var(--font-family);*/
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /*color: var(--drk-grey);*/
+    background-color: var(--milky-white);
+    width: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+    /*border-top: 2px dotted var(--milky-white);*/
+    /*border-bottom: 2px dotted var(--milky-white);*/
+}
+
+.my-pagination {
+    font-family: var(--font-family);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    color: var(--drk-grey);
+    background-color: var(--milky-white);
+    width: 100%;
+    margin-top: 10px;
+    border-top: 2px dotted var(--milky-white);
+    border-bottom: 2px dotted var(--milky-white);
+}
+

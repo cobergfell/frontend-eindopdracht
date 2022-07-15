@@ -1,0 +1,252 @@
+/*https://gridbyexample.com/examples/example5/*/
+
+body {
+    margin: 40px;
+}
+
+
+.painting-container-grid {
+    /*margin-top: var(--navbar-height);*/
+    font-family: var(--font-family);/*Helvetica Neue, Arial, sans-serif;*/
+    display: grid;
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
+    grid-gap: 0px;
+    width: var(--project-width);
+    height: calc(var(--project-height) - var(--navbar-height));
+    grid-template-columns: repeat(100, 1fr);
+    grid-template-rows: repeat(100, 1fr);
+    border-style: solid;
+    border-color: blueviolet;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    /*width: 960px;*/
+    /*height: 100px;*/
+    /*border-color: blueviolet;*/
+    /*margin-top: var(--navbar-height);*/
+    /*margin-left: 15%;*/
+    /*margin-right: 15%;*/
+    /*border-top: 2px dotted var(--milky-white);*/
+    /*border-bottom: 2px dotted var(--milky-white);*/
+}
+
+.send-question-button {
+    grid-column-start: 1;
+    grid-column-end: 10;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    font-family: var(--font-family);
+    font-size: 10px;
+    border-style: solid;
+    border-width: thin;
+    border-color: grey;
+
+}
+
+.edit-project-button {
+    grid-column-start: 10;
+    grid-column-end: 20;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    font-family: var(--font-family);
+    font-size: 10px;
+    border-style: solid;
+    border-width: thin;
+    border-color: grey;
+
+}
+
+.conversation-button {
+    grid-column-start: 20;
+    grid-column-end: 30;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    font-family: var(--font-family);
+    font-size: 10px;
+    border-style: solid;
+    border-width: thin;
+    border-color: grey;
+
+}
+
+
+
+
+
+.myGridTest {
+    /*grid-column: 0/100;*/
+    /*grid-row: 0/100;*/
+    grid-column-start: 1;
+    grid-column-end:20;
+    grid-row-start: 20;
+    grid-row-end: 30;
+    border-style: solid;
+    border-color: red;
+}
+
+.image-container-grid {
+    grid-column-start: 5;
+    grid-column-end: 40;
+    grid-row-start: 5;
+    grid-row-end: 40;
+    border-style: solid;
+    border-width: thin;
+    border-color: grey;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+.title-painting-data-box {
+    grid-column-start: 5;
+    grid-column-end: 40;
+    grid-row-start: 41;
+    grid-row-end: 42;
+    font-family: var(--font-family);
+    font-size: 10px;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+.list-painting-data {
+    grid-column-start: 5;
+    grid-column-end: 40;
+    grid-row-start: 42;
+    grid-row-end: 52;
+    font-family: var(--font-family);
+    font-size: 10px;
+    list-style-type: none; /* Remove bullets */
+    border-style: solid;
+    border-width: thin;
+    border-color: grey;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+
+
+.title-supplemental-material-box {
+    grid-column-start: 5;
+    grid-column-end: 40;
+    grid-row-start: 54;
+    grid-row-end: 55;
+    font-family: var(--font-family);
+    font-size: 10px;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+.painting-supplemental-material-box {
+    grid-column-start: 5;
+    grid-column-end: 40;
+    grid-row-start: 55;
+    grid-row-end: 70;
+    font-family: var(--font-family);
+    font-size: 10px;
+    list-style-type: none; /* Remove bullets */
+    border-style: solid;
+    border-width: thin;
+    border-color: grey;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+
+
+.title-audio-material-box {
+    grid-column-start: 5;
+    grid-column-end: 40;
+    grid-row-start: 72;
+    grid-row-end: 73;
+    font-family: var(--font-family);
+    font-size: 10px;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+
+
+.audio-material {
+    grid-column-start: 5;
+    grid-column-end: 40;
+    grid-row-start: 74;
+    grid-row-end: 90;
+    font-family: var(--font-family);
+    font-size: 10px;
+    border-style: solid;
+    border-width: thin;
+    border-color: grey;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+
+
+
+.list-audio-data {
+    /*grid-column-start: 3;*/
+    /*grid-column-end: 6;*/
+    /*grid-row-start: 6;*/
+    /*grid-row-end: 7;*/
+    list-style-type: none; /* Remove bullets */
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /*background-color: var(--milky-white);*/
+    /*border-style: solid;*/
+    /*border-width: thin;*/
+    /*border-color: var(--milky-white);*/
+    /*color: var(--drk-grey);*/
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+.list-supplemental-material {
+    /*grid-column-start: 3;*/
+    /*grid-column-end: 6;*/
+    /*grid-row-start: 6;*/
+    /*grid-row-end: 7;*/
+    list-style-type: none; /* Remove bullets */
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /*background-color: var(--milky-white);*/
+    /*border-style: solid;*/
+    /*border-width: thin;*/
+    /*border-color: var(--milky-white);*/
+    /*color: var(--drk-grey);*/
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+
+.title-blog-box {
+    grid-column-start: 50;
+    grid-column-end: 95;
+    grid-row-start: 4;
+    grid-row-end: 5;
+    font-family: var(--font-family);
+    font-size: 10px;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+.blog-box {
+    grid-column-start: 50;
+    grid-column-end: 95;
+    grid-row-start: 5;
+    grid-row-end: 90;
+    font-family: var(--font-family);
+    font-size: 10px;
+    border-style: solid;
+    border-width: thin;
+    /*border-color: var(--milky-white);*/
+    border-color: grey;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+
+/*for more audio styling see https://opensource.apple.com/source/WebCore/WebCore-1889.1/css/mediaControls.css.auto.html*/
+audio {
+    width: 200px;
+    height: 16px;
+}

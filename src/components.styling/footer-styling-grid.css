@@ -1,0 +1,174 @@
+/*https://gridbyexample.com/examples/example5/*/
+
+
+/*.footer-wrapper {
+    font-family: var(--font-family);!*Helvetica Neue, Arial, sans-serif;*!
+    font-size: 16px;
+    display: flex;
+    background-color: var(--drk-grey);
+    color: var(--milky-white);
+    font-weight: 400;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}*/
+
+.footer-wrapper {
+    margin-top: 0px;
+    width: var(--project-width);
+    height: var(--footer-height);
+    font-family: var(--font-family);/*Helvetica Neue, Arial, sans-serif;*/
+    display: grid;
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
+    grid-gap: 0px;
+    grid-template-columns: repeat(100, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    border-style: solid;
+    /*width: var(--project-width);*/
+    /*margin-top:var(--project-margin-top);*/
+    /*margin-left:var(--project-margin-left);*/
+    /*margin-bottom:var(--project-margin-bottom);*/
+    /*margin-right:var(--project-margin-right);*/
+
+}
+
+
+.footer-title {
+    grid-column-start: 25;
+    grid-column-end: 95;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
+    font-size: 10px;
+}
+
+
+
+.footer-column-container-1 {
+    grid-column-start: 10;
+    grid-column-end: 30;
+    grid-row-start: 3;
+    grid-row-end: 8;
+}
+
+.footer-column-container-2 {
+    grid-column-start: 40;
+    grid-column-end: 60;
+    grid-row-start: 3;
+    grid-row-end: 8;
+}
+
+.footer-column-container-3 {
+    grid-column-start: 70;
+    grid-column-end: 90;
+    grid-row-start: 3;
+    grid-row-end: 8;
+}
+
+
+
+
+.about-us {
+    grid-column-start: 5;
+    grid-column-end: 15;
+    grid-row-start: 3;
+    grid-row-end: 10;
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
+    font-size: 10px;
+}
+
+.footer-column-items {
+    font-family: var(--font-family);
+    list-style-type: none; /*Remove bullets*/
+    font-size: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: var(--milky-white);
+    color: var(--drk-grey);
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+a.footer-link, a.footer-link:link, a.footer-link:visited, a.footer-link:focus, a.footer-link:hover, a.footer-link:active{
+    color: var(--drk-grey); /*var(--milky-white);*/
+    text-decoration:none;
+    cursor: pointer;
+}
+
+/*
+.footer-container {
+    font-family: var(--font-family);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: var(--drk-grey);
+    color: var(--milky-white);
+    width: 100%;
+    border-top: 2px dotted var(--milky-white);
+    margin-bottom: 0;
+}
+
+.footer-title {
+    font-family: var(--font-family);!*Helvetica Neue, Arial, sans-serif;*!
+    font-size: 12px;
+    display: inline-block;
+    text-align: center;
+    background-color: var(--drk-grey);
+    color: var(--milky-white);
+    width: 100%;
+    padding: 5px;
+}
+
+
+.footer-columns-wrapper {
+    font-family: var(--font-family);!*Helvetica Neue, Arial, sans-serif;*!
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: var(--drk-grey);
+    color: var(--milky-white);
+    width: 100%;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: var(--drk-grey);
+    color: var(--milky-white);
+    width: 100%;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.footer-column-title {
+    font-family: var(--font-family);
+    font-size: 10px;
+    display: inline-block;
+    text-align: left;
+    background-color: var(--drk-grey);
+    color: var(--milky-white);
+    width: 100%;
+    padding-left: 10px;
+}
+
+.footer-column-items {
+    font-family: var(--font-family);
+    list-style-type: none; !* Remove bullets *!
+    font-size: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: var(--drk-grey);
+    color: var(--milky-white);
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+*/

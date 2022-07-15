@@ -1,0 +1,276 @@
+/*https://gridbyexample.com/examples/example5/*/
+
+body {
+    margin: 40px;
+}
+
+
+.container-grid {
+    margin-top: var(--navbar-height);
+    margin-top: 0px;
+    font-family: var(--font-family);/*Helvetica Neue, Arial, sans-serif;*/
+    display: grid;
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
+    grid-gap: 0px;
+    width: var(--project-width);
+    height: calc(var(--project-height) - var(--navbar-height));
+    grid-template-columns: repeat(100, 1fr);
+    grid-template-rows: repeat(100, 1fr);
+    border-style: solid;
+    border-color: blueviolet;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    /*width: 960px;*/
+    /*height: 100px;*/
+    /*border-color: blueviolet;*/
+    /*margin-top: var(--navbar-height);*/
+    /*margin-left: 15%;*/
+    /*margin-right: 15%;*/
+    /*border-top: 2px dotted var(--milky-white);*/
+    /*border-bottom: 2px dotted var(--milky-white);*/
+}
+
+
+.input-title {
+    grid-column-start: 2;
+    grid-column-end: 12;
+    grid-row-start: 10;
+    grid-row-end: 12;
+    font-family: var(--font-family);
+    font-size: 10px;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+.label-input-title {
+    grid-column-start: 2;
+    grid-column-end: 12;
+    grid-row-start: 9;
+    grid-row-end: 11;
+    font-family: var(--font-family);
+    font-size: 10px;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+
+
+
+.input-content {
+    grid-column-start: 2;
+    grid-column-end: 24;
+    grid-row-start: 14;
+    grid-row-end: 34;
+    font-family: var(--font-family);
+    font-size: 10px;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+
+.label-input-content {
+    grid-column-start: 2;
+    grid-column-end: 24;
+    grid-row-start: 13;
+    grid-row-end: 14;
+    font-family: var(--font-family);
+    font-size: 10px;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+.upload-painting-image-button {
+    grid-column-start: 40;
+    grid-column-end: 50;
+    grid-row-start: 9;
+    grid-row-end: 14;
+    font-family: var(--font-family);
+    font-size: 10px;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+.painting-preview {
+    grid-column-start: 35;
+    grid-column-end: 55;
+    grid-row-start: 16;
+    grid-row-end: 36;
+    font-family: var(--font-family);
+    font-size: 10px;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+
+.upload-music-file-button {
+    grid-column-start: 60;
+    grid-column-end: 70;
+    grid-row-start: 9;
+    grid-row-end: 14;
+    font-family: var(--font-family);
+    font-size: 10px;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+.list-selected-music-files {
+    grid-column-start: 60;
+    grid-column-end: 70;
+    grid-row-start: 16;
+    grid-row-end: 36;
+    font-family: var(--font-family);
+    font-size: 10px;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+.selected-music-file-item {
+    /*grid-column-start: 60;*/
+    /*grid-column-end: 70;*/
+    /*grid-row-start: 12;*/
+    /*grid-row-end: 32;*/
+    font-family: var(--font-family);
+    font-size: 10px;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+
+.upload-supplementary-files-button {
+    grid-column-start: 80;
+    grid-column-end: 90;
+    grid-row-start: 9;
+    grid-row-end: 14;
+    font-family: var(--font-family);
+    font-size: 10px;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+
+.list-supplementary-files {
+    grid-column-start: 80;
+    grid-column-end: 90;
+    grid-row-start: 16;
+    grid-row-end: 36;
+    font-family: var(--font-family);
+    font-size: 10px;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+
+.supplementary-file-item {
+    /*grid-column-start: 60;*/
+    /*grid-column-end: 70;*/
+    /*grid-row-start: 12;*/
+    /*grid-row-end: 32;*/
+    font-family: var(--font-family);
+    font-size: 10px;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+.submit-button {
+    grid-column-start: 50;
+    grid-column-end: 60;
+    grid-row-start: 60;
+    grid-row-end: 65;
+    font-family: var(--font-family);
+    font-size: 10px;
+    border-style: solid;
+    border-width: thin;
+    border-color: grey;
+
+}
+
+.successfully-submitted-message {
+    grid-column-start: 45;
+    grid-column-end: 55;
+    grid-row-start: 45;
+    grid-row-end: 47;
+    font-family: var(--font-family);
+    font-size: 10px;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+
+.submit-a-new-reaction-title {
+    grid-column-start: 45;
+    grid-column-end: 55;
+    grid-row-start: 3;
+    grid-row-end: 5;
+    font-family: var(--font-family);
+    font-size: 10px;
+}
+
+
+
+.on-success-new-answer-button {
+    grid-column-start: 35;
+    grid-column-end: 45;
+    grid-row-start: 50;
+    grid-row-end: 55;
+    font-family: var(--font-family);
+    font-size: 10px;
+    border-style: solid;
+    border-width: thin;
+    border-color: grey;
+
+}
+
+.on-success-back-to-user-board {
+    grid-column-start: 55;
+    grid-column-end: 65;
+    grid-row-start: 50;
+    grid-row-end: 55;
+    font-family: var(--font-family);
+    font-size: 10px;
+    border-style: solid;
+    border-width: thin;
+    border-color: grey;
+
+}
+
+
+
+
+.list-audio-data {
+    /*grid-column-start: 3;*/
+    /*grid-column-end: 6;*/
+    /*grid-row-start: 6;*/
+    /*grid-row-end: 7;*/
+    list-style-type: none; /* Remove bullets */
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: var(--milky-white);
+    border-style: solid;
+    border-width: thin;
+    border-color: var(--milky-white);
+    color: var(--drk-grey);
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+.list-supplemental-material {
+    /*grid-column-start: 3;*/
+    /*grid-column-end: 6;*/
+    /*grid-row-start: 6;*/
+    /*grid-row-end: 7;*/
+    list-style-type: none; /* Remove bullets */
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: var(--milky-white);
+    border-style: solid;
+    border-width: thin;
+    border-color: var(--milky-white);
+    color: var(--drk-grey);
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+

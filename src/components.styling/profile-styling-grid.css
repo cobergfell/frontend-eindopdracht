@@ -1,0 +1,97 @@
+/*https://gridbyexample.com/examples/example5/*/
+
+
+
+.profile-container-grid {
+    /*margin-top: var(--navbar-height);*/
+    font-family: var(--font-family);/*Helvetica Neue, Arial, sans-serif;*/
+    display: grid;
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
+    grid-gap: 0px;
+    width: var(--project-width);
+    height: calc(var(--project-height) - var(--navbar-height));
+    grid-template-columns: repeat(100, 1fr);
+    grid-template-rows: repeat(100, 1fr);
+    border-style: solid;
+    border-color: blueviolet;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    /*width: 960px;*/
+    /*height: 100px;*/
+    /*border-color: blueviolet;*/
+    /*margin-top: var(--navbar-height);*/
+    /*margin-left: 15%;*/
+    /*margin-right: 15%;*/
+    /*border-top: 2px dotted var(--milky-white);*/
+    /*border-bottom: 2px dotted var(--milky-white);*/
+}
+
+
+.page-title {
+    grid-column-start: 5;
+    grid-column-end: 40;
+    grid-row-start: 4;
+    grid-row-end: 5;
+    font-family: var(--font-family);
+    font-size: 10px;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+.user-profile-display-box {
+    grid-column-start: 5;
+    grid-column-end: 45;
+    grid-row-start: 10;
+    grid-row-end: 25;
+    font-family: var(--font-family);
+    font-size: 10px;
+    /*list-style-type: none; !* Remove bullets *!*/
+    border-style: solid;
+    border-width: thin;
+    border-color: grey;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+
+
+.profile-list{
+    /*grid-column-start: 3;*/
+    /*grid-column-end: 6;*/
+    /*grid-row-start: 6;*/
+    /*grid-row-end: 7;*/
+    list-style-type: none; /* Remove bullets */
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: var(--milky-white);
+    border-style: solid;
+    border-width: thin;
+    border-color: var(--milky-white);
+    border-color: yellow;
+    /*color: var(--drk-grey);*/
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+.profile-sublist{
+    /*grid-column-start: 3;*/
+    /*grid-column-end: 6;*/
+    /*grid-row-start: 6;*/
+    /*grid-row-end: 7;*/
+    list-style-type: none; /* Remove bullets */
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: var(--milky-white);
+    border-style: solid;
+    border-width: thin;
+    border-color: var(--milky-white);
+    color: var(--drk-grey);
+    color: red;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
