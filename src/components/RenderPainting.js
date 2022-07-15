@@ -19,7 +19,7 @@ function RenderPainting({ dataObject}) {
     const history = useHistory();
     const currentUser = AuthService.getCurrentUser();
     const {isModerator}=contextData
-    //const [filesToDeleteIds, setFilesToDeleteIds] = useState([]);
+    const [hasEditingPrivilege, setHasEditingPrivilege] = useState(false);
     //const [audioFilesToDeleteIds, setAudioFilesToDeleteIds] = useState([]);
 
 
@@ -39,6 +39,12 @@ function RenderPainting({ dataObject}) {
                 console.log(e);
             });
     };
+
+
+    const modificationPrivilege = (dataObject) => {
+        if (((dataObject.username==currentUser)||(isModerator==true))){return true
+        } else{return false}
+    }
 
 
     const deletePainting = (id) => {
@@ -69,7 +75,9 @@ function RenderPainting({ dataObject}) {
             });
     };
 
-
+    useEffect(() => {
+        setHasEditingPrivilege(modificationPrivilege(dataObject));
+    }, []);
 
 
     return (
@@ -82,7 +90,8 @@ function RenderPainting({ dataObject}) {
                           //search: attachedFile.fileId,
                           //hash: "",
                           state: { paintingId:dataObject.paintingId,
-                              description: dataObject.description
+                              description: dataObject.description,
+                              hasEditingPrivilege:hasEditingPrivilege
                           }
                       }}
                     //style={{ textDecoration: 'none', color: 'deepskyblue'}}
@@ -121,22 +130,28 @@ function RenderPainting({ dataObject}) {
 
 
                     </li>
-                    <li className="list-summarize-painting-data-item">
-                        <Link className="link-to-description"
-                            to={{
-                                pathname: `/edit/painting/${dataObject.paintingId}`,
-                                //search: attachedFile.fileId,
-                                //hash: "",
-                                state: { paintingId:dataObject.paintingId,
-                                    description: dataObject.description,
-                                }
-                            }}
-                            className="link-to-description"
-                            //style={{ textDecoration: 'none', color: 'deepskyblue'}}
-                        >
-                            Go to edit
-                        </Link>
-                    </li>
+
+                    {hasEditingPrivilege==true &&  (
+                        <li className="list-summarize-painting-data-item">
+                            <Link className="link-to-description"
+                                  to={{
+                                      pathname: `/edit/painting/${dataObject.paintingId}`,
+                                      //search: attachedFile.fileId,
+                                      //hash: "",
+                                      state: { paintingId:dataObject.paintingId,
+                                          description: dataObject.description,
+                                      }
+                                  }}
+                                  className="link-to-description"
+                                //style={{ textDecoration: 'none', color: 'deepskyblue'}}
+                            >
+                                Go to edit
+                            </Link>
+                        </li>
+
+
+                    )}
+
 
                     {isModerator==true &&  (
                     <li className="delete-painting-link">

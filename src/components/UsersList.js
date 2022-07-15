@@ -112,7 +112,7 @@ const UsersList = (props) => {
             <thead>
             <tr>
                 <th>Username</th>
-                <th>Email</th>
+                <th style={{width: '250px'}}>Email</th>
                 <th>Registered on (GMT)</th>
                 <th>Last updated on (GMT)</th>
                 <th>Authorities</th>

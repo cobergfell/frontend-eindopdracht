@@ -28,6 +28,7 @@ function Painting() {
     const location = useLocation();
     const paintingId = location.state.paintingId;
     const description = location.state.description;
+    const hasEditingPrivilege = location.state.hasEditingPrivilege;
     const [painting, setPainting] = useState(null);
     const [descriptionState, setDescriptionState] = useState(null);
     const [image, setImage] = useState(null);
@@ -207,11 +208,11 @@ function Painting() {
     }
 
 
-/*    useEffect(() => {
-        myFetch() .catch(e => {
-            console.log('There has been a problem with your fetch operation: ' + e.message);
-        });
-    }, []);*/
+    /*    useEffect(() => {
+            myFetch() .catch(e => {
+                console.log('There has been a problem with your fetch operation: ' + e.message);
+            });
+        }, []);*/
 
 
     return (
@@ -254,21 +255,26 @@ function Painting() {
                 >
                     Blog page
                 </button>
-                <button
-                    type="button"
-                    className="edit-project-button"
-                    //onClick={() => history.push(`/add-answer/${painting.paintingId}`)}
-                    onClick={() => history.push({pathname: `/edit/painting/${location.state.paintingId}`,
-                        search: 'bla',
-                        hash: '',
-                        state: { paintingId: location.state.paintingId,
-                            description: location.state.description,
-                        },
-                        key: ''
-                    },)}
-                >
-                    Edit project
-                </button>
+
+
+                {hasEditingPrivilege==true &&  (
+                    <button
+                        type="button"
+                        className="edit-project-button"
+                        //onClick={() => history.push(`/add-answer/${painting.paintingId}`)}
+                        onClick={() => history.push({pathname: `/edit/painting/${location.state.paintingId}`,
+                            search: 'bla',
+                            hash: '',
+                            state: { paintingId: location.state.paintingId,
+                                description: location.state.description,
+                            },
+                            key: ''
+                        },)}
+                    >
+                        Edit project
+                    </button>
+                )}
+
 
 
                 <div className="image-container-grid">
