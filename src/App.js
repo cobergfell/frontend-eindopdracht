@@ -100,7 +100,7 @@ const App = () => {
 
             {currentUser && (
                 <NavLink to={"/user"} className="navbar-link user">
-                  User
+                  Projects
                 </NavLink>
             )}
 
@@ -138,7 +138,7 @@ const App = () => {
           <Route exact path="/questions/:id" component={Question} />
           <Route exact path="/paintings/:id" component={Painting} />
           {/*<Route exact path="/conversationOld2/:id" component={ConversationOld2} />*/}
-          <Route exact path="/conversation/:id" component={Conversation} />
+          {/*<Route exact path="/conversation/:id" component={Conversation} />*/}
           <Route exact path="/edit/question/:id" component={EditQuestion} />
           <Route exact path="/edit/painting/:id" component={EditProject} />
           <Route exact path="/edit/user/:userId" component={EditUser} />

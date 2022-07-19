@@ -191,7 +191,7 @@ const AddQuestion = () => {
                     </button>
                     <button
                         type="button"
-                        className="on-success-back-to-user-board"
+                        className="on-success-back-to-user-board-button"
                         onClick={() => history.push('/user')}
                     >
                         Back to user board
@@ -216,10 +216,10 @@ const AddQuestion = () => {
                         onChange={handleInputChange}
                         name="title"
                     />
-                    <label htmlFor="description" className="label-input-content">Your question</label>
+                    <label htmlFor="description" className="label-input-content-question">Your question</label>
                     <textarea
                         type="text"
-                        className="input-content"
+                        className="input-content-question"
                         id="content"
                         required
                         value={question.content}

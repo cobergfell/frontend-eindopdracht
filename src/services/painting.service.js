@@ -81,11 +81,11 @@ const update = (paintingId, formData,partial_url,config) => {
 };*/
 
 const remove = (paintingId) => {
-    return axios.delete(API_URL +`user/paintings/${paintingId}`, { headers: authHeader()});
+    return axios.delete(API_URL +`user/paintings/delete/${paintingId}`, { headers: authHeader()});
 };
 
 const removeAll = () => {
-    return axios.delete(API_URL+`user/paintings`, { headers: authHeader() });
+    return axios.delete(API_URL+`user/paintings/delete`, { headers: authHeader() });
 
 };
 

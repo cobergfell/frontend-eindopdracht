@@ -241,20 +241,6 @@ function Painting() {
                 >
                     Send question
                 </button>
-                <button
-                    type="button"
-                    className="conversation-button"
-                    //onClick={() => history.push(`/add-answer/${painting.paintingId}`)}
-                    //onClick={() => history.push(`/add-answer/${question.questionId}`,{"bla": "bla"})}
-                    onClick={() => history.push({pathname: `/conversation/${painting.paintingId}`,
-                        search: '',
-                        hash: '',
-                        state: { about: "painting" },
-                        key: ''
-                    },)}
-                >
-                    Blog page
-                </button>
 
 
                 {hasEditingPrivilege==true &&  (
@@ -263,7 +249,7 @@ function Painting() {
                         className="edit-project-button"
                         //onClick={() => history.push(`/add-answer/${painting.paintingId}`)}
                         onClick={() => history.push({pathname: `/edit/painting/${location.state.paintingId}`,
-                            search: 'bla',
+                            search: '',
                             hash: '',
                             state: { paintingId: location.state.paintingId,
                                 description: location.state.description,
@@ -354,7 +340,7 @@ function Painting() {
                 </div>
 
                 <div className="title-blog-box">
-                    <strong>Blog at a glance</strong>
+                    <strong>Blog</strong>
                 </div>
 
                 <div className="blog-box">

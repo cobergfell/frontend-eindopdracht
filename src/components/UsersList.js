@@ -4,6 +4,7 @@ import UserDataService from "../services/users.data.service";
 import AuthService from "../services/auth.service";
 import {Link, useHistory, useParams} from "react-router-dom";
 import "../components.styling/userList-styling-grid.css";
+import UserService from "../services/users.data.service";
 //import {useResizeColumns} from "react-table/src/plugin-hooks/useResizeColumns";
 //import axios from "axios";
 //import EventBus from "../common/EventBus";
@@ -74,19 +75,13 @@ const UsersList = (props) => {
         history.push(path);
     };
 
-    const deleteUser = (rowIndex) => {
-        const id = usersRef.current[rowIndex].id;
-
-        UserDataService.remove(id)
-            .then((response) => {
-                history.push("/users");
-
-                let newUsers = [...usersRef.current];
-                newUsers.splice(rowIndex, 1);
-
-                setUsers(newUsers);
+    const deleteUser = (username) => {
+        UserService.remove(username)
+            .then(response => {
+                console.log(response.data);
+                history.push("/admin");
             })
-            .catch((e) => {
+            .catch(e => {
                 console.log(e);
             });
     };
@@ -146,7 +141,7 @@ const UsersList = (props) => {
                               <span onClick={() => editUser(user.username)}
                                     className="actions"
                               >
-                                <i className="far fa-edit action mr-2">edit</i>
+                                <i className="far fa-edit action mr-2">edit/</i>
                               </span>
                             <span onClick={() => deleteUser(user.userId)}
                                   className="actions"

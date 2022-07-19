@@ -1,15 +1,31 @@
 import React, { useState, useEffect } from "react";
-
-import UserService from "../services/user.access.service";
+import {Link, useHistory} from "react-router-dom";
+import "../components.styling/board-moderator-styling-grid.css";
+import UserService from "../services/user.access.service-DEPRECATED";
 import EventBus from "../common/EventBus";
 import QuestionsList from "./QuestionsList";
 import AuthService from "../services/auth.service";
+import PaintingsListAsTilesWithPagination from "./PaintingsListAsTilesWithPagination";
+import PaintingsList from "./PaintingsList";
+import UsersList from "./UsersList";
+import PaintingService from "../services/painting.service";
 
 const BoardModerator = () => {
   const [content, setContent] = useState("");
   const currentUser = AuthService.getCurrentUser();
+  const history = useHistory();
 
-  useEffect(() => {
+    const removeAllPaintings = () => {
+        PaintingService.removeAll()
+            .then((response) => {
+                console.log('21 response.data',response.data);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    };
+
+/*  useEffect(() => {
     UserService.getModeratorBoard().then(
       (response) => {
         setContent(response.data);
@@ -29,43 +45,31 @@ const BoardModerator = () => {
         }
       }
     );
-  }, []);
+  }, []);*/
 
   return (
-/*    <div className="container">
-      <header className="jumbotron">
-        <h3>{content}</h3>
-      </header>
-    </div>*/
-      <>
-      <div className="container">
-        <header className="header-admin-board">
-          <h3>
-            <strong>{currentUser.username}</strong> Moderator board
-          </h3>
-        </header>
-        <p>
-          <strong>Token:</strong> {currentUser.accessToken.substring(0, 20)} ...{" "}
-          {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
-        </p>
-        <p>
-          <strong>Username:</strong> {currentUser.username}
-        </p>
-        <p>
-          <strong>Email:</strong> {currentUser.email}
-        </p>
-        <strong>Authorities:</strong>
-        <ul>
-          {/*          {currentUser.roles &&
-      currentUser.roles.map((role, index) => <li key={index}>{JSON.stringify(role)}</li>)}*/}
-          {currentUser.roles &&
-          currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
-        </ul>
+      <div className="board-moderator-container-grid">
+
+          <div className="paintings-data-box">
+              <PaintingsList/>
+          </div>
+          <button
+              className="home-button"
+              //disabled={isLoading}
+              onClick={() => history.push('/home')}
+          >
+              Home
+          </button>
+          <button
+              className="remove-all-paintings-button"
+              onClick={removeAllPaintings}
+          >
+              Remove All
+          </button>
+
+
       </div>
-  <div className="container">
-    <QuestionsList  isModerator={true}/>
-  </div>
-</>
+
 
   );
 };

@@ -32,8 +32,8 @@ body {
 
 
 .input-title {
-    grid-column-start: 2;
-    grid-column-end: 12;
+    grid-column-start: 5;
+    grid-column-end: 25;
     grid-row-start: 6;
     grid-row-end: 8;
     font-family: var(--font-family);
@@ -43,8 +43,8 @@ body {
 }
 
 .label-input-title {
-    grid-column-start: 2;
-    grid-column-end: 12;
+    grid-column-start: 5;
+    grid-column-end: 25;
     grid-row-start: 5;
     grid-row-end: 6;
     font-family: var(--font-family);
@@ -54,24 +54,22 @@ body {
 }
 
 
-
-
-.input-content {
-    grid-column-start: 2;
-    grid-column-end: 24;
-    grid-row-start: 10;
-    grid-row-end: 30;
+.input-content-question {
+    grid-column-start: 5;
+    grid-column-end: 35;
+    grid-row-start: 11;
+    grid-row-end: 35;
     font-family: var(--font-family);
     font-size: 10px;
     overflow-x: scroll;
     overflow-y: scroll;
 }
 
-.label-input-content {
-    grid-column-start: 2;
-    grid-column-end: 24;
-    grid-row-start: 9;
-    grid-row-end: 10;
+.label-input-content-question {
+    grid-column-start: 5;
+    grid-column-end: 35;
+    grid-row-start: 10;
+    grid-row-end: 11;
     font-family: var(--font-family);
     font-size: 10px;
     /*overflow-x: scroll;*/
@@ -209,8 +207,8 @@ body {
 .on-success-new-question-button {
     grid-column-start: 35;
     grid-column-end: 45;
-    grid-row-start: 50;
-    grid-row-end: 55;
+    grid-row-start: 35;
+    grid-row-end: 40;
     font-family: var(--font-family);
     font-size: 10px;
     border-style: solid;
@@ -219,11 +217,11 @@ body {
 
 }
 
-.on-success-back-to-user-board {
+.on-success-back-to-user-board-button {
     grid-column-start: 55;
     grid-column-end: 65;
-    grid-row-start: 50;
-    grid-row-end: 55;
+    grid-row-start: 35;
+    grid-row-end: 40;
     font-family: var(--font-family);
     font-size: 10px;
     border-style: solid;

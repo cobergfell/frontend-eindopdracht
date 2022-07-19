@@ -218,7 +218,7 @@ const AddAnswer = () => {
                     </button>
                     <button
                         type="button"
-                        className="on-success-back-to-user-board"
+                        className="on-success-back-to-user-board-button"
                         onClick={() => history.push('/user')}
                     >
                         Back to user board

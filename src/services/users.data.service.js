@@ -29,7 +29,7 @@ const remove = (username) => {
 };
 
 const removeAll = () => {
-    return axios.delete(API_URL+`users`, { headers: authHeader() });
+    return axios.delete(API_URL+`users/delete`, { headers: authHeader() });
 
 };
 

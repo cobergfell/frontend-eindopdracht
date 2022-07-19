@@ -33,10 +33,10 @@ body {
 
 
 .input-title {
-    grid-column-start: 2;
-    grid-column-end: 12;
-    grid-row-start: 10;
-    grid-row-end: 12;
+    grid-column-start: 5;
+    grid-column-end: 25;
+    grid-row-start: 6;
+    grid-row-end: 8;
     font-family: var(--font-family);
     font-size: 10px;
     /*overflow-x: scroll;*/
@@ -44,10 +44,10 @@ body {
 }
 
 .label-input-title {
-    grid-column-start: 2;
-    grid-column-end: 12;
-    grid-row-start: 9;
-    grid-row-end: 11;
+    grid-column-start: 5;
+    grid-column-end: 25;
+    grid-row-start: 5;
+    grid-row-end: 6;
     font-family: var(--font-family);
     font-size: 10px;
     /*overflow-x: scroll;*/
@@ -58,10 +58,10 @@ body {
 
 
 .input-content {
-    grid-column-start: 2;
-    grid-column-end: 24;
-    grid-row-start: 14;
-    grid-row-end: 34;
+    grid-column-start: 5;
+    grid-column-end: 35;
+    grid-row-start: 11;
+    grid-row-end: 35;
     font-family: var(--font-family);
     font-size: 10px;
     overflow-x: scroll;
@@ -69,10 +69,10 @@ body {
 }
 
 .label-input-content {
-    grid-column-start: 2;
-    grid-column-end: 24;
-    grid-row-start: 13;
-    grid-row-end: 14;
+    grid-column-start: 5;
+    grid-column-end: 35;
+    grid-row-start: 10;
+    grid-row-end: 11;
     font-family: var(--font-family);
     font-size: 10px;
     /*overflow-x: scroll;*/
@@ -82,8 +82,8 @@ body {
 .upload-painting-image-button {
     grid-column-start: 40;
     grid-column-end: 50;
-    grid-row-start: 9;
-    grid-row-end: 14;
+    grid-row-start: 5;
+    grid-row-end: 10;
     font-family: var(--font-family);
     font-size: 10px;
     /*overflow-x: scroll;*/
@@ -93,8 +93,8 @@ body {
 .painting-preview {
     grid-column-start: 35;
     grid-column-end: 55;
-    grid-row-start: 16;
-    grid-row-end: 36;
+    grid-row-start: 12;
+    grid-row-end: 32;
     font-family: var(--font-family);
     font-size: 10px;
     /*overflow-x: scroll;*/
@@ -105,8 +105,8 @@ body {
 .upload-music-file-button {
     grid-column-start: 60;
     grid-column-end: 70;
-    grid-row-start: 9;
-    grid-row-end: 14;
+    grid-row-start: 5;
+    grid-row-end: 10;
     font-family: var(--font-family);
     font-size: 10px;
     /*overflow-x: scroll;*/
@@ -116,8 +116,8 @@ body {
 .list-selected-music-files {
     grid-column-start: 60;
     grid-column-end: 70;
-    grid-row-start: 16;
-    grid-row-end: 36;
+    grid-row-start: 12;
+    grid-row-end: 32;
     font-family: var(--font-family);
     font-size: 10px;
     /*overflow-x: scroll;*/
@@ -139,8 +139,8 @@ body {
 .upload-supplementary-files-button {
     grid-column-start: 80;
     grid-column-end: 90;
-    grid-row-start: 9;
-    grid-row-end: 14;
+    grid-row-start: 5;
+    grid-row-end: 10;
     font-family: var(--font-family);
     font-size: 10px;
     /*overflow-x: scroll;*/
@@ -151,8 +151,8 @@ body {
 .list-supplementary-files {
     grid-column-start: 80;
     grid-column-end: 90;
-    grid-row-start: 16;
-    grid-row-end: 36;
+    grid-row-start: 12;
+    grid-row-end: 32;
     font-family: var(--font-family);
     font-size: 10px;
     /*overflow-x: scroll;*/
@@ -174,8 +174,8 @@ body {
 .submit-button {
     grid-column-start: 50;
     grid-column-end: 60;
-    grid-row-start: 60;
-    grid-row-end: 65;
+    grid-row-start: 70;
+    grid-row-end: 75;
     font-family: var(--font-family);
     font-size: 10px;
     border-style: solid;
@@ -197,10 +197,10 @@ body {
 
 
 .submit-a-new-reaction-title {
-    grid-column-start: 45;
-    grid-column-end: 55;
-    grid-row-start: 3;
-    grid-row-end: 5;
+    grid-column-start: 40;
+    grid-column-end: 60;
+    grid-row-start: 1;
+    grid-row-end: 3;
     font-family: var(--font-family);
     font-size: 10px;
 }
@@ -210,8 +210,8 @@ body {
 .on-success-new-answer-button {
     grid-column-start: 35;
     grid-column-end: 45;
-    grid-row-start: 50;
-    grid-row-end: 55;
+    grid-row-start: 35;
+    grid-row-end: 40;
     font-family: var(--font-family);
     font-size: 10px;
     border-style: solid;
@@ -220,11 +220,11 @@ body {
 
 }
 
-.on-success-back-to-user-board {
+.on-success-back-to-user-board-button {
     grid-column-start: 55;
     grid-column-end: 65;
-    grid-row-start: 50;
-    grid-row-end: 55;
+    grid-row-start: 35;
+    grid-row-end: 40;
     font-family: var(--font-family);
     font-size: 10px;
     border-style: solid;

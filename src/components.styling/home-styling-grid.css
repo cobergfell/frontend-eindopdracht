@@ -133,6 +133,7 @@ div.gallery {
     background-repeat: no-repeat /*repeat|repeat-x|repeat-y|no-repeat|initial|inherit*/;
 }
 
+/*
 div.gallery:hover {
     border: 1px solid #777;
 }
@@ -141,4 +142,5 @@ div.description {
     padding: 15px;
     text-align: center;
 }
+*/
 

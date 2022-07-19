@@ -10,13 +10,13 @@ const getPublicContent = () => {
 
 
 
-const getUserBoard = () => {
+/*const getUserBoard = () => {
   return axios.get(API_URL + "user/questions-with-files-in-database", { headers: authHeader() });
 };
 
 const getModeratorBoard = () => {
   return axios.get(API_URL + "mod/questions-with-files-in-database", { headers: authHeader() });
-};
+};*/
 
 const getAdminBoard = () => {
   return axios.get(API_URL + "users", { headers: authHeader() });
@@ -24,7 +24,7 @@ const getAdminBoard = () => {
 
 export default {
   getPublicContent,
-  getUserBoard,
-  getModeratorBoard,
+  // getUserBoard,
+  // getModeratorBoard,
   getAdminBoard,
 };

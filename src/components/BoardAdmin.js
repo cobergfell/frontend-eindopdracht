@@ -1,17 +1,31 @@
 import React, { useState, useEffect } from "react";
 import AuthService from "../services/auth.service";
 
-import UserService from "../services/user.access.service";
+import UserService from "../services/user.access.service-DEPRECATED";
 import EventBus from "../common/EventBus";
-import "../components.styling/administrator-styling-grid.css";
+import "../components.styling/board-admin-styling-grid.css";
 import UsersList from "./UsersList";
+import UsersService from "../services/users.data.service";
+import {useHistory} from "react-router-dom";
 
 const BoardAdmin = () => {
   const [content, setContent] = useState("");
   const currentUser = AuthService.getCurrentUser();
+  const history = useHistory();
 
 
-  useEffect(() => {
+  const removeAllUsers = () => {
+    UsersService.removeAll()
+        .then((response) => {
+          console.log('21 response.data',response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+  };
+
+
+/*  useEffect(() => {
     UserService.getAdminBoard().then(
       (response) => {
         setContent(response.data);
@@ -31,7 +45,8 @@ const BoardAdmin = () => {
         }
       }
     );
-  }, []);
+  }, []);*/
+
 
   return (
       <>
@@ -39,10 +54,26 @@ const BoardAdmin = () => {
         <div className="page-titel">
           <strong>{currentUser.username}</strong> Administration board
         </div>
-{/*        <div className="current-user">
-          <strong>{currentUser.username}</strong> Administration board
-        </div>*/}
-        <div className="user-profile-box">
+
+        <button
+            className="home-button"
+            //disabled={isLoading}
+            onClick={() => history.push('/home')}
+        >
+          Home
+        </button>
+        <button
+            className="remove-all-paintings-button"
+            onClick={removeAllUsers}
+        >
+          Remove All
+        </button>
+
+        <div className="users-data-box">
+          <UsersList/>
+        </div>
+
+        {/*<div className="user-profile-box">
           {currentUser && (
               <ul className="profile-list">
                 <li className="list-item"><strong>Username:</strong> {currentUser.username}</li>
@@ -52,23 +83,13 @@ const BoardAdmin = () => {
               </ul>
           )}
 
-        </div>
+        </div>*/}
 
 
-        <div className="users-data-box">
-          <UsersList/>
-        </div>
-
-
-        <div className="current-user-test">
+{/*        <div className="current-user-test">
           <profile/>
-        </div>
+        </div>*/}
 
-{/*        <strong>Authorities:</strong>
-        <ul>
-          {currentUser.roles &&
-          currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
-        </ul>*/}
       </div>
 
   </>
