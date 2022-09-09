@@ -25,6 +25,7 @@
     grid-template-columns: repeat(100, 1fr);
     grid-template-rows: repeat(10, 1fr);
     border-style: solid;
+    border-color: var(--light-grey);
     /*width: var(--project-width);*/
     /*margin-top:var(--project-margin-top);*/
     /*margin-left:var(--project-margin-left);*/
@@ -100,75 +101,3 @@ a.footer-link, a.footer-link:link, a.footer-link:visited, a.footer-link:focus, a
     text-decoration:none;
     cursor: pointer;
 }
-
-/*
-.footer-container {
-    font-family: var(--font-family);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    background-color: var(--drk-grey);
-    color: var(--milky-white);
-    width: 100%;
-    border-top: 2px dotted var(--milky-white);
-    margin-bottom: 0;
-}
-
-.footer-title {
-    font-family: var(--font-family);!*Helvetica Neue, Arial, sans-serif;*!
-    font-size: 12px;
-    display: inline-block;
-    text-align: center;
-    background-color: var(--drk-grey);
-    color: var(--milky-white);
-    width: 100%;
-    padding: 5px;
-}
-
-
-.footer-columns-wrapper {
-    font-family: var(--font-family);!*Helvetica Neue, Arial, sans-serif;*!
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    background-color: var(--drk-grey);
-    color: var(--milky-white);
-    width: 100%;
-}
-
-.footer-column {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    background-color: var(--drk-grey);
-    color: var(--milky-white);
-    width: 100%;
-    margin-left: 100px;
-    margin-right: 100px;
-}
-
-.footer-column-title {
-    font-family: var(--font-family);
-    font-size: 10px;
-    display: inline-block;
-    text-align: left;
-    background-color: var(--drk-grey);
-    color: var(--milky-white);
-    width: 100%;
-    padding-left: 10px;
-}
-
-.footer-column-items {
-    font-family: var(--font-family);
-    list-style-type: none; !* Remove bullets *!
-    font-size: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    background-color: var(--drk-grey);
-    color: var(--milky-white);
-    width: 100%;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-*/

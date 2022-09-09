@@ -13,12 +13,17 @@ const Footer = () => {
                     <a href="#about-us">About us</a>
                 </div>*/}
                 <div className="footer-column-items">
+
+                    <li >
+                        <a href="#our-history"  className="footer-link">Our vision</a>
+                    </li>
                     <li >
                         <a href="#about-us" className="footer-link">About us</a>
                     </li>
                     <li >
-                        <a href="#our-history"  className="footer-link">Our vision</a>
+                        <a href="#what-is-it-all-about" className="footer-link">What is it all about</a>
                     </li>
+
                 </div>
             </div>
             <div className="footer-column-container-2">

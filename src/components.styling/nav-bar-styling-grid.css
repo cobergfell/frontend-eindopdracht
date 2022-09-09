@@ -1,21 +1,6 @@
 /*https://gridbyexample.com/examples/example5/*/
 
 
-
-/*:root {
-    --drk-grey: #343a40;
-    --milky-white: rgba(255,255,255,.5);
-    --primary-buttons-color:rgba(255,255,255,.5);
-    --navbar-height:120px;
-    --navbar-top:0;
-    --navbar-left:0;
-    --navbar-padding-left:0;
-    --navbar-padding-right:48px;
-    --font-family: "Poppins", sans-serif;!*Helvetica Neue, Arial, sans-serif;*!
-    --form-left-right-margin:10%;
-    --painting-image-width-in-list:90%;
-}*/
-
 .nav-bar-container-grid {
     margin-top: 0px;
     width: var(--project-width);
@@ -28,6 +13,7 @@
     grid-template-columns: repeat(100, 1fr);
     grid-template-rows: repeat(10, 1fr);
     border-style: solid;
+    border-color: var(--light-grey);
     /*width: var(--project-width);*/
     /*margin-top:var(--project-margin-top);*/
     /*margin-left:var(--project-margin-left);*/
