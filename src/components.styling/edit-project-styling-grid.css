@@ -16,9 +16,9 @@ body {
     height: calc(var(--project-height) - var(--navbar-height));
     grid-template-columns: repeat(100, 1fr);
     grid-template-rows: repeat(100, 1fr);
-    border-style: solid;
-    border-color: blueviolet;
-    overflow-x: scroll;
+    /*border-style: solid;*/
+    /*border-color: blueviolet;*/
+    /*overflow-x: scroll;*/
     overflow-y: scroll;
     /*width: 960px;*/
     /*height: 100px;*/
@@ -31,58 +31,35 @@ body {
 }
 
 
-.input-title {
-    grid-column-start: 2;
-    grid-column-end: 12;
-    grid-row-start: 6;
-    grid-row-end: 8;
-    font-family: var(--font-family);
-    font-size: 10px;
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
-}
-
-
 .edit-project-form-title {
-    grid-column-start: 40;
-    grid-column-end: 60;
+    grid-column-start: 43;
+    grid-column-end: 62;
     grid-row-start: 2;
-    grid-row-end: 3;
+    grid-row-end: 5;
     font-family: var(--font-family);
-    font-size: 10px;
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
-}
-
-.label-input-title {
-    grid-column-start: 2;
-    grid-column-end: 12;
-    grid-row-start: 5;
-    grid-row-end: 6;
-    font-family: var(--font-family);
-    font-size: 10px;
+    font-size: 12px;
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
 
 
 
-.input-artist {
-    grid-column-start: 14;
-    grid-column-end: 24;
-    grid-row-start: 6;
-    grid-row-end: 8;
+.input-updated-title {
+    grid-column-start: 5;
+    grid-column-end: 34;
+    grid-row-start: 15;
+    grid-row-end: 18;
     font-family: var(--font-family);
     font-size: 10px;
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
 
-.label-input-artist {
-    grid-column-start: 14;
-    grid-column-end: 24;
-    grid-row-start: 5;
-    grid-row-end: 6;
+.label-input-updated-title {
+    grid-column-start: 5;
+    grid-column-end: 34;
+    grid-row-start: 14;
+    grid-row-end: 15;
     font-family: var(--font-family);
     font-size: 10px;
     /*overflow-x: scroll;*/
@@ -90,33 +67,57 @@ body {
 }
 
 
-.input-description {
-    grid-column-start: 2;
-    grid-column-end: 24;
-    grid-row-start: 10;
-    grid-row-end: 30;
+
+.input-updated-artist {
+    grid-column-start: 5;
+    grid-column-end: 34;
+    grid-row-start: 20;
+    grid-row-end: 23;
+    font-family: var(--font-family);
+    font-size: 10px;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+.label-input-updated-artist {
+    grid-column-start: 5;
+    grid-column-end: 34;
+    grid-row-start: 19;
+    grid-row-end: 20;
+    font-family: var(--font-family);
+    font-size: 10px;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+
+.input-updated-description {
+    grid-column-start: 5;
+    grid-column-end: 34;
+    grid-row-start: 26;
+    grid-row-end: 46;
     font-family: var(--font-family);
     font-size: 10px;
     overflow-x: scroll;
     overflow-y: scroll;
 }
 
-.label-input-description {
-    grid-column-start: 2;
-    grid-column-end: 24;
-    grid-row-start: 9;
-    grid-row-end: 10;
+.label-input-updated-description {
+    grid-column-start: 5;
+    grid-column-end: 34;
+    grid-row-start: 25;
+    grid-row-end: 26;
     font-family: var(--font-family);
     font-size: 10px;
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
 
-.upload-painting-image-button {
-    grid-column-start: 40;
-    grid-column-end: 50;
-    grid-row-start: 5;
-    grid-row-end: 10;
+.upload-updated-painting-image-button {
+    grid-column-start: 42;
+    grid-column-end: 52;
+    grid-row-start: 9;
+    grid-row-end: 14;
     font-family: var(--font-family);
     font-size: 10px;
     /*overflow-x: scroll;*/
@@ -124,10 +125,10 @@ body {
 }
 
 .current-painting-preview-label {
-    grid-column-start: 35;
-    grid-column-end: 55;
-    grid-row-start: 11;
-    grid-row-end: 12;
+    grid-column-start: 43;
+    grid-column-end: 53;
+    grid-row-start: 18;
+    grid-row-end: 19;
     font-family: var(--font-family);
     font-size: 10px;
     /*overflow-x: scroll;*/
@@ -135,10 +136,10 @@ body {
 }
 
 .current-painting-preview {
-    grid-column-start: 35;
+    grid-column-start: 40;
     grid-column-end: 55;
-    grid-row-start: 12;
-    grid-row-end: 32;
+    grid-row-start: 19;
+    grid-row-end: 49;
     font-family: var(--font-family);
     font-size: 10px;
     /*overflow-x: scroll;*/
@@ -146,20 +147,20 @@ body {
 }
 
 .new-painting-preview-label {
-    grid-column-start: 35;
-    grid-column-end: 55;
-    grid-row-start: 34;
-    grid-row-end: 35;
+    grid-column-start: 43;
+    grid-column-end: 53;
+    grid-row-start: 51;
+    grid-row-end: 52;
     font-family: var(--font-family);
     font-size: 10px;
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
 .new-painting-preview {
-    grid-column-start: 35;
+    grid-column-start: 40;
     grid-column-end: 55;
-    grid-row-start: 35;
-    grid-row-end: 55;
+    grid-row-start: 52;
+    grid-row-end: 72;
     font-family: var(--font-family);
     font-size: 10px;
     /*overflow-x: scroll;*/
@@ -168,11 +169,21 @@ body {
 
 
 
-.upload-music-file-button {
-    grid-column-start: 60;
-    grid-column-end: 70;
-    grid-row-start: 5;
-    grid-row-end: 10;
+.upload-updated-music-file-button {
+    grid-column-start: 73;
+    grid-column-end: 83;
+    grid-row-start: 9;
+    grid-row-end: 14;
+    font-family: var(--font-family);
+    font-size: 10px;
+}
+
+
+.upload-updated-supplementary-files-button {
+    grid-column-start: 73;
+    grid-column-end: 83;
+    grid-row-start: 49;
+    grid-row-end: 54;
     font-family: var(--font-family);
     font-size: 10px;
     /*overflow-x: scroll;*/
@@ -180,52 +191,33 @@ body {
 }
 
 
-.upload-supplementary-files-button {
-    grid-column-start: 85;
-    grid-column-end: 95;
-    grid-row-start: 5;
-    grid-row-end: 10;
-    font-family: var(--font-family);
-    font-size: 10px;
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
-}
-
-
-.list-supplementary-files {
+/*.list-supplementary-files {
     grid-column-start: 80;
     grid-column-end: 90;
     grid-row-start: 12;
     grid-row-end: 32;
     font-family: var(--font-family);
     font-size: 10px;
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
-}
+    !*overflow-x: scroll;*!
+    !*overflow-y: scroll;*!
+}*/
 
 
-.supplementary-file-item {
-    /*grid-column-start: 60;*/
-    /*grid-column-end: 70;*/
-    /*grid-row-start: 12;*/
-    /*grid-row-end: 32;*/
+/*.supplementary-file-item {
     font-family: var(--font-family);
     font-size: 10px;
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
-}
+}*/
 
-.submit-button {
-    grid-column-start: 50;
-    grid-column-end: 60;
-    grid-row-start: 70;
-    grid-row-end: 75;
+.submit-updated-button {
+    grid-column-start: 42;
+    grid-column-end: 52;
+    grid-row-start: 80;
+    grid-row-end: 85;
     font-family: var(--font-family);
     font-size: 10px;
     border-style: solid;
     border-width: thin;
     border-color: grey;
-
 }
 
 
@@ -268,13 +260,7 @@ body {
 }
 
 
-
-
 .list-audio-data {
-    /*grid-column-start: 3;*/
-    /*grid-column-end: 6;*/
-    /*grid-row-start: 6;*/
-    /*grid-row-end: 7;*/
     list-style-type: none; /* Remove bullets */
     font-size: 10px;
     display: flex;
@@ -290,10 +276,6 @@ body {
 }
 
 .list-supplemental-material {
-    /*grid-column-start: 3;*/
-    /*grid-column-end: 6;*/
-    /*grid-row-start: 6;*/
-    /*grid-row-end: 7;*/
     list-style-type: none; /* Remove bullets */
     font-size: 10px;
     display: flex;
@@ -310,10 +292,10 @@ body {
 
 
 .list-current-audio-files-container-grid {
-    grid-column-start: 55;
-    grid-column-end: 75;
-    grid-row-start: 10;
-    grid-row-end: 30;
+    grid-column-start: 60;
+    grid-column-end: 95;
+    grid-row-start: 14;
+    grid-row-end: 44;
     font-family: var(--font-family);
     font-size: 10px;
     display: grid;
@@ -321,16 +303,16 @@ body {
     grid-template-rows: repeat(20, 1fr);
     border-style: solid;
     border-width: thin;
-    overflow-x: scroll;
+    /*overflow-x: scroll;*/
     overflow-y: scroll;
 }
 
 
-.list-current-files-container-grid {
-    grid-column-start: 77;
-    grid-column-end: 97;
-    grid-row-start: 10;
-    grid-row-end: 30;
+.list-selected-audio-files-container-grid {
+    grid-column-start: 5;
+    grid-column-end: 35;
+    grid-row-start: 54;
+    grid-row-end: 74;
     font-family: var(--font-family);
     font-size: 10px;
     display: grid;
@@ -338,8 +320,28 @@ body {
     grid-template-rows: repeat(20, 1fr);
     border-style: solid;
     border-width: thin;
-    overflow-x: scroll;
+    /*overflow-x: scroll;*/
     overflow-y: scroll;
+}
+
+
+
+
+.list-current-files-container-grid {
+    grid-column-start: 60;
+    grid-column-end: 95;
+    grid-row-start: 54;
+    grid-row-end: 84;
+    font-family: var(--font-family);
+    font-size: 10px;
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+    border-style: solid;
+    border-width: thin;
+    /*overflow-x: scroll;*/
+    overflow-y: scroll;
+    /*scrollbar-width: thin;*/
 }
 
 .list-current-files-flex-container {
@@ -362,12 +364,12 @@ body {
     font-family: var(--font-family);/*Helvetica Neue, Arial, sans-serif;*/
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(10, 1fr);
     color: var(--drk-grey);
     background-color:var(--milky-white);
     grid-gap: 0px;
     width: 100%;
-    height: 20px;
+    height: 50px;
     border-style: solid;
     border-width: thin;
     /*border-style: solid;*/
@@ -378,15 +380,15 @@ body {
 
 .files-list-element {
     grid-column-start: 1;
-    grid-column-end: 8;
+    grid-column-end: 10;
     grid-row-start: 2;
-    grid-row-end: 3;
+    grid-row-end: 10;
     font-family: var(--font-family);
     font-size: 10px;
     color: var(--drk-grey);
     border-style: solid;
     border-width: thin;
-    /*overflow-x: scroll;*/
+    overflow-x: scroll;
     /*overflow-y: scroll;*/
 }
 
@@ -405,7 +407,7 @@ body {
 
 .current-files-box-header-column-1 {
     grid-column-start: 1;
-    grid-column-end: 15;
+    grid-column-end: 18;
     grid-row-start: 3;
     grid-row-end: 4;
     /*font-family: var(--font-family);*/
@@ -415,7 +417,7 @@ body {
 }
 
 .current-files-box-header-column-2 {
-    grid-column-start: 15;
+    grid-column-start: 18;
     grid-column-end: 20;
     grid-row-start: 3;
     grid-row-end: 4;
@@ -438,11 +440,12 @@ body {
 }
 
 
+/*
 .list-selected-audio-files-container-grid {
     grid-column-start: 55;
     grid-column-end: 75;
-    grid-row-start: 40;
-    grid-row-end: 60;
+    grid-row-start: 44;
+    grid-row-end: 64;
     font-family: var(--font-family);
     font-size: 10px;
     display: grid;
@@ -473,3 +476,4 @@ body {
 
 
 
+*/

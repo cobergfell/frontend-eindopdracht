@@ -14,9 +14,10 @@
 }*/
 
 .footer-wrapper {
-    margin-top: 0px;
+    margin: 0px;
     width: var(--project-width);
     height: var(--footer-height);
+    min-height: var(--footer-height);
     font-family: var(--font-family);/*Helvetica Neue, Arial, sans-serif;*/
     display: grid;
     color: var(--drk-grey);
@@ -36,7 +37,7 @@
 
 
 .footer-title {
-    grid-column-start: 25;
+    grid-column-start: 42;
     grid-column-end: 95;
     grid-row-start: 1;
     grid-row-end: 2;

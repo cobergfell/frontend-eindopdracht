@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useContext} from "react";
 import UserService from "../services/user.access.service-DEPRECATED";
 import EventBus from "../common/EventBus";
 import {Link, useHistory} from "react-router-dom";
@@ -6,6 +6,7 @@ import axios from "axios";
 import AuthService from "../services/auth.service";
 import "../components.styling/board-user-styling-grid.css";
 import PaintingsListAsTilesWithPagination from "./PaintingsListAsTilesWithPagination";
+import {AuthContext} from "../context/AuthoritiesContextProvider";
 const currentUser = AuthService.getCurrentUser();
 console.log('9 currentUser',currentUser);
 
@@ -15,6 +16,22 @@ const BoardUser = () => {
   const [error, setError] = useState(false);
   const [loading, toggleLoading] = useState(false);
   const history = useHistory();
+
+  const contextData = useContext(AuthContext);
+  const {username, setUsername} = contextData;
+  const {isModerator, setIsModerator} = contextData;
+  const {isAdministrator, setIsAdministrator} = contextData;
+  setUsername(currentUser.username)
+  if (currentUser.roles.includes("ROLE_ADMIN")) {
+    setIsAdministrator(true)
+  }
+  if (currentUser.roles.includes("ROLE_MODERATOR")) {
+    setIsModerator(true)
+  }
+  console.log("33 currentUser.roles.includes(ROLE_ADMIN)", currentUser.roles.includes("ROLE_ADMIN"));
+  console.log("34 isModerator", isModerator);
+  console.log("35 isAdministrator", isAdministrator);
+
 
   const getFilesNames = (questionObject) => {
     if (questionObject.attachedFiles.size > 0) {
@@ -87,7 +104,7 @@ const BoardUser = () => {
           >
             New Project
           </button>
-          <button
+          {/*<button
               type="button"
               className="CSS-grid-test-1"
               //disabled={isLoading}
@@ -102,7 +119,7 @@ const BoardUser = () => {
               onClick={() => history.push(`/CSSGridTest2`)}
           >
             CSS grid test 2
-          </button>
+          </button>*/}
           <div className="container-pages">
             <PaintingsListAsTilesWithPagination/>
           </div>

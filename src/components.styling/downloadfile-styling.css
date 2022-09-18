@@ -1,0 +1,80 @@
+/*https://gridbyexample.com/examples/example5/*/
+
+.download-file-container-grid {
+    /*margin-top: var(--navbar-height);*/
+    font-family: var(--font-family);/*Helvetica Neue, Arial, sans-serif;*/
+    display: grid;
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
+    grid-gap: 0px;
+    width: var(--project-width);
+    height: calc(var(--project-height) - var(--navbar-height));
+    grid-template-columns: repeat(100, 1fr);
+    grid-template-rows: repeat(100, 1fr);
+    /*border-style: solid;*/
+    /*border-color: red;*/
+}
+
+.back-to-project_button {
+    grid-column-start: 45;
+    grid-column-end: 55;
+    grid-row-start: 25;
+    grid-row-end: 30;
+    font-family: var(--font-family);
+    font-size: 10px;
+    border-style: solid;
+    border-width: thin;
+    border-color: grey;
+}
+
+/*
+.succes-message {
+    grid-column-start: 1;
+    grid-column-end: 50;
+    grid-row-start: 1;
+    grid-row-end: 10;
+    font-family: var(--font-family);
+    font-size: 10px;
+}
+
+.loading-message {
+    grid-column-start: 1;
+    grid-column-end: 50;
+    grid-row-start: 1;
+    grid-row-end: 10;
+    font-family: var(--font-family);
+    font-size: 10px;
+}
+
+.test1 {
+    grid-column-start: 1;
+    grid-column-end: 30;
+    grid-row-start: 50;
+    grid-row-end: 52;
+    font-family: var(--font-family);
+    font-size: 10px;
+}
+
+
+.test2 {
+    grid-column-start: 1;
+    grid-column-end: 30;
+    grid-row-start: 50;
+    grid-row-end: 52;
+    font-family: var(--font-family);
+    font-size: 10px;
+}
+
+
+.login-btn {
+    grid-column-start: 20;
+    grid-column-end: 30;
+    grid-row-start: 45;
+    grid-row-end: 50;
+    font-family: var(--font-family);
+    font-size: 10px;
+    border-style: solid;
+    border-width: thin;
+    border-color: grey;
+}*/
+

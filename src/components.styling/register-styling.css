@@ -20,10 +20,10 @@
 
 
 .error-message {
-    grid-column-start: 35;
-    grid-column-end: 75;
-    grid-row-start: 25;
-    grid-row-end: 30;
+    grid-column-start: 20;
+    grid-column-end: 30;
+    grid-row-start: 60;
+    grid-row-end: 65;
     font-family: var(--font-family);
     font-size: 10px;
 }

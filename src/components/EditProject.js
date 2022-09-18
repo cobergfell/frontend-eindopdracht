@@ -69,6 +69,22 @@ const EditProject = () => {
         }
     };
 
+    const deselectAudioFiles = (e) => {
+        let updatedSelection=[];
+        const checked = e.target.checked;
+        selectedAudioFiles.forEach(file => {if (!checked){updatedSelection.push(file)}}
+        );
+        setSelectedAudioFiles(updatedSelection)
+    };
+
+    const deselectFiles = (e) => {
+        let updatedSelection=[];
+        const checked = e.target.checked;
+        selectedFiles.forEach(file => {if (!checked){updatedSelection.push(file)}}
+        );
+        setSelectedFiles(updatedSelection)
+    };
+
 
     const selectAudioFilesToDelete = (e,selectedFileObject) => {
         const checked = e.target.checked;
@@ -303,7 +319,7 @@ const EditProject = () => {
                                 type: attachedMusicFile.type
                             })
 
-                        }] // so currentAudioFile is a list of objects with to keys "fileId" and "file" of the form {"fileId": ..., "file"...}
+                        }] // so currentAudioFile is a list of objects with two keys "fileId" and "file" of the form {"fileId": ..., "file"...}
 
                     )))
             })
@@ -544,20 +560,20 @@ const EditProject = () => {
                 </>
             ) : (
                 <>
-                    <label htmlFor="title" className="label-input-title">Title</label>
+                    <label htmlFor="title" className="label-input-updated-title">Title</label>
                     <input
                         type="text"
-                        className="input-title"
+                        className="input-updated-title"
                         id="title"
                         required
                         value={painting.title}
                         onChange={handleInputChange}
                         name="title"
                     />
-                    <label htmlFor="artist" className="label-input-artist">Artist</label>
+                    <label htmlFor="artist" className="label-input-updated-artist">Artist</label>
                     <input
                         type="text"
-                        className="input-artist"
+                        className="input-updated-artist"
                         id="artist"
                         //required
                         value={painting.artist}
@@ -565,10 +581,10 @@ const EditProject = () => {
                         name="artist"
                     />
 
-                    <label htmlFor="description" className="label-input-description">Description</label>
+                    <label htmlFor="description" className="label-input-updated-description">Description</label>
                     <textarea
                         type="text"
-                        className="input-description"
+                        className="input-updated-description"
                         id="description"
                         required
                         value={painting.description}
@@ -581,7 +597,7 @@ const EditProject = () => {
                     />
 
 
-                    <button className="upload-painting-image-button" onClick={handleClick1}>
+                    <button className="upload-updated-painting-image-button" onClick={handleClick1}>
                         Upload painting image
                     </button>
 
@@ -627,7 +643,7 @@ const EditProject = () => {
                     )}
 
 
-                    <button className="upload-music-file-button" onClick={handleClick2}>
+                    <button className="upload-updated-music-file-button" onClick={handleClick2}>
                         Upload music file
                     </button>
 
@@ -681,9 +697,7 @@ const EditProject = () => {
                         </div>
                     )}
 
-                    <button className="upload-supplementary-files-button" onClick={handleClick3}>
-                        Upload supplementary files
-                    </button>
+
 
                     <input type="file"
                            ref={hiddenFileInput3}
@@ -742,6 +756,14 @@ const EditProject = () => {
                                                 {selectedFile.name}
                                                 {/*<p>JSON.stringify(selectedFile):{JSON.stringify(selectedFile)}</p>*/}
                                             </div>
+                                            <input
+                                                type="checkbox"
+                                                className="checkbox-files"
+                                                onClick={(e) => {
+                                                    deselectAudioFiles(e,selectedFile);}}
+                                            />
+
+
                                         </div>
                                     )
                                 })}
@@ -750,7 +772,7 @@ const EditProject = () => {
                         </div>
                     )}
 
-                    <button className="upload-supplementary-files-button" onClick={handleClick3}>
+                    <button className="upload-updated-supplementary-files-button" onClick={handleClick3}>
                         Upload supplementary files
                     </button>
 
@@ -780,7 +802,14 @@ const EditProject = () => {
                                                 {selectedFile.name}
                                                 {/*<p>JSON.stringify(selectedFile):{JSON.stringify(selectedFile)}</p>*/}
                                             </div>
+                                            <input
+                                                type="checkbox"
+                                                className="checkbox-files"
+                                                onClick={(e) => {
+                                                    deselectFiles(e,selectedFile);}}
+                                            />
                                         </div>
+
                                     )
                                 })}
 
@@ -789,7 +818,7 @@ const EditProject = () => {
                     )}
 
 
-                    <button onClick={updatePainting} className="submit-button">
+                    <button onClick={updatePainting} className="submit-updated-button">
                         Submit
                     </button>
 

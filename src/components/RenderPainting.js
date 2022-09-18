@@ -42,7 +42,10 @@ function RenderPainting({ dataObject}) {
 
 
     const modificationPrivilege = (dataObject) => {
-        if (((dataObject.username==currentUser)||(isModerator==true))){return true
+        console.log('47 currentUser', currentUser)
+        console.log('47 dataObject', dataObject)
+        console.log('47 dataObject.username==currentUser.username', dataObject.username==currentUser.username)
+        if (((dataObject.username==currentUser.username)||(isModerator==true))){return true
         } else{return false}
     }
 
@@ -85,7 +88,6 @@ function RenderPainting({ dataObject}) {
             <div className="painting-tile-grid-image-container">
                 <Link
                       to={{
-                          //pathname: `/description`,
                           pathname: `/paintings/${dataObject.paintingId}`,
                           //search: attachedFile.fileId,
                           //hash: "",
@@ -115,12 +117,12 @@ function RenderPainting({ dataObject}) {
                     <li className="list-summarize-painting-data-item">
                         <Link className="link-to-description"
                             to={{
-                                //pathname: `/description`,
                                 pathname: `/paintings/${dataObject.paintingId}`,
                                 //search: attachedFile.fileId,
                                 //hash: "",
                                 state: { paintingId:dataObject.paintingId,
-                                    description: dataObject.description
+                                    description: dataObject.description,
+                                    hasEditingPrivilege:hasEditingPrivilege
                                 }
                             }}
                             //style={{ textDecoration: 'none', color: 'deepskyblue'}}

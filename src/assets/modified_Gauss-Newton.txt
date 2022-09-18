@@ -1,0 +1,677 @@
+def jacfunc(P,func,time,logtransform=array([],dtype=bool),delp=0.05):#this is a more simpel and general jacobian applicable for a function func and parameters vectors p
+    nl=len(time)#in first instance, number of lines matrix equals number of interpolated obervations
+    nc=len(P)
+    J=empty((nl,nc))
+    P=array(P)#from list type to array type in order to perform the additionb P+dP
+    dp=abs(P)*delp#del p for non log transformed parameters
+    dp[logtransform]=log(delp+1)#replace dp for log transformed parameters 
+    dp=diag(dp)#diagonal matrix of perturbations
+    P=P+zeros((len(P),len(P)))#attention, this is python broadcasting in action!result is a square matrix of length P, with each line=P
+    Pp=P+dp
+    Pm=P-dp#Pp for 'P plus' and Pm for 'P min'
+    for j in range(0,nc):
+        J[:,j]=(func(Pp[j,:],time)-func(Pm[j,:],time))/(Pp[j,j]-Pm[j,j])
+    return J
+
+
+
+def LM_jacan(P0,data,time_step,P_ind,Nint,flags,select_data,select_parameters,logtransform,stress_list,eps1=1e-10,eps2=1e-10,eps3=1e-10,maxiter=200):#LM with analytical jacobian
+
+    from numpy import var,std
+    from numpy.linalg import solve,inv,det,LinAlgError#,dot,diag, transpose, norm
+    from scipy.linalg import diagsvd
+
+    
+    #if flags['WELL'] in [2,3,4]:#in cases that each well has its own parameters, maxiter is 50 times longer
+    #    maxiter=maxiter*2
+    logtransform_select=logtransform[select_parameters]
+    y=data['H_OBS']['targets'][:,1]#targets
+    
+    weights=data['H_OBS']['targets weights'][:,1]
+    indlt=flatnonzero(logtransform_select)#indexes of log transformed parameters
+    mask_y=data['H_OBS']['mask']
+    Poptimal=array(P0)
+    derivative='analytical'
+    #derivative='numerical'
+    delp_default=0.1
+    delp=delp_default
+    best_score=-99999
+    best_P=P0#added 1-6-17
+    best_dP=zeros(len(P0))
+    list_J=[]#added 24-10-2017 list of Jacobians
+    expvar_extended=[] #it is declared here but only used if harmonic component is used in the fit   
+    innov=[] #added 2-12-2017
+    P0pas=flags['P0pas']#added 1-12-17, quick & dirty way to smuggle P0pas into thos function
+    
+    maxiter=50##$  #0004$  #0005$
+    print '13155 maxiter=50'#0005$
+    #print '13123 reset maxiter to 100'
+
+    #input()
+    
+#0009$
+    r=response(P0,data,stress_preprocess,time_step,P_ind,flags,Nint,select_data,select_parameters,logtransform,stress_list,derivative=derivative,delp=delp)
+    
+    condition_to_use_jacobian_finite_difference=0#0001
+    if flags['USE JACOBIAN AS MODEL FINITE DIFFERENCE']==1:
+        condition_to_use_jacobian_finite_difference=1
+    if flags['INCLUDE GAIN IN OPTIMISATION']==1:
+        condition_to_use_jacobian_finite_difference=1
+
+    if flags['FIT HARMONIC COMPONENT']==3:    #0001
+        P0,P0pas=update_P_given_harmonic_components(P0,Pnames,P0pas,P0pas_index,flags,logtransform) 
+        condition_to_use_jacobian_finite_difference=1   
+        
+    if condition_to_use_jacobian_finite_difference==1:
+        J=jacobian_finite_difference(P0,data,stress_preprocess,time_step,flags,Nint,select_data,select_parameters,logtransform,stress_list,delp=0.05)      
+    else:
+        J=r[3]  
+
+    J=dot(diag(weights),J)
+    numjac=0
+    A=dot(transpose(J),J)#A=JTJ 
+    simulation_det=r[1][mask_y]#deterministic simulation
+    J_of_present_iteration=J# this is the jacobian of present iteration which will be stored in the list of jacobian for later analysis (added 24-10-2017)
+          
+    if flags['FIT HARMONIC COMPONENT'] in [1,2]:#added 30-9-2017  ##
+        if flags['FIT HARMONIC COMPONENT']==1:
+            nb=14 #nb is the output number in the function response()
+        elif flags['FIT HARMONIC COMPONENT']==2:
+            nb=15
+        shapeJ=shape(J)
+        NL=shapeJ[0]
+        NC=shapeJ[1]
+        y_extended=empty(2*NL)
+        simulation_det_extended=empty(2*NL)
+        hc_obs=data['H_OBS']['hc hobs'][:,1]##$  
+        mean_level_hc_obs=data['H_OBS']['mean level hc_hobs']
+        if flags['FIT HARMONIC COMPONENT']==2:
+            hc_obs=hc_obs-mean_level_hc_obs     #this is because in the case of the harmonic component derived from convolution of PIII with harmonic component of evap, the base level is zero
+        hc_obs_at_targets_times=hc_obs[mask_y]
+        hc_sim_ls=r[14]#this is the harmonic component least square fitted
+        hc_sim=r[nb][:,1]
+        hc_sim_at_targets_times=hc_sim[mask_y] 
+        y_extended[:NL]=y
+        y_extended[NL:]=hc_obs_at_targets_times          
+        simulation_det_extended[:NL]=simulation_det
+        simulation_det_extended[NL:]=hc_sim_at_targets_times         
+             
+        weights_simul=0.00101#weights attributed to simulated heads                  #0008$  #0004$  #0005$  #0009$ #0001$ 
+        weights_hc=1.00#weights attributed to harmonic componenent #$
+
+        weights_extended=empty(2*NL)
+        weights_extended[:NL]=weights_simul
+        weights_extended[NL:]=weights_hc
+        J_extended=empty((2*NL,NC))
+        J_hc=jacobian_finite_difference(P0,data,stress_preprocess,time_step,flags,Nint,select_data,select_parameters,logtransform,stress_list,delp=0.05)
+        J_extended[:NL,:]=J
+        J_extended[NL:,:]=J_hc##$
+        J_extended=dot(diag(weights_extended),J_extended)
+        A_extended=dot(transpose(J_extended),J_extended)#A=JTJ         
+        J_of_present_iteration=J_extended# this is stored in a list for later analysis (added 24-10-2017)  
+        
+        time=r[6]
+        time_at_targets=r[6][mask_y]
+        simulation_at_targets_times=r[1][mask_y]
+        
+        if flags['DRAW MINIMUM FIGURES']==0:  
+            fig=figure()##
+            tmin=time[0]
+            tmax=time[-1]
+            ax = fig.add_subplot(111)
+            ax.set_title('12140')
+            ax.plot_date(time_at_targets,y,'b')#plot interpolated time serie
+            ax.plot_date(time_at_targets,simulation_at_targets_times,'b--')#plot simulated time serie
+            ax.plot_date(time_at_targets,hc_obs_at_targets_times,'r')#plot simulated time serie
+            ax.plot_date(time_at_targets,hc_sim_at_targets_times,'r--')#plot simulated time serie
+            leg = ax.legend(('ydata', 'simulated','hc_obs', 'hc_sim'),loc='upper left',shadow=False)   
+            ax.fmt_xdata = DateFormatter('%Y-%m-%d')                        # %H:%M:%S')
+            fig.autofmt_xdate()
+            ax.set_ylabel('groundwater level (m ref)')
+            show()
+            
+            fig=figure()##$
+            tmin=time[0]
+            tmax=time[-1]
+            ax = fig.add_subplot(111)
+            ax.set_title('12155')
+            ax.plot_date(time_at_targets,hc_obs_at_targets_times,'b')#plot interpolated time serie
+            ax.plot_date(time,hc_sim_ls[:,1]-mean(hc_sim_ls[:,1]),'r--')#plot simulated time serie
+            ax.plot_date(time_at_targets,hc_sim_at_targets_times,'r--')#plot simulated time serie
+            leg = ax.legend(('hc_obs', 'hc_sim_ls' ,'hc_sim'),loc='upper left',shadow=False)   
+            ax.fmt_xdata = DateFormatter('%Y-%m-%d')                        # %H:%M:%S')
+            fig.autofmt_xdate()
+            ax.set_ylabel('groundwater level (m ref)')
+            show()        
+
+    errold_det=y-simulation_det             #residuals\
+    errold_det=dot(diag(weights),errold_det)
+    SSregold_det=sum(pow(errold_det,2))
+    residual_of_present_iteration=errold_det# t# this is stored in a list for later analysis (added 24-10-2017)  
+    
+    
+
+        
+    if flags['FIT HARMONIC COMPONENT'] in [1,2]:#added 30-9-2017  ##$    
+        errold_det_extended=y_extended-simulation_det_extended
+        errold_det_extended=dot(diag(weights_extended),errold_det_extended)
+        SSregold_det_extended=sum(pow(errold_det_extended,2))
+        residual_of_present_iteration=errold_det_extended# # this is stored in a list for later analysis (added 24-10-2017)  
+        errold_hc=errold_det_extended[NL:]
+        weights_hc=weights_extended[NL:]
+        #errold_hc=dot(diag(weights_hc),errold_hc)# it was already weighted!
+        SSregold_hc=sum(pow(errold_hc,2))
+         
+                   
+    if flags['NOISE']==1:
+        simulation_stoch=r[4][mask_y]#stochastic simulation
+        SSWI_weights=r[5]        
+        errold_stoch=y-simulation_stoch         #innovations
+        errold_stoch=multiply(errold_stoch,SSWI_weights) #weighted innovations #0009 uncomment
+        errold_tot=errold_det+errold_stoch      #residuals plus innovations    
+        SSregold_tot=sum(pow(errold_tot,2))     #sum squared errors adding  residuals plus innovations  
+        
+        if flags['FIT HARMONIC COMPONENT'] in [1,2]:#added 30-9-2017  ##$   
+            simulation_stoch_extended=empty(2*NL)
+            simulation_stoch_extended[:NL]=simulation_stoch
+            simulation_stoch_extended[NL:]=hc_sim_at_targets_times                                
+            errold_tot_extended=empty((2*NL))
+            errold_tot_extended[:NL]=errold_tot
+            errold_tot_extended[NL:]=hc_obs_at_targets_times-hc_sim_at_targets_times    
+            SSregold_tot_extended=sum(pow(errold_tot_extended,2))     #sum squared errors adding  residuals plus innovations
+                  
+    
+    #SStot=sum(pow(data['H_OBS']['targets'][:,1]-mean(data['H_OBS']['targets'][:,1]),2))
+    #observed_deviations_from_mean=data['H_OBS']['targets'][:,1]-mean(data['H_OBS']['targets'][:,1])old version removed 30-9-17
+    observed_deviations_from_mean=y-mean(y)
+    observed_deviations_from_mean=dot(diag(weights),observed_deviations_from_mean)
+    SStot=sum(pow(observed_deviations_from_mean,2))
+    expvarold=100*(1-SSregold_det/SStot)
+
+    
+    if flags['FIT HARMONIC COMPONENT'] in [1,2]:#added 30-9-2017     
+        observed_deviations_from_mean_extended=y_extended-mean(y_extended)
+        observed_deviations_from_mean_extended=dot(diag(weights_extended),observed_deviations_from_mean_extended)
+        SStot_extended=sum(pow(observed_deviations_from_mean_extended,2))
+        expvarold_extended=100*(1-SSregold_det_extended/SStot_extended)  
+        
+        #lines below are to estimate expl. variance hc
+        observed_deviations_from_mean_hc=hc_obs_at_targets_times-mean(hc_obs_at_targets_times)
+        observed_deviations_from_mean_hc=dot(diag(weights_hc),observed_deviations_from_mean_hc)
+        SStot_hc=sum(pow(observed_deviations_from_mean_hc,2))
+        expvarold_hc=100*(1-SSregold_hc/SStot_hc)          
+        
+        
+    if flags['NOISE']==0:
+        g=dot(transpose(J),errold_det)
+    elif flags['NOISE']==1:
+        g=dot(transpose(J),errold_tot)
+        
+    stop=(linalg.norm(g)<eps1)
+    I=diag(ones(shape(J)[1]))
+    
+    if flags['FIT HARMONIC COMPONENT'] in [1,2]:#added 30-9-2017  ##$       
+        if flags['NOISE']==0:
+            g_extended=dot(transpose(J_extended),errold_det_extended)
+        elif flags['NOISE']==1:
+            g_extended=dot(transpose(J_extended),errold_tot_extended)
+            
+        stop=(linalg.norm(g_extended)<eps1)
+        I=diag(ones(shape(J_extended)[1]))    
+    
+    
+    k=0
+    rho_old=99
+    dmx_old=99
+    indmin_old=99
+    mu=0
+    
+    while not stop and k<maxiter:# and expvarold<95:
+        #print 'line 5390 k',k
+        k=k+1
+        mu=0
+        nu=1.5
+        if expvarold<60:
+            dmax=1.5
+            delta=1.1#delta determines the size of the steps in the objective function landscape; the bigger delta, the bigger the step;0.1 is slows but will not miss the optimum
+        else:
+            dmax=1.5
+            delta=0.1#delta determines the size of the steps in the objective function landscape; the bigger delta, the bigger the step;0.1 is slows but will not miss the optimum
+ 
+        normdp=delta
+        
+        while normdp >=delta:#0005$
+            mu=nu*mu+0.0001
+            #try:
+            #print '12172 mu',mu
+            dp=solve(A+mu*I,g) 
+            if flags['FIT HARMONIC COMPONENT'] in [1,2]:
+                dp=solve(A_extended+mu*I,g_extended)
+            normdp=linalg.norm(dp)
+            mask=(dp==0)#added 1-1-17
+            dp[mask]=1e-9          
+                #except linalg.LinAlgError:
+                #mu=nu*mu+0.001
+        
+        # print '12184 uncomment 12171 to 12182'
+        # print '12184 remove 12186 to 12188'
+        # dp=solve(A+mu*I,g)
+        # if flags['FIT HARMONIC COMPONENT'] in [1,2]:
+        #     dp=solve(A_extended+mu*I,g_extended) 
+                   
+        dp_of_present_iteration=dp# #0005$ this is stored in a list (added 24-10-2017)                        
+        list_J.append([residual_of_present_iteration,J_of_present_iteration,dp_of_present_iteration,expvarold])#0005$       
+                
+        test_change=(dp/Poptimal[select_parameters])#relative parameter change for non log transformed parameters to optimize
+        test_change[indlt]=(dp-1)#relative parameter change for log transformed parameters to optimize; dp is a vector, and python understands 1 as a vector of ones of length len(dp); this is another example of Python broadcasting
+
+        if (max(abs(test_change))<eps2):
+            stop=True
+        else:
+
+            #calculate damping parameter rho according to 'METHODS AND GUIDELINES FOR EFFECTIVE MODEL CALIBRATION by Mary C. Hill,1998'
+            converg_test=abs(test_change)>dmax#convergence test
+            converg_test=test_change>dmax
+            rho=ones(len(dp))
+            ind=flatnonzero(converg_test&~logtransform_select)
+            rho[ind]=(dmax/abs(test_change))[ind]#this is rho for non log transformed parameters
+            ind=flatnonzero((converg_test&logtransform_select)&(dp>0))
+            rho[ind]=(log(dmax+1)/dp)[ind]
+
+            if dmax >1:#this was wrong in former versions!It is also wrong in guigeline Mary Hill
+                ind=flatnonzero((converg_test&logtransform_select)&(dp<0))
+                rho[ind]=(log(dmax-1)/dp)[ind]
+            indmin=argmin(rho)#returns the indice of the minimum rho
+            rho_min=min(rho)
+ 
+            #apply oscillation control
+            dmx=dp[indmin]/abs(Poptimal[indmin])#dmx is d relative min, this is DMX of Mary Hill
+            if k==1 or indmin<>indmin_old:
+                rho_star=1
+            else:
+                s=dmx/(rho_old*dmx_old)
+                if s>=-1:
+                    rho_star=(3+s)/(3+abs(s))
+                else:
+                    rho_star=1/(2*abs(s))
+            rho=rho_star*rho
+            
+            dmx_old=dmx
+            indmin_old=indmin
+            rho_old=rho[indmin]
+            
+            dplong=zeros(len(Poptimal))             #dplong is the vector of steps in the parameters space with 0 if the parameter is not to be optimized
+            dplong[select_parameters]=dp*rho
+            Ptry=Poptimal+dplong
+            if flags['FIT HARMONIC COMPONENT']==3:    #0001
+                Ptry,P0pas=update_P_given_harmonic_components(Ptry,Pnames,P0pas,P0pas_index,flags,logtransform) 
+                condition_to_use_jacobian_finite_difference=1              
+                
+            r=response(Ptry,data,stress_preprocess,time_step,P_ind,flags,Nint,select_data,select_parameters,logtransform,stress_list,derivative=derivative,delp=delp)
+            
+            simulation_det=r[1][mask_y]#deterministic simulation
+            errnew_det=y-simulation_det
+            errnew_det_unweighted=zeros(shape(errnew_det))
+            errnew_det_unweighted[:]=errnew_det[:]
+            errnew_det=dot(diag(weights),errnew_det)
+            SSregnew_det=sum(pow(errnew_det,2))#sum squared errors deterministic part
+            SSregnew_det_unweighted=sum(pow(errnew_det_unweighted,2))#sum squared errors deterministic part unweighted
+            expvarnew=100*(1-SSregnew_det/SStot)
+            expvarnew_unweighted=100*(1-SSregnew_det_unweighted/SStot)
+            residual_of_present_iteration=errnew_det
+            
+    
+            if flags['FIT HARMONIC COMPONENT'] in [1,2]:#added 30-9-2017  ##$ 
+                hc_sim=r[nb][:,1]
+                hc_sim_at_targets_times=hc_sim[mask_y]          
+                simulation_det_extended[:NL]=simulation_det
+                simulation_det_extended[NL:]=hc_sim_at_targets_times 
+                errnew_det_extended=y_extended-simulation_det_extended
+                errnew_det_extended=dot(diag(weights_extended),errnew_det_extended)         
+                SSregnew_det_extended=sum(pow(errnew_det_extended,2))#sum squared errors deterministic part                
+                expvarnew_extended=100*(1-SSregnew_det_extended/SStot_extended)
+                residual_of_present_iteration= errnew_det_extended
+                
+                errnew_hc=errnew_det_extended[NL:]
+                #errnew_hc=dot(diag(weights_hc),errnew_hc) #is is already weighted
+                SSregnew_hc=sum(pow(errnew_hc,2))
+                expvarnew_hc=100*(1-SSregnew_hc/SStot_hc)
+               
+                
+                
+            if flags['NOISE']==1:
+                SSWI_weights=r[5]
+                simulation_stoch=r[4][mask_y]#stochastic simulation    
+                errnew_stoch=y-simulation_stoch
+                errnew_stoch=multiply(errnew_stoch,SSWI_weights) #weighted innovations  
+                #errnew_tot=errnew_det+errnew_stoch
+                errnew_tot=errnew_stoch
+                SSregnew_tot=sum(pow(errnew_tot,2))#sum squared errors deterministic and stochastic part
+                expvarnew_tot=100*(1-SSregnew_tot/SStot)
+                
+                if flags['FIT HARMONIC COMPONENT'] in [1,2]:#added 30-9-2017  ##$      
+                    simulation_stoch_extended[:NL]=simulation_stoch
+                    simulation_stoch_extended[NL:]=hc_sim_at_targets_times 
+                    errnew_stoch_extended=y_extended-simulation_stoch_extended
+                    errnew_stoch_extended=dot(diag(weights_extended),errnew_stoch_extended)
+                    errnew_tot_extended=errnew_det_extended+errnew_stoch_extended
+                    SSregnew_tot_extended=sum(pow(errnew_tot_extended,2))#sum squared errors deterministic and stochastic part             
+                    expvarnew_tot_extended=100*(1-SSregnew_tot_extended/SStot_extended)
+   
+            
+            if flags['NOISE']==0:
+                condition=expvarnew>expvarold
+                #condition=SSregnew_det<SSregold_det
+                if flags['FIT HARMONIC COMPONENT'] in [1,2]:                
+                    #condition=expvarnew_extended>expvarold_extended
+                    SSregnew_det_extended<SSregold_det_extended
+                
+            elif flags['NOISE']==1:#0001
+                #condition=expvarnew>expvarold
+                condition=(SSregnew_tot<SSregold_tot) and (expvarnew>expvarold)#0009
+
+                if flags['FIT HARMONIC COMPONENT']in [1,2]:                
+                     condition=(SSregnew_tot_extended<SSregold_tot_extended) and (expvarnew_extended>expvarold_extended)#0009              
+              
+
+            if condition==True:
+                
+                Poptimal=Ptry
+                if flags['NOISE']==0:
+                    errold_det=errnew_det
+                    SSregold_det=SSregnew_det
+                    expvarold=expvarnew  
+                    if flags['FIT HARMONIC COMPONENT'] in [1,2]:
+                        errold_det_extended=errnew_det_extended
+                        SSregold_det_extended=SSregnew_det_extended
+                        expvarold_extended=expvarnew_extended                              
+                        errold_hc=errnew_hc
+                        SSregold_hc=SSregnew_hc
+                        expvarold_hc=expvarnew_hc                         
+                    
+                elif flags['NOISE']==1:                                     
+                    errold_tot=errnew_tot 
+                    SSregold_tot=SSregnew_tot
+                    expvarold_tot=expvarnew_tot
+                    if flags['FIT HARMONIC COMPONENT'] in [1,2]:                                                                      
+                        errold_tot_extended=errnew_tot_extended 
+                        SSregold_tot_extended=SSregnew_tot_extended
+                        expvarold_tot_extended=expvarnew_tot_extended
+                                                                                                                                                                                            
+                                                
+                if expvarnew>best_score:#added 1-6-17, to keep the parameters that provide the highest expl variance (so we dont minimize the sum of squared residuals!)
+                    best_score=expvarnew#added 1-6-17
+                    best_P=Poptimal#added 1-6-17 
+                    best_dP=dp#added 22-10-17   #0004$                   
+               
+
+                
+                print 'line 12297 expvarnew:',expvarnew
+                if flags['NOISE']==1:
+                    print 'line 12297 expvarnew_tot:',expvarnew_tot
+                    
+                print 'line 12298 expvarnew_unweighted:',expvarnew_unweighted
+                if flags['FIT HARMONIC COMPONENT'] in [1,2]:
+                    print 'line 12402 expvarnew_extended:',expvarnew_extended
+                    print 'line 12403 expvarnew_hc:',expvarnew_hc
+                    
+                numjac=0
+                derivative='analytical'
+                #derivative='numerical'
+                #J=r[3]
+                
+                delp=delp_default
+                
+                
+                if condition_to_use_jacobian_finite_difference==1:
+                    J=jacobian_finite_difference(Poptimal,data,stress_preprocess,time_step,flags,Nint,select_data,select_parameters,logtransform,stress_list,delp=0.05)        
+                else:
+                    J=r[3]                 
+ 
+                J=dot(diag(weights),J)
+                J_of_present_iteration=J    #0005$            
+                A=dot(transpose(J),J)
+  
+                
+                if flags['FIT HARMONIC COMPONENT'] in [1,2]:##$  
+                                                       
+                    J_hc=jacobian_finite_difference(Poptimal,data,stress_preprocess,time_step,flags,Nint,select_data,select_parameters,logtransform,stress_list,delp=0.25)
+                    J_extended[:NL,:]=J
+                    J_extended[NL:,:]=J_hc##$
+                    J_extended=dot(diag(weights_extended),J_extended)
+                    A_extended=dot(transpose(J_extended),J_extended)#A=JTJ                     
+
+                
+                if flags['NOISE']==0:
+                    g=dot(transpose(J),errnew_det)
+                    stop=(linalg.norm(g)<eps1) or (linalg.norm(errnew_det)<eps3)
+
+                    if flags['FIT HARMONIC COMPONENT'] in [1,2]:##$                
+                        g_extended=dot(transpose(J_extended),errnew_det_extended)
+                        stop=(linalg.norm(g_extended)<eps1) or (linalg.norm(errnew_det_extended)<eps3)
+     
+                                           
+                elif flags['NOISE']==1:  
+                    g=dot(transpose(J),errnew_tot)
+                    stop=(linalg.norm(g)<eps1) or (linalg.norm(errnew_tot)<eps3)
+
+                    if flags['FIT HARMONIC COMPONENT'] in [1,2]:##$  
+                        g_extended=dot(transpose(J_extended),errnew_tot_extended)
+                        stop=(linalg.norm(g_extended)<eps1) or (linalg.norm(errnew_tot_extended)<eps3)
+  
+                          
+                            
+                                
+                if flags['DRAW MINIMUM FIGURES']==0:                                        
+                    if flags['FIT HARMONIC COMPONENT'] in [1,2]:
+                        if k in [0,1,2,3,4,5,6,20,30]:
+                            fig=figure()##$
+                            title='Iteration '+str(k)
+                            tmin=time[0]
+                            tmax=time[-1]
+                            ax = fig.add_subplot(111)
+                            ax.set_title(title)
+                            ax.plot_date(time_at_targets,y,'b')#plot interpolated time serie
+                            ax.plot_date(time_at_targets,simulation_det,'b--')#plot simulated time serie
+                            ax.plot_date(time,hc_obs,'r')#plot obs time serie
+                            ax.plot_date(time,hc_sim,'r--')#plot simulated time serie
+                            ax.plot_date(time_at_targets,hc_obs_at_targets_times,'go')#plot targets
+                            
+                            leg = ax.legend(('ydata', 'simulated','hc_obs', 'hc_sim', 'hc_targets'),loc='upper left',shadow=False)   
+                            ax.fmt_xdata = DateFormatter('%Y-%m-%d')                        # %H:%M:%S')
+                            fig.autofmt_xdate()
+                            ax.set_ylabel('groundwater level (m ref)')
+                            curdir=os.getcwd()
+                            #savefig(curdir+'\\'+title, dpi=None, facecolor='w', edgecolor='w',orientation='portrait', papertype=None, format=None,transparent=False, bbox_inches=None, pad_inches=0.1)
+    
+                            show()
+                               
+                
+
+            else:
+                numjac=1    #switch to numerical jacobian, if it is not already the case
+                derivative='numerical'
+                if delp<0.001:#give up if no progress up to delp>0.9
+                    k=maxiter
+                else:
+                    delp=delp/2.5#calculate a more acurate Jacobian
+                    #J=jacobian(Poptimal,data,time_step,flags,Nint,select_data,select_parameters,logtransform,stress_list,delp=delp)
+                    r=response(Ptry,data,stress_preprocess,time_step,P_ind,flags,Nint,select_data,select_parameters,logtransform,stress_list,derivative=derivative,delp=delp)
+                    #J=r[3]
+                    if condition_to_use_jacobian_finite_difference==1:
+                        J=jacobian_finite_difference(Ptry,data,stress_preprocess,time_step,flags,Nint,select_data,select_parameters,logtransform,stress_list,delp=delp)        
+                    else:
+                        J=r[3]                     
+                    
+                    A=dot(transpose(J),J)
+                    
+                    if flags['NOISE']==0:
+                        g=dot(transpose(J),errold_det)
+                    elif flags['NOISE']==1:
+                        g=dot(transpose(J),errold_tot)
+                        
+                        
+                    if flags['FIT HARMONIC COMPONENT'] in [1,2]:##$                          
+
+  
+                        J_hc=jacobian_finite_difference(Ptry,data,stress_preprocess,time_step,flags,Nint,select_data,select_parameters,logtransform,stress_list,delp=delp)
+                        J_extended[:NL,:]=J
+                        J_extended[NL:,:]=J_hc##$
+                        J_extended=dot(diag(weights_extended),J_extended)
+                        A_extended=dot(transpose(J_extended),J_extended)#A=JTJ     
+                         
+                        if flags['NOISE']==0:
+                            g_extended=dot(transpose(J_extended),errold_det_extended)
+                        elif flags['NOISE']==1:
+                            g_extended=dot(transpose(J_extended),errold_tot_extended)                        
+                        
+                                    
+            
+    #calculate jacobian
+    Poptimal=best_P#added 1-6-17     
+    r=response(Poptimal,data,stress_preprocess,time_step,P_ind,flags,Nint,select_data,select_parameters,logtransform,stress_list,derivative=derivative)        
+    #J=r[3]
+    if condition_to_use_jacobian_finite_difference==1:
+        J=jacobian_finite_difference(Poptimal,data,stress_preprocess,time_step,flags,Nint,select_data,select_parameters,logtransform,stress_list,delp=delp_default)        
+    else:
+        J=r[3]     
+    
+    J=dot(diag(weights),J)
+    A=dot(transpose(J),J)
+    
+    
+    simulation_det=r[1][mask_y]
+    err_det=y-simulation_det
+    err_det=dot(diag(weights),err_det)
+    SSreg_det=sum(pow(err_det,2))
+    expvar=100*(1-SSreg_det/SStot)
+    residuals=err_det
+    print '12389 expvar',expvar
+
+    try:
+        if flags['NOISE']==0:
+            covp=inv(A)*var(err_det)
+        elif flags['NOISE']==1:
+            SSWI_weights=r[5]
+            simulation_stoch=r[4][mask_y]#stochastic simulation    
+            err_stoch=y-simulation_stoch
+            err_stoch=multiply(err_stoch,SSWI_weights) #weighted innovations
+            covp=inv(A)*var(err_stoch)
+            innov=err_stoch
+            
+    except LinAlgError:   
+        covp=[]    
+        
+        
+    if flags['FIT HARMONIC COMPONENT'] in [1,2]:    
+    
+        J_hc=jacobian_finite_difference(Poptimal,data,stress_preprocess,time_step,flags,Nint,select_data,select_parameters,logtransform,stress_list,delp=0.25)
+        J_extended[:NL,:]=J
+        J_extended[NL:,:]=J_hc##$
+        J_extended=dot(diag(weights_extended),J_extended)
+        A_extended=dot(transpose(J_extended),J_extended)#A=JTJ        
+        hc_sim=r[nb][:,1]
+        hc_sim_at_targets_times=hc_sim[mask_y]          
+        simulation_det_extended[:NL]=simulation_det
+        simulation_det_extended[NL:]=hc_sim_at_targets_times 
+        err_det_extended=y_extended-simulation_det_extended
+        err_det_extended=dot(diag(weights_extended),err_det_extended)
+        residuals=err_det_extended
+        SSreg_det_extended=sum(pow(err_det_extended,2))#sum squared errors deterministic part                
+        expvar_extended=100*(1-SSreg_det_extended/SStot_extended)
+ 
+        err_hc=err_det_extended[NL:]
+        SSreg_hc=sum(pow(err_hc,2))
+        expvar_hc=100*(1-SSreg_hc/SStot_hc)
+                                     
+        key_evap=data['EVAP'].keys()[0]
+        Ae=data['EVAP'][key_evap]['amplitude hc']
+        time_lag_evap=data['EVAP'][key_evap]['time lag hc']  # this time lag should be about zero
+
+        Ah=data['H_OBS']['amplitude hc hobs'] 
+        time_lag_h=data['H_OBS']['time lag hc']
+        hc_sim_ls_output_dic=r[16]
+        print '12428 Ae ',Ae
+        print '12429 Ah ',Ah
+        print '12430 time_lag_evap ',time_lag_evap
+        print '12411 time_lag_h ',time_lag_h
+        # print '12422 Ae ',Ae
+        # print '12433 least squares Ah ',hc_sim_ls_output_dic['amplitude hc']
+        # print '12434 least squares time lag h  ',hc_sim_ls_output_dic['time lag']
+        print 'line 12542 expvar_extended:',expvar_extended
+        print 'line 12600 expvar_hc:',expvar_hc #0008
+        
+        if flags['FIT HARMONIC COMPONENT']==2: 
+            hc_sim_PIII_output_dic=r[17]
+            # print '12438 PIII fitted Ah ',hc_sim_PIII_output_dic['amplitude hc']
+            # print '12439 PIII fitted time lag h  ',hc_sim_PIII_output_dic['time lag']    
+
+            
+        
+        if flags['DRAW MINIMUM FIGURES']==0:        
+            fig=figure()##$
+            title='Line 12570 Iteration '+str(k)
+            tmin=time[0]
+            tmax=time[-1]
+            ax = fig.add_subplot(111)
+            ax.set_title(title)
+            ax.plot_date(time_at_targets,y,'b')#plot interpolated time serie
+            ax.plot_date(time_at_targets,simulation_det,'b--')#plot simulated time serie
+            ax.plot_date(time,hc_obs,'r')#plot hc of observed head
+            ax.plot_date(time,hc_sim,'m--')#plot simulated time serie
+            leg = ax.legend(('ydata', 'simulated','hc_obs', 'hc_sim'),loc='upper left',shadow=False)   
+            ax.fmt_xdata = DateFormatter('%Y-%m-%d')                        # %H:%M:%S')
+            fig.autofmt_xdate()
+            ax.set_ylabel('groundwater level (m ref)')
+            curdir=os.getcwd()
+            #savefig(curdir+'\\'+title, dpi=None, facecolor='w', edgecolor='w',orientation='portrait', papertype=None, format=None,transparent=False, bbox_inches=None, pad_inches=0.1)
+    
+            show()
+            fig=figure()##$
+            title='Line 12588 Iteration '+str(k)
+            tmin=time[0]
+            tmax=time[-1]
+            ax = fig.add_subplot(111)
+            ax.set_title(title)
+            ax.plot_date(time,hc_obs,'b')#plot simulated time serie
+            ax.plot_date(time_at_targets,hc_obs_at_targets_times,'go')#plot simulated time serie
+            ax.plot_date(time,hc_sim,'m--')#plot simulated time serie
+            leg = ax.legend(('hc_obs','targets hc_obs', 'hc_sim'),loc='upper left',shadow=False)   
+            ax.fmt_xdata = DateFormatter('%Y-%m-%d')                        # %H:%M:%S')
+            fig.autofmt_xdate()
+            ax.set_ylabel('groundwater level (m ref)')
+            curdir=os.getcwd()
+            #savefig(curdir+'\\'+title, dpi=None, facecolor='w', edgecolor='w',orientation='portrait', papertype=None, format=None,transparent=False, bbox_inches=None, pad_inches=0.1)
+    
+            show()        
+        
+        
+        
+        if flags['NOISE']==1:
+        
+            simulation_stoch_extended[:NL]=simulation_stoch
+            simulation_stoch_extended[NL:]=hc_sim_at_targets_times 
+            err_stoch_extended=y_extended-simulation_stoch_extended
+            err_stoch_extended=dot(diag(weights_extended),err_stoch_extended)
+            err_tot_extended=errnew_det_extended+err_stoch_extended
+            SSreg_tot_extended=sum(pow(err_tot_extended,2))#sum squared errors deterministic and stochastic part             
+            expvar_tot_extended=100*(1-SSreg_tot_extended/SStot)               
+            innov=err_stoch_extended            
+                                         
+
+        try:
+            if flags['NOISE']==0:
+                covp_extended=inv(A_extended)*var(err_det_extended)
+            elif flags['NOISE']==1:
+                SSWI_weights=r[5]
+                SSWI_weights_extended=empty(2*NL)
+                SSWI_weights_extended[:NL]=SSWI_weights
+                SSWI_weights_extended[NL:]=1
+                err_stoch_extended=y_extended-simulation_stoch_extended   
+                err_stoch_extended=multiply(err_stoch_extended,SSWI_weights_extended) #weighted innovations
+                covp_extended=inv(A_extended)*var(err_stoch_extended)
+                
+        except LinAlgError:   
+            covp=[]
+
+    return [Poptimal,covp,best_dP,residuals,list_J,expvar_extended,innov] #0005$

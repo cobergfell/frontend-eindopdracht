@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import background from "../assets/The_Fiddler_Marc_Chagall.png"
+//import background from "../assets/The_Fiddler_Marc_Chagall.png"
+import background from "../assets/Kandinsky_Composition_VIII_1923_v2.png"
+
 //"https://en.wikipedia.org/wiki/File:Image-Chagall_Fiddler.jpg"
 import UserService from "../services/user.access.service-DEPRECATED";
 //import "./Home.css";
@@ -45,22 +47,29 @@ const Home = () => {
               <strong>Welcome to Painting Music</strong>
         </div>
 
-        <div id="painting" className="painting">
+{/*        <div id="painting" className="painting">
             <div className="gallery" style={{
                 backgroundImage: `url(${background})`
             }}>
 
             </div>
+        </div>*/}
+        <div id="painting" className="painting" style={{
+            backgroundImage: `url(${background})`
+        }}>
         </div>
+
+
+
 
         <div id="what-is-it-all-about" className="what-is-it-all-about">
             <div className=">what-is-it-all-about-title"><strong>What is it all about</strong></div>
             Did you ever wonder if atonality in music could be related one way or the other with abstract painting? If you are curious about the question, this website is for you.
-            Here we, explore the parallels and synergy between visual art and music.
+            Here we explore the parallels and synergy between visual art and music.
             We do this in first instance from an art historical perspective. Trying to draw evolutionary parallels such as atonality and abstraction in painting.
-            But it is also interesting to discuss some famous cases, such as rachmaninov inspired by Arnold Böcklin . Or Beethoven’s Pastoral
-            which inspired Viennese Jugendstil artist and Gustav Klimt colleague Josef Maria Auchentaller (1865-1949).
-            <b/>Is there a relation to be found between Vassily Kandinsky and Alexander Scriabin? Why not,
+            But it is also interesting to discuss some famous cases, such as Serguei Rachmaninov inspired by Arnold Böcklin . Or Beethoven’s Pastoral
+            which inspired Viennese Jugendstil artist and Gustav Klimt's friend Josef Maria Auchentaller (1865-1949).
+            <b/>Is there a relation to be found between Vassily Kandinsky and Alexander Scriabin ? Why not,
             as both had rather pretentious attitudes regarding the spiritual significance of their work, with theosophy as a common inspiration source…
             <b/>But this site is also simply the place to be if you thing that your art work will trigger the creativity of contemporary music composers, so please, do not hesitate and take part at the blogs!
         </div>

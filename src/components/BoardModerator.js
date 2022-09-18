@@ -3,7 +3,7 @@ import {Link, useHistory} from "react-router-dom";
 import "../components.styling/board-moderator-styling-grid.css";
 import UserService from "../services/user.access.service-DEPRECATED";
 import EventBus from "../common/EventBus";
-import QuestionsList from "./QuestionsList";
+import QuestionsListDeprecated from "./QuestionsListDeprecated";
 import AuthService from "../services/auth.service";
 import PaintingsListAsTilesWithPagination from "./PaintingsListAsTilesWithPagination";
 import PaintingsList from "./PaintingsList";

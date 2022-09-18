@@ -21,7 +21,7 @@ import EditUser from "./components/EditUser";
 import FetchQuestionsFilesInDatabase from './components/FetchQuestionsFilesInDatabase';
 import Question from './components/Question';
 import Painting from './components/Painting';
-import QuestionsList from './components/QuestionsList';
+import QuestionsListDeprecated from './components/QuestionsListDeprecated';
 import DownloadFile from './components/DownloadFile';
 import AddAnswer from './components/AddAnswer';
 import AddPaintingNotMaintainedAnymore from './components/AddPaintingNotMaintainedAnymore';
@@ -160,7 +160,7 @@ const App = () => {
                }/>
 
           <Route exact path={["/", "/questionsList/users"]}
-                 render={() => <QuestionsList isModerator={isModerator}/>
+                 render={() => <QuestionsListDeprecated isModerator={isModerator}/>
                  }/>
           <Route exact path={"/paintingsList/users"}
                  render={() => <PaintingsList isModerator={isModerator}/>

@@ -1,0 +1,16 @@
+.download-container {
+    /*width:calc(100% - 2*var(--form-left-right-margin));*/
+    width:100%;
+    margin-top: var(--navbar-height);
+    /*margin-bottom: 10px;*/
+    /*margin-left: var(--form-left-right-margin);*/
+    /*margin-right: var(--form-left-right-margin);*/
+    font-family: var(--font-family);/*Helvetica Neue, Arial, sans-serif;*/
+    font-size: 12px;
+    /*border-radius: 30px;*/
+    background-color: yellow;
+    color: green;
+    border-style: solid;
+    border-width: thin;
+    border-color: palevioletred;
+}

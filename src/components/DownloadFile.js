@@ -2,7 +2,7 @@ import React, { useState, useEffect,useContext } from 'react';
 import axios from 'axios';
 import {Link, useHistory, useLocation, useParams} from 'react-router-dom';
 import AuthService from "../services/auth.service";
-import "../components.styling/download-styling.css";
+import "../components.styling/downloadfile-styling.css";
 //import { AuthContext } from '../context/AuthContext';
 
 function DownloadFile() {
@@ -14,9 +14,16 @@ function DownloadFile() {
     const location = useLocation();
     console.log("14 location",location)
     const myFileName = location.state.fileName;
+    const paintingId = location.state.paintingId;
     //const fileId = location.state.search;
     console.log("fileId",fileId)
+    console.log("paintingId",paintingId)
     const currentUser = AuthService.getCurrentUser();
+
+
+    const goBack = () => {
+        history.goBack()
+    }
 
 
     useEffect(()=>{
@@ -43,23 +50,27 @@ function DownloadFile() {
                     document.body.appendChild(link);
                     link.click();
                     link.remove();
+                    //history.push(`/paintings/${paintingId}`)
+                    //history.push("/paintingsListAsTilesWithPagination")
+                    goBack()
+
                 });
 
             } catch (e) {
             }
         }
         downloadFile();
+
     },[]);
     return(
-        <div className="download-container">
+        <div className="download-file-container-grid">
             {myFileName &&
             <>
-                {/*<img alt="logo" width="400px" src={logo} />*/}
-                {/*<p className="fileName" onClick={()=>DownloadFile(fileName)}>{fileName} </p>*/}
-
-                <button className="badge badge-primary mr-2" onClick={()=>{history.push("/questionsList/users")}}>
-                    Back to questions
+                {/*as alternative to automatically going back you could stay on page until go back button is pushed*/}
+                <button className="back-to-project_button" onClick={goBack}>
+                    Go back
                 </button>
+
 
             </>
             }

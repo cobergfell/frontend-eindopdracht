@@ -24,17 +24,14 @@ const start = () => {
 
 function Painting() {
     const history = useHistory();
-    const [anotherState, setAnotherState] = useState(null);
     const location = useLocation();
     const paintingId = location.state.paintingId;
     const description = location.state.description;
     const hasEditingPrivilege = location.state.hasEditingPrivilege;
     const [painting, setPainting] = useState(null);
-    const [descriptionState, setDescriptionState] = useState(null);
     const [image, setImage] = useState(null);
     const [questions, setQuestions] = useState(null);
     const [answers, setAnswers] = useState(null);
-    //const [musicFilesData, setMusicFilesData] = useState([]);
     const [audioFiles, setAudioFiles] = useState([]);
     const [error, setError] = useState(false);
     const [loading, toggleLoading] = useState(false);
@@ -43,12 +40,9 @@ function Painting() {
     console.log('In Painting line 37 paintingId',paintingId);
     console.log('line 38 description',description)
     console.log('line 39 audioFiles',audioFiles)
+    console.log('line 39 hasEditingPrivilege',hasEditingPrivilege)
 
 
-    const onChangeDoSomething = (e) => {
-        const anotherState = e.target.value;
-        setAnotherState(anotherState);
-    };
 
     useEffect(()=>{
         async function fetchImage() {
@@ -176,8 +170,6 @@ function Painting() {
 
     },[]);
 
-
-    //debut de travaux
     //https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await
     async function myFetch() {
         let response = await axios.get(`http://localhost:8080/api/user/questions-by-paintingId/${paintingId}`, {
@@ -208,19 +200,9 @@ function Painting() {
     }
 
 
-    /*    useEffect(() => {
-            myFetch() .catch(e => {
-                console.log('There has been a problem with your fetch operation: ' + e.message);
-            });
-        }, []);*/
-
 
     return (
         <div className="painting-container-grid">
-            {/*<div className="myGridTest">*/}
-            {/*    myGridTest*/}
-            {/*</div>*/}
-
 
             {painting &&
             <>
@@ -302,7 +284,7 @@ function Painting() {
                                             pathname: `/files/${attachedFile["id"]}`,
                                             //search: attachedFile.fileId,
                                             //hash: "",
-                                            state: { fileName: attachedFile.name }
+                                            state: { fileName: attachedFile.name,paintingId: paintingId}
                                         }}
                                         style={{color: 'deepskyblue'}}
                                     >
@@ -315,11 +297,11 @@ function Painting() {
                 </div>
 
                 <div className="audio-material">
+                    <div className="title-audio-material-box">
+                        <strong>Audio files</strong>
+                    </div>
                     {audioFiles && audioFiles.map((audioFile)=> {return (
                         <>
-                            <div className="title-audio-material-box">
-                                <strong>Audio files</strong>
-                            </div>
                             <ul className="list-audio-data">
                                 <li className="list-item">Music sample title&nbsp;:&nbsp;{audioFile.name}</li>
                                 <li className="list-item">

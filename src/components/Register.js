@@ -168,7 +168,7 @@ const Register = (props) => {
          {message && (
              <div
                  className={
-                   successful ? "extra-succes-message" : "message-error-message"
+                   successful ? "extra-succes-message" : "error-message"
                  }
              >
                {message}

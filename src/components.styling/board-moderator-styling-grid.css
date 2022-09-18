@@ -12,8 +12,8 @@
     height: calc(var(--project-height) - var(--navbar-height));
     grid-template-columns: repeat(100, 1fr);
     grid-template-rows: repeat(100, 1fr);
-    border-style: solid;
-    border-color: blueviolet;
+    /*border-style: solid;*/
+    /*border-color: blueviolet;*/
     overflow-x: scroll;
     overflow-y: scroll;
     /*width: 960px;*/
