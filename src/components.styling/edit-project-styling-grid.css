@@ -5,7 +5,7 @@ body {
 }
 
 
-.container-grid {
+.edit-container-grid {
     margin-top: var(--navbar-height);
     font-family: var(--font-family);/*Helvetica Neue, Arial, sans-serif;*/
     display: grid;
@@ -299,7 +299,7 @@ body {
     font-family: var(--font-family);
     font-size: 10px;
     display: grid;
-    grid-template-columns: repeat(20, 1fr);
+    grid-template-columns: repeat(100, 1fr);
     grid-template-rows: repeat(20, 1fr);
     border-style: solid;
     border-width: thin;
@@ -310,13 +310,13 @@ body {
 
 .list-selected-audio-files-container-grid {
     grid-column-start: 5;
-    grid-column-end: 35;
+    grid-column-end: 37;
     grid-row-start: 54;
     grid-row-end: 74;
     font-family: var(--font-family);
     font-size: 10px;
     display: grid;
-    grid-template-columns: repeat(20, 1fr);
+    grid-template-columns: repeat(100, 1fr);
     grid-template-rows: repeat(20, 1fr);
     border-style: solid;
     border-width: thin;
@@ -324,7 +324,21 @@ body {
     overflow-y: scroll;
 }
 
-
+.list-selected-files-container-grid {
+    grid-column-start: 5;
+    grid-column-end: 37;
+    grid-row-start: 75;
+    grid-row-end: 95;
+    font-family: var(--font-family);
+    font-size: 10px;
+    display: grid;
+    grid-template-columns: repeat(100, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+    border-style: solid;
+    border-width: thin;
+    /*overflow-x: scroll;*/
+    overflow-y: scroll;
+}
 
 
 .list-current-files-container-grid {
@@ -335,7 +349,7 @@ body {
     font-family: var(--font-family);
     font-size: 10px;
     display: grid;
-    grid-template-columns: repeat(20, 1fr);
+    grid-template-columns: repeat(100, 1fr);
     grid-template-rows: repeat(20, 1fr);
     border-style: solid;
     border-width: thin;
@@ -351,9 +365,9 @@ body {
     font-family: var(--font-family);
     font-size: 10px;
     grid-column-start: 1;
-    grid-column-end: 20;
+    grid-column-end: 100;
     grid-row-start: 4;
-    grid-row-end: 20;
+    grid-row-end: 21;
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -363,7 +377,7 @@ body {
     margin-top: 0px;
     font-family: var(--font-family);/*Helvetica Neue, Arial, sans-serif;*/
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: repeat(100, 1fr);
     grid-template-rows: repeat(10, 1fr);
     color: var(--drk-grey);
     background-color:var(--milky-white);
@@ -379,8 +393,8 @@ body {
 }
 
 .files-list-element {
-    grid-column-start: 1;
-    grid-column-end: 10;
+    grid-column-start: 2;
+    grid-column-end: 100;
     grid-row-start: 2;
     grid-row-end: 10;
     font-family: var(--font-family);
@@ -395,7 +409,7 @@ body {
 
 
 .current-files-box-title {
-    grid-column-start: 1;
+    grid-column-start: 2;
     grid-column-end: 20;
     grid-row-start: 1;
     grid-row-end: 2;
@@ -406,8 +420,8 @@ body {
 }
 
 .current-files-box-header-column-1 {
-    grid-column-start: 1;
-    grid-column-end: 18;
+    grid-column-start: 3;
+    grid-column-end: 90;
     grid-row-start: 3;
     grid-row-end: 4;
     /*font-family: var(--font-family);*/
@@ -417,8 +431,8 @@ body {
 }
 
 .current-files-box-header-column-2 {
-    grid-column-start: 18;
-    grid-column-end: 20;
+    grid-column-start: 90;
+    grid-column-end: 97;
     grid-row-start: 3;
     grid-row-end: 4;
     /*font-family: var(--font-family);*/
@@ -429,10 +443,28 @@ body {
 
 
 .checkbox-files {
-    grid-column-start: 10;
-    grid-column-end: 10;
-    grid-row-start: 2;
-    grid-row-end: 3;
+    grid-column-start: 92;
+    grid-column-end: 97;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    /*font-family: var(--font-family);*/
+    /*font-size: 10px;*/
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+
+.deselect-file{
+    grid-column-start: 92;
+    grid-column-end: 100;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: gray;
+    text-decoration:none;
+    cursor: pointer;
     /*font-family: var(--font-family);*/
     /*font-size: 10px;*/
     /*overflow-x: scroll;*/

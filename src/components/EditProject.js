@@ -5,6 +5,9 @@ import "../components.styling/edit-project-styling-grid.css";
 import FileService from "../services/file.service";
 import AudioFileService from "../services/audioFile.service";
 import PaintingService from "../services/painting.service";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const currentUser = AuthService.getCurrentUser();
 
@@ -56,18 +59,6 @@ const EditProject = () => {
     console.log('56 filesToDeleteIds',filesToDeleteIds)
     console.log('57 audioFilesToDeleteIds',audioFilesToDeleteIds)
 
-    const selectFilesToDelete = (e,selectedFileObject) => {
-        const checked = e.target.checked;
-        if (checked) {
-            //checked
-            console.log('61 checked')
-            setFilesToDeleteIds(filesToDeleteIds => [...filesToDeleteIds, selectedFileObject["fileId"]])
-        } else {
-            //unchecked
-            console.log('66 unchecked')
-            setFilesToDeleteIds(filesToDeleteIds => filesToDeleteIds.filter(id=> id!=selectedFileObject["fileId"]))
-        }
-    };
 
     const deselectAudioFiles = (e) => {
         let updatedSelection=[];
@@ -85,6 +76,39 @@ const EditProject = () => {
         setSelectedFiles(updatedSelection)
     };
 
+
+    const deselectAudioFiles_v2 = (e,selectedFileObject) => {
+        let updatedSelection=[];
+        //const name = e.target;
+        const name = selectedFileObject.name;
+        selectedAudioFiles.forEach(file => {if (file.name!=name){updatedSelection.push(selectedFileObject)}}
+        );
+        setSelectedAudioFiles(updatedSelection)
+    };
+
+    const deselectFiles_v2 = (e) => {
+        let updatedSelection=[];
+        const checked = e.target;
+        selectedFiles.forEach(file => {if (!checked){updatedSelection.push(file)}}
+        );
+        setSelectedFiles(updatedSelection)
+    };
+
+
+
+
+    const selectFilesToDelete = (e,selectedFileObject) => {
+        const checked = e.target.checked;
+        if (checked) {
+            //checked
+            console.log('61 checked')
+            setFilesToDeleteIds(filesToDeleteIds => [...filesToDeleteIds, selectedFileObject["fileId"]])
+        } else {
+            //unchecked
+            console.log('66 unchecked')
+            setFilesToDeleteIds(filesToDeleteIds => filesToDeleteIds.filter(id=> id!=selectedFileObject["fileId"]))
+        }
+    };
 
     const selectAudioFilesToDelete = (e,selectedFileObject) => {
         const checked = e.target.checked;
@@ -531,7 +555,7 @@ const EditProject = () => {
 
 
     return (
-        <div className="container-grid">
+        <div className="edit-container-grid">
             <div className="edit-project-form-title">
                 Edit project initial data
             </div>
@@ -687,7 +711,6 @@ const EditProject = () => {
                                                     onClick={(e) => {
                                                         selectAudioFilesToDelete(e,currentFileObject);}}
 
-
                                                 />
                                             </div>
                                     )
@@ -732,6 +755,7 @@ const EditProject = () => {
                                                 onClick={(e) => {
                                                     selectFilesToDelete(e,currentFileObject);}}
                                             />
+
                                         </div>
                                     )
                                 })}
@@ -743,7 +767,7 @@ const EditProject = () => {
                     {selectedAudioFiles.length > 0 &&(
                         <div className="list-selected-audio-files-container-grid">
                             <div className="current-files-box-title" >
-                                Selected additional files:
+                                Selected additional audio files:
                             </div>
                             <div className="current-files-box-header-column-1" >
                                 File name:
@@ -754,23 +778,52 @@ const EditProject = () => {
                                         <div key={`${selectedFile.name}`} className="current-file-row-grid">
                                             <div className="files-list-element" >
                                                 {selectedFile.name}
-                                                {/*<p>JSON.stringify(selectedFile):{JSON.stringify(selectedFile)}</p>*/}
                                             </div>
-                                            <input
-                                                type="checkbox"
-                                                className="checkbox-files"
-                                                onClick={(e) => {
-                                                    deselectAudioFiles(e,selectedFile);}}
-                                            />
+                                            {/*<span className="deselect-file" onClick={(e) => {deselectAudioFiles_v2(e,selectedFile);}}>
+                                                remove
+                                            </span>*/}
+                                            <div className="deselect-file" onClick={(e) => {deselectAudioFiles_v2(e,selectedFile);}}>
+                                                <FontAwesomeIcon icon={faTrash} />
+                                                <span>remove</span>
+                                            </div>
 
 
                                         </div>
                                     )
                                 })}
 
+
                             </div>
                         </div>
                     )}
+
+
+                    {selectedFiles.length > 0 &&(
+                        <div className="list-selected-files-container-grid">
+                            <div className="current-files-box-title" >
+                                Selected additional files:
+                            </div>
+                            <div className="current-files-box-header-column-1" >
+                                File name:
+                            </div>
+                            <div className="list-current-files-flex-container" >
+                                {selectedFiles.map((selectedFile) => {
+                                    return (
+                                        <div key={`${selectedFile.name}`} className="current-file-row-grid">
+                                            <div className="files-list-element" >
+                                                {selectedFile.name}
+                                                {/*<p>JSON.stringify(selectedFile):{JSON.stringify(selectedFile)}</p>*/}
+                                            </div>
+
+                                        </div>
+                                    )
+                                })}
+
+
+                            </div>
+                        </div>
+                    )}
+
 
                     <button className="upload-updated-supplementary-files-button" onClick={handleClick3}>
                         Upload supplementary files
@@ -802,12 +855,17 @@ const EditProject = () => {
                                                 {selectedFile.name}
                                                 {/*<p>JSON.stringify(selectedFile):{JSON.stringify(selectedFile)}</p>*/}
                                             </div>
-                                            <input
+                                            {/*<input
                                                 type="checkbox"
                                                 className="checkbox-files"
                                                 onClick={(e) => {
                                                     deselectFiles(e,selectedFile);}}
-                                            />
+                                            />*/}
+                                            <div className="deselect-file" onClick={(e) => {deselectFiles_v2(e,selectedFile);}}>
+                                                <FontAwesomeIcon icon={faTrash} />
+                                                <span>remove</span>
+                                            </div>
+
                                         </div>
 
                                     )
