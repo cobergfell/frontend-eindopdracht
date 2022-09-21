@@ -60,6 +60,11 @@ const EditProject = () => {
     console.log('57 audioFilesToDeleteIds',audioFilesToDeleteIds)
 
 
+
+    const goBack = () => {
+        history.goBack()
+    }
+
     const deselectAudioFiles = (e) => {
         let updatedSelection=[];
         const checked = e.target.checked;
@@ -556,26 +561,26 @@ const EditProject = () => {
 
     return (
         <div className="edit-container-grid">
-            <div className="edit-project-form-title">
-                Edit project initial data
-            </div>
-
 
             {submitted ? (
                 <>
-                    <button
+                    {/*<button
                         type="button"
                         className="on-success-new-project-button"
                         onClick={() => history.push('/initiateProject')}
                     >
                         New project
-                    </button>
-                    <button
+                    </button>*/}
+                    {/*<button
                         type="button"
-                        className="on-success-back-to-user-board"
-                        onClick={() => history.push('/user')}
+                        className="on-edit-success-back-to-user-board"
+                        onClick={() => history.push(`/paintings/${paintingId}`)}
                     >
-                        Back to user board
+                        Back to project
+                    </button>*/}
+
+                    <button className="from-edit-back-button" onClick={goBack}>
+                        Back
                     </button>
 
                     <div className="successfully-submitted-message">
@@ -584,6 +589,10 @@ const EditProject = () => {
                 </>
             ) : (
                 <>
+                    <div className="edit-project-form-title">
+                        Edit project initial data
+                    </div>
+
                     <label htmlFor="title" className="label-input-updated-title">Title</label>
                     <input
                         type="text"

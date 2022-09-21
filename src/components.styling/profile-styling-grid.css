@@ -33,7 +33,7 @@
     grid-row-start: 4;
     grid-row-end: 5;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -44,7 +44,7 @@
     grid-row-start: 10;
     grid-row-end: 25;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*list-style-type: none; !* Remove bullets *!*/
     border-style: solid;
     border-width: thin;
@@ -61,7 +61,7 @@
     /*grid-row-start: 6;*/
     /*grid-row-end: 7;*/
     list-style-type: none; /* Remove bullets */
-    font-size: 10px;
+    font-size: var(--default-font-size);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -80,7 +80,7 @@
     /*grid-row-start: 6;*/
     /*grid-row-end: 7;*/
     list-style-type: none; /* Remove bullets */
-    font-size: 10px;
+    font-size: var(--default-font-size);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -89,7 +89,7 @@
     border-width: thin;
     border-color: var(--milky-white);
     color: var(--drk-grey);
-    color: red;
+    /*color: red;*/
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }

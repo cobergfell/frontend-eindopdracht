@@ -30,7 +30,7 @@ a.link-to-description, a.link-to-description:link, a.link-to-description:visited
 
 .painting-tile-grid {
     font-family: var(--font-family);/*Helvetica Neue, Arial, sans-serif;*/
-    font-size: 10px;
+    font-size: var(--default-font-size);
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(15, 1fr);
@@ -53,7 +53,7 @@ a.link-to-description, a.link-to-description:link, a.link-to-description:visited
     grid-row-start: 2;
     grid-row-end: 11;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: lightgrey;
@@ -66,7 +66,7 @@ a.link-to-description, a.link-to-description:link, a.link-to-description:visited
     grid-row-start: 11;
     grid-row-end: 15;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*border-style: solid;*/
     /*border-width: thin;*/
     /*border-color: red;*/
@@ -75,7 +75,7 @@ a.link-to-description, a.link-to-description:link, a.link-to-description:visited
 
 ul.list-summarize-painting-data {
     list-style-type: none; /*Remove bullets */
-    font-size: 10px;
+    font-size: var(--default-font-size);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -92,7 +92,7 @@ ul.list-summarize-painting-data {
 
 .list-summarize-painting-data-item {
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     color: var(--drk-grey);
 
 }
@@ -111,5 +111,18 @@ ul.list-summarize-painting-data {
     /*border-style: solid;*/
     /*border-color: yellow;*/
     /*border-width: thick;*/
+}
+
+
+.no-post-to-display {
+    grid-column-start: 1;
+    grid-column-end: 10;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+    /*border-style: solid;*/
+    /*border-width: thin;*/
+    /*border-color: red;*/
 }
 

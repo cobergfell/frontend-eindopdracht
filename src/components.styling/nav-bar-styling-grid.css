@@ -9,6 +9,7 @@
     display: grid;
     color: var(--drk-grey);
     background-color:var(--milky-white);
+    background-color: var(--light-grey);
     grid-gap: 0px;
     grid-template-columns: repeat(100, 1fr);
     grid-template-rows: repeat(10, 1fr);
@@ -27,7 +28,7 @@
 .navbar-link {
     font-family: var(--font-family);/*Helvetica Neue, Arial, sans-serif;*/
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;
@@ -67,14 +68,18 @@ a.navbar-link-home:hover, a.navbar-link-home:active{
     grid-column-start: 5;
     grid-column-end: 15;
     grid-row-start: 4;
-    grid-row-end: 6;
+    grid-row-end: 7;
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
 }
 
 .home {
     grid-column-start: 30;
     grid-column-end: 38;
     grid-row-start: 4;
-    grid-row-end: 6;
+    grid-row-end: 7;
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
 
 }
 
@@ -82,7 +87,9 @@ a.navbar-link-home:hover, a.navbar-link-home:active{
     grid-column-start: 40;
     grid-column-end: 48;
     grid-row-start: 4;
-    grid-row-end: 6;
+    grid-row-end: 7;
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
 }
 
 
@@ -90,7 +97,9 @@ a.navbar-link-home:hover, a.navbar-link-home:active{
     grid-column-start: 50;
     grid-column-end: 58;
     grid-row-start: 4;
-    grid-row-end: 6;
+    grid-row-end: 7;
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
 }
 
 
@@ -98,28 +107,36 @@ a.navbar-link-home:hover, a.navbar-link-home:active{
     grid-column-start: 60;
     grid-column-end: 68;
     grid-row-start: 4;
-    grid-row-end: 6;
+    grid-row-end: 7;
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
 }
 
 .profile {
     grid-column-start: 70;
     grid-column-end: 78;
     grid-row-start: 4;
-    grid-row-end: 6;
+    grid-row-end: 7;
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
 }
 
 .logout {
     grid-column-start: 80;
     grid-column-end: 88;
     grid-row-start: 4;
-    grid-row-end: 6;
+    grid-row-end: 7;
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
 }
 
 .login {
     grid-column-start: 70;
     grid-column-end: 78;
     grid-row-start: 4;
-    grid-row-end: 6;
+    grid-row-end: 7;
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
 }
 
 
@@ -127,6 +144,8 @@ a.navbar-link-home:hover, a.navbar-link-home:active{
     grid-column-start: 80;
     grid-column-end: 88;
     grid-row-start: 4;
-    grid-row-end: 6;
+    grid-row-end: 7;
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
 }
 

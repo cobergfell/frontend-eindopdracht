@@ -158,7 +158,7 @@ const AddPaintingNotMaintainedAnymore = () => {
                             <button
                                 type="button"
                                 className="btn btn-primary"
-                                onClick={() => history.push("/PaintingsList")}
+                                onClick={() => history.push("/PaintingsListDeprecated")}
                             >
                                 Painting list
                             </button>

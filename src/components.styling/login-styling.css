@@ -19,13 +19,13 @@
 
 
 
-.eessage {
+.message {
     grid-column-start: 35;
     grid-column-end: 75;
     grid-row-start: 25;
     grid-row-end: 30;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
 }
 
 
@@ -35,7 +35,7 @@
     grid-row-start: 1;
     grid-row-end: 10;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
 }
 
 .loading-message {
@@ -44,7 +44,7 @@
     grid-row-start: 1;
     grid-row-end: 10;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
 }
 
 .test1 {
@@ -53,7 +53,7 @@
     grid-row-start: 50;
     grid-row-end: 52;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
 }
 
 
@@ -63,7 +63,7 @@
     grid-row-start: 50;
     grid-row-end: 52;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
 }
 
 .form {
@@ -72,7 +72,7 @@
     grid-row-start: 25;
     grid-row-end: 75;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
     font-family: var(--font-family);/*Helvetica Neue, Arial, sans-serif;*/
@@ -95,7 +95,7 @@
     grid-row-start: 1;
     grid-row-end: 5;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
 }
 
 .input-username {
@@ -104,7 +104,7 @@
     grid-row-start: 5;
     grid-row-end: 10;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
 }
 
 
@@ -114,7 +114,7 @@
     grid-row-start: 16;
     grid-row-end: 20;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
 }
 
 
@@ -124,7 +124,7 @@
     grid-row-start: 21;
     grid-row-end: 25;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
 }
 
 .label-input-password {
@@ -133,7 +133,7 @@
     grid-row-start: 30;
     grid-row-end: 35;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
 }
 
 
@@ -143,7 +143,7 @@
     grid-row-start: 35;
     grid-row-end: 40;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
 }
 
 
@@ -153,7 +153,7 @@
     grid-row-start: 45;
     grid-row-end: 50;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;
@@ -165,7 +165,7 @@
     grid-row-start: 25;
     grid-row-end: 30;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;
@@ -177,7 +177,7 @@
     grid-row-start: 25;
     grid-row-end: 30;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;

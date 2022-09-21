@@ -38,7 +38,7 @@ body {
     grid-row-start: 6;
     grid-row-end: 8;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -49,12 +49,10 @@ body {
     grid-row-start: 5;
     grid-row-end: 6;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
-
-
 
 
 .input-content {
@@ -63,7 +61,7 @@ body {
     grid-row-start: 11;
     grid-row-end: 35;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     overflow-x: scroll;
     overflow-y: scroll;
 }
@@ -74,7 +72,7 @@ body {
     grid-row-start: 10;
     grid-row-end: 11;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -85,7 +83,7 @@ body {
     grid-row-start: 5;
     grid-row-end: 10;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -96,7 +94,7 @@ body {
     grid-row-start: 12;
     grid-row-end: 32;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -108,7 +106,7 @@ body {
     grid-row-start: 5;
     grid-row-end: 10;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -119,7 +117,7 @@ body {
     grid-row-start: 12;
     grid-row-end: 32;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -130,7 +128,7 @@ body {
     /*grid-row-start: 12;*/
     /*grid-row-end: 32;*/
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -142,7 +140,7 @@ body {
     grid-row-start: 5;
     grid-row-end: 10;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -154,7 +152,7 @@ body {
     grid-row-start: 12;
     grid-row-end: 32;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -166,7 +164,7 @@ body {
     /*grid-row-start: 12;*/
     /*grid-row-end: 32;*/
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -177,7 +175,7 @@ body {
     grid-row-start: 70;
     grid-row-end: 75;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;
@@ -190,7 +188,7 @@ body {
     grid-row-start: 45;
     grid-row-end: 47;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -213,7 +211,7 @@ body {
     grid-row-start: 35;
     grid-row-end: 40;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;
@@ -226,7 +224,7 @@ body {
     grid-row-start: 35;
     grid-row-end: 40;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;
@@ -242,7 +240,7 @@ body {
     /*grid-row-start: 6;*/
     /*grid-row-end: 7;*/
     list-style-type: none; /* Remove bullets */
-    font-size: 10px;
+    font-size: var(--default-font-size);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -261,7 +259,7 @@ body {
     /*grid-row-start: 6;*/
     /*grid-row-end: 7;*/
     list-style-type: none; /* Remove bullets */
-    font-size: 10px;
+    font-size: var(--default-font-size);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

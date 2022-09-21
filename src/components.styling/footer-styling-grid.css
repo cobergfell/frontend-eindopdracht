@@ -22,6 +22,7 @@
     display: grid;
     color: var(--drk-grey);
     background-color:var(--milky-white);
+    background-color: var(--light-grey);
     grid-gap: 0px;
     grid-template-columns: repeat(100, 1fr);
     grid-template-rows: repeat(10, 1fr);
@@ -39,11 +40,12 @@
 .footer-title {
     grid-column-start: 42;
     grid-column-end: 95;
-    grid-row-start: 1;
-    grid-row-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
     color: var(--drk-grey);
     background-color:var(--milky-white);
-    font-size: 10px;
+    background-color: var(--light-grey);
+    font-size: 12px;
 }
 
 
@@ -51,21 +53,21 @@
 .footer-column-container-1 {
     grid-column-start: 10;
     grid-column-end: 30;
-    grid-row-start: 3;
+    grid-row-start: 4;
     grid-row-end: 8;
 }
 
 .footer-column-container-2 {
     grid-column-start: 40;
     grid-column-end: 60;
-    grid-row-start: 3;
+    grid-row-start: 4;
     grid-row-end: 8;
 }
 
 .footer-column-container-3 {
     grid-column-start: 70;
     grid-column-end: 90;
-    grid-row-start: 3;
+    grid-row-start: 4;
     grid-row-end: 8;
 }
 
@@ -79,17 +81,19 @@
     grid-row-end: 10;
     color: var(--drk-grey);
     background-color:var(--milky-white);
-    font-size: 10px;
+    background-color: var(--light-grey);
+    font-size: var(--default-font-size);
 }
 
 .footer-column-items {
     font-family: var(--font-family);
     list-style-type: none; /*Remove bullets*/
-    font-size: 8px;
+    font-size: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     background-color: var(--milky-white);
+    background-color: var(--light-grey);
     color: var(--drk-grey);
     width: 100%;
     margin-left: 10px;

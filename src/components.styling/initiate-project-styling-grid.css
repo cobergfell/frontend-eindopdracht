@@ -5,7 +5,7 @@ body {
 }
 
 
-.container-grid {
+.initiate-project-container-grid {
     margin-top: 0;/*var(--navbar-height);*/
     font-family: var(--font-family);/*Helvetica Neue, Arial, sans-serif;*/
     display: grid;
@@ -16,10 +16,10 @@ body {
     height: calc(var(--project-height) - var(--navbar-height));
     grid-template-columns: repeat(100, 1fr);
     grid-template-rows: repeat(100, 1fr);
-    border-style: solid;
-    border-color: blueviolet;
-    overflow-x: scroll;
-    overflow-y: scroll;
+    /*border-style: solid;*/
+    /*border-color: blueviolet;*/
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
     /*width: 960px;*/
     /*height: 100px;*/
     /*border-color: blueviolet;*/
@@ -37,7 +37,7 @@ body {
     grid-row-start: 6;
     grid-row-end: 9;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -48,7 +48,7 @@ body {
     grid-row-start: 5;
     grid-row-end: 6;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -59,7 +59,7 @@ body {
     grid-row-start: 6;
     grid-row-end: 9;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -71,7 +71,7 @@ body {
     grid-row-start: 5;
     grid-row-end: 9;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -83,7 +83,7 @@ body {
     grid-row-start: 15;
     grid-row-end: 50;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     overflow-x: scroll;
     overflow-y: scroll;
 }
@@ -95,7 +95,7 @@ body {
     grid-row-start: 14;
     grid-row-end: 15;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -107,7 +107,7 @@ body {
     grid-row-start: 5;
     grid-row-end: 10;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -118,7 +118,7 @@ body {
     grid-row-start: 12;
     grid-row-end: 32;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -130,7 +130,7 @@ body {
     grid-row-start: 5;
     grid-row-end: 10;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -141,7 +141,7 @@ body {
     grid-row-start: 12;
     grid-row-end: 32;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -152,7 +152,7 @@ body {
     /*grid-row-start: 12;*/
     /*grid-row-end: 32;*/
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -164,7 +164,7 @@ body {
     grid-row-start: 5;
     grid-row-end: 10;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -176,7 +176,7 @@ body {
     grid-row-start: 12;
     grid-row-end: 32;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -188,7 +188,7 @@ body {
     /*grid-row-start: 12;*/
     /*grid-row-end: 32;*/
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -199,7 +199,7 @@ body {
     grid-row-start: 5;
     grid-row-end: 10;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;
@@ -213,7 +213,7 @@ body {
     grid-row-start: 25;
     grid-row-end: 27;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -225,7 +225,7 @@ body {
     grid-row-start: 30;
     grid-row-end: 35;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;
@@ -238,7 +238,7 @@ body {
     grid-row-start: 30;
     grid-row-end: 35;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;
@@ -254,7 +254,7 @@ body {
     /*grid-row-start: 6;*/
     /*grid-row-end: 7;*/
     list-style-type: none; /* Remove bullets */
-    font-size: 10px;
+    font-size: var(--default-font-size);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -273,7 +273,7 @@ body {
     /*grid-row-start: 6;*/
     /*grid-row-end: 7;*/
     list-style-type: none; /* Remove bullets */
-    font-size: 10px;
+    font-size: var(--default-font-size);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

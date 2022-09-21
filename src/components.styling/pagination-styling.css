@@ -17,7 +17,7 @@
     /*font-family: var(--font-family);*/
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-around; /*center;flex-start;*/
     /*color: var(--drk-grey);*/
     background-color: var(--milky-white);
     width: 100%;
@@ -31,7 +31,7 @@
     font-family: var(--font-family);
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center; /*flex-start;*/
     color: var(--drk-grey);
     background-color: var(--milky-white);
     width: 100%;

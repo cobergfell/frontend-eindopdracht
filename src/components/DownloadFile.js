@@ -25,7 +25,6 @@ function DownloadFile() {
         history.goBack()
     }
 
-
     useEffect(()=>{
         async function downloadFile() {
             setError(false);

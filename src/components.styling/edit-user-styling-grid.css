@@ -39,7 +39,7 @@ body {
     grid-row-start: 2;
     grid-row-end: 4;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -50,7 +50,7 @@ body {
     grid-row-start: 6;
     grid-row-end: 9;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -61,7 +61,7 @@ body {
     grid-row-start: 9;
     grid-row-end: 12;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -72,7 +72,7 @@ body {
     grid-row-start: 14;
     grid-row-end: 17;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -83,7 +83,7 @@ body {
     grid-row-start: 17;
     grid-row-end: 20;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -94,7 +94,7 @@ body {
     grid-row-start: 22;
     grid-row-end: 25;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -105,7 +105,7 @@ body {
     grid-row-start: 25;
     grid-row-end: 28;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -117,7 +117,7 @@ body {
     grid-row-start: 30;
     grid-row-end: 32;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -128,7 +128,7 @@ body {
     grid-row-start: 30;
     grid-row-end: 32;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -139,7 +139,7 @@ body {
     grid-row-start: 34;
     grid-row-end: 36;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -150,7 +150,7 @@ body {
     grid-row-start: 34;
     grid-row-end: 36;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -161,7 +161,7 @@ body {
     grid-row-start: 38;
     grid-row-end: 40;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -172,7 +172,7 @@ body {
     grid-row-start: 38;
     grid-row-end: 40;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -184,7 +184,7 @@ body {
     grid-row-start: 45;
     grid-row-end: 48;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;
@@ -197,7 +197,7 @@ body {
     grid-row-start: 50;
     grid-row-end: 53;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;
@@ -211,7 +211,7 @@ body {
     grid-row-start: 5;
     grid-row-end: 7;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -224,7 +224,7 @@ body {
     grid-row-start: 9;
     grid-row-end: 11;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;

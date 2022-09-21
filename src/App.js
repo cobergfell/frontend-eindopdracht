@@ -29,7 +29,7 @@ import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";//I was curious about EventBus design pattern (instead of working with context)
 import FilesList from "./components/FilesList";
 import Footer from "./components/Footer";
-import PaintingsList from "./components/PaintingsList";
+import PaintingsListDeprecated from "./components/PaintingsListDeprecated";
 //import DescriptionOld from "./components/DescriptionOld";
 import PaintingsListAsTilesWithPagination from "./components/PaintingsListAsTilesWithPagination";
 import AddQuestion from "./components/AddQuestion";
@@ -106,12 +106,13 @@ const App = () => {
 
           {currentUser ? (
               <>
-                  <NavLink to={"/profile"} className="navbar-link profile">
-                    {currentUser.username}
-                  </NavLink>
-                <a href="/logout" className="navbar-link logout" onClick={logOut}>
+                <NavLink to={"/profile"} className="navbar-link profile">
+                  {currentUser.username}
+                </NavLink>
+                <NavLink to={"/home"} className="navbar-link logout" onClick={logOut}>
                   Log out
-                </a>
+                </NavLink>
+
               </>
           ) : (
               <>
@@ -163,7 +164,7 @@ const App = () => {
                  render={() => <QuestionsListDeprecated isModerator={isModerator}/>
                  }/>
           <Route exact path={"/paintingsList/users"}
-                 render={() => <PaintingsList isModerator={isModerator}/>
+                 render={() => <PaintingsListDeprecated isModerator={isModerator}/>
                  }/>
 
         </Switch>

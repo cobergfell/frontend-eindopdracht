@@ -14,11 +14,10 @@
     grid-template-rows: repeat(100, 1fr);
     /*border-style: solid;*/
     /*border-color: blueviolet;*/
-    overflow-x: scroll;
-    overflow-y: scroll;
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
     /*width: 960px;*/
     /*height: 100px;*/
-    /*border-color: blueviolet;*/
     /*margin-top: var(--navbar-height);*/
     /*margin-left: 15%;*/
     /*margin-right: 15%;*/
@@ -32,7 +31,10 @@
     grid-row-start: 5;
     grid-row-end: 100;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;/*center;flex-start;*/
     /*border-style: solid;*/
     /*border-width: thin;*/
     /*border-color: red;*/
@@ -44,7 +46,7 @@
     grid-row-start: 2;
     grid-row-end: 4;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
 }
@@ -55,7 +57,7 @@
     grid-row-start: 2;
     grid-row-end: 4;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;
@@ -67,7 +69,7 @@
     grid-row-start: 2;
     grid-row-end: 4;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;

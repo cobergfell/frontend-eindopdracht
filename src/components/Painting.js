@@ -3,7 +3,7 @@ import axios from 'axios';
 import {Link, useHistory, useLocation, useParams} from 'react-router-dom';
 import {sortDataBy} from "../services/utilities";
 import AuthService from "../services/auth.service";
-import "../components.styling/painting-styling-flex-deprecated.css";
+//import "../components.styling/painting-styling-flex-deprecated.css";
 import "../components.styling/painting-styling-grid.css";
 import sound from "C:\\Users\\Gebruiker\\Test\\rachmaninov.mp3";
 import Conversation from "./Conversation";

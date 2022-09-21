@@ -2,29 +2,30 @@
     --drk-grey: #343a40;
     --light-grey: #d3d3d3;
     --milky-white: rgba(255,255,255,.5);
-    --navbar-height:70px;
+    --navbar-height:100px;
     --navbar-top:0;
     --navbar-left:0;
     --navbar-padding-left:0;
     --navbar-padding-right:48px;
-    --footer-height:150px;
+    --footer-height:200px;
     --font-family: "Poppins", sans-serif;/*Helvetica Neue, Arial, sans-serif;*/
     --form-left-right-margin:10%;
-    --painting-image-width-in-list:225px;
-    --painting-image-height-in-list:300px;
+    --painting-image-width-in-list:250px;
+    --painting-image-height-in-list:450px;
     /*--project-width: 1024px;*/
     /*--project-height: 800px;*/
     /*--project-min-width: 1024px;*/
     /*--project-min-height: 800px;*/
     --project-width: 100 vw;
     --project-height: 100 vh;
-    --project-height: 900px;
+    --project-height: 950px;
     --project-min-width: 1024px;
     --project-min-height: 800px;
     --project-margin-top: 0px;
     --project-margin-left: 0px;
     --project-margin-bottom: 0px;
     --project-margin-right: 0px;
+    --default-font-size:11px;
 }
 
 #root {

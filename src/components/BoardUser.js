@@ -71,7 +71,7 @@ const BoardUser = () => {
         });
         setQuestions(result.data);
         toggleLoading(false);
-        console.log('27 result.data', result.data);
+        console.log('74 result.data', result.data);
 
       } catch (error) {
         setError(true);
@@ -83,7 +83,7 @@ const BoardUser = () => {
       }
     }
 
-    //console.error('37 token', currentUser.accessToken);
+    //console.error('86 token', currentUser.accessToken);
     if (currentUser.accessToken) {
       fetchData();
       console.log('73 questions', questions);

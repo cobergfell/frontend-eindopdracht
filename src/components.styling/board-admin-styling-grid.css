@@ -31,7 +31,7 @@
     grid-row-start: 3;
     grid-row-end: 5;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
 }
@@ -42,7 +42,7 @@
     grid-row-start: 3;
     grid-row-end: 5;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
 }
@@ -68,7 +68,7 @@
     grid-row-start: 15;
     grid-row-end: 60;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     list-style-type: none; /* Remove bullets */
     border-style: solid;
     border-width: thin;
@@ -85,7 +85,7 @@
     /*grid-row-start: 6;*/
     /*grid-row-end: 7;*/
     list-style-type: none; /* Remove bullets */
-    font-size: 10px;
+    font-size: var(--default-font-size);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

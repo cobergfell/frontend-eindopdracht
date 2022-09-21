@@ -31,7 +31,7 @@
     /*grid-row-end: 7;*/
     margin-top: 10px;
     list-style-type: none; /* Remove bullets */
-    font-size: 10px;
+    font-size: var(--default-font-size);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -50,7 +50,7 @@
     /*grid-row-start: 6;*/
     /*grid-row-end: 7;*/
     list-style-type: none; /* Remove bullets */
-    font-size: 10px;
+    font-size: var(--default-font-size);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -70,7 +70,7 @@
     /*grid-row-start: 6;*/
     /*grid-row-end: 7;*/
     list-style-type: none; /* Remove bullets */
-    font-size: 10px;
+    font-size: var(--default-font-size);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -90,7 +90,7 @@
     grid-row-start: 5;
     grid-row-end: 15;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;
@@ -103,7 +103,7 @@
     /*grid-row-start: 15;*/
     /*grid-row-end: 80;*/
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;
@@ -117,7 +117,7 @@
     /*grid-row-start: 15;*/
     /*grid-row-end: 80;*/
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;
@@ -130,7 +130,7 @@
     /*grid-row-start: 6;*/
     /*grid-row-end: 7;*/
     list-style-type: none; /* Remove bullets */
-    font-size: 10px;
+    font-size: var(--default-font-size);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -149,7 +149,7 @@
     grid-row-start: 1;
     grid-row-end: 2;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;

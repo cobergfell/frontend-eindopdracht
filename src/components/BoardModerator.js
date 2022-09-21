@@ -6,7 +6,7 @@ import EventBus from "../common/EventBus";
 import QuestionsListDeprecated from "./QuestionsListDeprecated";
 import AuthService from "../services/auth.service";
 import PaintingsListAsTilesWithPagination from "./PaintingsListAsTilesWithPagination";
-import PaintingsList from "./PaintingsList";
+import PaintingsListDeprecated from "./PaintingsListDeprecated";
 import UsersList from "./UsersList";
 import PaintingService from "../services/painting.service";
 
@@ -51,7 +51,7 @@ const BoardModerator = () => {
       <div className="board-moderator-container-grid">
 
           <div className="paintings-data-box">
-              <PaintingsList/>
+              <PaintingsListDeprecated/>
           </div>
           <button
               className="home-button"

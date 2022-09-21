@@ -6,7 +6,7 @@
     /*grid-row-start: 1;*/
     /*grid-row-end: 2;*/
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;
@@ -32,7 +32,7 @@ table.display-paintings-list {
     /*border-top: 2px dotted var(--milky-white);*/
     /*border-bottom: 2px dotted var(--milky-white);*/
     /*border-collapse: collapse;*/
-    font-size: 10px;
+    font-size: var(--default-font-size);
     width: 100%;
     color: var(--drk-grey);
     color: red;

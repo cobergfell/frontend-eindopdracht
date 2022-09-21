@@ -21,7 +21,7 @@
     grid-row-start: 25;
     grid-row-end: 30;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;

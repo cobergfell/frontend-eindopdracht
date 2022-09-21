@@ -33,7 +33,7 @@ body {
     grid-row-start: 3;
     grid-row-end: 4;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;
@@ -46,7 +46,7 @@ body {
     grid-row-start: 3;
     grid-row-end: 4;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;
@@ -59,7 +59,7 @@ body {
     grid-row-start: 1;
     grid-row-end: 2;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;
@@ -99,7 +99,7 @@ body {
     grid-row-start: 41;
     grid-row-end: 42;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -110,7 +110,7 @@ body {
     grid-row-start: 42;
     grid-row-end: 52;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     list-style-type: none; /* Remove bullets */
     border-style: solid;
     border-width: thin;
@@ -127,7 +127,7 @@ body {
     grid-row-start: 54;
     grid-row-end: 55;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -138,7 +138,7 @@ body {
     grid-row-start: 55;
     grid-row-end: 70;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     list-style-type: none; /* Remove bullets */
     border-style: solid;
     border-width: thin;
@@ -154,7 +154,7 @@ body {
     grid-row-start: 72;
     grid-row-end: 73;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -167,7 +167,7 @@ body {
     grid-row-start: 74;
     grid-row-end: 90;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     border-color: grey;
@@ -183,7 +183,7 @@ body {
     /*grid-row-start: 6;*/
     /*grid-row-end: 7;*/
     list-style-type: none; /* Remove bullets */
-    font-size: 10px;
+    font-size: var(--default-font-size);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -202,7 +202,7 @@ body {
     /*grid-row-start: 6;*/
     /*grid-row-end: 7;*/
     list-style-type: none; /* Remove bullets */
-    font-size: 10px;
+    font-size: var(--default-font-size);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -222,7 +222,7 @@ body {
     grid-row-start: 3;
     grid-row-end: 5;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
     /*overflow-y: scroll;*/
 }
@@ -233,7 +233,7 @@ body {
     grid-row-start: 5;
     grid-row-end: 90;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: var(--default-font-size);
     border-style: solid;
     border-width: thin;
     /*border-color: var(--milky-white);*/

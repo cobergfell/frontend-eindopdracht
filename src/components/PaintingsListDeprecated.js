@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import PaintingService from "../services/painting.service";
-import "../components.styling/paintingList-styling-grid.css";
+import "../components.styling/paintingList-styling-grid-Deprecated.css";
 import AuthService from "../services/auth.service";
 import {Link, useHistory, useLocation} from "react-router-dom";
 const currentUser = AuthService.getCurrentUser();
@@ -10,7 +10,7 @@ const currentUser = AuthService.getCurrentUser();
 // import axios from "axios";
 // import EventBus from "../common/EventBus";
 
-const PaintingsList = (props) => {
+const PaintingsListDeprecated = (props) => {
     const [paintings, setPaintings] = useState([]);
     const [searchTitle, setSearchTitle] = useState("");
     const paintingsRef = useRef();
@@ -147,4 +147,4 @@ const PaintingsList = (props) => {
 
 };
 
-export default PaintingsList;
+export default PaintingsListDeprecated;

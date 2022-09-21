@@ -38,8 +38,8 @@ body {
     grid-row-end: 20;
     font-family: var(--font-family);
     font-size: 12px;
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
 }
 
 
@@ -50,8 +50,8 @@ body {
     grid-row-end: 70;
     font-family: var(--font-family);
     font-size: 12px;
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
 }
 
 
@@ -63,9 +63,8 @@ body {
     grid-row-end: 15;
     font-family: var(--font-family);
     font-size: 20px;
-    color: #666666;
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
 }
 
 .painting {
@@ -90,8 +89,8 @@ body {
     grid-row-end: 20;
     font-family: var(--font-family);
     font-size: 12px;
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
 }
 
 

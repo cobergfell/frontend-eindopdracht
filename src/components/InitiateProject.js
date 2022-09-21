@@ -5,7 +5,6 @@ import authHeader from "../services/auth-header";
 import {useHistory, useParams} from "react-router-dom";
 //import {Button} from "react-bootstrap";
 import "../components.styling/initiate-project-styling-grid.css";
-import "../components.styling/buttons-styling-deprecated.css";
 
 const currentUser = AuthService.getCurrentUser();
 
@@ -187,7 +186,7 @@ const InitiateProject = () => {
 
 
     return (
-        <div className="container-grid">
+        <div className="initiate-project-container-grid">
 
             {submitted ? (
                 <>
