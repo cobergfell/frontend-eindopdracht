@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import {Link, useHistory} from "react-router-dom";
 import "../components.styling/board-moderator-styling-grid.css";
-import UserService from "../services/user.access.service-DEPRECATED";
 import EventBus from "../common/EventBus";
-import QuestionsListDeprecated from "./QuestionsListDeprecated";
 import AuthService from "../services/auth.service";
 import PaintingsListAsTilesWithPagination from "./PaintingsListAsTilesWithPagination";
-import PaintingsListDeprecated from "./PaintingsListDeprecated";
-import UsersList from "./UsersList";
+import ProjectsList from "./ProjectsList";
 import PaintingService from "../services/painting.service";
 
 const BoardModerator = () => {
@@ -51,7 +48,7 @@ const BoardModerator = () => {
       <div className="board-moderator-container-grid">
 
           <div className="paintings-data-box">
-              <PaintingsListDeprecated/>
+              <ProjectsList/>
           </div>
           <button
               className="home-button"

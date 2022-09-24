@@ -29,7 +29,7 @@ import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";//I was curious about EventBus design pattern (instead of working with context)
 import FilesList from "./components/FilesList";
 import Footer from "./components/Footer";
-import PaintingsListDeprecated from "./components/PaintingsListDeprecated";
+import PaintingsList from "./components/ProjectsList";
 //import DescriptionOld from "./components/DescriptionOld";
 import PaintingsListAsTilesWithPagination from "./components/PaintingsListAsTilesWithPagination";
 import AddQuestion from "./components/AddQuestion";
@@ -164,7 +164,7 @@ const App = () => {
                  render={() => <QuestionsListDeprecated isModerator={isModerator}/>
                  }/>
           <Route exact path={"/paintingsList/users"}
-                 render={() => <PaintingsListDeprecated isModerator={isModerator}/>
+                 render={() => <PaintingsList isModerator={isModerator}/>
                  }/>
 
         </Switch>

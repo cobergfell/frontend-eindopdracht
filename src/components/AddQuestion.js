@@ -179,7 +179,7 @@ const AddQuestion = () => {
     };
 
     return (
-        <div className="container-grid">
+        <div className="send-question-container-grid">
             {submitted ? (
                 <>
                     <button

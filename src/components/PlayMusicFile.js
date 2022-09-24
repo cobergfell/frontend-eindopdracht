@@ -2,7 +2,6 @@ import React, { useState, useEffect,useContext } from 'react';
 import axios from 'axios';
 import {Link, useHistory, useLocation, useParams} from 'react-router-dom';
 import AuthService from "../services/auth.service";
-import "../components.styling/.download-stylingDeprecatedcss";
 import sound from '../assets/Do_Diese_Mineur_lento.mp3'//for audio test
 //import { AuthContext } from '../context/AuthContext';
 
