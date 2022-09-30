@@ -41,7 +41,7 @@ function Painting() {
     console.log('line 38 description',description)
     console.log('line 39 audioFiles',audioFiles)
     console.log('line 39 hasEditingPrivilege',hasEditingPrivilege)
-
+    console.log('line 44 paintingId',paintingId)
 
 
     useEffect(()=>{

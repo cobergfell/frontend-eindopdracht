@@ -52,6 +52,7 @@ const EditProject = () => {
     console.log('49 painting',painting)
     console.log('50 selectedPaintingImage',selectedPaintingImage)
     console.log('51 selectedFiles',selectedFiles)
+    console.log('51 currentFiles',currentFiles)
     console.log('52 currentAudioFilesUrls',currentAudioFilesUrls)
     console.log('53 selectedAudioFiles',selectedAudioFiles)
     console.log('54 currentFilesUrls',currentFilesUrls)
@@ -326,6 +327,7 @@ const EditProject = () => {
                 response.data.attachedMusicFiles.map((attachedMusicFile) => (
                     setCurrentAudioFilesUrls(currentAudioFilesUrls => [...currentAudioFilesUrls, attachedMusicFile.fileOnDiskUrl])))
 
+
                 response.data.attachedFiles.map((attachedFile) => (
                     setCurrentFiles(currentFiles => [...currentFiles,
                         {
@@ -431,6 +433,14 @@ const EditProject = () => {
                 formData.append('audioFiles',selectedAudioFile,selectedAudioFile.name);
             }
         }
+
+
+        // if (currentAudioFiles!=[]){
+        //     for (const currentAudioFile of currentAudioFiles){
+        //         //first clean file name
+        //         formData.append('audioFiles',currentAudioFile,currentAudioFile.name);
+        //     }
+        // }
 
         /*if (currentFiles!=[]){
             for (const currentFile of currentFiles){
@@ -635,6 +645,7 @@ const EditProject = () => {
                     </button>
 
                     <input type="file"
+                           accept="image/png, image/jpeg"
                            ref={hiddenFileInput1}
                            style={{display:'none'}}
                            name="image"
@@ -681,6 +692,7 @@ const EditProject = () => {
                     </button>
 
                     <input type="file"
+                           accept="audio/mpeg"
                            ref={hiddenFileInput2}
                            style={{display:'none'}}
                            name="audio"
@@ -784,7 +796,7 @@ const EditProject = () => {
                             <div className="list-current-files-flex-container" >
                                 {selectedAudioFiles.map((selectedFile) => {
                                     return (
-                                        <div key={`${selectedFile.name}`} className="current-file-row-grid">
+                                        <div key={`${selectedFile.name}`} className="current-file-row-grid" >
                                             <div className="files-list-element" >
                                                 {selectedFile.name}
                                             </div>

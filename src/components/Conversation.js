@@ -29,7 +29,7 @@ function Conversation({paintingId}) {
 
     console.log('line 27 questions',questions);
     console.log('line 28 conversation',conversation);
-
+    console.log('line 28 paintingId',paintingId);
 
     // const collectQuestionsIds = () => {
     //     setQuestionsIds(questions => questions.map((question) => {

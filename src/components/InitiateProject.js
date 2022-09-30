@@ -263,6 +263,7 @@ const InitiateProject = () => {
                     </button>
 
                     <input type="file"
+                           accept="image/png, image/jpeg"
                            ref={hiddenFileInput1}
                            style={{display:'none'}}
                            name="image"
@@ -275,6 +276,7 @@ const InitiateProject = () => {
                     </button>
 
                     <input type="file"
+                           accept="audio/mpeg"
                            ref={hiddenFileInput2}
                            style={{display:'none'}}
                            name="audio"
