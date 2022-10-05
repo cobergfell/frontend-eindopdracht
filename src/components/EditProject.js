@@ -636,7 +636,7 @@ const EditProject = () => {
                         rows={20}
                         cols={1}
                         Placeholder={"Your text here"}
-                        maxLength={1000}
+                        maxLength={100000}
                     />
 
 

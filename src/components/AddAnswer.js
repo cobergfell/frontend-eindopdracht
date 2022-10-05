@@ -206,7 +206,7 @@ const AddAnswer = () => {
     };
 
     return (
-        <div className="container-grid">
+        <div className="send-answer-container-grid">
             {submitted ? (
                 <>
                     <button
@@ -230,7 +230,7 @@ const AddAnswer = () => {
                 </>
             ) : (
                 <>
-                    <div className="submit-a-new-reaction-title">
+                    <div className="submit-a-new-answer-title">
                         Submit a reaction
                     </div>
                     <label htmlFor="title" className="label-input-title">Title</label>
@@ -255,7 +255,7 @@ const AddAnswer = () => {
                         rows={20}
                         cols={1}
                         Placeholder={"Your text here"}
-                        maxLength={1000}
+                        maxLength={100000}
                     />
 
                     {selectedPaintingImage && (

@@ -5,9 +5,8 @@ body {
 }
 
 
-.container-grid {
+.send-answer-container-grid {
     margin-top: var(--navbar-height);
-    margin-top: 0px;
     font-family: var(--font-family);/*Helvetica Neue, Arial, sans-serif;*/
     display: grid;
     color: var(--drk-grey);
@@ -17,10 +16,10 @@ body {
     height: calc(var(--project-height) - var(--navbar-height));
     grid-template-columns: repeat(100, 1fr);
     grid-template-rows: repeat(100, 1fr);
-    border-style: solid;
-    border-color: blueviolet;
-    overflow-x: scroll;
-    overflow-y: scroll;
+    /*border-style: solid;*/
+    /*border-color: blueviolet;*/
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
     /*width: 960px;*/
     /*height: 100px;*/
     /*border-color: blueviolet;*/
@@ -194,13 +193,13 @@ body {
 }
 
 
-.submit-a-new-reaction-title {
-    grid-column-start: 40;
+.submit-a-new-answer-title {
+    grid-column-start: 50;
     grid-column-end: 60;
     grid-row-start: 1;
     grid-row-end: 3;
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: 14px;/*var(--default-font-size);*/
 }
 
 
@@ -230,8 +229,6 @@ body {
     border-color: grey;
 
 }
-
-
 
 
 .list-audio-data {

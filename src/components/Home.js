@@ -23,7 +23,7 @@ const Home = () => {
             {/*<p>an idea championed by one of the creative minds from which emerged abstract painting,</p>*/}
             {/*<p>as narrated by British music composer Gerad Mc Burney in <a href="https://www.theguardian.com/artanddesign/2006/jun/24/art.art">Wassily Kandinsky: the painter of sound and vision</a> </p>*/}
             <div className="our-vision-title"><strong>Our vision</strong></div>
-            This website is an invitation to experiment with combining visual art and music, following
+            This website is about combining visual art and 'classic' music, following
             an idea championed by Vassily Kandinsky, one of the first abstract painters at the begin of the twentieth century.
             A good introduction to the fascination of Kandinsky for music is to be found in an article of British music composer Gerad Mc Burney
             in <a href="https://www.theguardian.com/artanddesign/2006/jun/24/art.art">Vassily Kandinsky: the painter of sound and vision</a>.
