@@ -24,9 +24,9 @@ import Painting from './components/Painting';
 import QuestionsListDeprecated from './components/QuestionsListDeprecated';
 import DownloadFile from './components/DownloadFile';
 import AddAnswer from './components/AddAnswer';
-import AddPaintingNotMaintainedAnymore from './components/AddPaintingNotMaintainedAnymore';
+//import AddPaintingNotMaintainedAnymore from './components/AddPaintingNotMaintainedAnymore';
 import AuthVerify from "./common/AuthVerify";
-import EventBus from "./common/EventBus";//I was curious about EventBus design pattern (instead of working with context)
+//import EventBus from "./common/EventBus";//I was curious about EventBus design pattern (instead of working with context), but finally do not use it see https://www.pluralsight.com/guides/how-to-communicate-between-independent-components-in-reactjs
 import FilesList from "./components/FilesList";
 import Footer from "./components/Footer";
 import PaintingsList from "./components/ProjectsList";
@@ -56,13 +56,9 @@ const App = () => {
       setIsAdministrator(user.roles.includes("ROLE_ADMIN"));
     }
 
-    EventBus.on("logout", () => {
-      logOut();
-    });
+    // EventBus.on("logout", () => {logOut();});
+    // return () => {EventBus.remove("logout");};
 
-    return () => {
-      EventBus.remove("logout");
-    };
   }, []);
 
   const logOut = () => {
@@ -147,7 +143,7 @@ const App = () => {
           <Route exact path="/musicFiles/:fileId" component={PlayMusicFile} />
           <Route exact path="/mod" component={BoardModerator} />
           <Route exact path="/admin" component={BoardAdmin} />
-          <Route exact path="/add-painting-not-maintained-anymore" component={AddPaintingNotMaintainedAnymore} />
+          {/*<Route exact path="/add-painting-not-maintained-anymore" component={AddPaintingNotMaintainedAnymore} />*/}
           <Route exact path="/add-question-to-project/:id" component={AddQuestion} />
           <Route exact path="/add-answer/:id" component={AddAnswer} />
           <Route exact path="/question_files_list" component={FilesList} />
