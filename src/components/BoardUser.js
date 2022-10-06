@@ -1,5 +1,4 @@
 import React, {useState, useEffect, useContext} from "react";
-import UserService from "../services/user.access.service-DEPRECATED";
 import EventBus from "../common/EventBus";
 import {Link, useHistory} from "react-router-dom";
 import axios from "axios";

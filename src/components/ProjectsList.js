@@ -1,14 +1,11 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import PaintingService from "../services/painting.service";
-import "../components.styling/paintingList-styling-grid-Deprecated.css";
 import "../components.styling/projectsList-styling-grid.css";
 import AuthService from "../services/auth.service";
 import {Link, useHistory, useLocation} from "react-router-dom";
 const currentUser = AuthService.getCurrentUser();
 // import UserDataService from "../services/users.data.service";
 // import UserService from "../services/users.data.service";
-// import { useTable } from "react-table";
-// import axios from "axios";
 // import EventBus from "../common/EventBus";
 
 const ProjectsList = (props) => {

@@ -3,7 +3,6 @@ import axios from 'axios';
 import {Link, useHistory, useLocation, useParams} from 'react-router-dom';
 import {sortDataBy} from "../services/utilities";
 import AuthService from "../services/auth.service";
-//import "../components.styling/painting-styling-flex-deprecated.css";
 import "../components.styling/painting-styling-grid.css";
 import sound from "C:\\Users\\Gebruiker\\Test\\rachmaninov.mp3";
 import Conversation from "./Conversation";
@@ -11,8 +10,6 @@ import Conversation from "./Conversation";
 import PaintingDataService from "../services/painting.service";
 //import { AuthContext } from '../context/AuthContext';
 import DownloadFile from "./DownloadFile";
-
-//test
 
 const currentUser = AuthService.getCurrentUser();
 
@@ -77,7 +74,6 @@ function Painting() {
     },[]);
 
     useEffect(()=>{
-        // to do: this function below still needs to be replaced by get(id) from painting.service, see component EditPaintingOld.js
         async function fetchPainting() {
             setError(false);
             toggleLoading(true);

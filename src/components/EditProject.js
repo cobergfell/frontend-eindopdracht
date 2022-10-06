@@ -574,20 +574,7 @@ const EditProject = () => {
 
             {submitted ? (
                 <>
-                    {/*<button
-                        type="button"
-                        className="on-success-new-project-button"
-                        onClick={() => history.push('/initiateProject')}
-                    >
-                        New project
-                    </button>*/}
-                    {/*<button
-                        type="button"
-                        className="on-edit-success-back-to-user-board"
-                        onClick={() => history.push(`/paintings/${paintingId}`)}
-                    >
-                        Back to project
-                    </button>*/}
+
 
                     <button className="from-edit-back-button" onClick={goBack}>
                         Back
@@ -725,8 +712,6 @@ const EditProject = () => {
                                                     //id="checkbox-audio-files"
                                                     //checked={checked}
                                                     //onChange={() => toggleChecked(!checked)}
-                                                    //onChange={() =>console.log('667 hello')}
-                                                    //onChange={() =>console.log('667 selectedFileObject',selectedFileObject)}
                                                     //onChange={() => filesToDeleteIds => [...filesToDeleteIds, selectedFileObject["fileId"]]}
                                                     //onChange={() => setFilesToDeleteIds(filesToDeleteIds => [...filesToDeleteIds, selectedFileObject["fileId"]])}
                                                     onClick={(e) => {

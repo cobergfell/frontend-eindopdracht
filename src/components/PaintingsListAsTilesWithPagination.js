@@ -4,7 +4,6 @@ import PaintingDataService from "../services/painting.service";
 import AuthService from "../services/auth.service";
 import Pagination from "./Pagination";
 import RenderPainting from "./RenderPainting";
-//import "../components.styling/painting-list-as-tiles-styling-grid-Deprecated.css";
 import "../components.styling/renderPainting-styling.css";
 
 

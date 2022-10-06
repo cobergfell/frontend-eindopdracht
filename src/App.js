@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 // eslint-disable-next-line no-unused-vars
 import {Switch, Route, Link, useHistory, NavLink} from "react-router-dom";
-/*import "bootstrap/dist/css/bootstrap.min.css";*/
 import "./App.css";
 import "./components.styling/nav-bar-styling-grid.css";
 import "./components.styling/footer-styling-grid.css";
 import AuthService from "./services/auth.service";
-
-import { AuthContext } from './context/AuthoritiesContextProvider';
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
@@ -21,23 +18,20 @@ import EditUser from "./components/EditUser";
 import FetchQuestionsFilesInDatabase from './components/FetchQuestionsFilesInDatabase';
 import Question from './components/Question';
 import Painting from './components/Painting';
-import QuestionsListDeprecated from './components/QuestionsListDeprecated';
+import QuestionsList from './components/QuestionsList';
 import DownloadFile from './components/DownloadFile';
 import AddAnswer from './components/AddAnswer';
-//import AddPaintingNotMaintainedAnymore from './components/AddPaintingNotMaintainedAnymore';
 import AuthVerify from "./common/AuthVerify";
 //import EventBus from "./common/EventBus";//I was curious about EventBus design pattern (instead of working with context), but finally do not use it see https://www.pluralsight.com/guides/how-to-communicate-between-independent-components-in-reactjs
 import FilesList from "./components/FilesList";
 import Footer from "./components/Footer";
 import PaintingsList from "./components/ProjectsList";
-//import DescriptionOld from "./components/DescriptionOld";
 import PaintingsListAsTilesWithPagination from "./components/PaintingsListAsTilesWithPagination";
 import AddQuestion from "./components/AddQuestion";
-//import ConversationOld2 from "./components/ConversationOld2";
 import PlayMusicFile from "./components/PlayMusicFile";
 import EditProject from "./components/EditProject";
-import CSSGridTest1 from "./components/CSSGridTest1";
-import CSSGridTest2 from "./components/CSSGridTest2";
+// import CSSGridTest1 from "./components/CSSGridTest1";
+// import CSSGridTest2 from "./components/CSSGridTest2";
 import Conversation from "./components/Conversation";
 import InitiateProject from "./components/InitiateProject";
 
@@ -143,21 +137,20 @@ const App = () => {
           <Route exact path="/musicFiles/:fileId" component={PlayMusicFile} />
           <Route exact path="/mod" component={BoardModerator} />
           <Route exact path="/admin" component={BoardAdmin} />
-          {/*<Route exact path="/add-painting-not-maintained-anymore" component={AddPaintingNotMaintainedAnymore} />*/}
           <Route exact path="/add-question-to-project/:id" component={AddQuestion} />
           <Route exact path="/add-answer/:id" component={AddAnswer} />
           <Route exact path="/question_files_list" component={FilesList} />
           <Route exact path="/paintingsListAsTilesWithPagination" component={PaintingsListAsTilesWithPagination} />
           {/*<Route exact path="/descriptionOld" component={DescriptionOld} />*/}
-          <Route exact path="/CSSGridTest1" component={CSSGridTest1} />
-          <Route exact path="/CSSGridTest2" component={CSSGridTest2} />
+          {/*<Route exact path="/CSSGridTest1" component={CSSGridTest1} />*/}
+          {/*<Route exact path="/CSSGridTest2" component={CSSGridTest2} />*/}
           {/*<Route exact path="/user" component={BoardUser} />*/}
         <Route exact path={["/user"]}
                render={() => <BoardUser isModerator={isModerator}/>
                }/>
 
           <Route exact path={["/", "/questionsList/users"]}
-                 render={() => <QuestionsListDeprecated isModerator={isModerator}/>
+                 render={() => <QuestionsList isModerator={isModerator}/>
                  }/>
           <Route exact path={"/paintingsList/users"}
                  render={() => <PaintingsList isModerator={isModerator}/>
@@ -167,9 +160,6 @@ const App = () => {
       </div>
 
       <AuthVerify logout={logOut}/>
-{/*      <div className="footer-wrapper">
-        <Footer/>
-      </div>*/}
       <Footer/>
 
     </div>

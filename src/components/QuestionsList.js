@@ -8,7 +8,7 @@ import {Link, useHistory} from "react-router-dom";
 const currentUser = AuthService.getCurrentUser();
 
 
-const QuestionsListDeprecated = (props) => {
+const QuestionsList = (props) => {
     const [questions, setQuestions] = useState([]);
     const [searchTitle, setSearchTitle] = useState("");
     const questionsRef = useRef();
@@ -143,4 +143,4 @@ const QuestionsListDeprecated = (props) => {
 
 };
 
-export default QuestionsListDeprecated;
+export default QuestionsList;

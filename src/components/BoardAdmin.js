@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import AuthService from "../services/auth.service";
-
-import UserService from "../services/user.access.service-DEPRECATED";
 import EventBus from "../common/EventBus";
 import "../components.styling/board-admin-styling-grid.css";
 import UsersList from "./UsersList";
