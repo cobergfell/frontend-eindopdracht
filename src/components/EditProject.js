@@ -38,6 +38,9 @@ const EditProject = () => {
     const [audioFilesToDeleteIds, setAudioFilesToDeleteIds] = useState([]);
 
     const [submitted, setSubmitted] = useState(false);
+    const [submitButtonClicked, setSubmitButtonClicked] = useState(false);
+    const [missingInput, setMissingInput ]= useState(false);
+    const [retry, setRetry ]= useState(false);
     const [error, setError] = useState(false);
     const [loading, toggleLoading] = useState(false);
     const [image, setImage] = useState(null);
@@ -60,11 +63,39 @@ const EditProject = () => {
     console.log('56 filesToDeleteIds',filesToDeleteIds)
     console.log('57 audioFilesToDeleteIds',audioFilesToDeleteIds)
 
-
+    console.log('66 missingInput',missingInput)
+    console.log('66 retry',retry)
+    console.log('66 painting',painting)
 
     const goBack = () => {
         history.goBack()
     }
+
+    const checkSending = (painting) => {
+        console.log('75 painting.title',painting.title)
+        console.log('75 painting.artist',painting.artist)
+        console.log('75 painting.description',painting.description)
+        console.log('75 painting.title==""',painting.title=="")
+        console.log('75 painting.title==null',painting.title==null)
+        console.log('75 ainting.title.length===0',painting.title.length===0)
+
+
+        setMissingInput(value => false)
+        if (painting.title==null){setMissingInput(true)}
+        if (painting.artist==null){setMissingInput(true)}
+        if (painting.description==null){setMissingInput(true)}
+        //if (painting.image==null){setMissingInput(true)}
+    }
+
+    const toggleRetry = () => setRetry(value => !value);
+
+    const handleRetry = () => {
+        toggleRetry()
+        setMissingInput(value => false)
+        console.log('91 missingInput',missingInput)
+        console.log('91 bla')
+    }
+
 
     const deselectAudioFiles = (e) => {
         let updatedSelection=[];
@@ -160,10 +191,8 @@ const EditProject = () => {
 
     //begin of example from https://stackoverflow.com/questions/25046301/convert-url-to-file-or-blob-for-filereader-readasdataurl
     async function getFileFromUrlTest(url, name, defaultType = 'image/jpeg'){
-        console.log('94 url',url)
         const response = await fetch(url);
         const data = await response.blob();
-        console.log('97 data',data)
         setMyTest(myTest => [...myTest, new File([data],name,{type: data.type || defaultType})
         ])
 
@@ -174,7 +203,6 @@ const EditProject = () => {
 
     //function below was not working as expected, just given here as reference material
     async function getFileFromUrl(url, defaultName, defaultType = 'image/jpeg'){
-        console.log('101 url',url)
         const response = await fetch(url);
         const data = await response.blob();
        // response.download("D:\\Users\\Gebruiker\\Downloads");
@@ -375,7 +403,7 @@ const EditProject = () => {
 
             })
             .catch(e => {
-                console.log('457 error',e);
+                console.log('406 error',e);
             });
     };
 
@@ -409,114 +437,121 @@ const EditProject = () => {
 
     const updatePainting = () => {
 
-        let formData = new FormData()
-        formData.append('username', currentUser.username)
-        formData.append('title', painting.title)
-        formData.append('artist', painting.artist)
-        formData.append('dateTimePosted', painting.dateTimePosted)
-        formData.append('description', painting.description)
+        toggleRetry()
+        setSubmitButtonClicked(true)
+        console.log('440 painting',painting)
+        if (missingInput==false){
 
-        if (selectedPaintingImage!=null){
-            formData.append('image',selectedPaintingImage,selectedPaintingImage.name);
+
+            let formData = new FormData()
+            formData.append('username', currentUser.username)
+            formData.append('title', painting.title)
+            formData.append('artist', painting.artist)
+            formData.append('dateTimePosted', painting.dateTimePosted)
+            formData.append('description', painting.description)
+
+            if (selectedPaintingImage!=null){
+                formData.append('image',selectedPaintingImage,selectedPaintingImage.name);
+            }
+
+            if (selectedFiles!=[]){
+                for (const selectedFile of selectedFiles){
+                    //first clean file name
+                    formData.append('files',selectedFile,selectedFile.name);
+                }
+            }
+
+            if (selectedAudioFiles!=[]){
+                for (const selectedAudioFile of selectedAudioFiles){
+                    //first clean file name
+                    formData.append('audioFiles',selectedAudioFile,selectedAudioFile.name);
+                }
+            }
+
+
+            // if (currentAudioFiles!=[]){
+            //     for (const currentAudioFile of currentAudioFiles){
+            //         //first clean file name
+            //         formData.append('audioFiles',currentAudioFile,currentAudioFile.name);
+            //     }
+            // }
+
+            /*if (currentFiles!=[]){
+                for (const currentFile of currentFiles){
+                    //first clean file name
+                    formData.append('files',currentFile["file"],currentFile["file"].name);
+                }
+            }*/
+
+
+            /*if (currentAudioFiles!=[]){
+                for (const currentAudioFile of currentAudioFiles){
+                    //first clean file name
+                    formData.append('audioFiles',currentAudioFile["file"],currentAudioFile["file"].name);
+                }
+            }*/
+
+
+            let partial_url;
+            let config;
+            //const auth= authHeader().Authorization;
+            //const paramsAsString = new URLSearchParams(data).toString();
+            console.log('142 selectedFiles',selectedFiles)
+            let headers= {}
+            if ((selectedFiles.length>0)||(selectedPaintingImage!=null)||(selectedAudioFiles.length>0)){headers=
+                {'Content-Type': 'multipart/form-data',
+                    //'enctype':"multipart/form-data"
+                }
+            } else{
+                headers={'Content-Type': 'application/json',
+                    //'enctype':"multipart/form-data"
+                }
+            }
+
+
+            partial_url=`user/paintings-update`//+ paramsAsString;
+            config={
+                headers: {'Content-Type': 'multipart/form-data',
+                    'enctype':"multipart/form-data"
+                },
+
+                //Authorization:auth
+            }
+
+            console.log('67 ,partial_url',partial_url)
+            console.log('67 ,config',config)
+            PaintingService.update(paintingId,formData,partial_url,config)
+                .then((response) => {
+                    setPainting(response.data);
+                    /*                    setPainting({
+                                            artist: response.data.artist,
+                                            attachedFiles: response.data.attachedFiles,
+                                            dateTimePosted: response.data.dateTimePosted,
+                                            description: response.data.description,
+                                            image: response.data.image,
+                                            lastUpdate: response.data.lastUpdate,
+                                            paintingId: response.data.paintingId,
+                                            title: response.data.title,
+                                            username: response.data.username,
+                                        });*/
+                    setSubmitted(true);
+                    console.log('116 selectedFiles',selectedFiles)
+                    console.log('117 response.data',response.data)
+                }).catch(e => {
+                console.log(e);
+            });
+
+
+            if(selectedFiles.length>0){
+                for (const selectedFile of selectedFiles){
+                    //first clean file name
+                    formData.append('files',selectedFile,selectedFile.name);
+                }
+            }
+
+            deleteFiles()
+            deleteAudioFiles()
         }
-
-        if (selectedFiles!=[]){
-            for (const selectedFile of selectedFiles){
-                //first clean file name
-                formData.append('files',selectedFile,selectedFile.name);
-            }
-        }
-
-        if (selectedAudioFiles!=[]){
-            for (const selectedAudioFile of selectedAudioFiles){
-                //first clean file name
-                formData.append('audioFiles',selectedAudioFile,selectedAudioFile.name);
-            }
-        }
-
-
-        // if (currentAudioFiles!=[]){
-        //     for (const currentAudioFile of currentAudioFiles){
-        //         //first clean file name
-        //         formData.append('audioFiles',currentAudioFile,currentAudioFile.name);
-        //     }
-        // }
-
-        /*if (currentFiles!=[]){
-            for (const currentFile of currentFiles){
-                //first clean file name
-                formData.append('files',currentFile["file"],currentFile["file"].name);
-            }
-        }*/
-
-
-        /*if (currentAudioFiles!=[]){
-            for (const currentAudioFile of currentAudioFiles){
-                //first clean file name
-                formData.append('audioFiles',currentAudioFile["file"],currentAudioFile["file"].name);
-            }
-        }*/
-
-
-        let partial_url;
-        let config;
-        //const auth= authHeader().Authorization;
-        //const paramsAsString = new URLSearchParams(data).toString();
-        console.log('142 selectedFiles',selectedFiles)
-        let headers= {}
-        if ((selectedFiles.length>0)||(selectedPaintingImage!=null)||(selectedAudioFiles.length>0)){headers=
-            {'Content-Type': 'multipart/form-data',
-                //'enctype':"multipart/form-data"
-            }
-        } else{
-            headers={'Content-Type': 'application/json',
-                //'enctype':"multipart/form-data"
-            }
-        }
-
-
-        partial_url=`user/paintings-update`//+ paramsAsString;
-        config={
-            headers: {'Content-Type': 'multipart/form-data',
-                'enctype':"multipart/form-data"
-            },
-
-            //Authorization:auth
-        }
-
-        console.log('67 ,partial_url',partial_url)
-        console.log('67 ,config',config)
-        PaintingService.update(paintingId,formData,partial_url,config)
-            .then((response) => {
-                setPainting(response.data);
-                /*                    setPainting({
-                                        artist: response.data.artist,
-                                        attachedFiles: response.data.attachedFiles,
-                                        dateTimePosted: response.data.dateTimePosted,
-                                        description: response.data.description,
-                                        image: response.data.image,
-                                        lastUpdate: response.data.lastUpdate,
-                                        paintingId: response.data.paintingId,
-                                        title: response.data.title,
-                                        username: response.data.username,
-                                    });*/
-                setSubmitted(true);
-                console.log('116 selectedFiles',selectedFiles)
-                console.log('117 response.data',response.data)
-            }).catch(e => {
-            console.log(e);
-        });
-
-
-        if(selectedFiles.length>0){
-            for (const selectedFile of selectedFiles){
-                //first clean file name
-                formData.append('files',selectedFile,selectedFile.name);
-            }
-        }
-
-        deleteFiles()
-        deleteAudioFiles()
     };
 
     const newPainting = () => {
@@ -567,6 +602,9 @@ const EditProject = () => {
         getImage(paintingId);
     }, [paintingId]);
 
+    useEffect(() => {
+        checkSending(painting)
+    }, [submitButtonClicked])
 
 
     return (
@@ -888,7 +926,23 @@ const EditProject = () => {
 
                 </>
             )}
+
+
+            {missingInput && submitButtonClicked &&(
+                <>
+                    <div  className="edit-project-missingInput-message">
+                        Failed sending data: enter at least, title, artist name, description and select an image
+                    </div>
+                    <button onClick={handleRetry} className="edit-project-retry-button">
+                        Retry
+                    </button>
+                </>
+            )}
+
+
+
         </div>
+
     );
 };
 

@@ -45,7 +45,7 @@ const PaintingsListAsTilesWithPagination = (props) => {
                         RenderComponent={RenderPainting}
                         title="Painting music library"
                         pageLimit={3}
-                        dataLimit={4}
+                        dataLimit={5}
                     />
                 </>
             ) : (

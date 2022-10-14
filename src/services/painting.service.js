@@ -61,9 +61,13 @@ async function fetchPainting({paintingId,setPainting,setAudioFiles,setError,togg
 
 
 const create = (formData,partial_url,config) => {
-    const url=`${API_URL+partial_url}`
-    console.log('18 url',url)
-    return axios.post(url, formData,config);
+    try{    const url=`${API_URL+partial_url}`
+        console.log('18 url',url)
+        return axios.post(url, formData,config);}
+        catch (e) {
+            console.log('68 error')
+    }
+
 };
 
 

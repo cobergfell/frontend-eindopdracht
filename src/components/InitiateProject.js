@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import PaintingDataService from "../services/painting.service";
 import AuthService from "../services/auth.service";
 import authHeader from "../services/auth-header";
-import {useHistory, useParams} from "react-router-dom";
+import {NavLink, useHistory, useParams} from "react-router-dom";
 //import {Button} from "react-bootstrap";
 import "../components.styling/initiate-project-styling-grid.css";
 
@@ -27,15 +27,15 @@ const InitiateProject = () => {
     const [selectedAudioFiles, setSelectedAudioFiles] = useState([]);
     const [preview, setPreview] = useState()
     const [submitted, setSubmitted] = useState(false);
+    const [submitButtonClicked, setSubmitButtonClicked] = useState(false);
+    const [missingInput, setMissingInput ]= useState(false);
+    const [retry, setRetry ]= useState(false);
     const history = useHistory();
     const hiddenFileInput1 = React.useRef(null);
     const hiddenFileInput2 = React.useRef(null);
     const hiddenFileInput3 = React.useRef(null);
-    console.log('AddPaintingNotMaintainedAnymore line 27 painting',painting)
-    console.log('AddPaintingNotMaintainedAnymore line 28 selectedPaintingImage',selectedPaintingImage)
-    console.log('AddPaintingNotMaintainedAnymore line 29 selectedFiles',selectedFiles)
-    console.log('AddPaintingNotMaintainedAnymore line 30 selectedMusicFiles',selectedAudioFiles)
 
+    console.log('37 missingInput',missingInput)
 
 
     //from https://stackoverflow.com/questions/38049966/get-image-preview-before-uploading-in-react
@@ -54,13 +54,13 @@ const InitiateProject = () => {
     }, [selectedPaintingImage])
 
 
+    const toggleRetry = () => setRetry(value => !value);
 
     const handleInputChange = event => {
         const { name, value } = event.target;
         console.log('33 event.target',event.target)
         setPainting({ ...painting, [name]: value });
     };
-
 
 
 
@@ -84,9 +84,9 @@ const InitiateProject = () => {
 
     const paintingImageSelectionHandler = (e) => {
         //alert('hello there!')
-        console.log('61 e.target',e.target)
+        console.log('85 e.target',e.target)
         setSelectedPaintingImage(e.target.files[0]);
-        console.log('63 selectedPaintingImage',selectedPaintingImage)
+        console.log('87 selectedPaintingImage',selectedPaintingImage)
         setPreview(e.target.files[0]);
 
     };
@@ -110,64 +110,81 @@ const InitiateProject = () => {
 
 
 
+    const checkSending = (painting) => {
+
+        if (painting.title==null){setMissingInput(true)}
+        if (painting.artist==null){setMissingInput(true)}
+        if (painting.description==null){setMissingInput(true)}
+        if (selectedPaintingImage==null){setMissingInput(true)}
+    }
+
+    const handleRetry = () => {
+        toggleRetry()
+        setMissingInput(value => false)
+
+    }
+
     const savePainting = () => {
-
-        let formData = new FormData()
-        formData.append('title', painting.title)
-        formData.append('artist', painting.artist)
-        formData.append('description', painting.description)
-        formData.append('image',selectedPaintingImage,selectedPaintingImage.name);
-        //formData.append('files', selectedFiles[0],selectedFiles[0].name)
-        for (const selectedFile of selectedFiles){
-            //first clean file name
-            formData.append('files',selectedFile,selectedFile.name);
-        }
-
-        for (const selectedAudioFile of selectedAudioFiles){
-            //first clean file name
-            formData.append('audioFiles',selectedAudioFile,selectedAudioFile.name);
-        }
-
-
-        formData.append('username', currentUser.username)
-
-        let partial_url=`user/paintings-upload`//+ paramsAsString;
-        let config;
-        //const auth= authHeader().Authorization;
-        //const paramsAsString = new URLSearchParams(data).toString();
-        console.log('49 selectedFiles',selectedFiles)
-        if(selectedFiles.length>0){
-            config={
-                headers: {'Content-Type': 'multipart/form-data'},
-                //Authorization:auth
+        toggleRetry()
+        setSubmitButtonClicked(true)
+        if (missingInput==false){
+            let formData = new FormData()
+            formData.append('title', painting.title)
+            formData.append('artist', painting.artist)
+            formData.append('description', painting.description)
+            formData.append('image',selectedPaintingImage,selectedPaintingImage.name);
+            //formData.append('files', selectedFiles[0],selectedFiles[0].name)
+            for (const selectedFile of selectedFiles){
+                //first clean file name
+                formData.append('files',selectedFile,selectedFile.name);
             }
 
-        } else{
-            config={
-                headers: {'Content-Type': 'multipart/form-data'},
+            for (const selectedAudioFile of selectedAudioFiles){
+                //first clean file name
+                formData.append('audioFiles',selectedAudioFile,selectedAudioFile.name);
             }
-        }
-        console.log('67 ,partial_url',partial_url)
-        console.log('67 ,config',config)
-        PaintingDataService.create(formData,partial_url,config)
-            .then(response => {
-                setPainting({
-                    username: response.data.username,
-                    title: response.data.title,
-                    artist: response.data.artist,
-                    dateTimePosted:response.data.dateTimePosted,
-                    description: response.data.description,
-                    image: response.data.image,
-                    files: response.data.files,
-                    audioFiles: response.data.audioFiles,
 
-                });
-                setSubmitted(true);
-                console.log('57 response',response)
-                console.log(response.data);
-            }).catch(e => {
-            console.log(e);
-        });
+
+            formData.append('username', currentUser.username)
+
+            let partial_url=`user/paintings-upload`//+ paramsAsString;
+            let config;
+            //const auth= authHeader().Authorization;
+            //const paramsAsString = new URLSearchParams(data).toString();
+            console.log('49 selectedFiles',selectedFiles)
+            if(selectedFiles.length>0){
+                config={
+                    headers: {'Content-Type': 'multipart/form-data'},
+                    //Authorization:auth
+                }
+
+            } else{
+                config={
+                    headers: {'Content-Type': 'multipart/form-data'},
+                }
+            }
+            console.log('67 ,partial_url',partial_url)
+            console.log('67 ,config',config)
+            PaintingDataService.create(formData,partial_url,config)
+                .then(response => {
+                    setPainting({
+                        username: response.data.username,
+                        title: response.data.title,
+                        artist: response.data.artist,
+                        dateTimePosted:response.data.dateTimePosted,
+                        description: response.data.description,
+                        image: response.data.image,
+                        files: response.data.files,
+                        audioFiles: response.data.audioFiles,
+
+                    });
+                    setSubmitted(true);
+                    console.log('174 response',response)
+                    console.log(response.data);
+                }).catch(e => {
+                console.log('177 e',e);
+            });
+        }
 
     };
 
@@ -183,7 +200,9 @@ const InitiateProject = () => {
         hiddenFileInput3.current.click();
     }
 
-
+    useEffect(() => {
+        checkSending(painting)
+    }, [submitButtonClicked])
 
     return (
         <div className="initiate-project-container-grid">
@@ -211,7 +230,9 @@ const InitiateProject = () => {
 
                 </>
             ) : (
+
                 <>
+
                     <label htmlFor="title" className="label-input-title">Title</label>
                     <input
                         type="text"
@@ -330,9 +351,22 @@ const InitiateProject = () => {
                     </button>
 
                 </>
+
+            )}
+            {missingInput && submitButtonClicked &&(
+                <>
+                    <div  className="missingInput-message">
+                        Failed sending data: enter at least, title, artist name, description and select an image
+                    </div>
+                    <button onClick={handleRetry} className="retry-button">
+                        Retry
+                    </button>
+                </>
             )}
         </div>
     );
+
+
 };
 
 export default InitiateProject;

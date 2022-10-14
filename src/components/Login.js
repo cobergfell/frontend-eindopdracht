@@ -51,7 +51,8 @@ const Login = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       AuthService.login(username, password).then(
         () => {
-          props.history.push("/paintingsListAsTilesWithPagination");
+          //props.history.push("/paintingsListAsTilesWithPagination");
+          props.history.push("/home");
           window.location.reload();
         },
         (error) => {

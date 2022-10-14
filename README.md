@@ -28,6 +28,10 @@ Het project is opgezet met [Create React App](https://github.com/facebook/create
 
 of gebruik de WebStorm knop (npm start). Open http://localhost:3000 om de pagina in de browser te bekijken.
 
+Waneer de eerste home scherm verschijnt dient eerst uitgelogd te worden.
+
+Vervolgende kun je je aanmelden door de credentials in tee voeren. Na succesvol in te loggen wordt je
+automatisch redirected naar de inlog scherm waar in je je credentials kan invoeren.
 
 Zelf-verklarende buttons maken het in principe van zelf sprekend om in de app te navigeren. 
 

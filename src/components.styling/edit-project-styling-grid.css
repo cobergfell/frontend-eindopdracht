@@ -489,40 +489,27 @@ body {
 }
 
 
-/*
-.list-selected-audio-files-container-grid {
-    grid-column-start: 55;
-    grid-column-end: 75;
-    grid-row-start: 44;
-    grid-row-end: 64;
+.edit-project-missingInput-message {
+    grid-column-start: 52;
+    grid-column-end: 92;
+    grid-row-start: 75;
+    grid-row-end: 80;
     font-family: var(--font-family);
-    font-size: 10px;
-    display: grid;
-    grid-template-columns: repeat(20, 1fr);
-    grid-template-rows: repeat(20, 1fr);
-    border-style: solid;
-    border-width: thin;
-    overflow-x: scroll;
-    overflow-y: scroll;
-}
-
-
-.list-selected-files-container-grid {
-    grid-column-start: 77;
-    grid-column-end: 97;
-    grid-row-start: 40;
-    grid-row-end: 60;
-    font-family: var(--font-family);
-    font-size: 10px;
-    display: grid;
-    grid-template-columns: repeat(20, 1fr);
-    grid-template-rows: repeat(20, 1fr);
-    border-style: solid;
-    border-width: thin;
-    overflow-x: scroll;
-    overflow-y: scroll;
+    font-size: var(--default-font-size);
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
 }
 
 
 
-*/
+.edit-project-retry-button {
+    grid-column-start: 52;
+    grid-column-end: 62;
+    grid-row-start: 80;
+    grid-row-end: 85;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+    border-style: solid;
+    border-width: thin;
+    border-color: green;
+}

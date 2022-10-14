@@ -206,8 +206,32 @@ body {
 
 }
 
+.retry-button {
+    grid-column-start: 85;
+    grid-column-end: 95;
+    grid-row-start: 15;
+    grid-row-end: 20;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+    border-style: solid;
+    border-width: thin;
+    border-color: green;
+
+}
+
 
 .successfully-submitted-message {
+    grid-column-start: 44;
+    grid-column-end: 64;
+    grid-row-start: 25;
+    grid-row-end: 27;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+.missingInput-message {
     grid-column-start: 44;
     grid-column-end: 64;
     grid-row-start: 25;

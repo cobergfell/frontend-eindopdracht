@@ -4,9 +4,9 @@ import {Link, useHistory, useLocation, useParams} from 'react-router-dom';
 import {sortDataBy} from "../services/utilities";
 import AuthService from "../services/auth.service";
 import "../components.styling/painting-styling-grid.css";
-import sound from "C:\\Users\\Gebruiker\\Test\\rachmaninov.mp3";
+//import sound from "C:\\Users\\Gebruiker\\Test\\rachmaninov.mp3";
 import Conversation from "./Conversation";
-//import sound from "../assets/Do_Diese_Mineur_lento.mp3";//test
+import sound from "../assets/Do_Diese_Mineur_lento.mp3";//test
 import PaintingDataService from "../services/painting.service";
 //import { AuthContext } from '../context/AuthContext';
 import DownloadFile from "./DownloadFile";
