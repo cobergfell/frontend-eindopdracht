@@ -19,7 +19,9 @@ const required = (value) => {
 
 const Login = (props) => {
   const contextData= useContext(AuthContext);
-  console.log('27 contextData', contextData);
+  console.log('22 contextData', contextData);
+  console.log('23 props', props);
+
   const form = useRef();//useRef() does not trigger re-rendering, while updating the state with useState(0 makes the component re-render, see https://dmitripavlutin.com/react-useref-guide/
   const checkBtn = useRef();// idem
 
@@ -41,7 +43,10 @@ const Login = (props) => {
   };
 
   const handleLogin = (e) => {
-    e.preventDefault();
+
+    //console.log("Firing");// for test purpose
+    console.warn('my error');
+    e.preventDefault(); //to do: figure out how this exactly work
 
     setMessage("");
     setLoading(true);
@@ -50,22 +55,22 @@ const Login = (props) => {
 
     if (checkBtn.current.context._errors.length === 0) {
       AuthService.login(username, password).then(
-        () => {
-          //props.history.push("/paintingsListAsTilesWithPagination");
-          props.history.push("/home");
-          window.location.reload();
-        },
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+          () => {
+            //props.history.push("/paintingsListAsTilesWithPagination");
+            props.history.push("/home");
+            window.location.reload();
+          },
+          (error) => {
+            const resMessage =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString();
 
-          setLoading(false);
-          setMessage(resMessage);
-        }
+            setLoading(false);
+            setMessage(resMessage);
+          }
       );
     } else {
       setLoading(false);
@@ -87,33 +92,37 @@ const Login = (props) => {
 
         <Form className="form" onSubmit={handleLogin} ref={form}>
 
-              <>
-                {/*<div className="test2">test2</div>*/}
-                <div  className="label-input-username">Username</div>
-                <input
-                    type="text"
-                    className="input-username"
-                    name="username"
-                    value={username}
-                    onChange={onChangeUsername}
-                    validations={[required]}
-                />
+          <>
+            {/*<div className="test2">test2</div>*/}
+            <div  className="label-input-username">Username</div>
+            <input
+                type="text"
+                className="input-username"
+                name="username"
+                value={username}
+                onChange={onChangeUsername}
+                validations={[required]}
+                label="username"
+                aria-label="username"
+            />
 
 
-                <div className="label-input-password">Password</div>
-                <input
-                    type="password"
-                    className="input-password"
-                    name="password"
-                    value={password}
-                    onChange={onChangePassword}
-                    validations={[required]}
-                />
-                {loading && (
-                    <span className="loading-message">loading</span>
-                )}
-                <button className="login-btn">Login</button>
-              </>
+            <div className="label-input-password">Password</div>
+            <input
+                type="text"
+                className="input-password"
+                name="password"
+                value={password}
+                onChange={onChangePassword}
+                validations={[required]}
+                label="password"
+                aria-label="password"
+            />
+            {loading && (
+                <span className="loading-message">loading</span>
+            )}
+            <button className="login-btn" name="login-button">Login</button>
+          </>
 
 
           {message && (

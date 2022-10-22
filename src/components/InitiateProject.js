@@ -36,7 +36,7 @@ const InitiateProject = () => {
     const hiddenFileInput3 = React.useRef(null);
 
     console.log('37 missingInput',missingInput)
-
+    console.log('37 retry',retry)
 
     //from https://stackoverflow.com/questions/38049966/get-image-preview-before-uploading-in-react
     // create a preview as a side effect, whenever selected file is changed
@@ -52,6 +52,15 @@ const InitiateProject = () => {
         // free memory when ever this component is unmounted
         return () => URL.revokeObjectURL(objectUrl)
     }, [selectedPaintingImage])
+
+    const checkSending = () => {
+        let missingData = false
+        if (!painting.title){missingData=true}
+        if (!painting.artist){missingData=true}
+        if (!painting.description){missingData=true}
+        if (!selectedPaintingImage){missingData=true}
+        return missingData
+    }
 
 
     const toggleRetry = () => setRetry(value => !value);
@@ -110,24 +119,19 @@ const InitiateProject = () => {
 
 
 
-    const checkSending = (painting) => {
-
-        if (painting.title==null){setMissingInput(true)}
-        if (painting.artist==null){setMissingInput(true)}
-        if (painting.description==null){setMissingInput(true)}
-        if (selectedPaintingImage==null){setMissingInput(true)}
-    }
-
     const handleRetry = () => {
-        toggleRetry()
+        setRetry(value => false)
         setMissingInput(value => false)
 
     }
 
     const savePainting = () => {
-        toggleRetry()
-        setSubmitButtonClicked(true)
-        if (missingInput==false){
+        let missingData=checkSending()
+
+        if (missingData===false){
+            setMissingInput(value => false)
+            setRetry(value => false)
+            console.log('135 bla')
             let formData = new FormData()
             formData.append('title', painting.title)
             formData.append('artist', painting.artist)
@@ -184,6 +188,13 @@ const InitiateProject = () => {
                 }).catch(e => {
                 console.log('177 e',e);
             });
+
+        }
+
+        else
+
+        {   console.log('196 bla');
+            setRetry(value => true)
         }
 
     };
@@ -200,9 +211,9 @@ const InitiateProject = () => {
         hiddenFileInput3.current.click();
     }
 
-    useEffect(() => {
-        checkSending(painting)
-    }, [submitButtonClicked])
+    // useEffect(() => {
+    //     checkSending(painting)
+    // }, [submitButtonClicked])//
 
     return (
         <div className="initiate-project-container-grid">
@@ -353,7 +364,7 @@ const InitiateProject = () => {
                 </>
 
             )}
-            {missingInput && submitButtonClicked &&(
+            {retry &&(
                 <>
                     <div  className="missingInput-message">
                         Failed sending data: enter at least, title, artist name, description and select an image

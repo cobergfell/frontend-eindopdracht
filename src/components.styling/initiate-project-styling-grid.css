@@ -234,8 +234,8 @@ body {
 .missingInput-message {
     grid-column-start: 44;
     grid-column-end: 64;
-    grid-row-start: 25;
-    grid-row-end: 27;
+    grid-row-start: 35;
+    grid-row-end: 37;
     font-family: var(--font-family);
     font-size: var(--default-font-size);
     /*overflow-x: scroll;*/
