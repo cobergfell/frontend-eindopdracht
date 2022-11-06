@@ -1,31 +1,22 @@
-//import axios from 'axios';
-//jest.mock("axios");
-
 import {BrowserRouter} from "react-router-dom";
-
-const url="http://localhost:8080/api/auth/login";
 import React from "react";
-import {fireEvent, getByTestId, render, screen, wait} from "@testing-library/react"
-import user from "@testing-library/user-event";
+import {fireEvent, render, screen} from "@testing-library/react"
 import "@testing-library/jest-dom/extend-expect";
 import Login from "../components/Login"
 import AuthoritiesContextProvider from "../context/AuthoritiesContextProvider";
-import AuthService from "../services/auth.service";
-
 
 
 beforeEach(()=>{
     const {  } = render(
-        <Painting />
-        // <AuthoritiesContextProvider>
-        //     <BrowserRouter>
-        //         <Login />
-        //     </BrowserRouter>
-        // </AuthoritiesContextProvider>,
-    )
+
+    <AuthoritiesContextProvider>
+        <BrowserRouter>
+            <Login />
+        </BrowserRouter>
+    </AuthoritiesContextProvider>,
+        )
     //onSubmit.mockClear()
 })
-
 
 
 test('Login button should trigger loading data ', async () => {
@@ -39,7 +30,8 @@ test('Login button should trigger loading data ', async () => {
 
 // the use of describe below is not necessary because there is only one test 'grouped' within this describe
 // but I just keep it like this as reference for future work or if some extra tests are added as part of testing 'Login Form
-describe("Login Form", () => {
+describe("Check if some elements are present on the page", () => {
+    // we just check some arbitrary elements, but it should be applied for all elements in a real app
     it("should render the basic fields", () => {
         expect(
             screen.getByText('Username')

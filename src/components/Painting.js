@@ -11,7 +11,6 @@ import PaintingDataService from "../services/painting.service";
 //import { AuthContext } from '../context/AuthContext';
 import DownloadFile from "./DownloadFile";
 
-const currentUser = AuthService.getCurrentUser();
 
 let audio = new Audio(sound)//test
 const start = () => {
@@ -20,6 +19,7 @@ const start = () => {
 
 
 function Painting() {
+    const currentUser = AuthService.getCurrentUser();
     const history = useHistory();
     const location = useLocation();
     const paintingId = location.state.paintingId;
@@ -34,11 +34,12 @@ function Painting() {
     const [loading, toggleLoading] = useState(false);
     //const {login,logout, user,status,fileToDownload,setFileToDownload} =  useContext(AuthContext);
     //const { paintingId } = useParams();//we don't use it now because we infer paintingId from location state
-    console.log('In Painting line 37 paintingId',paintingId);
-    console.log('line 38 description',description)
-    console.log('line 39 audioFiles',audioFiles)
-    console.log('line 39 hasEditingPrivilege',hasEditingPrivilege)
-    console.log('line 44 paintingId',paintingId)
+    console.log('37 currentUser',currentUser);
+    console.log('38 painting',painting);
+    console.log('39 description',description)
+    console.log('40 audioFiles',audioFiles)
+    console.log('41 hasEditingPrivilege',hasEditingPrivilege)
+    console.log('42 paintingId',paintingId)
 
 
     useEffect(()=>{
@@ -57,7 +58,7 @@ function Painting() {
 
                 });
                 setImage(result.data);
-                console.log('28 result.data',result.data);
+                console.log('61 result.data',result.data);
                 toggleLoading(false);
 
             } catch (e) {
@@ -65,10 +66,10 @@ function Painting() {
                 toggleLoading(false);
             }
         }
-        console.error('37 token',currentUser.accessToken);
+        console.error('69 token',currentUser.accessToken);
         if (currentUser.accessToken) {
             fetchImage();
-            console.log('44 image',image);
+            console.log('72 image',image);
         }
 
     },[]);
@@ -97,10 +98,10 @@ function Painting() {
                 toggleLoading(false);
             }
         }
-        console.error('37 token',currentUser.accessToken);
+        console.error('101 token',currentUser.accessToken);
         if (currentUser.accessToken) {
             fetchPainting();
-            console.log('50 painting',painting);
+            console.log('104 painting',painting);
         }
 
     },[]);
@@ -117,19 +118,19 @@ function Painting() {
                     }
                 });
                 setQuestions(result.data);
-                console.log('67 result.data',result.data);
+                console.log('121 result.data',result.data);
                 toggleLoading(false);
 
             } catch (e) {
                 setError(true);
                 toggleLoading(false);
-                console.log('72 e',e);
+                console.log('127 e',e);
             }
         }
-        console.error('37 token',currentUser.accessToken);
+        console.error('130 token',currentUser.accessToken);
         if (currentUser.accessToken) {
             fetchQuestions();
-            console.log('118 questions',questions);
+            console.log('133 questions',questions);
         }
 
     },[]);
@@ -149,19 +150,19 @@ function Painting() {
                     }
                 });
                 setAnswers(result.data);
-                console.log('67 result.data',result.data);
+                console.log('153 result.data',result.data);
                 toggleLoading(false);
 
             } catch (e) {
                 setError(true);
                 toggleLoading(false);
-                console.log('142 e',e);
+                console.log('159 e',e);
             }
         }
-        console.error('37 token',currentUser.accessToken);
+        console.error('162 token',currentUser.accessToken);
         if (currentUser.accessToken) {
             fetchAnswers();
-            console.log('78 answers',answers);
+            console.log('165 answers',answers);
         }
 
     },[]);
@@ -192,9 +193,7 @@ function Painting() {
             }
             else{setAnswers(response.data);}
         }
-
     }
-
 
 
     return (
@@ -244,7 +243,7 @@ function Painting() {
                 <div className="image-container-grid">
                     <img
                         className="image"
-                        alt="blablablabla"
+                        alt="myImage"
                         src={`http://localhost:8080/api/user/paintings/image/${paintingId}`}/*this works*/
                     />
                 </div>
@@ -265,11 +264,11 @@ function Painting() {
 
 
                 <div className="painting-supplemental-material-box">
+                    <div className="title-supplemental-material-box">
+                        <strong>Supplemental files</strong>
+                    </div>
                     {painting && sortDataBy(painting.attachedFiles, "Id").map((attachedFile)=> {return (
                         <>
-                            <div className="title-supplemental-material-box">
-                                <strong>Supplemental files</strong>
-                            </div>
                             <ul className="list-supplemental-material">
                                 <li className="list-item">Id&nbsp;:&nbsp;{attachedFile["id"]}</li>
                                 <li className="list-item">Type&nbsp;&nbsp;:&nbsp;{attachedFile.type}</li>
@@ -335,8 +334,8 @@ function Painting() {
 
             {!painting && !error && (
                 <span className="no-paintings">
-          No painting available
-        </span>
+                    No painting available
+                </span>
             )}
             {loading && (<span>Loading...</span>)}
         </div>

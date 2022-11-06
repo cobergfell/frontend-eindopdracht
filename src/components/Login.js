@@ -46,7 +46,7 @@ const Login = (props) => {
 
     //console.log("Firing");// for test purpose
     console.warn('my error');
-    e.preventDefault(); //to do: figure out how this exactly work
+    e.preventDefault(); //see https://www.w3schools.com/jsref/event_preventdefault.asp
 
     setMessage("");
     setLoading(true);
