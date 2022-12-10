@@ -1,13 +1,9 @@
 import React, { useState, useEffect,useContext } from 'react';
 import axios from 'axios';
 import {Link, useHistory,useParams} from 'react-router-dom';
-//import { AuthContext } from '../context/AuthContext';
-import DownloadFile from "./DownloadFile";
 import AuthService from "../services/auth.service";
 import {sortDataBy} from "../services/utilities";
 
-import ListGroup from "react-bootstrap/ListGroup";
-//import "bootstrap/dist/css/bootstrap.css"
 
 const currentUser = AuthService.getCurrentUser();
 
@@ -18,51 +14,14 @@ function Question() {
     const [answers, setAnswers] = useState(null);
     const [error, setError] = useState(false);
     const [loading, toggleLoading] = useState(false);
-    //const {login,logout, user,status,fileToDownload,setFileToDownload} =  useContext(AuthContext);
     const { id } = useParams();
     const history = useHistory();
-    console.log('In Question line 19 id',id);
-
-
-
-/*    useEffect(()=>{
-        async function fetchImage() {
-            setError(false);
-            toggleLoading(true);
-            try {
-                const result = await axios.get(`http://localhost:8080/api/user/questions/image/${id}`, {
-                    headers: {
-                        'Content-Type': 'image/jpeg',
-                        //'Content-Type': 'multipart/form-data',
-                        'Authorization': `token ${currentUser.accessToken}`
-                    },
-
-                });
-                setImage(result.data);
-                console.log('28 result.data',result.data);
-                toggleLoading(false);
-
-                toggleLoading(false);
-
-            } catch (e) {
-                setError(true);
-                toggleLoading(false);
-            }
-        }
-        console.error('37 token',currentUser.accessToken);
-        if (currentUser.accessToken) {
-            fetchImage();
-            console.log('44 image',image);
-        }
-
-    },[]);*/
 
     useEffect(()=>{
         async function fetchQuestion() {
             setError(false);
             toggleLoading(true);
             try {
-                //const result = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates?.lat}&lon=${coordinates?.lon}&exclude=minutely,current,hourly&appid=${apiKey}&lang=nl`);
                 const result = await axios.get(`http://localhost:8080/api/user/questions?questionId=${id}`, {
                     headers: {
                         'Authorization': `token ${currentUser.accessToken}`
@@ -92,26 +51,21 @@ function Question() {
             setError(false);
             toggleLoading(true);
             try {
-                //const result = await axios.get(`http://localhost:8080/api/user/answers-by-questionId/?questionId=${id}`, {
                 const result = await axios.get(`http://localhost:8080/api/user/answers-by-questionId/${id}`, {
                     headers: {
                         'Authorization': `token ${currentUser.accessToken}`
                     }
                 });
                 setAnswers(result.data);
-                console.log('67 result.data',result.data);
                 toggleLoading(false);
 
             } catch (e) {
                 setError(true);
                 toggleLoading(false);
-                console.log('72 e',e);
             }
         }
-        console.error('37 token',currentUser.accessToken);
         if (currentUser.accessToken) {
             fetchAnswers();
-            console.log('78 answers',answers);
         }
 
     },[]);
@@ -127,16 +81,30 @@ function Question() {
                         <button
                             type="button"
                             className="my-primary-button"
-                            //onClick={() => history.push(`/add-answer/${question.questionId}`)}
-                            //onClick={() => history.push(`/add-answer/${question.questionId}`,{"bla": "bla"})}
                             onClick={() => history.push({pathname: `/add-answer/${question.questionId}`,
-                                search: 'bla',
+                            //onClick={() => history.push({pathname: `/add-reaction/${question.questionId}`,
+                                search: '',
                                 hash: '',
-                                state: { answerTo: "question" },
+                                state: { answerTo: "question",
+                                         //responseType: 'answers'
+                                },
                                 key: ''
                             },)}
                         >
                             Send an answer
+                        </button>
+                        <button
+                            type="button"
+                            className="my-primary-button"
+                            //onClick={() => history.push({pathname: `/add-answer/${question.questionId}`,
+                            onClick={() => history.push({pathname: `/add-reaction/${question.questionId}`,
+                                state: { answerTo: "question",
+                                        responseType: 'answers',
+                                },
+                                key: ''
+                            },)}
+                        >
+                            Send an answer version 2
                         </button>
                     </div>
                 </div>
@@ -200,22 +168,16 @@ function Question() {
             </>
             }
 
-
-
             {!question && !error && (
                 <span className="no-questions">
           No question available
         </span>
             )}
-
             {error && <span>Something went wrong with fetching the data.</span>}
-
             {loading && (<span>Loading...</span>)}
         </div>
 
-
     );
-
 }
 
 export default Question;

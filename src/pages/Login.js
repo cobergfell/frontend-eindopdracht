@@ -1,11 +1,9 @@
 import React, { useState, useRef,useContext } from "react";
 import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { AuthContext } from "../context/AuthoritiesContextProvider";
 import AuthService from "../services/auth.service";
-import "../components.styling/login-styling.css";
-import {useHistory} from "react-router-dom";
+import "../pages.styling/login-styling.css";
 
 const required = (value) => {
   if (!value) {
@@ -83,17 +81,9 @@ const Login = (props) => {
   return (
       <div className="login-container-grid">
 
-        {/*<div className="test1">test</div>*/}
-        {/*<img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-          alt="profile-img"
-          className="profile-img-card"
-        />*/}
-
         <Form className="form" onSubmit={handleLogin} ref={form}>
 
           <>
-            {/*<div className="test2">test2</div>*/}
             <div  className="label-input-username">Username</div>
             <input
                 type="text"
@@ -122,8 +112,8 @@ const Login = (props) => {
                 <span className="loading-message">loading</span>
             )}
             <button className="login-btn" name="login-button">Login</button>
-          </>
 
+          </>
 
           {message && (
               <div className="message">

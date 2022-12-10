@@ -1,5 +1,5 @@
 import React from 'react';
-import "../components.styling/CSSGridTest1.css";
+import "./CSSGridTest1.css";
 
 
 

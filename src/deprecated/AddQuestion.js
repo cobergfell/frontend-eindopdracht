@@ -3,9 +3,8 @@ import AuthService from "../services/auth.service";
 import authHeader from "../services/auth-header";
 import {Link, useHistory, useLocation, useParams} from "react-router-dom";
 import QuestionService from "../services/question.service";
-import "../components.styling/add-question-styling-grid.css";
-//import {Button} from "react-bootstrap";
-
+import "./add-question-styling-grid.css";
+import Button from "../components/Button";
 const currentUser = AuthService.getCurrentUser();
 
 
@@ -18,7 +17,6 @@ const AddQuestion = () => {
         tags: "",
         questionRelatedTo:"painting",
         files:[],
-
     };
     const [question, setQuestion] = useState(initialQuestionState);
     const [selectedFiles, setSelectedFiles] = useState([]);
@@ -29,24 +27,18 @@ const AddQuestion = () => {
     const history = useHistory();
     const { id } = useParams();// here it would be better to drop id  as param and work only with  paintingId, but I keep it like this to keep an example of how to use useParam
     const location = useLocation();
-    const questionRelatedTo = location.state.questionRelatedTo;
-    const paintingId = location.state.paintingId;
-    const description = location.state.description;
-    // const [painting, setPainting] = useState(null);
-    // const [descriptionState, setDescriptionState] = useState(null);
+    // const questionRelatedTo = location.state.questionRelatedTo;
+    // const paintingId = location.state.paintingId;
+    // const description = location.state.description;
+
     const hiddenFileInput1 = React.useRef(null);
     const hiddenFileInput2 = React.useRef(null);
     const hiddenFileInput3 = React.useRef(null);
 
 
-    console.log('28 id',id)
-    console.log('29 location',location)
-    console.log('29 questionRelatedTo',questionRelatedTo)
-
     const handleInputChange = event => {
         const { name, value } = event.target;
         setQuestion({ ...question, [name]: value });
-        console.log('AddQuestionDeprecated line 25 question',question)
     };
 
     const fileSelectionHandler = (e) => {
@@ -80,36 +72,17 @@ const AddQuestion = () => {
 
     const paintingImageSelectionHandler = (e) => {
         //alert('hello there!')
-        console.log('61 e.target',e.target)
         setSelectedPaintingImage(e.target.files[0]);
-        console.log('63 selectedPaintingImage',selectedPaintingImage)
         setPreview(e.target.files[0]);
 
     };
 
     const audiFileSelectionHandler = (e) => {
-        //const fileName=cleanFileName(e.target.files[0].name)
-        //console.log('56 fileName',fileName)
-
-        console.log('67 e.target.files',e.target.files)
         setSelectedMusicFiles(selectedMusicFiles => [...selectedMusicFiles, e.target.files[0]]);
     };
 
 
-
-
-
     const saveQuestion = () => {
-
-/*        formData.append('title', question.title)
-        formData.append('content', question.content)
-        formData.append('image',selectedPaintingImage,selectedPaintingImage.name);
-        for (const selectedFile of selectedFiles){
-            formData.append('files',selectedFile,selectedFile.name);
-        }
-        for (const selectedMusicFile of selectedMusicFiles){
-            formData.append('musicFiles',selectedMusicFile,selectedMusicFile.name);
-        }*/
 
         let formData = new FormData()
 
@@ -141,9 +114,6 @@ const AddQuestion = () => {
 
         let partial_url;
         let config;
-        //const auth= authHeader().Authorization;
-        //const paramsAsString = new URLSearchParams(data).toString();
-        console.log('49 selectedFiles',selectedFiles)
         if(selectedFiles.length==0){
             config={headers: {'Content-Type': 'application/json'},}
 
@@ -165,8 +135,6 @@ const AddQuestion = () => {
 
                 });
                 setSubmitted(true);
-                console.log('57 response',response)
-                console.log(response.data);
             })
             .catch(e => {
                 console.log(e);

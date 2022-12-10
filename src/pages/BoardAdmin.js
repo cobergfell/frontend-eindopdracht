@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import AuthService from "../services/auth.service";
 import EventBus from "../common/EventBus";
-import "../components.styling/board-admin-styling-grid.css";
-import UsersList from "./UsersList";
+import "../pages.styling/board-admin-styling-grid.css";
+import UsersList from "../components/UsersList";
 import UsersService from "../services/users.data.service";
 import {useHistory} from "react-router-dom";
+import Button from "../components/Button";
 
 const BoardAdmin = () => {
   const [content, setContent] = useState("");
@@ -23,29 +24,6 @@ const BoardAdmin = () => {
   };
 
 
-/*  useEffect(() => {
-    UserService.getAdminBoard().then(
-      (response) => {
-        setContent(response.data);
-      },
-      (error) => {
-        const _content =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-
-        setContent(_content);
-
-        if (error.response && error.response.status === 401) {
-          EventBus.dispatch("logout");
-        }
-      }
-    );
-  }, []);*/
-
-
   return (
       <>
       <div className="board-administrator-container-grid">
@@ -53,19 +31,19 @@ const BoardAdmin = () => {
           <strong>{currentUser.username}</strong> Administration board
         </div>
 
-        <button
-            className="home-button"
-            //disabled={isLoading}
-            onClick={() => history.push('/home')}
-        >
-          Home
-        </button>
-        <button
-            className="remove-all-paintings-button"
-            onClick={removeAllUsers}
-        >
-          Remove All
-        </button>
+        <Button
+            className={`btn-basic board-admin-home-button`}
+            disabled={false}
+            clickHandler={() => history.push('/home')}
+            label={`Home`}
+        />
+
+        <Button
+            className={`btn-basic board-admin-remove-all-users-button`}
+            disabled={false}
+            clickHandler={removeAllUsers}
+            label={`Remove All`}
+        />
 
         <div className="users-data-box">
           <UsersList/>

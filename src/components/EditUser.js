@@ -3,7 +3,8 @@ import UserService from "../services/users.data.service";
 import AuthService from "../services/auth.service";
 import {Link, useHistory, useParams} from "react-router-dom";
 import "../components.styling/edit-user-styling-grid.css";
-import ListGroup from "react-bootstrap/ListGroup";
+import Button from "../components/Button";
+
 const currentUser = AuthService.getCurrentUser();//current user is not the same as user to update!
 
 const EditUser = props => {
@@ -16,21 +17,7 @@ const EditUser = props => {
     const { userId } = useParams();
     const history = useHistory();
     const [submitted, setSubmitted] = useState(false);
-    console.log('20 userId',userId)
-    console.log('21 userToUpdate.enabled',userToUpdate.enabled)
-    console.log('22 userIsModerator',userIsModerator)
-    console.log('23 userIsAdministrator',userIsAdministrator)
 
-
-/*    const administratorCheckbox=()=>{if(userToUpdate.authorities.contains("ROLE_ADMIN")) {
-        setCheckAdministrator(true)}
-    else{setCheckAdministrator(false)}
-    }
-
-    const moderatorCheckbox=()=>{if(userToUpdate.authorities.contains("ROLE_MODERATOR")) {
-        setCheckModerator(true)}
-    else{setCheckModerator(false)}
-    }*/
 
     const checkIfAdministrator=(authorities)=>{console.log('33 userToUpdate',userToUpdate);
         let isAdministrator=false
@@ -51,26 +38,6 @@ const EditUser = props => {
         }
         return isModerator
     }
-
-
-    //const administratorCheckbox=()=>{setAdminCheckbox(!adminCheckbox)}
-    //const moderatorCheckbox=()=>{setModCheckbox(!modCheckbox)}
-
-
-    //const handleCheckAdministrator=()=>{console.log('82 updatedUser[moderator]',updatedUser["moderator"])}
-    //const handleCheckModerator=()=>{setUpdatedUser({ ...updatedUser, ["administrator"]: true })}
-
-/*    const handleCheckAdministrator = (e) => {
-        console.log('101 e.target',e.target)
-        const value = e.target.administrator;
-        setUpdatedUser({
-            ...updatedUser,
-            ["roles"]: value
-        });
-    }*/
-
-
-    //const fileSelectionHandler = (e) => {setSelectedFiles(selectedFiles => [...selectedFiles, e.target.files[0]]);}
 
     const handleCheckModerator = (e) => {
         /*setUserIsModerator(!userIsModerator);*/
@@ -94,26 +61,12 @@ const EditUser = props => {
 
 
 
-
-/*    const handleCheckModerator = (e) => {
-        const value = e.target.moderator;
-        setUpdatedUser({
-            ...updatedUser,
-            [e.target.name]: value
-        });
-    }*/
-
     const getUser = id => {
         UserService.get(id)
             .then(response => {
                 setUserToUpdate(Object.assign({},  response.data));
-                console.log('90 response.data',response.data);
-                console.log('91 checkIfModerator(response.data.authorities)',checkIfModerator(response.data.authorities));
-                console.log('92 checkIfAdministrator(response.data.authorities)',checkIfAdministrator(response.data.authorities));
                     setUserIsModerator(checkIfModerator(response.data.authorities));
                     setUserIsAdministrator(checkIfAdministrator(response.data.authorities));
-                //setUserIsModerator(response.data.authorities.includes("ROLE_MODERATOR"));
-                //setUserIsAdministrator(response.data.authorities.includes("ROLE_ADMIN"));
             }
             )
             .catch(e => {
@@ -141,15 +94,6 @@ const EditUser = props => {
         formData.append('administrator', userIsAdministrator)
 
         UserService.update(userToUpdate.username, formData)
-            /*.then(response => {
-                //setUserToUpdate(response.data);
-                console.log('146 response.data',response.data);
-                setMessage("User details updated successfully!");
-            })
-            .catch(e => {
-                console.log(e);
-            });*/
-
         if (userIsModerator==true){AuthService.addAuthority = (userToUpdate.username, "ROLE_MODERATOR");}
         if (userIsAdministrator==true){AuthService.addAuthority = (userToUpdate.username, "ROLE_ADMIN")}
 
@@ -177,14 +121,13 @@ const EditUser = props => {
 
             {submitted ? (
                 <>
+                    <Button
+                        className={`btn-basic edit-user-on-success-back-to-administrator-board-button`}
+                        disabled={false}
+                        clickHandler={() => history.push('/admin')}
+                        label={`Back to administrator board`}
+                    />
 
-                    <button
-                        type="button"
-                        className="on-success-back-to-administrator-board"
-                        onClick={() => history.push('/admin')}
-                    >
-                        Back to administrator board
-                    </button>
 
                     <div className="successfully-submitted-message">
                         Project successfully updated!
@@ -232,8 +175,6 @@ const EditUser = props => {
                         className="checkbox-user-is-enabled"
                         value={userToUpdate.enabled}
                         checked={userToUpdate.enabled}
-                        //onChange={handleCheckBox}
-                        //onChange={setUserToUpdate.enabled=!setUserToUpdate.enabled}
                         onChange={handleCheckEnabled}
 
                     />
@@ -244,7 +185,6 @@ const EditUser = props => {
                         className="checkbox-user-is-admin"
                         value={userIsAdministrator}
                         checked={userIsAdministrator}
-                        //onChange={()=>administratorCheckbox()}
                         onChange={handleCheckAdministrator}
                     />
 
@@ -258,12 +198,20 @@ const EditUser = props => {
                         onChange={handleCheckModerator}
                     />
 
-                    <button className="delete-user-button" onClick={deleteUser}>
-                        Delete user
-                    </button>
-                    <button className="update-user-button" onClick={updateUser}>
-                        Update user
-                    </button>
+                    <Button
+                        className={`btn-basic edit-user-delete-user-button`}
+                        disabled={false}
+                        clickHandler={deleteUser}
+                        label={`Delete user`}
+                    />
+
+                    <Button
+                        className={`btn-basic edit-user-update-user-button`}
+                        disabled={false}
+                        clickHandler={updateUser}
+                        label={`Update user`}
+                    />
+
                 </>
 
             )}

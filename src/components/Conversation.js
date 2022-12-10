@@ -3,12 +3,8 @@ import axios from 'axios';
 import {Link, useHistory,useParams} from 'react-router-dom';
 import {sortDataBy} from "../services/utilities";
 import "../components.styling/conversation-styling.css";
-import PaintingDataService from "../services/painting.service";
-//import { AuthContext } from '../context/AuthContext';
-import DownloadFile from "./DownloadFile";
+import Button from "../components/Button";
 import AuthService from "../services/auth.service";
-import {forEach} from "react-bootstrap/ElementChildren";
-
 
 const currentUser = AuthService.getCurrentUser();
 
@@ -170,7 +166,6 @@ function Conversation({paintingId}) {
         setError(false);
         toggleLoading(true);
         try {
-            //const result = await axios.get(`http://localhost:8080/api/user/answers-by-paintingId/?paintingId=${id}`, {
             const response = await axios.get(`http://localhost:8080/api/user/answers-by-questionId/${id}`, {
 
                 headers: {
@@ -197,26 +192,15 @@ function Conversation({paintingId}) {
         }
     }
 
-
-    // fetchQuestions()
-    //     .catch(e => {
-    //         console.log('There has been a problem with your fetch operation: ' + e.message);
-    //     });
-
     useEffect(() => {
         console.log('152 hello there ');
         fetchQuestions() .catch(e => {
             console.log('There has been a problem with your fetch operation: ' + e.message);
         });
-        //assembleConversation(questions,answers);
     }, []);
-    console.log('160 questions',questions);
-    console.log('170 hello there ');
-
 
 
     useEffect(() => {
-        console.log('171 hello there ');
         fetchAnswers() .catch(e => {
             console.log('There has been a problem with your fetch operation: ' + e.message);
         });
@@ -227,13 +211,8 @@ function Conversation({paintingId}) {
 
 
     useEffect(() => {
-        console.log('187 questions',questions);
-        console.log('188 answers',answers);
         assembleConversation(questions,answers);
         },[answers,questions]);
-    console.log('193 conversation',conversation);
-
-
     return (
             <div className="conversation-container-flex">
                 {conversation && conversation.map((questionAnswerObject)=> {return (
@@ -344,8 +323,6 @@ function Conversation({paintingId}) {
                                                             <Link
                                                                 to={{
                                                                     pathname: `/files/${attachedFile["id"]}`,
-                                                                    //search: attachedFile.fileId,
-                                                                    //hash: "",
                                                                     state: { fileName: attachedFile.name }
                                                                 }}
                                                                 style={{color: 'deepskyblue'}}
@@ -390,18 +367,23 @@ function Conversation({paintingId}) {
                             </div>
 
                             <div className="react-to-question-button-container">
-                                <button
-                                    type="button"
-                                    className="react-to-question-button"
-                                    onClick={() => history.push({pathname: `/add-answer/${questionAnswerObject["question"][0]["questionId"]}`,
-                                        search: 'bla',
+
+                                <Button
+                                    className={`btn-basic react-to-question-button`}
+                                    disabled={false}
+                                    clickHandler={() => history.push({pathname: `/add-reaction/${questionAnswerObject["question"][0]["questionId"]}`,
+                                        search: '',
                                         hash: '',
-                                        state: { answerRelatedTo: "question" },
+                                        state: { answerRelatedTo: "question" ,
+                                            responseType: 'answers',
+                                            id:  questionAnswerObject["question"][0]["questionId"],
+                                        },
                                         key: ''
                                     },)}
-                                >
-                                    Add a reaction to this question
-                                </button>
+                                    label={`Add a reaction to this question`}
+                                />
+
+
                             </div>
                         </div>
                     </>

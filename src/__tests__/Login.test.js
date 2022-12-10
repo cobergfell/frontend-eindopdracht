@@ -2,7 +2,7 @@ import {BrowserRouter} from "react-router-dom";
 import React from "react";
 import {fireEvent, render, screen} from "@testing-library/react"
 import "@testing-library/jest-dom/extend-expect";
-import Login from "../components/Login"
+import Login from "../pages/Login"
 import AuthoritiesContextProvider from "../context/AuthoritiesContextProvider";
 
 

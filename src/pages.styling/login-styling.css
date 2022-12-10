@@ -47,25 +47,6 @@
     font-size: var(--default-font-size);
 }
 
-.test1 {
-    grid-column-start: 1;
-    grid-column-end: 30;
-    grid-row-start: 50;
-    grid-row-end: 52;
-    font-family: var(--font-family);
-    font-size: var(--default-font-size);
-}
-
-
-.test2 {
-    grid-column-start: 1;
-    grid-column-end: 30;
-    grid-row-start: 50;
-    grid-row-end: 52;
-    font-family: var(--font-family);
-    font-size: var(--default-font-size);
-}
-
 .form {
     grid-column-start: 40;
     grid-column-end: 90;
@@ -73,19 +54,13 @@
     grid-row-end: 75;
     font-family: var(--font-family);
     font-size: var(--default-font-size);
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
     font-family: var(--font-family);/*Helvetica Neue, Arial, sans-serif;*/
     display: grid;
     color: var(--drk-grey);
     background-color:var(--milky-white);
     grid-gap: 0px;
-    /*width: 400px;*/
-    /*height: 400px;*/
     grid-template-columns: repeat(100, 1fr);
     grid-template-rows: repeat(100, 1fr);
-    /*border-style: solid;*/
-    /*border-color: blue;*/
 }
 
 
@@ -147,6 +122,22 @@
 }
 
 
+
+.filling-form-error-message {
+    grid-column-start: 15;
+    grid-column-end: 25;
+    grid-row-start: 25;
+    grid-row-end: 30;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+    border-style: solid;
+    border-width: thin;
+    border-color: grey;
+}
+
+
+
+
 .login-btn {
     grid-column-start: 20;
     grid-column-end: 30;
@@ -171,14 +162,4 @@
     border-color: grey;
 }
 
-.filling-form-error-message {
-    grid-column-start: 15;
-    grid-column-end: 25;
-    grid-row-start: 25;
-    grid-row-end: 30;
-    font-family: var(--font-family);
-    font-size: var(--default-font-size);
-    border-style: solid;
-    border-width: thin;
-    border-color: grey;
-}
+

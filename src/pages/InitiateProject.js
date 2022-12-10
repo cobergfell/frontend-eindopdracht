@@ -3,8 +3,8 @@ import PaintingDataService from "../services/painting.service";
 import AuthService from "../services/auth.service";
 import authHeader from "../services/auth-header";
 import {NavLink, useHistory, useParams} from "react-router-dom";
-//import {Button} from "react-bootstrap";
-import "../components.styling/initiate-project-styling-grid.css";
+import "../pages.styling/initiate-project-styling-grid.css";
+import Button from "../components/Button";
 
 const currentUser = AuthService.getCurrentUser();
 
@@ -220,20 +220,18 @@ const InitiateProject = () => {
 
             {submitted ? (
                 <>
-                    <button
-                        type="button"
-                        className="on-success-new-project-button"
-                        onClick={() => history.push('/initiateProject')}
-                    >
-                        New project
-                    </button>
-                    <button
-                        type="button"
-                        className="on-success-back-to-user-board"
-                        onClick={() => history.push('/user')}
-                    >
-                        Back to user board
-                    </button>
+                    <Button
+                        className={`btn-basic initial-project-on-success-new-project-button`}
+                        disabled={false}
+                        clickHandler={() => history.push('/initiateProject')}
+                        label={`New project`}
+                    />
+                    <Button
+                        className={`btn-basic initial-project-on-success-back-to-user-board`}
+                        disabled={false}
+                        clickHandler={() => history.push('/user')}
+                        label={`Back to user board`}
+                    />
 
                     <div className="successfully-submitted-message">
                         Project successfully submitted!
@@ -290,9 +288,13 @@ const InitiateProject = () => {
                             />
                         </div>
                     )}
-                    <button className="upload-painting-image-button" onClick={handleClick1}>
-                        Upload painting image
-                    </button>
+
+                    <Button
+                        className={`btn-basic initial-project-upload-painting-image-button`}
+                        disabled={false}
+                        clickHandler={handleClick1}
+                        label={`Upload painting image`}
+                    />
 
                     <input type="file"
                            accept="image/png, image/jpeg"
@@ -303,9 +305,12 @@ const InitiateProject = () => {
                         //onClick={alert('hello')}
                     />
 
-                    <button className="upload-music-file-button" onClick={handleClick2}>
-                        Upload music file
-                    </button>
+                    <Button
+                        className={`btn-basic initial-project-upload-music-file-button`}
+                        disabled={false}
+                        clickHandler={handleClick2}
+                        label={`Upload music file`}
+                    />
 
                     <input type="file"
                            accept="audio/mpeg"
@@ -329,9 +334,12 @@ const InitiateProject = () => {
                         </div>
                     )}
 
-                    <button className="upload-supplementary-files-button" onClick={handleClick3}>
-                        Upload supplementary files
-                    </button>
+                    <Button
+                        className={`btn-basic initial-project-upload-supplementary-files-button`}
+                        disabled={false}
+                        clickHandler={handleClick3}
+                        label={`Upload supplementary files`}
+                    />
 
                     {/*style={{display:'none'}} is added below based on a trick given in https://medium.com/web-dev-survey-from-kyoto/how-to-customize-the-file-upload-button-in-react-b3866a5973d8*/}
                     <input type="file"
@@ -356,10 +364,12 @@ const InitiateProject = () => {
                     )}
 
 
-
-                    <button onClick={savePainting} className="submit-button">
-                        Submit
-                    </button>
+                    <Button
+                        className={`btn-basic submit-initial-project-button`}
+                        disabled={false}
+                        clickHandler={savePainting}
+                        label={`Submit`}
+                    />
 
                 </>
 
@@ -369,9 +379,15 @@ const InitiateProject = () => {
                     <div  className="missingInput-message">
                         Failed sending data: enter at least, title, artist name, description and select an image
                     </div>
-                    <button onClick={handleRetry} className="retry-button">
-                        Retry
-                    </button>
+
+                    <Button
+                        className={`btn-basic initiate-project-retry-button`}
+                        disabled={false}
+                        clickHandler={handleRetry}
+                        label={`Retry`}
+                    />
+
+
                 </>
             )}
         </div>

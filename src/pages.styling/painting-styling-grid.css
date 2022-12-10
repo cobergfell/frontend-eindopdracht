@@ -16,41 +16,10 @@ body {
     height: calc(var(--project-height) - var(--navbar-height));
     grid-template-columns: repeat(100, 1fr);
     grid-template-rows: repeat(100, 1fr);
-
-    /*overflow-x: scroll;*/
     overflow-y: scroll;
-    /*border-color: blueviolet;*/
-    /*margin-top: var(--navbar-height);*/
-    /*margin-left: 15%;*/
-    /*margin-right: 15%;*/
-    /*border-top: 2px dotted var(--milky-white);*/
-    /*border-bottom: 2px dotted var(--milky-white);*/
 }
 
-.send-question-button {
-    grid-column-start: 5;
-    grid-column-end: 10;
-    grid-row-start: 3;
-    grid-row-end: 4;
-    font-family: var(--font-family);
-    font-size: var(--default-font-size);
-    border-style: solid;
-    border-width: thin;
-    border-color: grey;
 
-}
-
-.edit-project-button {
-    grid-column-start: 35;
-    grid-column-end: 40;
-    grid-row-start: 3;
-    grid-row-end: 4;
-    font-family: var(--font-family);
-    font-size: var(--default-font-size);
-    border-style: solid;
-    border-width: thin;
-    border-color: grey;
-}
 
 .conversation-button {
     grid-column-start: 20;

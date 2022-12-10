@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import AuthService from "../services/auth.service";
 import { AuthContext } from "../context/AuthoritiesContextProvider";
-import "../components.styling/profile-styling-grid.css";
+import "../pages.styling/profile-styling-grid.css";
 import {sortDataBy} from "../services/utilities";
 import {Link} from "react-router-dom";
 

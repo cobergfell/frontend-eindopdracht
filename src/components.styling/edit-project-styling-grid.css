@@ -113,17 +113,6 @@ body {
     /*overflow-y: scroll;*/
 }
 
-.upload-updated-painting-image-button {
-    grid-column-start: 42;
-    grid-column-end: 52;
-    grid-row-start: 9;
-    grid-row-end: 14;
-    font-family: var(--font-family);
-    font-size: var(--default-font-size);
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
-}
-
 .current-painting-preview-label {
     grid-column-start: 43;
     grid-column-end: 53;
@@ -168,59 +157,6 @@ body {
 }
 
 
-
-.upload-updated-music-file-button {
-    grid-column-start: 73;
-    grid-column-end: 83;
-    grid-row-start: 9;
-    grid-row-end: 14;
-    font-family: var(--font-family);
-    font-size: var(--default-font-size);
-}
-
-
-.upload-updated-supplementary-files-button {
-    grid-column-start: 73;
-    grid-column-end: 83;
-    grid-row-start: 49;
-    grid-row-end: 54;
-    font-family: var(--font-family);
-    font-size: var(--default-font-size);
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
-}
-
-
-/*.list-supplementary-files {
-    grid-column-start: 80;
-    grid-column-end: 90;
-    grid-row-start: 12;
-    grid-row-end: 32;
-    font-family: var(--font-family);
-    font-size: 10px;
-    !*overflow-x: scroll;*!
-    !*overflow-y: scroll;*!
-}*/
-
-
-/*.supplementary-file-item {
-    font-family: var(--font-family);
-    font-size: 10px;
-}*/
-
-.submit-updated-button {
-    grid-column-start: 42;
-    grid-column-end: 52;
-    grid-row-start: 80;
-    grid-row-end: 85;
-    font-family: var(--font-family);
-    font-size: var(--default-font-size);
-    border-style: solid;
-    border-width: thin;
-    border-color: grey;
-}
-
-
 .successfully-submitted-message {
     grid-column-start: 45;
     grid-column-end: 55;
@@ -258,22 +194,6 @@ body {
     border-color: grey;
 
 }
-
-
-.from-edit-back-button {
-    grid-column-start: 44;
-    grid-column-end: 51;
-    grid-row-start: 35;
-    grid-row-end: 40;
-    font-family: var(--font-family);
-    font-size: var(--default-font-size);
-    border-style: solid;
-    border-width: thin;
-    border-color: grey;
-
-}
-
-
 
 
 
@@ -500,16 +420,3 @@ body {
     /*overflow-y: scroll;*/
 }
 
-
-
-.edit-project-retry-button {
-    grid-column-start: 52;
-    grid-column-end: 62;
-    grid-row-start: 80;
-    grid-row-end: 85;
-    font-family: var(--font-family);
-    font-size: var(--default-font-size);
-    border-style: solid;
-    border-width: thin;
-    border-color: green;
-}

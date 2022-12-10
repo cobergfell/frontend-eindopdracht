@@ -148,9 +148,6 @@ const UsersList = (props) => {
                             >
                                 <i className="fas fa-trash action">delete</i>
                               </span>
-                            {/*<span className="actions" onClick={() => alert('Hello from line 120')}>
-                                Hello
-                            </span>*/}
                         </div>
 
                     </td>

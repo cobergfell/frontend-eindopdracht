@@ -4,9 +4,6 @@ import "../components.styling/projectsList-styling-grid.css";
 import AuthService from "../services/auth.service";
 import {Link, useHistory, useLocation} from "react-router-dom";
 const currentUser = AuthService.getCurrentUser();
-// import UserDataService from "../services/users.data.service";
-// import UserService from "../services/users.data.service";
-// import EventBus from "../common/EventBus";
 
 const ProjectsList = (props) => {
     const [paintings, setPaintings] = useState([]);
@@ -14,25 +11,12 @@ const ProjectsList = (props) => {
     const paintingsRef = useRef();
     const history = useHistory();
     const location = useLocation();
-    // const [error, setError] = useState(false);
-    // const [loading, toggleLoading] = useState(false);
 
     paintingsRef.current = paintings;
 
     useEffect(() => {
         retrievePaintings();
     }, []);
-
-
-    // const editPainting = (paintingId) => {
-    //     let path= "/edit/painting/" + paintingId.toString()
-    //     console.log("72 paintingId",paintingId);
-    //     console.log("73 path",path);
-    //     //history.push(path);
-    //     history.push(`/edit/painting/${paintingId}`)
-    //
-    // };
-
 
     const retrievePaintings = () => {
         PaintingService.getAll()
@@ -48,8 +32,6 @@ const ProjectsList = (props) => {
     const refreshList = () => {
         retrievePaintings();
     };
-
-
 
     const findByTitle = () => {
         PaintingService.findByTitle(searchTitle)

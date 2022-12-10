@@ -5,35 +5,36 @@ import "./App.css";
 import "./components.styling/nav-bar-styling-grid.css";
 import "./components.styling/footer-styling-grid.css";
 import AuthService from "./services/auth.service";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Home from "./components/Home";
-import Profile from "./components/Profile";
-import BoardUser from "./components/BoardUser";
-import BoardModerator from "./components/BoardModerator";
-import BoardAdmin from "./components/BoardAdmin";
-import SendQuestionFilesInDatabase from "./components/SendQuestionFilesInDatabase";
-import EditQuestion from "./components/EditQuestion";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Home from "./pages/Home";
+import Profile from "./pages/Profile";
+import BoardUser from "./pages/BoardUser";
+import BoardModerator from "./pages/BoardModerator";
+import BoardAdmin from "./pages/BoardAdmin";
+import SendQuestionFilesInDatabase from "./deprecated/SendQuestionFilesInDatabase";
+import EditQuestion from "./deprecated/EditQuestion";
 import EditUser from "./components/EditUser";
-import FetchQuestionsFilesInDatabase from './components/FetchQuestionsFilesInDatabase';
-import Question from './components/Question';
-import Painting from './components/Painting';
-import QuestionsList from './components/QuestionsList';
+import FetchQuestionsFilesInDatabase from './deprecated/FetchQuestionsFilesInDatabase';
+import Question from './deprecated/Question';
+import Painting from './pages/Painting';
+import QuestionsList from './deprecated/QuestionsList';
 import DownloadFile from './components/DownloadFile';
-import AddAnswer from './components/AddAnswer';
+import AddAnswer from './deprecated/AddAnswer';
 import AuthVerify from "./common/AuthVerify";
 //import EventBus from "./common/EventBus";//I was curious about EventBus design pattern (instead of working with context), but finally do not use it see https://www.pluralsight.com/guides/how-to-communicate-between-independent-components-in-reactjs
-import FilesList from "./components/FilesList";
+import FilesList from "./deprecated/FilesList";
 import Footer from "./components/Footer";
 import PaintingsList from "./components/ProjectsList";
-import PaintingsListAsTilesWithPagination from "./components/PaintingsListAsTilesWithPagination";
-import AddQuestion from "./components/AddQuestion";
+import ProjectsListAsTiles from "./components/ProjectsListAsTiles";
+import AddQuestion from "./deprecated/AddQuestion";
 import PlayMusicFile from "./components/PlayMusicFile";
 import EditProject from "./components/EditProject";
 // import CSSGridTest1 from "./components/CSSGridTest1";
 // import CSSGridTest2 from "./components/CSSGridTest2";
 import Conversation from "./components/Conversation";
-import InitiateProject from "./components/InitiateProject";
+import InitiateProject from "./pages/InitiateProject";
+import AddReaction from "./components/AddReaction";
 
 const App = () => {
   const [isModerator, setIsModerator] = useState(false);
@@ -124,28 +125,23 @@ const App = () => {
           <Route exact path="/register" component={Register} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/initiateProject" component={InitiateProject} />
-          <Route exact path="/fetchQuestionsFilesInDatabase" component={FetchQuestionsFilesInDatabase} />
-          <Route exact path="/sendQuestionFilesInDatabase" component={SendQuestionFilesInDatabase} />
-          <Route exact path="/questions/:id" component={Question} />
+          {/*<Route exact path="/fetchQuestionsFilesInDatabase" component={FetchQuestionsFilesInDatabase} />*/}
+          {/*<Route exact path="/sendQuestionFilesInDatabase" component={SendQuestionFilesInDatabase} />*/}
+          {/*<Route exact path="/questions/:id" component={Question} />*/}
           <Route exact path="/paintings/:id" component={Painting} />
-          {/*<Route exact path="/conversationOld2/:id" component={ConversationOld2} />*/}
-          {/*<Route exact path="/conversation/:id" component={Conversation} />*/}
-          <Route exact path="/edit/question/:id" component={EditQuestion} />
+          {/*<Route exact path="/edit/question/:id" component={EditQuestion} />*/}
           <Route exact path="/edit/painting/:id" component={EditProject} />
           <Route exact path="/edit/user/:userId" component={EditUser} />
           <Route exact path="/files/:fileId" component={DownloadFile} />
           <Route exact path="/musicFiles/:fileId" component={PlayMusicFile} />
+          <Route exact path="/add-question/:id" component={AddQuestion} />
+          <Route exact path="/add-answer/:id" component={AddAnswer} />
+          <Route exact path="/add-reaction/:id" component={AddReaction} />
+          {/*<Route exact path="/question_files_list" component={FilesList} />*/}
+          <Route exact path="/paintingsListAsTilesWithPagination" component={ProjectsListAsTiles} />
           <Route exact path="/mod" component={BoardModerator} />
           <Route exact path="/admin" component={BoardAdmin} />
-          <Route exact path="/add-question-to-project/:id" component={AddQuestion} />
-          <Route exact path="/add-answer/:id" component={AddAnswer} />
-          <Route exact path="/question_files_list" component={FilesList} />
-          <Route exact path="/paintingsListAsTilesWithPagination" component={PaintingsListAsTilesWithPagination} />
-          {/*<Route exact path="/descriptionOld" component={DescriptionOld} />*/}
-          {/*<Route exact path="/CSSGridTest1" component={CSSGridTest1} />*/}
-          {/*<Route exact path="/CSSGridTest2" component={CSSGridTest2} />*/}
-          {/*<Route exact path="/user" component={BoardUser} />*/}
-        <Route exact path={["/user"]}
+          <Route exact path={["/user"]}
                render={() => <BoardUser isModerator={isModerator}/>
                }/>
 

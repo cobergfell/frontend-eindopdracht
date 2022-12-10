@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import background from "../assets/Kandinsky_Composition_VIII_1923_v2.png"
-import "../components.styling/home-styling-grid.css";
+import "../pages.styling/home-styling-grid.css";
 
 
 const Home = () => {

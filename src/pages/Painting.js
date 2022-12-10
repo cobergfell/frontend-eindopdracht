@@ -3,14 +3,11 @@ import axios from 'axios';
 import {Link, useHistory, useLocation, useParams} from 'react-router-dom';
 import {sortDataBy} from "../services/utilities";
 import AuthService from "../services/auth.service";
-import "../components.styling/painting-styling-grid.css";
+import "../pages.styling/painting-styling-grid.css";
 //import sound from "C:\\Users\\Gebruiker\\Test\\rachmaninov.mp3";
-import Conversation from "./Conversation";
-import sound from "../assets/Do_Diese_Mineur_lento.mp3";//test
-import PaintingDataService from "../services/painting.service";
-//import { AuthContext } from '../context/AuthContext';
-import DownloadFile from "./DownloadFile";
-
+import Conversation from "../components/Conversation";
+import sound from "../assets/Do_Diese_Mineur_lento.mp3";
+import Button from "../components/Button";
 
 let audio = new Audio(sound)//test
 const start = () => {
@@ -32,14 +29,6 @@ function Painting() {
     const [audioFiles, setAudioFiles] = useState([]);
     const [error, setError] = useState(false);
     const [loading, toggleLoading] = useState(false);
-    //const {login,logout, user,status,fileToDownload,setFileToDownload} =  useContext(AuthContext);
-    //const { paintingId } = useParams();//we don't use it now because we infer paintingId from location state
-    console.log('37 currentUser',currentUser);
-    console.log('38 painting',painting);
-    console.log('39 description',description)
-    console.log('40 audioFiles',audioFiles)
-    console.log('41 hasEditingPrivilege',hasEditingPrivilege)
-    console.log('42 paintingId',paintingId)
 
 
     useEffect(()=>{
@@ -47,7 +36,6 @@ function Painting() {
             setError(false);
             toggleLoading(true);
             try {
-                //const result = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates?.lat}&lon=${coordinates?.lon}&exclude=minutely,current,hourly&apppaintingId=${apiKey}&lang=nl`);
                 const result = await axios.get(`http://localhost:8080/api/user/paintings/image?paintingId=${paintingId}`, {
 
                     headers: {
@@ -202,40 +190,44 @@ function Painting() {
             {painting &&
             <>
                 {/*<p>JSON.stringify(painting):{JSON.stringify(painting)}</p>*/}
-                <button
-                    type="button"
-                    className="send-question-button"
-                    onClick={() => history.push({pathname: `/add-question-to-project/${painting.paintingId}`,
-                        search: 'bla',
+
+                <Button
+                    className={`btn-basic send-question-button`}
+                    disabled={false}
+                    clickHandler={() => history.push({pathname: `/add-reaction/${painting.paintingId}`,
+                        search: '',
                         hash: '',
                         state: {
                             questionRelatedTo: "painting",
-                            paintingId:paintingId,
-                            description:description,
+                            responseType: 'answers',
+                            id:paintingId,
+                            //description:description,
                         },
                         key: ''
                     },)}
-                >
-                    Send question
-                </button>
+                    label={`Send question`}
+                />
+
 
 
                 {hasEditingPrivilege==true &&  (
-                    <button
-                        type="button"
-                        className="edit-project-button"
-                        //onClick={() => history.push(`/add-answer/${painting.paintingId}`)}
-                        onClick={() => history.push({pathname: `/edit/painting/${location.state.paintingId}`,
-                            search: '',
-                            hash: '',
-                            state: { paintingId: location.state.paintingId,
-                                description: location.state.description,
-                            },
-                            key: ''
-                        },)}
-                    >
-                        Edit project
-                    </button>
+
+                    <Button
+                    className={`btn-basic edit-project-button`}
+                    disabled={false}
+                    clickHandler={() => history.push({pathname: `/edit/painting/${location.state.paintingId}`,
+                    search: '',
+                    hash: '',
+                    state: { paintingId: location.state.paintingId,
+                    description: location.state.description,
+                },
+                    key: ''
+                },)}
+                    label={`Edit project`}
+                    />
+
+
+
                 )}
 
 
@@ -258,7 +250,6 @@ function Painting() {
                     <li className="list--item"><strong>Date sent: </strong>{painting.dateTimePosted}</li>
                     <li className="list-item"><strong>Title: </strong>{painting.title}</li>
                     <li className="list-item"><strong>Artist: </strong>{painting.artist}</li>
-                    {/*<li className="list-summarize-painting-data-item"><strong>Description: </strong>{painting.description}</li>*/}
                 </ul>
 
 
@@ -277,8 +268,6 @@ function Painting() {
                                     <Link
                                         to={{
                                             pathname: `/files/${attachedFile["id"]}`,
-                                            //search: attachedFile.fileId,
-                                            //hash: "",
                                             state: { fileName: attachedFile.name,paintingId: paintingId}
                                         }}
                                         style={{color: 'deepskyblue'}}
@@ -304,7 +293,7 @@ function Painting() {
 
                                         <audio
                                             src={audioFile.fileOnDiskUrl}
-                                            //src={'http://localhost:8080/api/user/download-file-from-disk/1'}//this works
+                                            //src={'http://localhost:8080/api/user/download-file-from-disk/1'}//this should work as well
                                             //autoPlay
                                             controls
                                         />

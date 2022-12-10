@@ -7,7 +7,7 @@ import RenderPainting from "./RenderPainting";
 import "../components.styling/renderPainting-styling.css";
 
 
-const PaintingsListAsTilesWithPagination = (props) => {
+const ProjectsListAsTiles = (props) => {
     const [paintings, setPaintings] = useState([]);
     const [painting, setPainting] = useState(null);
     const [image, setImage] = useState(null);
@@ -57,4 +57,4 @@ const PaintingsListAsTilesWithPagination = (props) => {
 
 };
 
-export default PaintingsListAsTilesWithPagination;
+export default ProjectsListAsTiles;

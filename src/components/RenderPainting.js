@@ -54,11 +54,6 @@ function RenderPainting({ dataObject}) {
         PaintingService.get(id)
             .then((response) => {
                 console.log('47 response.data', response.data)
-                //response.data.attachedFiles.map((attachedFile) => (
-                //    setFilesToDeleteIds(filesToDeleteIds => [...filesToDeleteIds, attachedFile.id])))
-
-                //response.data.attachedMusicFiles.map((attachedMusicFile) => (
-                //    setAudioFilesToDeleteIds(audioFilesToDeleteIds => [...audioFilesToDeleteIds, attachedAudioFile.id])))
                 if (response.data.attachedFiles!=null){
                     response.data.attachedFiles.forEach(file => FileService.remove(file.id))
                 }
@@ -66,10 +61,8 @@ function RenderPainting({ dataObject}) {
                     response.data.attachedMusicFiles.forEach(file => AudioFileService.remove(file.id))
                 }
                 PaintingService.remove(id)
-
             })
-            //.then(PaintingService.get(id))
-            //.then(PaintingService.remove(id))
+
             .then((response) => {
                 history.push("/user");
             })
@@ -150,8 +143,6 @@ function RenderPainting({ dataObject}) {
                                 Go to edit
                             </Link>
                         </li>
-
-
                     )}
 
 

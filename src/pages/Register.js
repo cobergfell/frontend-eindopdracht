@@ -3,7 +3,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
-import "../components.styling/register-styling.css";
+import "../pages.styling/register-styling.css";
 import {useHistory} from "react-router-dom";
 
 import AuthService from "../services/auth.service";
@@ -105,17 +105,9 @@ const Register = (props) => {
   return (
     <div className="register-container-grid">
 
-      {/*<div className="test1">test</div>*/}
-        {/*<img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-          alt="profile-img"
-          className="profile-img-card"
-        />*/}
-
         <Form className="form" onSubmit={handleRegister} ref={form}>
           {!successful && (
             <>
-              {/*<div className="test2">test2</div>*/}
               <div  className="label-input-username">Username</div>
               <input
                   type="text"

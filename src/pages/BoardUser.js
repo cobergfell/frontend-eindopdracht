@@ -3,9 +3,10 @@ import EventBus from "../common/EventBus";
 import {Link, useHistory} from "react-router-dom";
 import axios from "axios";
 import AuthService from "../services/auth.service";
-import "../components.styling/board-user-styling-grid.css";
-import PaintingsListAsTilesWithPagination from "./PaintingsListAsTilesWithPagination";
+import "../pages.styling/board-user-styling-grid.css";
+import ProjectsListAsTiles from "../components/ProjectsListAsTiles";
 import {AuthContext} from "../context/AuthoritiesContextProvider";
+import Button from "../components/Button";
 const currentUser = AuthService.getCurrentUser();
 console.log('9 currentUser',currentUser);
 
@@ -95,32 +96,18 @@ const BoardUser = () => {
 
   return (
         <div className="board-user-container-grid">
-          <button
-              type="button"
-              className="new-project-button"
-              //disabled={isLoading}
-              onClick={() => history.push('/initiateProject')}
-          >
-            New Project
-          </button>
-          {/*<button
-              type="button"
-              className="CSS-grid-test-1"
-              //disabled={isLoading}
-              onClick={() => history.push(`/CSSGridTest1`)}
-          >
-            CSS grid test 1
-          </button>
-          <button
-              type="button"
-              className="CSS-grid-test-2"
-              //disabled={isLoading}
-              onClick={() => history.push(`/CSSGridTest2`)}
-          >
-            CSS grid test 2
-          </button>*/}
+
+          <Button
+              className={`btn-basic new-project-button`}
+              disabled={false}
+              clickHandler={() => history.push('/initiateProject')}
+              //clickHandler={() => alert("Hello! ")}
+              label={`New Project`}
+          />
+
+
           <div className="container-pages">
-            <PaintingsListAsTilesWithPagination/>
+            <ProjectsListAsTiles/>
           </div>
         </div>
   )

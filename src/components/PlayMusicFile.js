@@ -2,7 +2,9 @@ import React, { useState, useEffect,useContext } from 'react';
 import axios from 'axios';
 import {Link, useHistory, useLocation, useParams} from 'react-router-dom';
 import AuthService from "../services/auth.service";
-import sound from '../assets/Do_Diese_Mineur_lento.mp3'//for audio test
+import sound from '../assets/Do_Diese_Mineur_lento.mp3'
+import Button from "./Button";
+//for audio test
 //import { AuthContext } from '../context/AuthContext';
 
 function PlayMusicFile() {
@@ -55,16 +57,6 @@ function PlayMusicFile() {
                     link.download = `${myFileName}`;
                     link.click();
                     link.remove();
-
-/*                    audioControl.src = reReadItem.src;
-                    const anchor = document.createElement('a')
-                    anchor.href = audioControl.src
-                    anchor.download = 'dj3dmix'
-                    anchor.click()*/
-
-
-
-
                 });
 
             } catch (e) {
@@ -74,20 +66,15 @@ function PlayMusicFile() {
     },[]);
     return(
         <>
-
-
         <div className="download-container">
-{/*            <div>
-                bla
-            </div >
-            <div>
-                <button onClick={start}>Play</button>
-            </div >*/}
 
             {myFileName!=null &&
-                <button className="badge badge-primary mr-2" onClick={()=>{history.push("/paintings/${fileId}")}}>
-                    Back to painting
-                </button>
+                <Button
+                className={`btn-basic play-music-back-to-project-button`}
+                disabled={false}
+                clickHandler={()=>{history.push("/paintings/${fileId}")}}
+                label={`Back to project`}
+                />
             }
             {loading && <p>Loading...</p>}
             {error && <p>`Could not download ${myFileName}`</p>}

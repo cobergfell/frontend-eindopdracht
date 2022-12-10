@@ -6,7 +6,7 @@ import {BrowserRouter} from "react-router-dom";
 import {cleanup, fireEvent, getByTestId, render, screen} from "@testing-library/react"
 import user from "@testing-library/user-event";
 import "@testing-library/jest-dom/extend-expect";
-import Painting from "../components/Painting"
+import Painting from "../pages/Painting"
 import AuthoritiesContextProvider from "../context/AuthoritiesContextProvider";
 //import AuthService from "../services/auth.service";
 //import Enzyme from 'enzyme';

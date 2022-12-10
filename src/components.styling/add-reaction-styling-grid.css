@@ -1,0 +1,175 @@
+/* inspired from https://gridbyexample.com/examples/example5/*/
+
+body {
+    margin: 40px;
+}
+
+
+.send-reaction-container-grid {
+    margin-top: var(--navbar-height);
+    font-family: var(--font-family);/*Helvetica Neue, Arial, sans-serif;*/
+    display: grid;
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
+    grid-gap: 0px;
+    width: var(--project-width);
+    height: calc(var(--project-height) - var(--navbar-height));
+    grid-template-columns: repeat(100, 1fr);
+    grid-template-rows: repeat(100, 1fr);
+}
+
+
+.input-title {
+    grid-column-start: 5;
+    grid-column-end: 25;
+    grid-row-start: 6;
+    grid-row-end: 8;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+}
+
+.label-input-title {
+    grid-column-start: 5;
+    grid-column-end: 25;
+    grid-row-start: 5;
+    grid-row-end: 6;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+
+.input-content {
+    grid-column-start: 5;
+    grid-column-end: 35;
+    grid-row-start: 11;
+    grid-row-end: 35;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+
+.label-input-content {
+    grid-column-start: 5;
+    grid-column-end: 35;
+    grid-row-start: 10;
+    grid-row-end: 11;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+}
+
+
+.painting-preview {
+    grid-column-start: 35;
+    grid-column-end: 55;
+    grid-row-start: 12;
+    grid-row-end: 32;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+}
+
+
+
+
+.list-selected-music-files {
+    grid-column-start: 60;
+    grid-column-end: 70;
+    grid-row-start: 12;
+    grid-row-end: 32;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+}
+
+.selected-music-file-item {
+
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+}
+
+
+.upload-supplementary-files-button {
+    grid-column-start: 80;
+    grid-column-end: 90;
+    grid-row-start: 5;
+    grid-row-end: 10;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+}
+
+
+.list-supplementary-files {
+    grid-column-start: 80;
+    grid-column-end: 90;
+    grid-row-start: 12;
+    grid-row-end: 32;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+
+}
+
+
+.supplementary-file-item {
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+.successfully-submitted-message {
+    grid-column-start: 45;
+    grid-column-end: 55;
+    grid-row-start: 45;
+    grid-row-end: 47;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+
+.submit-a-new-reaction-title {
+    grid-column-start: 50;
+    grid-column-end: 60;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    font-family: var(--font-family);
+    font-size: 14px;/*var(--default-font-size);*/
+}
+
+
+
+
+
+
+.list-audio-data {
+    list-style-type: none; /* Remove bullets */
+    font-size: var(--default-font-size);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: var(--milky-white);
+    border-style: solid;
+    border-width: thin;
+    border-color: var(--milky-white);
+    color: var(--drk-grey);
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+.list-supplemental-material {
+    list-style-type: none; /* Remove bullets */
+    font-size: var(--default-font-size);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: var(--milky-white);
+    border-style: solid;
+    border-width: thin;
+    border-color: var(--milky-white);
+    color: var(--drk-grey);
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+

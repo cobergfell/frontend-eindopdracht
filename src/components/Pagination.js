@@ -1,7 +1,7 @@
 // Pagination client side is based on based on https://academind.com/tutorials/reactjs-pagination
 
 import React, { useState, useEffect,useContext } from 'react';
-import "../components.styling/pagination-styling.css";
+import "../pages.styling/pagination-styling.css";
 import axios from 'axios';
 import {Link, NavLink, useHistory, useLocation, useParams} from 'react-router-dom';
 import AuthService from "../services/auth.service";
@@ -72,7 +72,6 @@ function Pagination({ data, RenderComponent, title, pageLimit, dataLimit}) {
                     </button>
                 ))}
 
-                {/* next button */}
                 <button
                     onClick={goToNextPage}
                     className={`next ${currentPage === pages ? 'disabled' : ''}`}

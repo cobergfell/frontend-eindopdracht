@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useHistory, useLocation, useParams} from "react-router-dom";
 import AuthService from "../services/auth.service";
 import "../components.styling/edit-project-styling-grid.css";
+import Button from "../components/Button";
 import FileService from "../services/file.service";
 import AudioFileService from "../services/audioFile.service";
 import PaintingService from "../services/painting.service";
@@ -52,34 +53,13 @@ const EditProject = () => {
     const hiddenFileInput2 = React.useRef(null);
     const hiddenFileInput3 = React.useRef(null);
 
-    console.log('49 painting',painting)
-    console.log('50 selectedPaintingImage',selectedPaintingImage)
-    console.log('51 selectedFiles',selectedFiles)
-    console.log('51 currentFiles',currentFiles)
-    console.log('52 currentAudioFilesUrls',currentAudioFilesUrls)
-    console.log('53 selectedAudioFiles',selectedAudioFiles)
-    console.log('54 currentFilesUrls',currentFilesUrls)
-    console.log('55 myTest',myTest)
-    console.log('56 filesToDeleteIds',filesToDeleteIds)
-    console.log('57 audioFilesToDeleteIds',audioFilesToDeleteIds)
 
-    console.log('66 missingInput',missingInput)
-    console.log('66 retry',retry)
-    console.log('66 painting',painting)
 
     const goBack = () => {
         history.goBack()
     }
 
     const checkSending = (painting) => {
-        console.log('75 painting.title',painting.title)
-        console.log('75 painting.artist',painting.artist)
-        console.log('75 painting.description',painting.description)
-        console.log('75 painting.title==""',painting.title=="")
-        console.log('75 painting.title==null',painting.title==null)
-        console.log('75 ainting.title.length===0',painting.title.length===0)
-
-
         setMissingInput(value => false)
         if (painting.title==null){setMissingInput(true)}
         if (painting.artist==null){setMissingInput(true)}
@@ -132,17 +112,13 @@ const EditProject = () => {
     };
 
 
-
-
     const selectFilesToDelete = (e,selectedFileObject) => {
         const checked = e.target.checked;
         if (checked) {
             //checked
-            console.log('61 checked')
             setFilesToDeleteIds(filesToDeleteIds => [...filesToDeleteIds, selectedFileObject["fileId"]])
         } else {
             //unchecked
-            console.log('66 unchecked')
             setFilesToDeleteIds(filesToDeleteIds => filesToDeleteIds.filter(id=> id!=selectedFileObject["fileId"]))
         }
     };
@@ -180,14 +156,10 @@ const EditProject = () => {
             objCopy[key] = mainObj[key]; // copies each property to the objCopy object
         }
         return objCopy;
-
-
     }
 
     //a shallow copy version would be
     //let objCopy = Object.assign({}, obj);
-
-
 
     //begin of example from https://stackoverflow.com/questions/25046301/convert-url-to-file-or-blob-for-filereader-readasdataurl
     async function getFileFromUrlTest(url, name, defaultType = 'image/jpeg'){
@@ -235,13 +207,10 @@ const EditProject = () => {
 
     //function below was not working as expected, just given here as reference material
     async function getFileFromUrlV3(){
-        console.log('119 selectedAudioFileUrls',currentAudioFilesUrls)
         if (currentAudioFilesUrls!=[]){
             for (const selectedAudioFileUrl of currentAudioFilesUrls){
-                console.log('138 url',selectedAudioFileUrl)
                 const response = await fetch(selectedAudioFileUrl);
                 const data = await response.blob();
-                // response.download("D:\\Users\\Gebruiker\\Downloads");
                 setSelectedAudioFiles(selectedAudioFiles => [...selectedAudioFiles, new File([data],data.name,{type: data.type })
                 ])
             }}
@@ -253,7 +222,6 @@ const EditProject = () => {
         console.log('119 selectedAudioFileUrls',currentAudioFilesUrls)
         if (currentAudioFilesUrls!=[]){
             for (const selectedAudioFileUrl of currentAudioFilesUrls){
-                console.log('138 url',selectedAudioFileUrl)
                 let response = await fetch(selectedAudioFileUrl);
                 let data = await response.blob();
                 let metadata = {
@@ -264,16 +232,6 @@ const EditProject = () => {
                 setSelectedAudioFiles(selectedAudioFiles => [...selectedAudioFiles, file])
             }}
     }
-
-
-
-// `await` can only be used in an async body, but showing it here for simplicity.
-//    const file = await getFileFromUrl('https://example.com/image.jpg', 'example.jpg');
-
-
-    //end of example from https://stackoverflow.com/questions/25046301/convert-url-to-file-or-blob-for-filereader-readasdataurl
-
-
 
 
     const cleanFileName = (fileName)  => {
@@ -391,16 +349,6 @@ const EditProject = () => {
         PaintingService.getImage(id)
             .then((response) => {
                 setImage(response.data)
-                //setSelectedPaintingImage(new Blob([response.data], {type : 'image/png'}));
-                //setSelectedPaintingImage(new File([response.data], 'bla'));
-                // let reader = new FileReader();
-                // reader.onload = (e) => {
-                //     setSelectedPaintingImage(e.target.result);
-                //     //reader.readAsDataURL(e.target.files[0]);
-                // };
-                //console.log('278 response.data',response.data)
-                //Object.keys(response.data).forEach((prop)=> console.log('279 response.data props',prop));
-
             })
             .catch(e => {
                 console.log('406 error',e);
@@ -410,10 +358,7 @@ const EditProject = () => {
 
 
     const paintingImageSelectionHandler = (e) => {
-        //alert('hello there!')
-        console.log('61 e.target',e.target)
         setSelectedPaintingImage(e.target.files[0]);
-        console.log('63 selectedPaintingImage',selectedPaintingImage)
         setPreview(e.target.files[0]);
 
     };
@@ -468,43 +413,15 @@ const EditProject = () => {
                 }
             }
 
-
-            // if (currentAudioFiles!=[]){
-            //     for (const currentAudioFile of currentAudioFiles){
-            //         //first clean file name
-            //         formData.append('audioFiles',currentAudioFile,currentAudioFile.name);
-            //     }
-            // }
-
-            /*if (currentFiles!=[]){
-                for (const currentFile of currentFiles){
-                    //first clean file name
-                    formData.append('files',currentFile["file"],currentFile["file"].name);
-                }
-            }*/
-
-
-            /*if (currentAudioFiles!=[]){
-                for (const currentAudioFile of currentAudioFiles){
-                    //first clean file name
-                    formData.append('audioFiles',currentAudioFile["file"],currentAudioFile["file"].name);
-                }
-            }*/
-
-
             let partial_url;
             let config;
-            //const auth= authHeader().Authorization;
-            //const paramsAsString = new URLSearchParams(data).toString();
             console.log('142 selectedFiles',selectedFiles)
             let headers= {}
             if ((selectedFiles.length>0)||(selectedPaintingImage!=null)||(selectedAudioFiles.length>0)){headers=
                 {'Content-Type': 'multipart/form-data',
-                    //'enctype':"multipart/form-data"
                 }
             } else{
                 headers={'Content-Type': 'application/json',
-                    //'enctype':"multipart/form-data"
                 }
             }
 
@@ -518,25 +435,10 @@ const EditProject = () => {
                 //Authorization:auth
             }
 
-            console.log('67 ,partial_url',partial_url)
-            console.log('67 ,config',config)
             PaintingService.update(paintingId,formData,partial_url,config)
                 .then((response) => {
                     setPainting(response.data);
-                    /*                    setPainting({
-                                            artist: response.data.artist,
-                                            attachedFiles: response.data.attachedFiles,
-                                            dateTimePosted: response.data.dateTimePosted,
-                                            description: response.data.description,
-                                            image: response.data.image,
-                                            lastUpdate: response.data.lastUpdate,
-                                            paintingId: response.data.paintingId,
-                                            title: response.data.title,
-                                            username: response.data.username,
-                                        });*/
                     setSubmitted(true);
-                    console.log('116 selectedFiles',selectedFiles)
-                    console.log('117 response.data',response.data)
                 }).catch(e => {
                 console.log(e);
             });
@@ -591,12 +493,6 @@ const EditProject = () => {
         console.log('490 bla');
     }, [paintingId]);
 
-    // useEffect(() => {
-    //     PaintingService.fetchPainting({paintingId,setPainting,setAudioFiles,setError,toggleLoading});
-    // }, [paintingId]);
-
-
-
 
     useEffect(() => {
         getImage(paintingId);
@@ -612,11 +508,12 @@ const EditProject = () => {
 
             {submitted ? (
                 <>
-
-
-                    <button className="from-edit-back-button" onClick={goBack}>
-                        Back
-                    </button>
+                    <Button
+                        className={`btn-basic from-edit-back-button`}
+                        disabled={false}
+                        clickHandler={goBack}
+                        label={`Back`}
+                    />
 
                     <div className="successfully-submitted-message">
                         Project successfully updated!
@@ -664,11 +561,6 @@ const EditProject = () => {
                         maxLength={100000}
                     />
 
-
-                    <button className="upload-updated-painting-image-button" onClick={handleClick1}>
-                        Upload painting image
-                    </button>
-
                     <input type="file"
                            accept="image/png, image/jpeg"
                            ref={hiddenFileInput1}
@@ -711,10 +603,12 @@ const EditProject = () => {
                         </>
                     )}
 
-
-                    <button className="upload-updated-music-file-button" onClick={handleClick2}>
-                        Upload music file
-                    </button>
+                    <Button
+                        className={`btn-basic upload-updated-music-file-button`}
+                        disabled={false}
+                        clickHandler={handleClick2}
+                        label={`Upload music file`}
+                    />
 
                     <input type="file"
                            accept="audio/mpeg"
@@ -747,11 +641,6 @@ const EditProject = () => {
                                                 <input
                                                     type="checkbox"
                                                     className="checkbox-files"
-                                                    //id="checkbox-audio-files"
-                                                    //checked={checked}
-                                                    //onChange={() => toggleChecked(!checked)}
-                                                    //onChange={() => filesToDeleteIds => [...filesToDeleteIds, selectedFileObject["fileId"]]}
-                                                    //onChange={() => setFilesToDeleteIds(filesToDeleteIds => [...filesToDeleteIds, selectedFileObject["fileId"]])}
                                                     onClick={(e) => {
                                                         selectAudioFilesToDelete(e,currentFileObject);}}
 
@@ -869,9 +758,12 @@ const EditProject = () => {
                     )}
 
 
-                    <button className="upload-updated-supplementary-files-button" onClick={handleClick3}>
-                        Upload supplementary files
-                    </button>
+                    <Button
+                        className={`btn-basic upload-updated-supplementary-files-button`}
+                        disabled={false}
+                        clickHandler={handleClick3}
+                        label={`Upload supplementary files`}
+                    />
 
                     {/*style={{display:'none'}} is added below based on a trick given in https://medium.com/web-dev-survey-from-kyoto/how-to-customize-the-file-upload-button-in-react-b3866a5973d8*/}
                     <input type="file"
@@ -899,12 +791,6 @@ const EditProject = () => {
                                                 {selectedFile.name}
                                                 {/*<p>JSON.stringify(selectedFile):{JSON.stringify(selectedFile)}</p>*/}
                                             </div>
-                                            {/*<input
-                                                type="checkbox"
-                                                className="checkbox-files"
-                                                onClick={(e) => {
-                                                    deselectFiles(e,selectedFile);}}
-                                            />*/}
                                             <div className="deselect-file" onClick={(e) => {deselectFiles_v2(e,selectedFile);}}>
                                                 <FontAwesomeIcon icon={faTrash} />
                                                 <span>remove</span>
@@ -919,10 +805,12 @@ const EditProject = () => {
                         </div>
                     )}
 
-
-                    <button onClick={updatePainting} className="submit-updated-button">
-                        Submit
-                    </button>
+                    <Button
+                        className={`btn-basic submit-update-button`}
+                        disabled={false}
+                        clickHandler={updatePainting}
+                        label={`Submit`}
+                    />
 
                 </>
             )}
@@ -933,14 +821,17 @@ const EditProject = () => {
                     <div  className="edit-project-missingInput-message">
                         Failed sending data: enter at least, title, artist name, description and select an image
                     </div>
-                    <button onClick={handleRetry} className="edit-project-retry-button">
-                        Retry
-                    </button>
+
+                    <Button
+                        className={`btn-basic edit-project-retry-button`}
+                        disabled={false}
+                        clickHandler={handleRetry}
+                        label={`Retry`}
+                    />
+
+
                 </>
             )}
-
-
-
         </div>
 
     );

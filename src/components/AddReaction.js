@@ -4,13 +4,13 @@ import authHeader from "../services/auth-header";
 import {useHistory, useLocation, useParams} from "react-router-dom";
 import QuestionService from "../services/question.service";
 import AnswerService from "../services/answer.service";
-import "../components.styling/add-answer-styling-grid.css";
-//import {Button} from "react-bootstrap";
-
+import ReactionService from "../services/reaction.service";
+import "../components.styling/add-reaction-styling-grid.css";
+import Button from "../components/Button";
 
 const currentUser = AuthService.getCurrentUser();
 
-const AddAnswer = () => {
+const AddReaction = () => {
 
     const initialPaintingState = {
         username: "",
@@ -24,17 +24,16 @@ const AddAnswer = () => {
     };
 
 
-    const initialAnswerState = {
+    const initialReactionState = {
         username: "",
         title: "",
         content: "",
         tags: "",
-        answerRelatedTo:"painting",
+        reactionRelatedTo:"painting",
         files:[],
 
     };
-    //const [question, setQuestion] = useState(initialQuestionState);
-    const [answer, setAnswer] = useState(initialAnswerState);
+    const [reaction, setReaction] = useState(initialReactionState);
     const [painting, setPainting] = useState(initialPaintingState);
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [selectedPaintingImage, setSelectedPaintingImage] = useState(null);
@@ -47,15 +46,10 @@ const AddAnswer = () => {
     const hiddenFileInput3 = React.useRef(null);
     const { id } = useParams();
     const location = useLocation();
-    const answerRelatedTo = location.state.answerRelatedTo;
-
-    console.log('28 id',id)
-    console.log('29 location',location)
-    console.log('29 answerRelatedTo',answerRelatedTo)
-    console.log('AddPaintingNotMaintainedAnymore line 27 painting',painting)
-    console.log('AddPaintingNotMaintainedAnymore line 28 selectedPaintingImage',selectedPaintingImage)
-    console.log('AddPaintingNotMaintainedAnymore line 29 selectedFiles',selectedFiles)
-    console.log('AddPaintingNotMaintainedAnymore line 30 selectedMusicFiles',selectedMusicFiles)
+    const reactionType = location.state.reactionType;
+    const reactionRelatedTo = location.state.reactionRelatedTo;
+    const responseType = location.state.responseType;
+    const description = location.state.description;
 
 
     useEffect(() => {
@@ -74,8 +68,7 @@ const AddAnswer = () => {
 
     const handleInputChange = event => {
         const { name, value } = event.target;
-        setAnswer({ ...answer, [name]: value });
-        console.log('AddAnswerDeprecated line 25 answer',answer)
+        setReaction({ ...reaction, [name]: value });
     };
 
     const handleClick1 = event => {
@@ -94,53 +87,25 @@ const AddAnswer = () => {
 
     const paintingImageSelectionHandler = (e) => {
         //alert('hello there!')
-        console.log('61 e.target',e.target)
         setSelectedPaintingImage(e.target.files[0]);
-        console.log('63 selectedPaintingImage',selectedPaintingImage)
         setPreview(e.target.files[0]);
 
     };
 
     const audiFileSelectionHandler = (e) => {
-        //const fileName=cleanFileName(e.target.files[0].name)
-        //console.log('56 fileName',fileName)
-
-        console.log('67 e.target.files',e.target.files)
         setSelectedMusicFiles(selectedMusicFiles => [...selectedMusicFiles, e.target.files[0]]);
     };
 
 
-
-
-
-    const saveAnswer = () => {
-
-/*        let formData = new FormData()
-        formData.append('title', answer.title)
-        formData.append('content', answer.content)
-        // if(answerRelatedTo=='painting'){formData.append('answerRelatedTo', 'painting')}
-        // else if (answerRelatedTo=='musicPiece'){formData.append('answerRelatedTo', 'musicPiece')}
-        // else if (answerRelatedTo=='question'){formData.append('answerRelatedTo', 'question')}
-        // else{formData.append('answerRelatedTo', 'answer')}
-
-        formData.append('image',selectedPaintingImage,selectedPaintingImage.name);
-        //formData.append('files', selectedFiles[0],selectedFiles[0].name)
-        for (const selectedFile of selectedFiles){
-            formData.append('files',selectedFile,selectedFile.name);
-        }
-
-        for (const selectedMusicFile of selectedMusicFiles){
-            //first clean file name
-            formData.append('musicFiles',selectedMusicFile,selectedMusicFile.name);
-        }*/
+    const saveReaction = () => {
 
         let formData = new FormData()
 
-        if (answer.title!=null){
-            formData.append('title', answer.title)
+        if (reaction.title!=null){
+            formData.append('title', reaction.title)
         }
-        if (answer.content!=null){
-            formData.append('content', answer.content)
+        if (reaction.content!=null){
+            formData.append('content', reaction.content)
         }
 
         if (selectedPaintingImage!=null){
@@ -160,40 +125,26 @@ const AddAnswer = () => {
         }
 
 
-
-
-
-
         formData.append('username', currentUser.username)
-
-        let partial_url=`user/answer-upload`;
+        let partial_url=`user/${reactionType}-upload`;
         let config;
-        //const auth= authHeader().Authorization;
-        //const paramsAsString = new URLSearchParams(data).toString();
-        console.log('49 selectedFiles',selectedFiles)
         if(selectedFiles.length==0){
             config={headers: {'Content-Type': 'application/json'},}
         } else {
-            //partial_url=`user/create-or-update-answer`
             config={headers: {'Content-Type': 'multipart/form-data'},}
         }
 
-
-        AnswerService.createAnswerRelatedToItem(id,formData,partial_url,config)
+        ReactionService.createReactionRelatedToItem(id,formData,partial_url,config)
             .then(response => {
-                setAnswer({
+                setReaction({
                     username: response.data.username,
                     title: response.data.title,
                     content: response.data.content,
                     //tags: response.data.tags,
-                    answerRelatedTo: response.data.answerRelatedTo,
+                    reactionRelatedTo: response.data.reactionRelatedTo,
                     files: response.data.files,
-
-
                 });
                 setSubmitted(true);
-                console.log('57 response',response)
-                console.log(response.data);
             })
             .catch(e => {
                 console.log(e);
@@ -201,36 +152,34 @@ const AddAnswer = () => {
     };
 
     const newReaction = () => {
-        setAnswer(initialAnswerState);
+        setReaction(initialReactionState);
         setSubmitted(false);
     };
 
     return (
-        <div className="send-answer-container-grid">
+        <div className="send-reaction-container-grid">
             {submitted ? (
                 <>
-                    <button
-                        type="button"
-                        className="on-success-new-answer-button"
-                        onClick={newReaction}
-                    >
-                        New Reaction
-                    </button>
-                    <button
-                        type="button"
-                        className="on-success-back-to-user-board-button"
-                        onClick={() => history.push('/user')}
-                    >
-                        Back to user board
-                    </button>
+                    <Button
+                        className={`btn-basic on-success-new-reaction-button`}
+                        disabled={false}
+                        clickHandler={newReaction}
+                        label={`New Reaction`}
+                    />
+                    <Button
+                        className={`btn-basic on-success-back-to-user-board-button`}
+                        disabled={false}
+                        clickHandler={() => history.push('/user')}
+                        label={`Back to user board`}
+                    />
 
                     <div className="successfully-submitted-message">
-                       Answer successfully submitted!
+                       Reaction successfully submitted!
                     </div>
                 </>
             ) : (
                 <>
-                    <div className="submit-a-new-answer-title">
+                    <div className="submit-a-new-reaction-title">
                         Submit a reaction
                     </div>
                     <label htmlFor="title" className="label-input-title">Title</label>
@@ -239,7 +188,7 @@ const AddAnswer = () => {
                         className="input-title"
                         id="title"
                         required
-                        value={answer.title}
+                        value={reaction.title}
                         onChange={handleInputChange}
                         name="title"
                     />
@@ -249,7 +198,7 @@ const AddAnswer = () => {
                         className="input-content"
                         id="content"
                         required
-                        value={answer.content}
+                        value={reaction.content}
                         onChange={handleInputChange}
                         name="content"
                         rows={20}
@@ -268,9 +217,15 @@ const AddAnswer = () => {
                             />
                         </div>
                     )}
-                    <button className="upload-painting-image-button" onClick={handleClick1}>
-                        Upload painting image
-                    </button>
+
+                    <Button
+                        className={`btn-basic add-reaction-upload-painting-image-button`}
+                        disabled={false}
+                        clickHandler={handleClick1}
+                        label={`Upload painting image`}
+                    />
+
+
 
                     <input type="file"
                            ref={hiddenFileInput1}
@@ -280,9 +235,13 @@ const AddAnswer = () => {
                         //onClick={alert('hello')}
                     />
 
-                    <button className="upload-music-file-button" onClick={handleClick2}>
-                        Upload music file
-                    </button>
+                    <Button
+                        className={`btn-basic add-reaction-upload-music-file-button`}
+                        disabled={false}
+                        clickHandler={handleClick2}
+                        label={`Upload music file`}
+                    />
+
 
                     <input type="file"
                            ref={hiddenFileInput2}
@@ -309,6 +268,14 @@ const AddAnswer = () => {
                         Upload supplementary files
                     </button>
 
+                    <Button
+                        className={`btn-basic add-reaction-upload-supplementary-files-button`}
+                        disabled={false}
+                        clickHandler={handleClick3}
+                        label={`Upload supplementary files`}
+                    />
+
+
                     {/*style={{display:'none'}} is added below based on a trick given in https://medium.com/web-dev-survey-from-kyoto/how-to-customize-the-file-upload-button-in-react-b3866a5973d8*/}
                     <input type="file"
                            ref={hiddenFileInput3}
@@ -332,10 +299,12 @@ const AddAnswer = () => {
                     )}
 
 
-
-                    <button onClick={saveAnswer} className="submit-button">
-                        Submit
-                    </button>
+                    <Button
+                        className={`btn-basic add-reaction-submit-button`}
+                        disabled={false}
+                        clickHandler={saveReaction}
+                        label={`Submit`}
+                    />
 
                 </>
             )}
@@ -343,4 +312,4 @@ const AddAnswer = () => {
     );
 };
 
-export default AddAnswer;
+export default AddReaction;
