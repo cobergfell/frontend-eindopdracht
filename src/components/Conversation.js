@@ -10,47 +10,23 @@ const currentUser = AuthService.getCurrentUser();
 
 
 function Conversation({paintingId}) {
-    //const [painting, setPainting] = useState(null);
-    //const [image, setImage] = useState(null);
     const [questions, setQuestions] = useState(null);
-    //const [questionsIds, setQuestionsIds] = useState([]);
     const [conversation, setConversation] = useState([]);
     const [answers, setAnswers] = useState(null);
     const [answer, setAnswer] = useState(null);
     const [error, setError] = useState(false);
     const [loading, toggleLoading] = useState(false);
-    //const {login,logout, user,status,fileToDownload,setFileToDownload} =  useContext(AuthContext);
     const { id } = useParams();
     const history = useHistory();
 
-    console.log('line 27 questions',questions);
-    console.log('line 28 conversation',conversation);
-    console.log('line 28 paintingId',paintingId);
-
-    // const collectQuestionsIds = () => {
-    //     setQuestionsIds(questions => questions.map((question) => {
-    //         questionsIds.push(question.questionId)}));
-    //     console.log('line 35 questionsIds',questionsIds);
-    // };
-
-
     const assembleConversation = (questions,answers) => {
-        console.log('40 hello 1');
-        console.log('41 questions',questions);
-        console.log('42 answers',answers);
         setConversation([]);
         if (questions!=null){
-            console.log('44 hello 2');
-            console.log('45 questions',questions);
         for (let question of sortDataBy(questions, "questionId")) {
-        //for (let entry of Object.entries(questions)) {
-            //let question=questions[entry]
             let questionAnswers = {}//create an object which will have two entries: "question" and "answer"
             questionAnswers["question"] = []
             questionAnswers["question"].push(question)
-            //questionAnswers["question"]=question
             questionAnswers["questionAnswersId"]=question["questionId"]
-            console.log('51 questionAnswers',questionAnswers);
             questionAnswers["answers"] = []
             if (answers){
                 for (const answer of answers) {
@@ -59,62 +35,25 @@ function Conversation({paintingId}) {
                     }
                 }
             }
-
-
-            // if (!Object.keys(questionAnswers).includes("answer")) {
-            //     questionAnswers["answer"] = ""
-            // }
-
             setConversation(conversation => [...conversation,questionAnswers]);
-            //conversation.push(questionAnswers)
-
-        }
+            }
 
         }
 
         return conversation
     }
 
-/*        const assembleConversation = () => {
-            let questionAnswers = {}//create an object which will have two entries: "question" and "answer"
-            questionAnswers["question"] = "question1"
-            questionAnswers["answer"] = "answer1"
-
-            setConversation(conversation => [...conversation,questionAnswers]);
-            questionAnswers = {}//create an object which will have two entries: "question" and "answer"
-            questionAnswers["question"] = "question2"
-            questionAnswers["answer"] = "answer2"
-
-            setConversation(conversation => [...conversation,questionAnswers]);
-            //conversation.push(questionAnswers)
-            console.log('72 conversation',conversation);
-            return conversation
-        }*/
-
-
     //https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await
     async function fetchQuestions() {
-        console.log('80 hello there');
-
         setError(false);
         toggleLoading(true);
         try {
-            //const result = await axios.get(`http://localhost:8080/api/user/answers-by-paintingId/?paintingId=${id}`, {
             const response = await axios.get(`http://localhost:8080/api/user/questions-by-paintingId/${id}`, {
                 headers: {
                     'Authorization': `token ${currentUser.accessToken}`
                 }
             });
             setQuestions(response.data);
-            //collectQuestionsIds();
-            //console.log('106 questionsIds',questionsIds);
-
-            //setQuestions(questions => [...questions,response.data])
-            console.log('96 questions',questions);
-            console.log('96 conversation',conversation);
-            console.log('96 result.data',response.data);
-            console.log('103 bla');
-
             toggleLoading(false);
 
 
@@ -123,67 +62,38 @@ function Conversation({paintingId}) {
             toggleLoading(false);
             console.log('123 e',e);
         }
-
     }
 
-
     async function fetchAnswers() {
-        console.log('129 hello there');
-
         setError(false);
         toggleLoading(true);
         try {
-            //const result = await axios.get(`http://localhost:8080/api/user/answers-by-paintingId/?paintingId=${id}`, {
-           // const response = await axios.get(`http://localhost:8080/api/user/answers-by-questionId/${id}`, {
             const response = await axios.get(`http://localhost:8080/api/user/answers`, {
                 headers: {
                     'Authorization': `token ${currentUser.accessToken}`
                 }
             });
             setAnswers(response.data);
-            //response.data.attachedMusicFiles.map((attachedFile) => {setAudioFiles(audioFiles => [...audioFiles, attachedFile]);})
-
-
-            //setAnswers(answers => [...answers,response.data])
-            console.log('142 answers',answers);
-            console.log('144 conversation',conversation);
-            console.log('145 result.data',response.data);
-            console.log('146 bla');
-
             toggleLoading(false);
 
 
         } catch (e) {
             setError(true);
             toggleLoading(false);
-            console.log('142 e',e);
         }
     }
 
     async function fetchAnswerByQuestionId(id) {
-        console.log('129 hello there');
-
         setError(false);
         toggleLoading(true);
         try {
             const response = await axios.get(`http://localhost:8080/api/user/answers-by-questionId/${id}`, {
-
                 headers: {
                     'Authorization': `token ${currentUser.accessToken}`
                 }
             });
             setAnswer(response.data);
-            //response.data.attachedMusicFiles.map((attachedFile) => {setAudioFiles(audioFiles => [...audioFiles, attachedFile]);})
-
-
-            //setAnswers(answers => [...answers,response.data])
-            console.log('142 answers',answer);
-            console.log('144 conversation',conversation);
-            console.log('145 result.data',response.data);
-            console.log('146 bla');
-
             toggleLoading(false);
-
 
         } catch (e) {
             setError(true);
@@ -193,7 +103,6 @@ function Conversation({paintingId}) {
     }
 
     useEffect(() => {
-        console.log('152 hello there ');
         fetchQuestions() .catch(e => {
             console.log('There has been a problem with your fetch operation: ' + e.message);
         });
@@ -206,9 +115,6 @@ function Conversation({paintingId}) {
         });
         //assembleConversation(questions,answers);
     }, []);
-    console.log('181 answers',answers);
-    console.log('182 hello there ');
-
 
     useEffect(() => {
         assembleConversation(questions,answers);
@@ -374,16 +280,14 @@ function Conversation({paintingId}) {
                                     clickHandler={() => history.push({pathname: `/add-reaction/${questionAnswerObject["question"][0]["questionId"]}`,
                                         search: '',
                                         hash: '',
-                                        state: { answerRelatedTo: "question" ,
-                                            responseType: 'answers',
-                                            id:  questionAnswerObject["question"][0]["questionId"],
+                                        state: {    answerRelatedTo: "question" ,
+                                                    reactionType: 'answers',
+                                                    id:  questionAnswerObject["question"][0]["questionId"],
                                         },
                                         key: ''
                                     },)}
                                     label={`Add a reaction to this question`}
                                 />
-
-
                             </div>
                         </div>
                     </>

@@ -57,7 +57,6 @@ function Painting() {
         console.error('69 token',currentUser.accessToken);
         if (currentUser.accessToken) {
             fetchImage();
-            console.log('72 image',image);
         }
 
     },[]);
@@ -73,12 +72,7 @@ function Painting() {
                         'Authorization': `token ${currentUser.accessToken}`
                     }
                 }).then(result => {setPainting(result.data);
-                    //result.data.attachedMusicFiles.map((attachedFile) => {setMusicFilesData(musicFilesData => [...musicFilesData, attachedFile]);})
-                    //result.data.attachedMusicFiles.map((attachedFile) => {setAudioFiles(audioFiles => [...audioFiles, attachedFile.fileOnDiskUrl]);})
                     result.data.attachedMusicFiles.map((attachedFile) => {setAudioFiles(audioFiles => [...audioFiles, attachedFile]);})
-
-                    console.log('96 ${paintingId}',`${paintingId}`);
-                    console.log('97 result.data',result.data);
                     toggleLoading(false);
                 })
             } catch (e) {
@@ -86,12 +80,9 @@ function Painting() {
                 toggleLoading(false);
             }
         }
-        console.error('101 token',currentUser.accessToken);
         if (currentUser.accessToken) {
             fetchPainting();
-            console.log('104 painting',painting);
         }
-
     },[]);
 
     useEffect(()=>{
@@ -99,26 +90,21 @@ function Painting() {
             setError(false);
             toggleLoading(true);
             try {
-                //const result = await axios.get(`http://localhost:8080/api/user/answers-by-paintingId/?paintingId=${paintingId}`, {
                 const result = await axios.get(`http://localhost:8080/api/user/questions-by-paintingId/${paintingId}`, {
                     headers: {
                         'Authorization': `token ${currentUser.accessToken}`
                     }
                 });
                 setQuestions(result.data);
-                console.log('121 result.data',result.data);
                 toggleLoading(false);
 
             } catch (e) {
                 setError(true);
                 toggleLoading(false);
-                console.log('127 e',e);
             }
         }
-        console.error('130 token',currentUser.accessToken);
         if (currentUser.accessToken) {
             fetchQuestions();
-            console.log('133 questions',questions);
         }
 
     },[]);
@@ -131,26 +117,22 @@ function Painting() {
             setError(false);
             toggleLoading(true);
             try {
-                //const result = await axios.get(`http://localhost:8080/api/user/answers-by-paintingId/?paintingId=${paintingId}`, {
                 const result = await axios.get(`http://localhost:8080/api/user/answers-by-paintingId/${paintingId}`, {
                     headers: {
                         'Authorization': `token ${currentUser.accessToken}`
                     }
                 });
                 setAnswers(result.data);
-                console.log('153 result.data',result.data);
                 toggleLoading(false);
 
             } catch (e) {
                 setError(true);
                 toggleLoading(false);
-                console.log('159 e',e);
+                console.log('e',e);
             }
         }
-        console.error('162 token',currentUser.accessToken);
         if (currentUser.accessToken) {
             fetchAnswers();
-            console.log('165 answers',answers);
         }
 
     },[]);
@@ -189,8 +171,6 @@ function Painting() {
 
             {painting &&
             <>
-                {/*<p>JSON.stringify(painting):{JSON.stringify(painting)}</p>*/}
-
                 <Button
                     className={`btn-basic send-question-button`}
                     disabled={false}
@@ -199,7 +179,7 @@ function Painting() {
                         hash: '',
                         state: {
                             questionRelatedTo: "painting",
-                            responseType: 'answers',
+                            reactionType: 'questions',
                             id:paintingId,
                             //description:description,
                         },
@@ -229,8 +209,6 @@ function Painting() {
 
 
                 )}
-
-
 
                 <div className="image-container-grid">
                     <img

@@ -144,13 +144,6 @@
     grid-row-end: 40;
 }
 
-.add-reaction-upload-music-file-button {
-    grid-column-start: 60;
-    grid-column-end: 70;
-    grid-row-start: 5;
-    grid-row-end: 10;
-}
-
 
 .add-reaction-upload-painting-image-button {
     grid-column-start: 40;
@@ -159,12 +152,28 @@
     grid-row-end: 10;
 }
 
+.add-reaction-upload-music-file-button {
+    grid-column-start: 60;
+    grid-column-end: 70;
+    grid-row-start: 5;
+    grid-row-end: 10;
+}
+
+.add-reaction-upload-supplementary-files-button {
+    grid-column-start: 80;
+    grid-column-end: 90;
+    grid-row-start: 5;
+    grid-row-end: 10;
+
+}
+
+
 
 .add-reaction-submit-button {
     grid-column-start: 50;
     grid-column-end: 60;
-    grid-row-start: 70;
-    grid-row-end: 75;
+    grid-row-start: 50;
+    grid-row-end: 55;
 }
 
 .download-file-back-to-project-button {

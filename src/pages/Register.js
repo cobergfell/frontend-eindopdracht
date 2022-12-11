@@ -115,7 +115,7 @@ const Register = (props) => {
                   name="username"
                   value={username}
                   onChange={onChangeUsername}
-                  validations={[required, vusername]}
+                  validations={[required, username]}
               />
 
 

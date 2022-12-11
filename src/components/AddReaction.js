@@ -34,7 +34,7 @@ const AddReaction = () => {
 
     };
     const [reaction, setReaction] = useState(initialReactionState);
-    const [painting, setPainting] = useState(initialPaintingState);
+    const [isQuestion, setIsQuestion] = useState(false);
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [selectedPaintingImage, setSelectedPaintingImage] = useState(null);
     const [selectedMusicFiles, setSelectedMusicFiles] = useState([]);
@@ -47,10 +47,13 @@ const AddReaction = () => {
     const { id } = useParams();
     const location = useLocation();
     const reactionType = location.state.reactionType;
-    const reactionRelatedTo = location.state.reactionRelatedTo;
-    const responseType = location.state.responseType;
-    const description = location.state.description;
 
+    useEffect(() => {
+        if(reactionType=='questions'){setIsQuestion(true)}
+        else
+            {setIsQuestion(false)}
+
+    }, [])
 
     useEffect(() => {
         if (!selectedPaintingImage) {
@@ -86,7 +89,6 @@ const AddReaction = () => {
     };
 
     const paintingImageSelectionHandler = (e) => {
-        //alert('hello there!')
         setSelectedPaintingImage(e.target.files[0]);
         setPreview(e.target.files[0]);
 
@@ -180,7 +182,7 @@ const AddReaction = () => {
             ) : (
                 <>
                     <div className="submit-a-new-reaction-title">
-                        Submit a reaction
+                        {reactionType=="questions" ? (`Submit a question`):("Submit an answer")}
                     </div>
                     <label htmlFor="title" className="label-input-title">Title</label>
                     <input
@@ -263,10 +265,6 @@ const AddReaction = () => {
                             })}
                         </div>
                     )}
-
-                    <button className="upload-supplementary-files-button" onClick={handleClick3}>
-                        Upload supplementary files
-                    </button>
 
                     <Button
                         className={`btn-basic add-reaction-upload-supplementary-files-button`}

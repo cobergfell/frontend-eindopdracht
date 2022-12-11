@@ -67,14 +67,12 @@ const InitiateProject = () => {
 
     const handleInputChange = event => {
         const { name, value } = event.target;
-        console.log('33 event.target',event.target)
         setPainting({ ...painting, [name]: value });
     };
 
 
 
     const cleanFileName = (fileName)  => {
-        console.log('37 fileName',fileName)
         let newFileName = "";
         let forbiddenCharacters = " ,"
 
@@ -92,31 +90,18 @@ const InitiateProject = () => {
     }
 
     const paintingImageSelectionHandler = (e) => {
-        //alert('hello there!')
-        console.log('85 e.target',e.target)
         setSelectedPaintingImage(e.target.files[0]);
-        console.log('87 selectedPaintingImage',selectedPaintingImage)
         setPreview(e.target.files[0]);
-
     };
 
     const fileSelectionHandler = (e) => {
-        //const fileName=cleanFileName(e.target.files[0].name)
-        //console.log('56 fileName',fileName)
-
-        console.log('67 e.target.files',e.target.files)
         setSelectedFiles(selectedFiles => [...selectedFiles, e.target.files[0]]);
     };
 
 
     const audioFileSelectionHandler = (e) => {
-        //const fileName=cleanFileName(e.target.files[0].name)
-        //console.log('56 fileName',fileName)
-
-        console.log('67 e.target.files',e.target.files)
         setSelectedAudioFiles(selectedAudioFiles => [...selectedAudioFiles, e.target.files[0]]);
     };
-
 
 
     const handleRetry = () => {
@@ -131,7 +116,6 @@ const InitiateProject = () => {
         if (missingData===false){
             setMissingInput(value => false)
             setRetry(value => false)
-            console.log('135 bla')
             let formData = new FormData()
             formData.append('title', painting.title)
             formData.append('artist', painting.artist)
@@ -139,12 +123,10 @@ const InitiateProject = () => {
             formData.append('image',selectedPaintingImage,selectedPaintingImage.name);
             //formData.append('files', selectedFiles[0],selectedFiles[0].name)
             for (const selectedFile of selectedFiles){
-                //first clean file name
                 formData.append('files',selectedFile,selectedFile.name);
             }
 
             for (const selectedAudioFile of selectedAudioFiles){
-                //first clean file name
                 formData.append('audioFiles',selectedAudioFile,selectedAudioFile.name);
             }
 
@@ -153,9 +135,6 @@ const InitiateProject = () => {
 
             let partial_url=`user/paintings-upload`//+ paramsAsString;
             let config;
-            //const auth= authHeader().Authorization;
-            //const paramsAsString = new URLSearchParams(data).toString();
-            console.log('49 selectedFiles',selectedFiles)
             if(selectedFiles.length>0){
                 config={
                     headers: {'Content-Type': 'multipart/form-data'},
@@ -167,8 +146,6 @@ const InitiateProject = () => {
                     headers: {'Content-Type': 'multipart/form-data'},
                 }
             }
-            console.log('67 ,partial_url',partial_url)
-            console.log('67 ,config',config)
             PaintingDataService.create(formData,partial_url,config)
                 .then(response => {
                     setPainting({
@@ -183,17 +160,15 @@ const InitiateProject = () => {
 
                     });
                     setSubmitted(true);
-                    console.log('174 response',response)
-                    console.log(response.data);
                 }).catch(e => {
-                console.log('177 e',e);
+                console.log('e',e);
             });
 
         }
 
         else
 
-        {   console.log('196 bla');
+        {
             setRetry(value => true)
         }
 
@@ -211,9 +186,6 @@ const InitiateProject = () => {
         hiddenFileInput3.current.click();
     }
 
-    // useEffect(() => {
-    //     checkSending(painting)
-    // }, [submitButtonClicked])//
 
     return (
         <div className="initiate-project-container-grid">

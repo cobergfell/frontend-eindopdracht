@@ -35,8 +35,6 @@ body {
     grid-row-end: 6;
     font-family: var(--font-family);
     font-size: var(--default-font-size);
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 
@@ -83,7 +81,6 @@ body {
 }
 
 .selected-music-file-item {
-
     font-family: var(--font-family);
     font-size: var(--default-font-size);
 }
@@ -113,8 +110,6 @@ body {
 .supplementary-file-item {
     font-family: var(--font-family);
     font-size: var(--default-font-size);
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 .successfully-submitted-message {
@@ -124,18 +119,16 @@ body {
     grid-row-end: 47;
     font-family: var(--font-family);
     font-size: var(--default-font-size);
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 
 .submit-a-new-reaction-title {
-    grid-column-start: 50;
-    grid-column-end: 60;
+    grid-column-start: 45;
+    grid-column-end: 65;
     grid-row-start: 1;
-    grid-row-end: 3;
+    grid-row-end: 4;
     font-family: var(--font-family);
-    font-size: 14px;/*var(--default-font-size);*/
+    font-size: 12px;/*var(--default-font-size);*/
 }
 
 
