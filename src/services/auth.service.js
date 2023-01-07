@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "http://localhost:8080/api/auth/";
+const API_URL = "http://localhost:8080/users/";
 
 const register = (username, email, password) => {
   return axios.post(API_URL + "signup", {
@@ -36,19 +36,19 @@ const getCurrentUser = () => {
 };
 
 
-const addAuthority = (username, authority) => {
-  return axios.post(API_URL + `authorities/add/${username}/${authority}`);
-};
-
-const removeAuthority = (username, authority) => {
-  return axios.post(API_URL + `authorities/delete/${username}/${authority}`);
-};
+// const addAuthority = (username, authority) => {
+//   return axios.post(API_URL + `authorities/add/${username}/${authority}`);
+// };
+//
+// const removeAuthority = (username, authority) => {
+//   return axios.post(API_URL + `authorities/delete/${username}/${authority}`);
+// };
 
 export default {
   register,
   login,
   logout,
   getCurrentUser,
-  addAuthority,
-  removeAuthority,
+  // addAuthority,
+  // removeAuthority,
 };

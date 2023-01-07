@@ -29,14 +29,15 @@ function Painting() {
     const [audioFiles, setAudioFiles] = useState([]);
     const [error, setError] = useState(false);
     const [loading, toggleLoading] = useState(false);
-
+    console.log('32 location.state',location.state)
+    console.log('33 audioFiles',audioFiles)
 
     useEffect(()=>{
         async function fetchImage() {
             setError(false);
             toggleLoading(true);
             try {
-                const result = await axios.get(`http://localhost:8080/api/user/paintings/image?paintingId=${paintingId}`, {
+                const result = await axios.get(`http://localhost:8080/paintings/image?paintingId=${paintingId}`, {
 
                     headers: {
                         'Content-Type': 'image/jpeg',
@@ -46,7 +47,6 @@ function Painting() {
 
                 });
                 setImage(result.data);
-                console.log('61 result.data',result.data);
                 toggleLoading(false);
 
             } catch (e) {
@@ -54,7 +54,6 @@ function Painting() {
                 toggleLoading(false);
             }
         }
-        console.error('69 token',currentUser.accessToken);
         if (currentUser.accessToken) {
             fetchImage();
         }
@@ -67,7 +66,7 @@ function Painting() {
             toggleLoading(true);
             try {
                 let filesList=[];
-                const result= await axios.get(`http://localhost:8080/api/user/paintings/${paintingId}`, {
+                const result= await axios.get(`http://localhost:8080/paintings/${paintingId}`, {
                     headers: {
                         'Authorization': `token ${currentUser.accessToken}`
                     }
@@ -90,7 +89,7 @@ function Painting() {
             setError(false);
             toggleLoading(true);
             try {
-                const result = await axios.get(`http://localhost:8080/api/user/questions-by-paintingId/${paintingId}`, {
+                const result = await axios.get(`http://localhost:8080/questions/byProject/${paintingId}`, {
                     headers: {
                         'Authorization': `token ${currentUser.accessToken}`
                     }
@@ -117,7 +116,7 @@ function Painting() {
             setError(false);
             toggleLoading(true);
             try {
-                const result = await axios.get(`http://localhost:8080/api/user/answers-by-paintingId/${paintingId}`, {
+                const result = await axios.get(`http://localhost:8080/answers/byProject/${paintingId}`, {
                     headers: {
                         'Authorization': `token ${currentUser.accessToken}`
                     }
@@ -136,34 +135,6 @@ function Painting() {
         }
 
     },[]);
-
-    //https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await
-    async function myFetch() {
-        let response = await axios.get(`http://localhost:8080/api/user/questions-by-paintingId/${paintingId}`, {
-            headers: {
-                'Authorization': `token ${currentUser.accessToken}`
-            }
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        else{setQuestions(response.data);}
-        const questionsIdList=[]
-        let myListOfIds = await response.data.map((question) => { questionsIdList.push(question.questionId) })
-        for (let id of questionsIdList) {
-            let response = await axios.get(`http://localhost:8080/api/user/answers-by-questionId/${id}`, {
-                headers: {
-                    'Authorization': `token ${currentUser.accessToken}`
-                }
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            else{setAnswers(response.data);}
-        }
-    }
 
 
     return (
@@ -214,7 +185,7 @@ function Painting() {
                     <img
                         className="image"
                         alt="myImage"
-                        src={`http://localhost:8080/api/user/paintings/image/${paintingId}`}/*this works*/
+                        src={`http://localhost:8080/paintings/${paintingId}/image`}/*this works*/
                     />
                 </div>
 
@@ -271,7 +242,6 @@ function Painting() {
 
                                         <audio
                                             src={audioFile.fileOnDiskUrl}
-                                            //src={'http://localhost:8080/api/user/download-file-from-disk/1'}//this should work as well
                                             //autoPlay
                                             controls
                                         />

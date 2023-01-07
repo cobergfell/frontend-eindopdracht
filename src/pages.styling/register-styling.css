@@ -26,6 +26,7 @@
     grid-row-end: 65;
     font-family: var(--font-family);
     font-size: var(--default-font-size);
+    color: red;
 }
 
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
-import QuestionDataService from "../services/question.service";
+import QuestionDataService from "./question.service";
 import { useTable } from "react-table";
 import axios from "axios";
 import EventBus from "../common/EventBus";

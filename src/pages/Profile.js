@@ -2,8 +2,6 @@ import React, {useContext} from "react";
 import AuthService from "../services/auth.service";
 import { AuthContext } from "../context/AuthoritiesContextProvider";
 import "../pages.styling/profile-styling-grid.css";
-import {sortDataBy} from "../services/utilities";
-import {Link} from "react-router-dom";
 
 const Profile = () => {
     const currentUser = AuthService.getCurrentUser();
@@ -18,7 +16,6 @@ const Profile = () => {
     if (currentUser.roles.includes("ROLE_MODERATOR")) {
         setIsModerator(true)
     }
-    console.log("75 currentUser.roles.includes(ROLE_ADMIN)", currentUser.roles.includes("ROLE_ADMIN"));
     console.log("75 isModerator", isModerator);
     console.log("76 isAdministrator", isAdministrator);
 

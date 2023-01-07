@@ -8,10 +8,6 @@ function AuthoritiesContextProvider({ children }) {
     const [isAdministrator, setIsAdministrator] = useState(false);
     const [username, setUsername] = useState("");
 
-    console.log("Line 11 of AuthContextProvider: isModerator",isModerator);
-    console.log("Line 12 of AuthContextProvider: isAdministrator",isAdministrator);
-
-
     const contextData = {
         isModerator: isModerator,
         isAdministrator: isAdministrator,
@@ -21,7 +17,7 @@ function AuthoritiesContextProvider({ children }) {
         setUsername:setUsername,
     }
 
-    console.log("Line 25 of AuthContextProvider: contextData",contextData);
+    console.log("Line 20 of AuthContextProvider: contextData",contextData);
 
 
 

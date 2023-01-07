@@ -39,7 +39,8 @@ const Home = () => {
         </div>
 
         <div id="painting" className="painting" style={{
-            backgroundImage: `url(${background})`
+            backgroundImage: `url(${background})`,
+            backgroundSize: 'cover'
         }}>
         </div>
 

@@ -12,10 +12,6 @@
     --form-left-right-margin:10%;
     --painting-image-width-in-list:250px;
     --painting-image-height-in-list:450px;
-    /*--project-width: 1024px;*/
-    /*--project-height: 800px;*/
-    /*--project-min-width: 1024px;*/
-    /*--project-min-height: 800px;*/
     --project-width: 100 vw;
     --project-height: 100 vh;
     --project-height: 950px;
@@ -46,21 +42,6 @@
 .app-container {
     width: var(--project-width);
     height: var(--project-height);
-    /*width: 100%;*/
-    /*height: 100%;*/
-
-    /*min-width: var(--project-min-width);*/
-    /*min-height: var(--project-min-height);*/
-
-
-    /*width: 100%;*/
-    /*min-width: 100vw;*/
-    /*height: 100%;*/
-    /*min-height: 100vh;*/
-
-
-
-
     margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
@@ -69,11 +50,8 @@
     flex-direction: column;
     justify-content: flex-start;
     align-content: flex-start;
-    /*min-height: 100vh; !* will cover the 100% of viewport *!*/
-    /*overflow: hidden;*/
-/*    position: relative;*/
-    /*padding-bottom: 100px; !* height of your footer *!*/
-    /*color:#e9b716;*/
+
+
 }
 
 .app-body {

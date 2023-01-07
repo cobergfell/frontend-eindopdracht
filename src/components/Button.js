@@ -8,6 +8,7 @@ import "../components.styling/button-styling.css";
 
 const Button = ({ className,label, clickHandler, disabled}) => (
     <button
+        type="button"
         className={className}
         //style={buttonStyle}
         onClick={clickHandler}

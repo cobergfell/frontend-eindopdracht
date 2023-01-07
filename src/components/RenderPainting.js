@@ -1,9 +1,5 @@
 import React, { useState, useEffect,useContext } from 'react';
-import axios from 'axios';
 import {Link, NavLink, useHistory, useParams} from 'react-router-dom';
-import {sortDataBy} from "../services/utilities";
-//import { AuthContext } from '../context/AuthContext';
-import DownloadFile from "./DownloadFile";
 import AuthService from "../services/auth.service";
 import "../components.styling/renderPainting-styling.css";
 import {AuthContext} from "../context/AuthoritiesContextProvider";
@@ -15,19 +11,10 @@ const currentUser = AuthService.getCurrentUser();
 
 function RenderPainting({ dataObject}) {
     const contextData= useContext(AuthContext);
-    //const {username, isModerator} = contextData;
     const history = useHistory();
     const currentUser = AuthService.getCurrentUser();
     const {isModerator}=contextData
     const [hasEditingPrivilege, setHasEditingPrivilege] = useState(false);
-    //const [audioFilesToDeleteIds, setAudioFilesToDeleteIds] = useState([]);
-
-
-    //if (currentUser.roles.includes("ROLE_MODERATOR")){setIsModerator(true)}
-    // console.log("25 dataObject",dataObject);
-    console.log("Line 23 of RenderPainting: isModerator",isModerator);
-    console.log("Line 24 of RenderPainting: contextData",contextData);
-    // console.log("27 JSON.stringify(currentUser)",JSON.stringify(currentUser));
 
 
     const deletePaintingDeprecated = (id) => {
@@ -42,9 +29,6 @@ function RenderPainting({ dataObject}) {
 
 
     const modificationPrivilege = (dataObject) => {
-        console.log('47 currentUser', currentUser)
-        console.log('47 dataObject', dataObject)
-        console.log('47 dataObject.username==currentUser.username', dataObject.username==currentUser.username)
         if (((dataObject.username==currentUser.username)||(isModerator==true))){return true
         } else{return false}
     }
@@ -53,7 +37,6 @@ function RenderPainting({ dataObject}) {
     const deletePainting = (id) => {
         PaintingService.get(id)
             .then((response) => {
-                console.log('47 response.data', response.data)
                 if (response.data.attachedFiles!=null){
                     response.data.attachedFiles.forEach(file => FileService.remove(file.id))
                 }
@@ -82,19 +65,16 @@ function RenderPainting({ dataObject}) {
                 <Link
                       to={{
                           pathname: `/paintings/${dataObject.paintingId}`,
-                          //search: attachedFile.fileId,
-                          //hash: "",
                           state: { paintingId:dataObject.paintingId,
                               description: dataObject.description,
                               hasEditingPrivilege:hasEditingPrivilege
                           }
                       }}
-                    //style={{ textDecoration: 'none', color: 'deepskyblue'}}
                 >
                     <img
                         className="image"
                         alt="painting image"
-                        src={`http://localhost:8080/api/user/paintings/image/${dataObject.paintingId}`}/*this works*/
+                        src={`http://localhost:8080/paintings/${dataObject.paintingId}/image`}/*this works*/
                     />
                 </Link>
             </div>
@@ -111,14 +91,11 @@ function RenderPainting({ dataObject}) {
                         <Link className="link-to-description"
                             to={{
                                 pathname: `/paintings/${dataObject.paintingId}`,
-                                //search: attachedFile.fileId,
-                                //hash: "",
                                 state: { paintingId:dataObject.paintingId,
                                     description: dataObject.description,
                                     hasEditingPrivilege:hasEditingPrivilege
                                 }
                             }}
-                            //style={{ textDecoration: 'none', color: 'deepskyblue'}}
                         >
                             Go to project
                         </Link>
@@ -131,14 +108,11 @@ function RenderPainting({ dataObject}) {
                             <Link className="link-to-description"
                                   to={{
                                       pathname: `/edit/painting/${dataObject.paintingId}`,
-                                      //search: attachedFile.fileId,
-                                      //hash: "",
                                       state: { paintingId:dataObject.paintingId,
                                           description: dataObject.description,
                                       }
                                   }}
                                   className="link-to-description"
-                                //style={{ textDecoration: 'none', color: 'deepskyblue'}}
                             >
                                 Go to edit
                             </Link>
@@ -149,7 +123,6 @@ function RenderPainting({ dataObject}) {
                     {isModerator==true &&  (
                     <li className="delete-painting-link">
                         <span onClick={() => deletePainting(dataObject.paintingId)} className="delete-painting-link">
-                            {/*<i className="fas fa-trash action">delete</i>*/}
                             Delete
                         </span>
                     </li>

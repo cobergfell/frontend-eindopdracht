@@ -5,13 +5,10 @@ const Footer = () => {
     return (
         <div className="footer-wrapper">
             <div className="footer-title">
-                <strong>Painting Music: learn painting the forms and colors of music</strong>
+                <strong>Painting Music: explore the  common grounds of painting evolution and music evolution</strong>
             </div>
 
             <div className="footer-column-container-1">
-                {/*<div className="about-us"  >
-                    <a href="#about-us">About us</a>
-                </div>*/}
                 <div className="footer-column-items">
 
                     <li >

@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 import "../pages.styling/register-styling.css";
@@ -84,18 +83,11 @@ const Register = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       AuthService.register(username, email, password).then(
         (response) => {
-          setMessage(response.data.message);
+          setMessage(response.data.message)
           setSuccessful(true);
         },
         (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-
-          setMessage(resMessage);
+          setMessage(error.response.data);
           setSuccessful(false);
         }
       );

@@ -19,43 +19,35 @@ const EditUser = props => {
     const [submitted, setSubmitted] = useState(false);
 
 
-    const checkIfAdministrator=(authorities)=>{console.log('33 userToUpdate',userToUpdate);
+    const checkIfAdministrator=(authorities)=>{
         let isAdministrator=false
-
         for (const authorityObject of authorities){
-            console.log('35 authorityObject',authorityObject);
             if (authorityObject["authority"]=="ROLE_ADMIN"){isAdministrator=true}
         }
         return isAdministrator
     }
 
-    const checkIfModerator=(authorities)=>{console.log('33 userToUpdate',userToUpdate);
+    const checkIfModerator=(authorities)=>{
         let isModerator=false
-
         for (const authorityObject of authorities){
-            console.log('35 authorityObject',authorityObject);
             if (authorityObject["authority"]=="ROLE_MODERATOR"){isModerator=true}
         }
         return isModerator
     }
 
     const handleCheckModerator = (e) => {
-        /*setUserIsModerator(!userIsModerator);*/
-        if(e.target.checked){/*setUserToUpdate({...userToUpdate,["moderator"]:true});*/
+        if(e.target.checked){
             setUserIsModerator(true);}
         else{setUserIsModerator(false)}
     }
     const handleCheckAdministrator = (e) => {
-        /*setUserIsAdministrator(!userIsAdministrator);*/
-        if(e.target.checked){/*setUserToUpdate({...userToUpdate,["administrator"]:true});*/
+        if(e.target.checked){
             setUserIsAdministrator(true);}
         else{setUserIsAdministrator(false)}
     }
 
     const handleCheckEnabled = (e) => {
-        /*setUserIsAdministrator(!userIsAdministrator);*/
-        if(e.target.checked){setUserToUpdate({...userToUpdate,["administrator"]:true});
-            /*setUserIsAdministrator(true);*/}
+        if(e.target.checked){setUserToUpdate({...userToUpdate,["administrator"]:true});}
         else{setUserToUpdate({...userToUpdate,["enabled"]:false});}
     }
 
@@ -74,8 +66,6 @@ const EditUser = props => {
             });
     };
 
-
-
     const handleInputChange = event => {
         const { name, value } = event.target;
         setUserToUpdate({ ...setUserToUpdate, [name]: value });
@@ -85,8 +75,6 @@ const EditUser = props => {
     const updateUser = () => {
 
         let formData = new FormData()
-        console.log('124 userToUpdate',userToUpdate)
-        //formData.append('username', userToUpdate.username)
         formData.append('newUsername', userToUpdate.username)
         formData.append('email', userToUpdate.email)
         formData.append('enabled', userToUpdate.enabled)
@@ -194,7 +182,6 @@ const EditUser = props => {
                         className="checkbox-user-is-moderator"
                         value={userIsModerator}
                         checked={userIsModerator}
-                        //onChange={()=>administratorCheckbox()}
                         onChange={handleCheckModerator}
                     />
 

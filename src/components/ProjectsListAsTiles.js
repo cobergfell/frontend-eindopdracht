@@ -9,14 +9,7 @@ import "../components.styling/renderPainting-styling.css";
 
 const ProjectsListAsTiles = (props) => {
     const [paintings, setPaintings] = useState([]);
-    const [painting, setPainting] = useState(null);
-    const [image, setImage] = useState(null);
-    const [searchTitle, setSearchTitle] = useState("");
     const paintingsRef = useRef();
-    const [error, setError] = useState(false);
-    const [loading, toggleLoading] = useState(false);
-    const history = useHistory();
-    const currentUser = AuthService.getCurrentUser();
 
     paintingsRef.current = paintings;
 
@@ -27,7 +20,6 @@ const ProjectsListAsTiles = (props) => {
     const retrievePaintings = () => {
         PaintingDataService.getAll()
             .then((response) => {
-                console.log('34 response.data',response.data);
                 setPaintings(response.data);
             })
             .catch((e) => {

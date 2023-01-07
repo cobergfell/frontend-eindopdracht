@@ -2,11 +2,12 @@ import React, {useEffect, useState} from "react";
 import AuthService from "../services/auth.service";
 import authHeader from "../services/auth-header";
 import {useHistory, useLocation, useParams} from "react-router-dom";
-import QuestionService from "../services/question.service";
-import AnswerService from "../services/answer.service";
+//import QuestionService from "../deprecated/question.service";
+//import AnswerService from "../services/answer.service";
 import ReactionService from "../services/reaction.service";
 import "../components.styling/add-reaction-styling-grid.css";
 import Button from "../components/Button";
+import Form from "react-validation/build/form";
 
 const currentUser = AuthService.getCurrentUser();
 
@@ -34,6 +35,7 @@ const AddReaction = () => {
 
     };
     const [reaction, setReaction] = useState(initialReactionState);
+    const [message, setMessage] = useState("");
     const [isQuestion, setIsQuestion] = useState(false);
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [selectedPaintingImage, setSelectedPaintingImage] = useState(null);
@@ -47,7 +49,8 @@ const AddReaction = () => {
     const { id } = useParams();
     const location = useLocation();
     const reactionType = location.state.reactionType;
-
+    console.log("52 message",message)
+    console.log("52 submitted",submitted)
     useEffect(() => {
         if(reactionType=='questions'){setIsQuestion(true)}
         else
@@ -128,7 +131,7 @@ const AddReaction = () => {
 
 
         formData.append('username', currentUser.username)
-        let partial_url=`user/${reactionType}-upload`;
+        let partial_url=`/${reactionType}`;
         let config;
         if(selectedFiles.length==0){
             config={headers: {'Content-Type': 'application/json'},}
@@ -136,21 +139,24 @@ const AddReaction = () => {
             config={headers: {'Content-Type': 'multipart/form-data'},}
         }
 
-        ReactionService.createReactionRelatedToItem(id,formData,partial_url,config)
+        ReactionService.create(id,formData,partial_url,config)
             .then(response => {
                 setReaction({
                     username: response.data.username,
                     title: response.data.title,
                     content: response.data.content,
-                    //tags: response.data.tags,
                     reactionRelatedTo: response.data.reactionRelatedTo,
                     files: response.data.files,
                 });
                 setSubmitted(true);
-            })
-            .catch(e => {
-                console.log(e);
-            });
+            },
+                (error) => {
+                    //setMessage(JSON.stringify(error));
+                    setMessage(error.message);
+                }
+
+
+            )
     };
 
     const newReaction = () => {
@@ -305,6 +311,11 @@ const AddReaction = () => {
                     />
 
                 </>
+            )}
+            {message && (
+                <div className={"error-message"}>
+                    {message}
+                </div>
             )}
         </div>
     );

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import AuthService from "../services/auth.service";
 import authHeader from "../services/auth-header";
 import {Link, useHistory, useLocation, useParams} from "react-router-dom";
-import QuestionService from "../services/question.service";
+import QuestionService from "./question.service";
 import "./add-question-styling-grid.css";
 import Button from "../components/Button";
 const currentUser = AuthService.getCurrentUser();

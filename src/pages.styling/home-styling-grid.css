@@ -57,8 +57,8 @@ body {
 
 
 .welcome {
-    grid-column-start: 44;
-    grid-column-end: 75;
+    grid-column-start: 40;
+    grid-column-end: 71;
     grid-row-start: 5;
     grid-row-end: 15;
     font-family: var(--font-family);
@@ -76,10 +76,8 @@ body {
     font-size: 10px;
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
-    /*background-size: cover; !* Resize the background image to cover the entire container *!*/
+    background-size: cover; /* Resize the background image to cover the entire container */
     /*background-repeat: no-repeat !*repeat|repeat-x|repeat-y|no-repeat|initial|inherit*!;*/
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 .what-is-it-all-about {

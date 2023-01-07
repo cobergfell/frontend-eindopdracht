@@ -11,11 +11,8 @@ function DownloadFile() {
     const [loading, toggleLoading] = useState(false);
     const { fileId } = useParams();
     const location = useLocation();
-    console.log("14 location",location)
     const myFileName = location.state.fileName;
     const paintingId = location.state.paintingId;
-    console.log("fileId",fileId)
-    console.log("paintingId",paintingId)
     const currentUser = AuthService.getCurrentUser();
 
 
@@ -27,7 +24,7 @@ function DownloadFile() {
         async function downloadFile() {
             setError(false);
             toggleLoading(true);
-            const url=`http://localhost:8080/api/user/files-database/${fileId}`;
+            const url=`http://localhost:8080/filesInDatabase/${fileId}`;
             console.log("url",url)
             try {
                 const result = await axios.get(url, {

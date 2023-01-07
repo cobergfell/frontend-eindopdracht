@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import PaintingDataService from "../services/painting.service";
 import AuthService from "../services/auth.service";
-import authHeader from "../services/auth-header";
 import {NavLink, useHistory, useParams} from "react-router-dom";
 import "../pages.styling/initiate-project-styling-grid.css";
 import Button from "../components/Button";
+import axios from "axios";
 
 const currentUser = AuthService.getCurrentUser();
 
@@ -34,9 +34,8 @@ const InitiateProject = () => {
     const hiddenFileInput1 = React.useRef(null);
     const hiddenFileInput2 = React.useRef(null);
     const hiddenFileInput3 = React.useRef(null);
+    console.log('27 hi there')
 
-    console.log('37 missingInput',missingInput)
-    console.log('37 retry',retry)
 
     //from https://stackoverflow.com/questions/38049966/get-image-preview-before-uploading-in-react
     // create a preview as a side effect, whenever selected file is changed
@@ -133,7 +132,7 @@ const InitiateProject = () => {
 
             formData.append('username', currentUser.username)
 
-            let partial_url=`user/paintings-upload`//+ paramsAsString;
+            let partial_url=`/paintings`;
             let config;
             if(selectedFiles.length>0){
                 config={
@@ -147,6 +146,7 @@ const InitiateProject = () => {
                 }
             }
             PaintingDataService.create(formData,partial_url,config)
+
                 .then(response => {
                     setPainting({
                         username: response.data.username,
@@ -157,13 +157,11 @@ const InitiateProject = () => {
                         image: response.data.image,
                         files: response.data.files,
                         audioFiles: response.data.audioFiles,
-
                     });
                     setSubmitted(true);
                 }).catch(e => {
                 console.log('e',e);
             });
-
         }
 
         else
@@ -171,7 +169,6 @@ const InitiateProject = () => {
         {
             setRetry(value => true)
         }
-
     };
 
 
@@ -214,20 +211,20 @@ const InitiateProject = () => {
 
                 <>
 
-                    <label htmlFor="title" className="label-input-title">Title</label>
+                    <label htmlFor="title" className="label-input-initiate-project-title">Title</label>
                     <input
                         type="text"
-                        className="input-title"
+                        className="input-initiate-project-title"
                         id="title"
                         required
                         value={painting.title}
                         onChange={handleInputChange}
                         name="title"
                     />
-                    <label htmlFor="artist" className="label-input-artist">Artist</label>
+                    <label htmlFor="artist" className="label-input-initiate-project-artist">Artist</label>
                     <input
                         type="text"
-                        className="input-artist"
+                        className="input-initiate-project-artist"
                         id="artist"
                         //required
                         value={painting.artist}
@@ -236,10 +233,10 @@ const InitiateProject = () => {
                     />
 
 
-                    <label htmlFor="description" className="label-input-description">Description</label>
+                    <label htmlFor="description" className="label-input-initiate-project-description">Description</label>
                     <textarea
                         type="text"
-                        className="input-description"
+                        className="input-initiate-project-description"
                         id="description"
                         required
                         value={painting.description}
@@ -274,7 +271,6 @@ const InitiateProject = () => {
                            style={{display:'none'}}
                            name="image"
                            onChange={paintingImageSelectionHandler}
-                        //onClick={alert('hello')}
                     />
 
                     <Button
@@ -290,7 +286,6 @@ const InitiateProject = () => {
                            style={{display:'none'}}
                            name="audio"
                            onChange={audioFileSelectionHandler}
-                        //onClick={alert('hello')}
                     />
 
                     {selectedAudioFiles.length > 0 &&(

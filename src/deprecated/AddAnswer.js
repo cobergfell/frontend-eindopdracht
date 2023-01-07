@@ -2,8 +2,8 @@ import React, {useEffect, useState} from "react";
 import AuthService from "../services/auth.service";
 import authHeader from "../services/auth-header";
 import {useHistory, useLocation, useParams} from "react-router-dom";
-import QuestionService from "../services/question.service";
-import AnswerService from "../services/answer.service";
+import QuestionService from "./question.service";
+import AnswerService from "./answer.service";
 import "./add-answer-styling-grid.css";
 //import {Button} from "react-bootstrap";
 

@@ -22,20 +22,20 @@ function Conversation({paintingId}) {
     const assembleConversation = (questions,answers) => {
         setConversation([]);
         if (questions!=null){
-        for (let question of sortDataBy(questions, "questionId")) {
-            let questionAnswers = {}//create an object which will have two entries: "question" and "answer"
-            questionAnswers["question"] = []
-            questionAnswers["question"].push(question)
-            questionAnswers["questionAnswersId"]=question["questionId"]
-            questionAnswers["answers"] = []
-            if (answers){
-                for (const answer of answers) {
-                if (answer["questionId"] == question["questionId"]) {
-                    questionAnswers["answers"].push(answer)
+            for (let question of sortDataBy(questions, "questionId")) {
+                let questionAnswers = {}//create an object which will have two entries: "question" and "answer"
+                questionAnswers["question"] = []
+                questionAnswers["question"].push(question)
+                questionAnswers["questionAnswersId"]=question["questionId"]
+                questionAnswers["answers"] = []
+                if (answers){
+                    for (const answer of answers) {
+                        if (answer["questionId"] == question["questionId"]) {
+                            questionAnswers["answers"].push(answer)
+                        }
                     }
                 }
-            }
-            setConversation(conversation => [...conversation,questionAnswers]);
+                setConversation(conversation => [...conversation,questionAnswers]);
             }
 
         }
@@ -48,7 +48,7 @@ function Conversation({paintingId}) {
         setError(false);
         toggleLoading(true);
         try {
-            const response = await axios.get(`http://localhost:8080/api/user/questions-by-paintingId/${id}`, {
+            const response = await axios.get(`http://localhost:8080/questions/byPainting/${id}`, {
                 headers: {
                     'Authorization': `token ${currentUser.accessToken}`
                 }
@@ -68,7 +68,7 @@ function Conversation({paintingId}) {
         setError(false);
         toggleLoading(true);
         try {
-            const response = await axios.get(`http://localhost:8080/api/user/answers`, {
+            const response = await axios.get(`http://localhost:8080/answers`, {
                 headers: {
                     'Authorization': `token ${currentUser.accessToken}`
                 }
@@ -83,24 +83,6 @@ function Conversation({paintingId}) {
         }
     }
 
-    async function fetchAnswerByQuestionId(id) {
-        setError(false);
-        toggleLoading(true);
-        try {
-            const response = await axios.get(`http://localhost:8080/api/user/answers-by-questionId/${id}`, {
-                headers: {
-                    'Authorization': `token ${currentUser.accessToken}`
-                }
-            });
-            setAnswer(response.data);
-            toggleLoading(false);
-
-        } catch (e) {
-            setError(true);
-            toggleLoading(false);
-            console.log('142 e',e);
-        }
-    }
 
     useEffect(() => {
         fetchQuestions() .catch(e => {
@@ -118,65 +100,139 @@ function Conversation({paintingId}) {
 
     useEffect(() => {
         assembleConversation(questions,answers);
-        },[answers,questions]);
+    },[answers,questions]);
     return (
-            <div className="conversation-container-flex">
-                {conversation && conversation.map((questionAnswerObject)=> {return (
-                    <>
-                        <div className="question-section-title-wrapping">
-                            <div className="question-section-title">
-                                question
+        <div className="conversation-container-flex">
+            {conversation && conversation.map((questionAnswerObject)=> {return (
+                <>
+                    <div className="question-section-title-wrapping">
+                        <div className="question-section-title">
+                            question
+                        </div>
+                    </div>
+
+                    <div className="one-question-with-corresponding-answers-container"
+                         key={questionAnswerObject["questionAnswerId"]}
+                    >
+                        <ul className="question-meta-data">
+                            <li className="list-item"><strong>Id&nbsp;:&nbsp;</strong>{questionAnswerObject["question"][0]["questionId"]}</li>
+                            <li className="list-item"><strong>Sent by&nbsp;:&nbsp;</strong>{questionAnswerObject["question"][0]["username"]}</li>
+                            <li className="list--item"><strong>Date sent&nbsp;:&nbsp;</strong>{questionAnswerObject["question"][0]["dateTimePosted"]}</li>
+                            <li className="list-item"><strong>Title&nbsp;:&nbsp;</strong>{questionAnswerObject["question"][0]["title"]}</li>
+                        </ul>
+                        <div className="question-box">
+                            {questionAnswerObject["question"][0]["content"]}
+                        </div>
+                        <div className="question-supplemental-material-box">
+                            {questionAnswerObject["question"][0] && sortDataBy(questionAnswerObject["question"][0].attachedFiles, "Id").map((attachedFile)=> {return (
+                                <>
+                                    <div className="conversation-question-title-list-supplemental-material">
+                                        <strong>Supplemental files attached to question</strong>
+                                    </div>
+                                    <ul className="conversation-question-list-supplemental-material">
+                                        <li className="list-item">Id&nbsp;:&nbsp;{attachedFile["id"]}</li>
+                                        <li className="list-item">Type&nbsp;&nbsp;:&nbsp;{attachedFile.type}</li>
+                                        <li className="list-item">Size (bytes)&nbsp;:&nbsp;{attachedFile.size}</li>
+                                        <li className="list-item">Link&nbsp;:&nbsp;
+                                            <Link
+                                                to={{
+                                                    pathname: `/files/${attachedFile["id"]}`,
+                                                    //search: attachedFile.fileId,
+                                                    //hash: "",
+                                                    state: { fileName: attachedFile.name }
+                                                }}
+                                                style={{color: 'deepskyblue'}}
+                                            >
+                                                {attachedFile.name}
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </>
+                            )})}
+                        </div>
+
+
+
+                        {questionAnswerObject["question"][0] && sortDataBy(questionAnswerObject["question"][0].attachedMusicFiles, "Id").map((attachedFile)=> {return (
+                            <>
+                                <div className="conversation-question-title-list-audio-material">
+                                    <strong>Audio files attached to question</strong>
+                                </div>
+                                <ul className="conversation-question-list-audio-material">
+                                    <li className="list-item">Music sample title&nbsp;:&nbsp;{attachedFile.name}</li>
+                                    <li className="list-item">
+                                        <div className="audio-player">
+
+                                            <audio
+                                                src={attachedFile.fileOnDiskUrl}
+                                                controls
+                                            />
+                                        </div>
+
+                                    </li>
+                                </ul>
+                            </>
+                        )})}
+
+                        <div className="answers-section-title-wrapping">
+                            <div className="answers-section-title">
+                                Answers
                             </div>
                         </div>
 
-                        <div className="one-question-with-corresponding-answers-container"
-                             key={questionAnswerObject["questionAnswerId"]}
-                        >
-                            <ul className="question-meta-data">
-                                <li className="list-item"><strong>Id&nbsp;:&nbsp;</strong>{questionAnswerObject["question"][0]["questionId"]}</li>
-                                <li className="list-item"><strong>Sent by&nbsp;:&nbsp;</strong>{questionAnswerObject["question"][0]["username"]}</li>
-                                <li className="list--item"><strong>Date sent&nbsp;:&nbsp;</strong>{questionAnswerObject["question"][0]["dateTimePosted"]}</li>
-                                <li className="list-item"><strong>Title&nbsp;:&nbsp;</strong>{questionAnswerObject["question"][0]["title"]}</li>
-                            </ul>
-                            <div className="question-box">
-                                {questionAnswerObject["question"][0]["content"]}
-                            </div>
-                            <div className="question-supplemental-material-box">
-                                {questionAnswerObject["question"][0] && sortDataBy(questionAnswerObject["question"][0].attachedFiles, "Id").map((attachedFile)=> {return (
-                                    <>
-                                        <div className="conversation-question-title-list-supplemental-material">
-                                            <strong>Supplemental files attached to question</strong>
-                                        </div>
-                                        <ul className="conversation-question-list-supplemental-material">
-                                            <li className="list-item">Id&nbsp;:&nbsp;{attachedFile["id"]}</li>
-                                            <li className="list-item">Type&nbsp;&nbsp;:&nbsp;{attachedFile.type}</li>
-                                            <li className="list-item">Size (bytes)&nbsp;:&nbsp;{attachedFile.size}</li>
-                                            <li className="list-item">Link&nbsp;:&nbsp;
-                                                <Link
-                                                    to={{
-                                                        pathname: `/files/${attachedFile["id"]}`,
-                                                        //search: attachedFile.fileId,
-                                                        //hash: "",
-                                                        state: { fileName: attachedFile.name }
-                                                    }}
-                                                    style={{color: 'deepskyblue'}}
-                                                >
-                                                    {attachedFile.name}
-                                                </Link>
-                                            </li>
-                                        </ul>
-                                    </>
-                                )})}
-                            </div>
+                        <div className="answers">
+                            {questionAnswerObject["answers"] && questionAnswerObject["answers"].map((answer)=> {return (
+                                <div>
+                                    <div className="space-in-between">
+                                        <br/>
+                                        <br/>
+                                    </div>
+                                    <ul className="answer-meta-data">
+                                        <li className="list-item"><strong>Answer</strong></li>
+                                        <li className="list-item"><strong>Id&nbsp;:&nbsp;</strong>{answer["answerId"]}</li>
+                                        <li className="list-item"><strong>Sent by&nbsp;:&nbsp;</strong>{answer["username"]}</li>
+                                        <li className="list--item"><strong>Date sent&nbsp;:&nbsp;</strong>{answer["dateTimePosted"]}</li>
+                                        <li className="list-item"><strong>Title&nbsp;:&nbsp;</strong>{answer["title"]}</li>
+                                    </ul>
+                                    <div className="answer-box">
+                                        {answer["content"]}
+                                    </div>
+                                    <div className="answer-supplemental-material-box">
+                                        {answer && sortDataBy(answer.attachedFiles, "Id").map((attachedFile)=> {return (
+                                            <>
+                                                <div className="conversation-answer-title-list-supplemental-material">
+                                                    <strong>Supplemental files attached to answer</strong>
+                                                </div>
+                                                <ul className="conversation-answer-list-supplemental-material">
+                                                    <li className="list-item">Id&nbsp;:&nbsp;{attachedFile["id"]}</li>
+                                                    <li className="list-item">Type&nbsp;&nbsp;:&nbsp;{attachedFile.type}</li>
+                                                    <li className="list-item">Size (bytes)&nbsp;:&nbsp;{attachedFile.size}</li>
+                                                    <li className="list-item">Link&nbsp;:&nbsp;
+                                                        <Link
+                                                            to={{
+                                                                pathname: `/files/${attachedFile["id"]}`,
+                                                                state: { fileName: attachedFile.name }
+                                                            }}
+                                                            style={{color: 'deepskyblue'}}
+                                                        >
+                                                            {attachedFile.name}
+                                                        </Link>
+                                                    </li>
+                                                </ul>
+                                            </>
+                                        )})}
+                                    </div>
 
 
 
-                                {questionAnswerObject["question"][0] && sortDataBy(questionAnswerObject["question"][0].attachedMusicFiles, "Id").map((attachedFile)=> {return (
-                                    <>
+                                    {answer && sortDataBy(answer.attachedMusicFiles, "Id").map((attachedFile)=> {return (
+                                        <>
+
                                             <div className="conversation-question-title-list-audio-material">
-                                                <strong>Audio files attached to question</strong>
+                                                <strong>Audio files attached to answer</strong>
                                             </div>
-                                            <ul className="conversation-question-list-audio-material">
+
+                                            <ul className="conversation-answer-list-audio-material">
                                                 <li className="list-item">Music sample title&nbsp;:&nbsp;{attachedFile.name}</li>
                                                 <li className="list-item">
                                                     <div className="audio-player">
@@ -189,116 +245,42 @@ function Conversation({paintingId}) {
 
                                                 </li>
                                             </ul>
-                                    </>
-                                )})}
 
-                            <div className="answers-section-title-wrapping">
-                                <div className="answers-section-title">
-                                    Answers
+                                        </>
+                                    )})}
+
+
                                 </div>
-                            </div>
-
-                            <div className="answers">
-                                {questionAnswerObject["answers"] && questionAnswerObject["answers"].map((answer)=> {return (
-                                    <div>
-                                        <div className="space-in-between">
-                                            <br/>
-                                            <br/>
-                                        </div>
-                                        <ul className="answer-meta-data">
-                                            <li className="list-item"><strong>Answer</strong></li>
-                                            <li className="list-item"><strong>Id&nbsp;:&nbsp;</strong>{answer["answerId"]}</li>
-                                            <li className="list-item"><strong>Sent by&nbsp;:&nbsp;</strong>{answer["username"]}</li>
-                                            <li className="list--item"><strong>Date sent&nbsp;:&nbsp;</strong>{answer["dateTimePosted"]}</li>
-                                            <li className="list-item"><strong>Title&nbsp;:&nbsp;</strong>{answer["title"]}</li>
-                                        </ul>
-                                        <div className="answer-box">
-                                            {answer["content"]}
-                                        </div>
-                                        <div className="answer-supplemental-material-box">
-                                            {answer && sortDataBy(answer.attachedFiles, "Id").map((attachedFile)=> {return (
-                                               <>
-                                                    <div className="conversation-answer-title-list-supplemental-material">
-                                                        <strong>Supplemental files attached to answer</strong>
-                                                    </div>
-                                                    <ul className="conversation-answer-list-supplemental-material">
-                                                        <li className="list-item">Id&nbsp;:&nbsp;{attachedFile["id"]}</li>
-                                                        <li className="list-item">Type&nbsp;&nbsp;:&nbsp;{attachedFile.type}</li>
-                                                        <li className="list-item">Size (bytes)&nbsp;:&nbsp;{attachedFile.size}</li>
-                                                        <li className="list-item">Link&nbsp;:&nbsp;
-                                                            <Link
-                                                                to={{
-                                                                    pathname: `/files/${attachedFile["id"]}`,
-                                                                    state: { fileName: attachedFile.name }
-                                                                }}
-                                                                style={{color: 'deepskyblue'}}
-                                                            >
-                                                                {attachedFile.name}
-                                                            </Link>
-                                                        </li>
-                                                    </ul>
-                                               </>
-                                            )})}
-                                        </div>
-
-
-
-                                            {answer && sortDataBy(answer.attachedMusicFiles, "Id").map((attachedFile)=> {return (
-                                                <>
-
-                                                    <div className="conversation-question-title-list-audio-material">
-                                                        <strong>Audio files attached to answer</strong>
-                                                    </div>
-
-                                                    <ul className="conversation-answer-list-audio-material">
-                                                        <li className="list-item">Music sample title&nbsp;:&nbsp;{attachedFile.name}</li>
-                                                        <li className="list-item">
-                                                            <div className="audio-player">
-
-                                                                <audio
-                                                                    src={attachedFile.fileOnDiskUrl}
-                                                                    controls
-                                                                />
-                                                            </div>
-
-                                                        </li>
-                                                    </ul>
-
-                                                </>
-                                            )})}
-
-
-                                    </div>
-                                )})}
-                            </div>
-
-                            <div className="react-to-question-button-container">
-
-                                <Button
-                                    className={`btn-basic react-to-question-button`}
-                                    disabled={false}
-                                    clickHandler={() => history.push({pathname: `/add-reaction/${questionAnswerObject["question"][0]["questionId"]}`,
-                                        search: '',
-                                        hash: '',
-                                        state: {    answerRelatedTo: "question" ,
-                                                    reactionType: 'answers',
-                                                    id:  questionAnswerObject["question"][0]["questionId"],
-                                        },
-                                        key: ''
-                                    },)}
-                                    label={`Add a reaction to this question`}
-                                />
-                            </div>
+                            )})}
                         </div>
-                    </>
-                    )})}
 
-                    {!conversation && (
-                        <span className="no-paintings">
+                        <div className="react-to-question-button-container">
+
+                            <Button
+                                className={`btn-basic react-to-question-button`}
+                                disabled={false}
+                                clickHandler={() => history.push({pathname: `/add-reaction/${questionAnswerObject["question"][0]["questionId"]}`,
+                                    search: '',
+                                    hash: '',
+                                    state: {    answerRelatedTo: "question" ,
+                                        reactionType: 'answers',
+                                        id:  questionAnswerObject["question"][0]["questionId"],
+                                    },
+                                    key: ''
+                                },)}
+                                label={`Add a reaction to this question`}
+                            />
+                        </div>
+                    </div>
+                </>
+            )})}
+
+            {!conversation && (
+                <span className="no-paintings">
                           No conversation available
                         </span>
-                    )}
-                </div>
+            )}
+        </div>
     );
 
 }

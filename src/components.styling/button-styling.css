@@ -1,3 +1,4 @@
+
 .btn-basic {
     font-family: var(--font-family);
     font-size: var(--default-font-size);
@@ -6,12 +7,25 @@
     border-color: grey;
 }
 
-.new-project-button {
-    grid-column-start: 14;
-    grid-column-end: 22;
-    grid-row-start: 4;
-    grid-row-end: 7;
-    border-color: green;
+btn-basic :hover {
+    background-color: #BC4C2A;
+    color: white;
+    transition: all .4s ease-in-out;
+}
+
+btn-basic:disabled {
+    cursor: not-allowed;
+    border-color: #D08169;
+    color: #D08169;
+}
+
+
+
+.board-user-new-project-button {
+    grid-column-start: 40;
+    grid-column-end: 50;
+    grid-row-start: 3;
+    grid-row-end: 5;
 }
 
 .send-question-button {
@@ -42,12 +56,7 @@
     grid-row-end: 2;
 }
 
-.upload-painting-image-button {
-    grid-column-start: 40;
-    grid-column-end: 50;
-    grid-row-start: 5;
-    grid-row-end: 10;
-}
+
 
 .upload-music-file-button {
     grid-column-start: 60;
@@ -100,24 +109,26 @@
     grid-row-end: 85;
 }
 
+
+
 .upload-updated-supplementary-files-button {
-    grid-column-start: 73;
-    grid-column-end: 83;
-    grid-row-start: 49;
-    grid-row-end: 54;
+    grid-column-start: 70;
+    grid-column-end: 86;
+    grid-row-start: 48;
+    grid-row-end: 53;
 
 }
 
 .upload-updated-music-file-button {
-    grid-column-start: 73;
-    grid-column-end: 83;
-    grid-row-start: 9;
-    grid-row-end: 14;
+    grid-column-start: 70;
+    grid-column-end: 86;
+    grid-row-start: 8;
+    grid-row-end: 13;
 }
 
 .upload-updated-painting-image-button {
-    grid-column-start: 42;
-    grid-column-end: 52;
+    grid-column-start: 39;
+    grid-column-end: 55;
     grid-row-start: 9;
     grid-row-end: 14;
 }
@@ -243,18 +254,18 @@
 
 
 .initiate-project-retry-button {
-    grid-column-start: 85;
-    grid-column-end: 95;
-    grid-row-start: 15;
-    grid-row-end: 20;
+    grid-column-start: 55;
+    grid-column-end: 65;
+    grid-row-start: 25;
+    grid-row-end: 30;
 }
 
 
 .submit-initial-project-button {
-    grid-column-start: 85;
-    grid-column-end: 95;
-    grid-row-start: 5;
-    grid-row-end: 10;
+    grid-column-start: 40;
+    grid-column-end: 50;
+    grid-row-start: 25;
+    grid-row-end: 30;
 }
 
 

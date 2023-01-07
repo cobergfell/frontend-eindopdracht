@@ -37,13 +37,10 @@ const EditProject = () => {
     const [currentAudioFilesUrls, setCurrentAudioFilesUrls] = useState([]);
     const [filesToDeleteIds, setFilesToDeleteIds] = useState([]);
     const [audioFilesToDeleteIds, setAudioFilesToDeleteIds] = useState([]);
-
     const [submitted, setSubmitted] = useState(false);
     const [submitButtonClicked, setSubmitButtonClicked] = useState(false);
     const [missingInput, setMissingInput ]= useState(false);
     const [retry, setRetry ]= useState(false);
-    const [error, setError] = useState(false);
-    const [loading, toggleLoading] = useState(false);
     const [image, setImage] = useState(null);
     const history = useHistory();
     const location = useLocation();
@@ -64,7 +61,6 @@ const EditProject = () => {
         if (painting.title==null){setMissingInput(true)}
         if (painting.artist==null){setMissingInput(true)}
         if (painting.description==null){setMissingInput(true)}
-        //if (painting.image==null){setMissingInput(true)}
     }
 
     const toggleRetry = () => setRetry(value => !value);
@@ -72,8 +68,6 @@ const EditProject = () => {
     const handleRetry = () => {
         toggleRetry()
         setMissingInput(value => false)
-        console.log('91 missingInput',missingInput)
-        console.log('91 bla')
     }
 
 
@@ -127,11 +121,9 @@ const EditProject = () => {
         const checked = e.target.checked;
         if (checked) {
             //checked
-            console.log('61 checked')
             setAudioFilesToDeleteIds(audioFilesToDeleteIds => [...audioFilesToDeleteIds, selectedFileObject["fileId"]])
         } else {
             //unchecked
-            console.log('66 unchecked')
             setAudioFilesToDeleteIds(audioFilesToDeleteIds => audioFilesToDeleteIds.filter(id=> id!=selectedFileObject["fileId"]))
         }
     };
@@ -177,7 +169,6 @@ const EditProject = () => {
     async function getFileFromUrl(url, defaultName, defaultType = 'image/jpeg'){
         const response = await fetch(url);
         const data = await response.blob();
-       // response.download("D:\\Users\\Gebruiker\\Downloads");
         setSelectedAudioFiles(selectedAudioFiles => [...selectedAudioFiles, new File([data],data.name|| defaultName,{type: data.type || defaultType})
          ])
 
@@ -190,13 +181,10 @@ const EditProject = () => {
 
     //function below was not working as expected, just given here as reference material
     async function getFileFromUrlV2(){
-        console.log('119 selectedAudioFileUrls',currentAudioFilesUrls)
         if (currentAudioFilesUrls!=[]){
             for (const selectedAudioFileUrl of currentAudioFilesUrls){
                 const link = document.createElement('a');
-                console.log('123 link',link)
                 link.href = selectedAudioFileUrl;
-                //link.download='bla';//this is just the hypertext
                 //link.click();
                 link.remove();
                 setSelectedAudioFiles(selectedAudioFiles => [...selectedAudioFiles, link.click()
@@ -219,7 +207,6 @@ const EditProject = () => {
     //function below was not working as expected, just given here as reference material
     async function getFileFromUrlV4(){
         //based on response 47 of https://stackoverflow.com/questions/25046301/convert-url-to-file-or-blob-for-filereader-readasdataurl
-        console.log('119 selectedAudioFileUrls',currentAudioFilesUrls)
         if (currentAudioFilesUrls!=[]){
             for (const selectedAudioFileUrl of currentAudioFilesUrls){
                 let response = await fetch(selectedAudioFileUrl);
@@ -235,7 +222,6 @@ const EditProject = () => {
 
 
     const cleanFileName = (fileName)  => {
-        console.log('37 fileName',fileName)
         let newFileName = "";
         let forbiddenCharacters = " ,"
 
@@ -291,7 +277,6 @@ const EditProject = () => {
 
     const handleInputChange = event => {
         const { name, value } = event.target;
-        console.log('33 event.target',event.target)
         setPainting({ ...painting, [name]: value });
     };
 
@@ -300,13 +285,7 @@ const EditProject = () => {
     const getPainting = (id) => {
         PaintingService.get(id)
             .then((response) => {
-                //setPainting( copy(response.data));
                 setPainting( Object.assign({},  response.data));
-
-                console.log('240 response.data',response.data)
-                console.log('241 selectedPaintingImage',selectedPaintingImage)
-                console.log('242 painting',painting)
-
                 response.data.attachedFiles.map((attachedFile) => (
                     setCurrentFilesUrls(currentFilesUrls => [...currentFilesUrls, attachedFile.fileOnDiskUrl])))
 
@@ -322,7 +301,6 @@ const EditProject = () => {
                                 name: attachedFile.name,
                                 type: attachedFile.type
                             })
-
                         }] // so currentAudioFile is a list of objects with to keys "fileId" and "file" of the form {"fileId": ..., "file"...}
 
                     )))
@@ -335,13 +313,11 @@ const EditProject = () => {
                                 name: attachedMusicFile.name,
                                 type: attachedMusicFile.type
                             })
-
                         }] // so currentAudioFile is a list of objects with two keys "fileId" and "file" of the form {"fileId": ..., "file"...}
-
                     )))
             })
             .catch(e => {
-                console.log('437 error',e);
+                console.log('e',e);
             });
     };
 
@@ -351,32 +327,23 @@ const EditProject = () => {
                 setImage(response.data)
             })
             .catch(e => {
-                console.log('406 error',e);
+                console.log('error',e);
             });
     };
-
-
 
     const paintingImageSelectionHandler = (e) => {
         setSelectedPaintingImage(e.target.files[0]);
         setPreview(e.target.files[0]);
-
     };
 
     const fileSelectionHandler = (e) => {
-        //const fileName=cleanFileName(e.target.files[0].name)
-        //console.log('56 fileName',fileName)
-
-        console.log('67 e.target.files',e.target.files)
+        console.log('e.target.files',e.target.files)
         setSelectedFiles(selectedFiles => [...selectedFiles, e.target.files[0]]);
     };
 
 
     const audioFileSelectionHandler = (e) => {
-        //const fileName=cleanFileName(e.target.files[0].name)
-        //console.log('56 fileName',fileName)
-
-        console.log('67 e.target.files',e.target.files)
+        console.log('e.target.files',e.target.files)
         setSelectedAudioFiles(selectedAudioFiles => [...selectedAudioFiles, e.target.files[0]]);
     };
 
@@ -384,7 +351,6 @@ const EditProject = () => {
 
         toggleRetry()
         setSubmitButtonClicked(true)
-        console.log('440 painting',painting)
         if (missingInput==false){
 
 
@@ -415,7 +381,6 @@ const EditProject = () => {
 
             let partial_url;
             let config;
-            console.log('142 selectedFiles',selectedFiles)
             let headers= {}
             if ((selectedFiles.length>0)||(selectedPaintingImage!=null)||(selectedAudioFiles.length>0)){headers=
                 {'Content-Type': 'multipart/form-data',
@@ -426,7 +391,7 @@ const EditProject = () => {
             }
 
 
-            partial_url=`user/paintings-update`//+ paramsAsString;
+            partial_url=`/paintings`
             config={
                 headers: {'Content-Type': 'multipart/form-data',
                     'enctype':"multipart/form-data"
@@ -490,7 +455,6 @@ const EditProject = () => {
 
     useEffect(() => {
         getPainting(paintingId);
-        console.log('490 bla');
     }, [paintingId]);
 
 
@@ -560,6 +524,18 @@ const EditProject = () => {
                         Placeholder={"Your text here"}
                         maxLength={100000}
                     />
+                    {/*<button className="upload-updated-painting-image-button" onClick={handleClick1}>*/}
+                    {/*    Upload painting image*/}
+                    {/*</button>*/}
+
+                    <Button
+                        className={`btn-basic upload-updated-painting-image-button`}
+                        disabled={false}
+                        clickHandler={handleClick1}
+                        label={`Upload image`}
+                    />
+
+
 
                     <input type="file"
                            accept="image/png, image/jpeg"
@@ -567,11 +543,10 @@ const EditProject = () => {
                            style={{display:'none'}}
                            name="image"
                            onChange={paintingImageSelectionHandler}
-                        //onClick={alert('hello')}
                     />
 
 
-                    {image && (      /*in fact, we could do it also without loading first the image*/
+                    {image && (      /*we could also do it without loading first the image*/
                         <>
                             <div className="current-painting-preview-label">
                                 Current painting
@@ -581,7 +556,7 @@ const EditProject = () => {
                                     className="image"
                                     alt="image place holder"
                                     //src={preview}
-                                    src={`http://localhost:8080/api/user/paintings/image/${paintingId}`}/*this works*/
+                                    src={`http://localhost:8080/paintings/${paintingId}/image`}/*this works*/
                                 />
                             </div>
                         </>
@@ -597,7 +572,7 @@ const EditProject = () => {
                                     className="image"
                                     alt="image place holder"
                                     src={preview}
-                                    //src={`http://localhost:8080/api/user/paintings/image/${paintingId}`}/*this works*/
+                                    //src={`http://localhost:8080/api/user/paintings/image/${paintingId}`}/*this would work*/
                                 />
                             </div>
                         </>
@@ -616,7 +591,6 @@ const EditProject = () => {
                            style={{display:'none'}}
                            name="audio"
                            onChange={audioFileSelectionHandler}
-                        //onClick={alert('hello')}
                     />
 
                     {currentAudioFiles.length > 0 &&(
@@ -643,7 +617,6 @@ const EditProject = () => {
                                                     className="checkbox-files"
                                                     onClick={(e) => {
                                                         selectAudioFilesToDelete(e,currentFileObject);}}
-
                                                 />
                                             </div>
                                     )
@@ -680,7 +653,6 @@ const EditProject = () => {
                                         <div key={`${currentFileObject["file"].name}`} className="current-file-row-grid">
                                             <div className="files-list-element" >
                                                 {currentFileObject["file"].name}
-                                                {/*<p>JSON.stringify(selectedFile):{JSON.stringify(selectedFile)}</p>*/}
                                             </div>
                                             <input
                                                 type="checkbox"
@@ -712,9 +684,6 @@ const EditProject = () => {
                                             <div className="files-list-element" >
                                                 {selectedFile.name}
                                             </div>
-                                            {/*<span className="deselect-file" onClick={(e) => {deselectAudioFiles_v2(e,selectedFile);}}>
-                                                remove
-                                            </span>*/}
                                             <div className="deselect-file" onClick={(e) => {deselectAudioFiles_v2(e,selectedFile);}}>
                                                 <FontAwesomeIcon icon={faTrash} />
                                                 <span>remove</span>
@@ -789,7 +758,6 @@ const EditProject = () => {
                                         <div key={`${selectedFile.name}`} className="current-file-row-grid">
                                             <div className="files-list-element" >
                                                 {selectedFile.name}
-                                                {/*<p>JSON.stringify(selectedFile):{JSON.stringify(selectedFile)}</p>*/}
                                             </div>
                                             <div className="deselect-file" onClick={(e) => {deselectFiles_v2(e,selectedFile);}}>
                                                 <FontAwesomeIcon icon={faTrash} />
@@ -828,8 +796,6 @@ const EditProject = () => {
                         clickHandler={handleRetry}
                         label={`Retry`}
                     />
-
-
                 </>
             )}
         </div>

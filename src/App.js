@@ -125,11 +125,7 @@ const App = () => {
           <Route exact path="/register" component={Register} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/initiateProject" component={InitiateProject} />
-          {/*<Route exact path="/fetchQuestionsFilesInDatabase" component={FetchQuestionsFilesInDatabase} />*/}
-          {/*<Route exact path="/sendQuestionFilesInDatabase" component={SendQuestionFilesInDatabase} />*/}
-          {/*<Route exact path="/questions/:id" component={Question} />*/}
           <Route exact path="/paintings/:id" component={Painting} />
-          {/*<Route exact path="/edit/question/:id" component={EditQuestion} />*/}
           <Route exact path="/edit/painting/:id" component={EditProject} />
           <Route exact path="/edit/user/:userId" component={EditUser} />
           <Route exact path="/files/:fileId" component={DownloadFile} />
@@ -137,7 +133,6 @@ const App = () => {
           <Route exact path="/add-question/:id" component={AddQuestion} />
           <Route exact path="/add-answer/:id" component={AddAnswer} />
           <Route exact path="/add-reaction/:id" component={AddReaction} />
-          {/*<Route exact path="/question_files_list" component={FilesList} />*/}
           <Route exact path="/paintingsListAsTilesWithPagination" component={ProjectsListAsTiles} />
           <Route exact path="/mod" component={BoardModerator} />
           <Route exact path="/admin" component={BoardAdmin} />

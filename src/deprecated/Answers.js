@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import AnswerService from "../services/answer.service";
+import AnswerService from "./answer.service";
 import AuthService from "../services/auth.service";
 import FilesList from "./FilesList";
 import {Link} from "react-router-dom";

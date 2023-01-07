@@ -16,7 +16,6 @@ const BoardAdmin = () => {
   const removeAllUsers = () => {
     UsersService.removeAll()
         .then((response) => {
-          console.log('21 response.data',response.data);
         })
         .catch((e) => {
           console.log(e);
@@ -48,23 +47,6 @@ const BoardAdmin = () => {
         <div className="users-data-box">
           <UsersList/>
         </div>
-
-        {/*<div className="user-profile-box">
-          {currentUser && (
-              <ul className="profile-list">
-                <li className="list-item"><strong>Username:</strong> {currentUser.username}</li>
-                <li className="list-item"><strong>Email:</strong> {currentUser.email}</li>
-                <li className="list-item">
-                  <strong>Token:</strong> {currentUser.accessToken.substring(0, 20)} ...{" "}</li>
-              </ul>
-          )}
-
-        </div>*/}
-
-
-{/*        <div className="current-user-test">
-          <profile/>
-        </div>*/}
 
       </div>
 

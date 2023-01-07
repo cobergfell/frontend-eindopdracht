@@ -1,15 +1,15 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "http://localhost:8080/api/";
+const API_URL = "http://localhost:8080/";
 
 
 const getAll = () => {
-    return axios.get(API_URL + "user/audio-files-database", { headers: authHeader() });
+    return axios.get(API_URL + "audioFilesInDatabase", { headers: authHeader() });
 };
 
 const get = (id) => {
-    return axios.get(API_URL + `user/audio-files-database/${id}`, { headers: authHeader() });
+    return axios.get(API_URL + `audioFilesInDatabase/${id}`, { headers: authHeader() });
 };
 
 const create = (formData,partial_url,config) => {
@@ -28,16 +28,13 @@ const update = (id, formData,partial_url,config) => {
 };*/
 
 const remove = (id) => {
-    return axios.delete(API_URL +`user/audio-files-database/${id}`, { headers: authHeader()});
+    return axios.delete(API_URL +`audioFilesInDatabase/${id}`, { headers: authHeader()});
 };
 
 const removeAll = () => {
-    return axios.delete(API_URL+"user/audio-files-database", { headers: authHeader() });
+    return axios.delete(API_URL+"audioFilesInDatabase", { headers: authHeader() });
 };
 
-// const findByTitle = (title) => {
-//     return axios.get(API_URL+`user/questions-edit-with-files-in-database?title=${title}`);
-// };
 
 const FileService = {
     getAll,
@@ -46,7 +43,6 @@ const FileService = {
     update,
     remove,
     removeAll,
-    //findByTitle,
 };
 
 export default FileService;

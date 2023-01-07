@@ -16,18 +16,7 @@ body {
     height: calc(var(--project-height) - var(--navbar-height));
     grid-template-columns: repeat(100, 1fr);
     grid-template-rows: repeat(100, 1fr);
-    /*border-style: solid;*/
-    /*border-color: blueviolet;*/
-    /*overflow-x: scroll;*/
     overflow-y: scroll;
-    /*width: 960px;*/
-    /*height: 100px;*/
-    /*border-color: blueviolet;*/
-    /*margin-top: var(--navbar-height);*/
-    /*margin-left: 15%;*/
-    /*margin-right: 15%;*/
-    /*border-top: 2px dotted var(--milky-white);*/
-    /*border-bottom: 2px dotted var(--milky-white);*/
 }
 
 
@@ -38,10 +27,7 @@ body {
     grid-row-end: 5;
     font-family: var(--font-family);
     font-size: 12px;
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
-
 
 
 .input-updated-title {
@@ -51,8 +37,6 @@ body {
     grid-row-end: 18;
     font-family: var(--font-family);
     font-size: var(--default-font-size);
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 .label-input-updated-title {
@@ -62,8 +46,6 @@ body {
     grid-row-end: 15;
     font-family: var(--font-family);
     font-size: var(--default-font-size);
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 
@@ -75,8 +57,6 @@ body {
     grid-row-end: 23;
     font-family: var(--font-family);
     font-size: var(--default-font-size);
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 .label-input-updated-artist {
@@ -86,8 +66,6 @@ body {
     grid-row-end: 20;
     font-family: var(--font-family);
     font-size: var(--default-font-size);
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 
@@ -109,8 +87,6 @@ body {
     grid-row-end: 26;
     font-family: var(--font-family);
     font-size: var(--default-font-size);
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 .current-painting-preview-label {
@@ -120,8 +96,6 @@ body {
     grid-row-end: 19;
     font-family: var(--font-family);
     font-size: var(--default-font-size);
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 .current-painting-preview {

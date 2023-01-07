@@ -1,14 +1,9 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import UserDataService from "../services/users.data.service";
-//import { useTable } from "react-table";
 import AuthService from "../services/auth.service";
 import {Link, useHistory, useParams} from "react-router-dom";
 import "../components.styling/userList-styling-grid.css";
 import UserService from "../services/users.data.service";
-//import {useResizeColumns} from "react-table/src/plugin-hooks/useResizeColumns";
-//import axios from "axios";
-//import EventBus from "../common/EventBus";
-//import UserAccessService from "../services/user.access.service";
 
 const currentUser = AuthService.getCurrentUser();
 
@@ -35,7 +30,6 @@ const UsersList = (props) => {
     const retrieveUsers = () => {
         UserDataService.getAll()
             .then((response) => {
-                console.log('34 response.data',response.data);
                 setUsers(response.data);
             })
             .catch((e) => {
@@ -70,15 +64,12 @@ const UsersList = (props) => {
 
     const editUser = (userId) => {
         let path= "/edit/user/" + userId.toString()
-        console.log("72 userId",userId);
-        console.log("73 path",path);
         history.push(path);
     };
 
     const deleteUser = (username) => {
         UserService.remove(username)
             .then(response => {
-                console.log(response.data);
                 history.push("/admin");
             })
             .catch(e => {
@@ -100,9 +91,6 @@ const UsersList = (props) => {
 
 
     return (<div >
-
-        {/*        (users===undefined) &&
-       ( <p>JSON.stringify({users}): {JSON.stringify({users})}</p>)*/}
         <table className="display-users-list">
             <thead>
             <tr>
@@ -125,7 +113,6 @@ const UsersList = (props) => {
                     <td>{user.email}</td>
                     <td>{user.dateTimeRegisteredGMT}</td>
                     <td>{user.lastUpdate}</td>
-                    {/*<td>{JSON.stringify(user.authorities)}</td>*/}
                     <td>
                         <ul className="authorities-list">
                         {user.authorities.map((authorityObj)=> {return (<>
@@ -143,7 +130,7 @@ const UsersList = (props) => {
                               >
                                 <i className="far fa-edit action mr-2">edit/</i>
                               </span>
-                            <span onClick={() => deleteUser(user.userId)}
+                            <span onClick={() => deleteUser(user.username)}
                                   className="actions"
                             >
                                 <i className="fas fa-trash action">delete</i>
@@ -151,8 +138,6 @@ const UsersList = (props) => {
                         </div>
 
                     </td>
-                    {/*<td>{JSON.stringify({user})}</td>*/}
-
                 </tr>
             ))}
 

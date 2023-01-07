@@ -28,10 +28,6 @@ const BoardUser = () => {
   if (currentUser.roles.includes("ROLE_MODERATOR")) {
     setIsModerator(true)
   }
-  console.log("33 currentUser.roles.includes(ROLE_ADMIN)", currentUser.roles.includes("ROLE_ADMIN"));
-  console.log("34 isModerator", isModerator);
-  console.log("35 isAdministrator", isAdministrator);
-
 
   const getFilesNames = (questionObject) => {
     if (questionObject.attachedFiles.size > 0) {
@@ -42,69 +38,30 @@ const BoardUser = () => {
   };
 
   const handleResponse = (QuestionObjectsArray) => {
-    console.log('26 JSON.stringify(QuestionObjectsArray)', JSON.stringify(QuestionObjectsArray));
     QuestionObjectsArray.map(questionObject => {
       const mappedArray = {};
       mappedArray.id = questionObject.questionId;
       mappedArray.title = questionObject.title;
-      console.log('32 mappedArray', mappedArray);
       return mappedArray;//{id:questionObject.questionId,title:questionObject.title}
 
     });
-
-
   }
 
-
-  useEffect(() => {
-
-    async function fetchData() {
-      setError(false);
-      toggleLoading(true);
-
-      try {
-        //const result = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates?.lat}&lon=${coordinates?.lon}&exclude=minutely,current,hourly&appid=${apiKey}&lang=nl`);
-        const result = await axios.get('http://localhost:8080/api/user/questions-with-files-in-database', {
-          headers: {
-            'Authorization': `token ${currentUser.accessToken}`
-          }
-        });
-        setQuestions(result.data);
-        toggleLoading(false);
-        console.log('74 result.data', result.data);
-
-      } catch (error) {
-        setError(true);
-        toggleLoading(false);
-      }
-
-      if (error.response && error.response.status === 401) {
-        EventBus.dispatch("logout");
-      }
-    }
-
-    //console.error('86 token', currentUser.accessToken);
-    if (currentUser.accessToken) {
-      fetchData();
-      console.log('73 questions', questions);
-
-
-    }
-
-  }, []);
+  /*const clickHandler = ()  => alert("Hello! ");*/
+  const clickHandler = ()  => {history.push('/initiateProject')  };
 
 
   return (
+
         <div className="board-user-container-grid">
 
           <Button
-              className={`btn-basic new-project-button`}
+              className={`btn-basic board-user-new-project-button`}
               disabled={false}
-              clickHandler={() => history.push('/initiateProject')}
-              //clickHandler={() => alert("Hello! ")}
+              /*clickHandler={clickHandler}*/
+              clickHandler={()  => {history.push('/initiateProject')  }}
               label={`New Project`}
           />
-
 
           <div className="container-pages">
             <ProjectsListAsTiles/>

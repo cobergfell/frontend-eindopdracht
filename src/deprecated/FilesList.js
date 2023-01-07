@@ -5,7 +5,7 @@ import axios from "axios";
 import EventBus from "../common/EventBus";
 import AuthService from "../services/auth.service";
 import {Link, useHistory, useLocation, useParams} from "react-router-dom";
-import QuestionDataService from "../services/question.service";
+import QuestionDataService from "./question.service";
 import ListGroup from "react-bootstrap/ListGroup";
 const currentUser = AuthService.getCurrentUser();
 

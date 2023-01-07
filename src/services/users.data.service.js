@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "http://localhost:8080/api/";
+const API_URL = "http://localhost:8080/";
 
 
 const getAll = () => {
@@ -17,7 +17,7 @@ const update = (username, formData) => {
         headers: {'Content-Type': 'multipart/form-data'},
         //Authorization:auth
     }
-    return axios.post(API_URL +`users/update/${username}`, formData,config);
+    return axios.put(API_URL +`users/${username}`, formData,config);
 };
 
 /*const remove = (userId) => {
@@ -25,11 +25,11 @@ const update = (username, formData) => {
 };*/
 
 const remove = (username) => {
-    return axios.delete(API_URL +`users/delete/${username}`, { headers: authHeader()});
+    return axios.delete(API_URL +`users/${username}`, { headers: authHeader()});
 };
 
 const removeAll = () => {
-    return axios.delete(API_URL+`users/delete`, { headers: authHeader() });
+    return axios.delete(API_URL+"users", { headers: authHeader() });
 
 };
 

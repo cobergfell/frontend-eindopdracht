@@ -162,7 +162,15 @@ body {
     border-width: thin;
     border-color: var(--milky-white);
     color: var(--drk-grey);
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
+}
+
+.error-message {
+    grid-column-start: 45;
+    grid-column-end: 80;
+    grid-row-start: 60;
+    grid-row-end: 65;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+    color: red;
 }
 
