@@ -1,13 +1,7 @@
 /*https://gridbyexample.com/examples/example5/*/
 
 
-body {
-    margin: 0px;
-}
-
-
 .home-container-grid {
-    /*margin-top: var(--navbar-height);*/
     margin: 0;
     font-family: var(--font-family);/*Helvetica Neue, Arial, sans-serif;*/
     display: grid;
@@ -17,29 +11,27 @@ body {
     width: var(--project-width);
     width: 100%;
     height: calc(var(--project-height) - var(--navbar-height) - var(--footer-height));
-
-    /*width: 100%;*/
     /*min-width: 100vw;*/
     /*height: 100%;*/
     /*min-height: 100vh;*/
-
     grid-template-columns: repeat(100, 1fr);
     grid-template-rows: repeat(100, 1fr);
     border-style: solid;
     border-color: var(--light-grey);
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 .our-vision {
     grid-column-start: 10;
     grid-column-end: 30;
     grid-row-start: 10;
-    grid-row-end: 20;
+    grid-row-end: 45;
     font-family: var(--font-family);
     font-size: 12px;
-    color: var(--drk-grey);
-    background-color:var(--milky-white);
+    color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
+    background-color: rgba(255,255,255, 0.85);
+    /*opacity: 0.8;*/
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 
@@ -47,64 +39,53 @@ body {
     grid-column-start: 10;
     grid-column-end: 30;
     grid-row-start: 50;
-    grid-row-end: 70;
+    grid-row-end: 90;
     font-family: var(--font-family);
     font-size: 12px;
-    color: var(--drk-grey);
-    background-color:var(--milky-white);
+    color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
+    background-color: rgba(255,255,255, 0.8);
+    /*opacity: 0.7;*/
+    padding-left: 5px;
+    padding-right: 5px;
 }
-
 
 
 .welcome {
     grid-column-start: 40;
-    grid-column-end: 71;
-    grid-row-start: 5;
-    grid-row-end: 15;
+    grid-column-end: 70;
+    grid-row-start: 45;
+    grid-row-end: 49;
     font-family: var(--font-family);
     font-size: 20px;
-    color: var(--drk-grey);
-    background-color:var(--milky-white);
+    color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
+    background-color: rgba(255,255,255, 0.7);
+    /*opacity: 0.7;*/
+    padding-left: 5px;
+    padding-right: 0px;
 }
 
 .painting {
-    grid-column-start: 32;
-    grid-column-end: 68;
-    grid-row-start: 10;
-    grid-row-end: 80;
+    grid-column-start: 1;
+    grid-column-end: 100;
+    grid-row-start: 1;
+    grid-row-end: 100;
     font-family: var(--font-family);
     font-size: 10px;
-    background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
-    /*background-repeat: no-repeat !*repeat|repeat-x|repeat-y|no-repeat|initial|inherit*!;*/
+    /*background-position: center; !* Center the image *!*/
+    /*background-size: cover;*/ /* Resize the background image to cover the entire container */
 }
 
 .what-is-it-all-about {
-    grid-column-start: 70;
-    grid-column-end: 90;
+    grid-column-start: 72;
+    grid-column-end: 92;
     grid-row-start: 10;
-    grid-row-end: 20;
+    grid-row-end: 90;
     font-family: var(--font-family);
     font-size: 12px;
-    color: var(--drk-grey);
-    background-color:var(--milky-white);
+    color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
+    background-color: rgba(255,255,255, 0.8);
+    /*opacity: 0.7;*//*we use transparency in 4th rgba parameter instead of opacity*/
+    padding-left: 5px;
+    padding-right: 0px;
 }
-
-
-/*.gallery {
-    margin: 0px;
-    !*border: 1px solid #ccc;*!
-    float: left;
-    width: 180px;
-    height:350px;
-
-    background-repeat: no-repeat !*repeat|repeat-x|repeat-y|no-repeat|initial|inherit*!;
-}
-
-
-div.gallery:hover {
-    border: 1px solid #777;
-}*/
-
-

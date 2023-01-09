@@ -105,8 +105,6 @@ body {
     grid-row-end: 49;
     font-family: var(--font-family);
     font-size: var(--default-font-size);
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 .new-painting-preview-label {
@@ -126,8 +124,6 @@ body {
     grid-row-end: 72;
     font-family: var(--font-family);
     font-size: var(--default-font-size);
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 
@@ -138,8 +134,6 @@ body {
     grid-row-end: 47;
     font-family: var(--font-family);
     font-size: var(--default-font-size);
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 
@@ -197,8 +191,6 @@ body {
     border-width: thin;
     border-color: var(--milky-white);
     color: var(--drk-grey);
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 
@@ -279,8 +271,6 @@ body {
     grid-column-end: 100;
     grid-row-start: 4;
     grid-row-end: 21;
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 
@@ -297,10 +287,6 @@ body {
     height: 50px;
     border-style: solid;
     border-width: thin;
-    /*border-style: solid;*/
-    /*border-color: blueviolet;*/
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 .files-list-element {
@@ -324,10 +310,6 @@ body {
     grid-column-end: 20;
     grid-row-start: 1;
     grid-row-end: 2;
-    /*font-family: var(--font-family);*/
-    /*font-size: 10px;*/
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 .current-files-box-header-column-1 {
@@ -335,10 +317,6 @@ body {
     grid-column-end: 90;
     grid-row-start: 3;
     grid-row-end: 4;
-    /*font-family: var(--font-family);*/
-    /*font-size: 10px;*/
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 .current-files-box-header-column-2 {
@@ -346,10 +324,6 @@ body {
     grid-column-end: 97;
     grid-row-start: 3;
     grid-row-end: 4;
-    /*font-family: var(--font-family);*/
-    /*font-size: 10px;*/
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 
@@ -358,10 +332,6 @@ body {
     grid-column-end: 97;
     grid-row-start: 3;
     grid-row-end: 4;
-    /*font-family: var(--font-family);*/
-    /*font-size: 10px;*/
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 
@@ -376,10 +346,6 @@ body {
     color: gray;
     text-decoration:none;
     cursor: pointer;
-    /*font-family: var(--font-family);*/
-    /*font-size: 10px;*/
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 
@@ -390,7 +356,14 @@ body {
     grid-row-end: 80;
     font-family: var(--font-family);
     font-size: var(--default-font-size);
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
+.edit-project-error-message {
+    grid-column-start: 31;
+    grid-column-end: 80;
+    grid-row-start: 88;
+    grid-row-end: 90;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+    color: red;
+}

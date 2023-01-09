@@ -55,8 +55,8 @@
 }
 
 .app-body {
-    width: var(--project-width);
-    height: calc(var(--project-height) - (var(--navbar-height) + var(--footer-height)));
+    /*width: var(--project-width);*/
+    /*height: calc(var(--project-height) - (var(--navbar-height) + var(--footer-height)));*/
     margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;

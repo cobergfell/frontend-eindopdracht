@@ -1,17 +1,6 @@
 /*https://gridbyexample.com/examples/example5/*/
 
 
-/*.footer-wrapper {
-    font-family: var(--font-family);!*Helvetica Neue, Arial, sans-serif;*!
-    font-size: 16px;
-    display: flex;
-    background-color: var(--drk-grey);
-    color: var(--milky-white);
-    font-weight: 400;
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-}*/
 
 .footer-wrapper {
     margin: 0px;
@@ -28,17 +17,12 @@
     grid-template-rows: repeat(10, 1fr);
     border-style: solid;
     border-color: var(--light-grey);
-    /*width: var(--project-width);*/
-    /*margin-top:var(--project-margin-top);*/
-    /*margin-left:var(--project-margin-left);*/
-    /*margin-bottom:var(--project-margin-bottom);*/
-    /*margin-right:var(--project-margin-right);*/
 
 }
 
 
 .footer-title {
-    grid-column-start: 42;
+    grid-column-start: 25;
     grid-column-end: 95;
     grid-row-start: 2;
     grid-row-end: 3;

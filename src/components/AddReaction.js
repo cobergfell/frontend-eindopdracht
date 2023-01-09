@@ -154,8 +154,6 @@ const AddReaction = () => {
                     //setMessage(JSON.stringify(error));
                     setMessage(error.message);
                 }
-
-
             )
     };
 

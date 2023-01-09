@@ -25,7 +25,7 @@ const EditProject = () => {
     };
 
     const [painting, setPainting] = useState(initialPaintingState);
-
+    const [message, setMessage] = useState("");
     const [myTest, setMyTest] = useState([]);
     const [preview, setPreview] = useState()
     const [selectedPaintingImage, setSelectedPaintingImage] = useState(null);
@@ -396,17 +396,27 @@ const EditProject = () => {
                 headers: {'Content-Type': 'multipart/form-data',
                     'enctype':"multipart/form-data"
                 },
-
-                //Authorization:auth
             }
+
+            // PaintingService.update(paintingId,formData,partial_url,config)
+            //     .then((response) => {
+            //         setPainting(response.data);
+            //         setSubmitted(true);
+            //     }).catch(e => {
+            //     console.log(e);
+            // });
 
             PaintingService.update(paintingId,formData,partial_url,config)
                 .then((response) => {
                     setPainting(response.data);
                     setSubmitted(true);
-                }).catch(e => {
-                console.log(e);
+                } ,(error) => {
+                //setMessage(JSON.stringify(error));
+                //setMessage(error.message);
+                setMessage(error.response.data);
+
             });
+
 
 
             if(selectedFiles.length>0){
@@ -798,6 +808,13 @@ const EditProject = () => {
                     />
                 </>
             )}
+
+            {message && (
+                <div className={"edit-project-error-message"}>
+                    {message}
+                </div>
+            )}
+
         </div>
 
     );
