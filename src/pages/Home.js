@@ -4,8 +4,6 @@ import "../pages.styling/home-styling-grid.css";
 
 
 const Home = () => {
-    // const [messageValue, setMessageValue] = React.useState('');
-    // const [checkedTerms, toggleCheckedTerms] = React.useState(false);
 
   return (
     <main className="home-container-grid"
@@ -15,16 +13,6 @@ const Home = () => {
          }}
 
     >
-
-        {/*<div id="painting" className="painting" style={{*/}
-        {/*    backgroundImage: `url(${background})`,*/}
-        {/*    backgroundSize: 'cover'*/}
-        {/*}}>*/}
-        {/*</div>*/}
-
-
-
-
         <article id="our-vision" className="our-vision">
             <div className="our-vision-title"><strong>Our vision</strong></div>
             This website is about combining visual art and 'classic' music, following
@@ -61,7 +49,7 @@ const Home = () => {
             But it is also interesting to discuss some famous cases, such as Serguei Rachmaninov inspired by Arnold Böcklin . Or Beethoven’s Pastoral
             which inspired Viennese Jugendstil artist and Gustav Klimt's friend Josef Maria Auchentaller (1865-1949).
             <b/>Is there a relation to be found between Vassily Kandinsky and Alexander Scriabin ?
-            <b/>But this site is also simply the place to be if you thing that your art work will trigger the creativity of contemporary music composers, so please, do not hesitate and take part at the blogs!
+            <b/>But this site is also simply the place to be if you think that your art work will trigger the creativity of contemporary music composers, so please, do not hesitate and take part at the blogs!
         </article>
 
     </main>

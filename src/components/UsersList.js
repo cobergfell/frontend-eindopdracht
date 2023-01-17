@@ -1,19 +1,16 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import UserDataService from "../services/users.data.service";
 import AuthService from "../services/auth.service";
-import {Link, useHistory, useParams} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import "../components.styling/userList-styling-grid.css";
 import UserService from "../services/users.data.service";
 
-const currentUser = AuthService.getCurrentUser();
 
 
-const UsersList = (props) => {
+const UsersList = () => {
     const [users, setUsers] = useState([]);
     const [searchUser, setSearchUser] = useState("");
     const usersRef = useRef();
-    const [error, setError] = useState(false);
-    const [loading, toggleLoading] = useState(false);
     const history = useHistory();
 
     usersRef.current = users;
@@ -22,10 +19,6 @@ const UsersList = (props) => {
         retrieveUsers();
     }, []);
 
-    const onChangeSearchUser = (e) => {
-        const searchTitle = e.target.value;
-        setSearchUser(searchUser);
-    };
 
     const retrieveUsers = () => {
         UserDataService.getAll()
@@ -41,26 +34,6 @@ const UsersList = (props) => {
         retrieveUsers();
     };
 
-    const removeAllUsers = () => {
-        UserDataService.removeAll()
-            .then((response) => {
-                console.log(response.data);
-                refreshList();
-            })
-            .catch((e) => {
-                console.log(e);
-            });
-    };
-
-    const findByUsername = () => {
-        UserDataService.findByUsername(searchUser)
-            .then((response) => {
-                setUsers(response.data);
-            })
-            .catch((e) => {
-                console.log(e);
-            });
-    };
 
     const editUser = (userId) => {
         let path= "/edit/user/" + userId.toString()
@@ -101,7 +74,6 @@ const UsersList = (props) => {
                 <th>Authorities</th>
                 <th>Enabled</th>
                 <th>Action</th>
-                {/*<th>JSON.stringify(user)</th>*/}
             </tr>
             </thead>
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import AuthService from "../services/auth.service";
-import EventBus from "../common/EventBus";
 import "../pages.styling/board-admin-styling-grid.css";
 import UsersList from "../components/UsersList";
 import UsersService from "../services/users.data.service";
@@ -8,7 +7,6 @@ import {useHistory} from "react-router-dom";
 import Button from "../components/Button";
 
 const BoardAdmin = () => {
-  const [content, setContent] = useState("");
   const currentUser = AuthService.getCurrentUser();
   const history = useHistory();
 

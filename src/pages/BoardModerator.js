@@ -1,16 +1,11 @@
-import React, { useState, useEffect } from "react";
-import {Link, useHistory} from "react-router-dom";
+import React from "react";
+import {useHistory} from "react-router-dom";
 import "../pages.styling/board-moderator-styling-grid.css";
-import EventBus from "../common/EventBus";
-import AuthService from "../services/auth.service";
-import ProjectsListAsTiles from "../components/ProjectsListAsTiles";
 import ProjectsList from "../components/ProjectsList";
 import PaintingService from "../services/painting.service";
 import Button from "../components/Button";
 
 const BoardModerator = () => {
-  const [content, setContent] = useState("");
-  const currentUser = AuthService.getCurrentUser();
   const history = useHistory();
 
     const removeAllPaintings = () => {

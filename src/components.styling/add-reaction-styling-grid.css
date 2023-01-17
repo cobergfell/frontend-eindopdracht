@@ -165,8 +165,8 @@ body {
 }
 
 .error-message {
-    grid-column-start: 45;
-    grid-column-end: 80;
+    grid-column-start: 28;
+    grid-column-end: 85;
     grid-row-start: 60;
     grid-row-end: 65;
     font-family: var(--font-family);

@@ -1,16 +1,12 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import PaintingService from "../services/painting.service";
 import "../components.styling/projectsList-styling-grid.css";
-import AuthService from "../services/auth.service";
-import {Link, useHistory, useLocation} from "react-router-dom";
-const currentUser = AuthService.getCurrentUser();
+import {useHistory} from "react-router-dom";
 
-const ProjectsList = (props) => {
+const ProjectsList = () => {
     const [paintings, setPaintings] = useState([]);
-    const [searchTitle, setSearchTitle] = useState("");
     const paintingsRef = useRef();
     const history = useHistory();
-    const location = useLocation();
 
     paintingsRef.current = paintings;
 
@@ -27,27 +23,6 @@ const ProjectsList = (props) => {
             .catch((e) => {
                 console.log(e);
             });
-    };
-
-    const refreshList = () => {
-        retrievePaintings();
-    };
-
-    const findByTitle = () => {
-        PaintingService.findByTitle(searchTitle)
-            .then((response) => {
-                setPaintings(response.data);
-            })
-            .catch((e) => {
-                console.log(e);
-            });
-    };
-
-    const openPainting = (paintingId) => {
-        console.log("007 paintingId",paintingId);
-        let path= `/paintings/${paintingId}`/*+ paintingId.toString()*/
-        console.log("008 path",path);
-        history.push(path);
     };
 
     const deletePainting = (paintingId) => {
@@ -70,12 +45,10 @@ const ProjectsList = (props) => {
                 <thead>
                 <tr>
                     <th>PaintingId</th>
-                    {/*<th style={{width: '250px'}}>Email</th>*/}
                     <th>UserId</th>
                     <th>Posted on (GMT)</th>
                     <th>Last updated on (GMT)</th>
                     <th>Action</th>
-                    {/*<th>JSON.stringify(user)</th>*/}
                 </tr>
                 </thead>
 

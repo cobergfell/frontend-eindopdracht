@@ -9,11 +9,10 @@ import AuthService from "../services/auth.service";
 const currentUser = AuthService.getCurrentUser();
 
 
-function Conversation({paintingId}) {
+function Conversation() {
     const [questions, setQuestions] = useState(null);
     const [conversation, setConversation] = useState([]);
     const [answers, setAnswers] = useState(null);
-    const [answer, setAnswer] = useState(null);
     const [error, setError] = useState(false);
     const [loading, toggleLoading] = useState(false);
     const { id } = useParams();

@@ -7,22 +7,11 @@ import {useHistory, useLocation, useParams} from "react-router-dom";
 import ReactionService from "../services/reaction.service";
 import "../components.styling/add-reaction-styling-grid.css";
 import Button from "../components/Button";
-import Form from "react-validation/build/form";
 
 const currentUser = AuthService.getCurrentUser();
 
 const AddReaction = () => {
 
-    const initialPaintingState = {
-        username: "",
-        title: "",
-        artist: "",
-        dateTimePosted:0,
-        description: "",
-        files:[],
-        //published: false
-
-    };
 
 
     const initialReactionState = {
@@ -36,7 +25,6 @@ const AddReaction = () => {
     };
     const [reaction, setReaction] = useState(initialReactionState);
     const [message, setMessage] = useState("");
-    const [isQuestion, setIsQuestion] = useState(false);
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [selectedPaintingImage, setSelectedPaintingImage] = useState(null);
     const [selectedMusicFiles, setSelectedMusicFiles] = useState([]);
@@ -49,14 +37,6 @@ const AddReaction = () => {
     const { id } = useParams();
     const location = useLocation();
     const reactionType = location.state.reactionType;
-    console.log("52 message",message)
-    console.log("52 submitted",submitted)
-    useEffect(() => {
-        if(reactionType=='questions'){setIsQuestion(true)}
-        else
-            {setIsQuestion(false)}
-
-    }, [])
 
     useEffect(() => {
         if (!selectedPaintingImage) {
@@ -151,8 +131,10 @@ const AddReaction = () => {
                 setSubmitted(true);
             },
                 (error) => {
-                    //setMessage(JSON.stringify(error));
-                    setMessage(error.message);
+                    //setMessage(error.message);
+                    setMessage(error.response.data);
+
+
                 }
             )
     };
@@ -180,8 +162,9 @@ const AddReaction = () => {
                     />
 
                     <div className="successfully-submitted-message">
-                       Reaction successfully submitted!
+                        {reactionType=="questions" ? ("Question successfully submitted!"):("Answer successfully submitted!")}
                     </div>
+
                 </>
             ) : (
                 <>
@@ -238,7 +221,6 @@ const AddReaction = () => {
                            style={{display:'none'}}
                            name="image"
                            onChange={paintingImageSelectionHandler}
-                        //onClick={alert('hello')}
                     />
 
                     <Button

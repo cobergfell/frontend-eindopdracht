@@ -7,13 +7,12 @@ import Button from "../components/Button";
 
 const currentUser = AuthService.getCurrentUser();//current user is not the same as user to update!
 
-const EditUser = props => {
+
+const EditUser =()=> {
+
     const [userToUpdate, setUserToUpdate] = useState({});
     const [userIsModerator, setUserIsModerator] = useState(false);
     const [userIsAdministrator, setUserIsAdministrator] = useState(false);
-    //const [adminCheckbox, setAdminCheckbox] = useState(true );
-    //const [modCheckbox, setModCheckbox] = useState(true );
-    const [message, setMessage] = useState("");
     const { userId } = useParams();
     const history = useHistory();
     const [submitted, setSubmitted] = useState(false);

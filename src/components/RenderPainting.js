@@ -63,13 +63,13 @@ function RenderPainting({ dataObject}) {
         <div className="painting-tile-grid">
             <div className="painting-tile-grid-image-container">
                 <Link
-                      to={{
-                          pathname: `/paintings/${dataObject.paintingId}`,
-                          state: { paintingId:dataObject.paintingId,
-                              description: dataObject.description,
-                              hasEditingPrivilege:hasEditingPrivilege
-                          }
-                      }}
+                    to={{
+                        pathname: `/paintings/${dataObject.paintingId}`,
+                        state: { paintingId:dataObject.paintingId,
+                            description: dataObject.description,
+                            hasEditingPrivilege:hasEditingPrivilege
+                        }
+                    }}
                 >
                     <img
                         className="image"
@@ -89,13 +89,13 @@ function RenderPainting({ dataObject}) {
                     <li className="list-summarize-painting-data-item"><strong>Artist: </strong>{dataObject.artist}</li>
                     <li className="list-summarize-painting-data-item">
                         <Link className="link-to-description"
-                            to={{
-                                pathname: `/paintings/${dataObject.paintingId}`,
-                                state: { paintingId:dataObject.paintingId,
-                                    description: dataObject.description,
-                                    hasEditingPrivilege:hasEditingPrivilege
-                                }
-                            }}
+                              to={{
+                                  pathname: `/paintings/${dataObject.paintingId}`,
+                                  state: { paintingId:dataObject.paintingId,
+                                      description: dataObject.description,
+                                      hasEditingPrivilege:hasEditingPrivilege
+                                  }
+                              }}
                         >
                             Go to project
                         </Link>
@@ -121,11 +121,11 @@ function RenderPainting({ dataObject}) {
 
 
                     {isModerator==true &&  (
-                    <li className="delete-painting-link">
+                        <li className="delete-painting-link">
                         <span onClick={() => deletePainting(dataObject.paintingId)} className="delete-painting-link">
                             Delete
                         </span>
-                    </li>
+                        </li>
                     )}
 
                 </ul>

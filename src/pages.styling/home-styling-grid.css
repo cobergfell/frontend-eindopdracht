@@ -24,14 +24,16 @@
     grid-column-start: 10;
     grid-column-end: 30;
     grid-row-start: 10;
-    grid-row-end: 45;
+    grid-row-end: 35;
     font-family: var(--font-family);
     font-size: 12px;
     color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
     background-color: rgba(255,255,255, 0.85);
     /*opacity: 0.8;*/
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 7px;
+    padding-right: 7px;
 }
 
 
@@ -39,29 +41,25 @@
     grid-column-start: 10;
     grid-column-end: 30;
     grid-row-start: 50;
-    grid-row-end: 90;
+    grid-row-end: 80;
     font-family: var(--font-family);
     font-size: 12px;
     color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
     background-color: rgba(255,255,255, 0.8);
-    /*opacity: 0.7;*/
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: 7px;
 }
 
 
 .welcome {
     grid-column-start: 40;
-    grid-column-end: 70;
+    grid-column-end: 60;
     grid-row-start: 45;
-    grid-row-end: 49;
+    grid-row-end: 51;
     font-family: var(--font-family);
     font-size: 20px;
     color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
-    background-color: rgba(255,255,255, 0.7);
-    /*opacity: 0.7;*/
-    padding-left: 5px;
-    padding-right: 0px;
+    background-color: rgba(255,255,255, 0.9);
+    padding: 7px;
 }
 
 .painting {
@@ -80,12 +78,11 @@
     grid-column-start: 72;
     grid-column-end: 92;
     grid-row-start: 10;
-    grid-row-end: 90;
+    grid-row-end: 65;
     font-family: var(--font-family);
     font-size: 12px;
     color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
     background-color: rgba(255,255,255, 0.8);
     /*opacity: 0.7;*//*we use transparency in 4th rgba parameter instead of opacity*/
-    padding-left: 5px;
-    padding-right: 0px;
+    padding: 7px;
 }

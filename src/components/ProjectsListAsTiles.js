@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useRef} from "react";
-import {useHistory} from "react-router-dom";
 import PaintingDataService from "../services/painting.service";
-import AuthService from "../services/auth.service";
 import Pagination from "./Pagination";
 import RenderPainting from "./RenderPainting";
 import "../components.styling/renderPainting-styling.css";
 
 
-const ProjectsListAsTiles = (props) => {
+const ProjectsListAsTiles = () => {
     const [paintings, setPaintings] = useState([]);
     const paintingsRef = useRef();
 

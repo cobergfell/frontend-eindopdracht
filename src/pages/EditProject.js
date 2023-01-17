@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {useHistory, useLocation, useParams} from "react-router-dom";
 import AuthService from "../services/auth.service";
-import "../components.styling/edit-project-styling-grid.css";
+import "../pages.styling/edit-project-styling-grid.css";
 import Button from "../components/Button";
 import FileService from "../services/file.service";
 import AudioFileService from "../services/audioFile.service";
 import PaintingService from "../services/painting.service";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -26,7 +25,6 @@ const EditProject = () => {
 
     const [painting, setPainting] = useState(initialPaintingState);
     const [message, setMessage] = useState("");
-    const [myTest, setMyTest] = useState([]);
     const [preview, setPreview] = useState()
     const [selectedPaintingImage, setSelectedPaintingImage] = useState(null);
     const [selectedFiles, setSelectedFiles] = useState([]);
@@ -45,7 +43,7 @@ const EditProject = () => {
     const history = useHistory();
     const location = useLocation();
     const paintingId = location.state.paintingId;
-    const description = location.state.description;
+    //const description = location.state.description;
     const hiddenFileInput1 = React.useRef(null);
     const hiddenFileInput2 = React.useRef(null);
     const hiddenFileInput3 = React.useRef(null);
@@ -71,26 +69,9 @@ const EditProject = () => {
     }
 
 
-    const deselectAudioFiles = (e) => {
-        let updatedSelection=[];
-        const checked = e.target.checked;
-        selectedAudioFiles.forEach(file => {if (!checked){updatedSelection.push(file)}}
-        );
-        setSelectedAudioFiles(updatedSelection)
-    };
-
-    const deselectFiles = (e) => {
-        let updatedSelection=[];
-        const checked = e.target.checked;
-        selectedFiles.forEach(file => {if (!checked){updatedSelection.push(file)}}
-        );
-        setSelectedFiles(updatedSelection)
-    };
-
 
     const deselectAudioFiles_v2 = (e,selectedFileObject) => {
         let updatedSelection=[];
-        //const name = e.target;
         const name = selectedFileObject.name;
         selectedAudioFiles.forEach(file => {if (file.name!=name){updatedSelection.push(selectedFileObject)}}
         );
@@ -127,117 +108,6 @@ const EditProject = () => {
             setAudioFilesToDeleteIds(audioFilesToDeleteIds => audioFilesToDeleteIds.filter(id=> id!=selectedFileObject["fileId"]))
         }
     };
-
-    // the naive way to copy an object according to https://www.digitalocean.com/community/tutorials/copying-objects-in-javascript
-    function copy(mainObj) {
-        let objCopy = {}; // objCopy will store a copy of the mainObj
-        let key;
-
-        for (key in mainObj) {
-            objCopy[key] = mainObj[key]; // copies each property to the objCopy object
-        }
-        return objCopy;
-    }
-
-    // or in arrow version
-    const copyArrowVersion = (mainObj)  => {
-        let objCopy = {}; // objCopy will store a copy of the mainObj
-        let key;
-
-        for (key in mainObj) {
-            objCopy[key] = mainObj[key]; // copies each property to the objCopy object
-        }
-        return objCopy;
-    }
-
-    //a shallow copy version would be
-    //let objCopy = Object.assign({}, obj);
-
-    //begin of example from https://stackoverflow.com/questions/25046301/convert-url-to-file-or-blob-for-filereader-readasdataurl
-    async function getFileFromUrlTest(url, name, defaultType = 'image/jpeg'){
-        const response = await fetch(url);
-        const data = await response.blob();
-        setMyTest(myTest => [...myTest, new File([data],name,{type: data.type || defaultType})
-        ])
-
-        return new File([data], name, {
-             type: data.type || defaultType,
-         });
-    }
-
-    //function below was not working as expected, just given here as reference material
-    async function getFileFromUrl(url, defaultName, defaultType = 'image/jpeg'){
-        const response = await fetch(url);
-        const data = await response.blob();
-        setSelectedAudioFiles(selectedAudioFiles => [...selectedAudioFiles, new File([data],data.name|| defaultName,{type: data.type || defaultType})
-         ])
-
-        return new File([data], {
-            type: data.type || defaultType,
-            name:data.name || defaultName,
-        });
-    }
-
-
-    //function below was not working as expected, just given here as reference material
-    async function getFileFromUrlV2(){
-        if (currentAudioFilesUrls!=[]){
-            for (const selectedAudioFileUrl of currentAudioFilesUrls){
-                const link = document.createElement('a');
-                link.href = selectedAudioFileUrl;
-                //link.click();
-                link.remove();
-                setSelectedAudioFiles(selectedAudioFiles => [...selectedAudioFiles, link.click()
-                ])
-            }}
-    }
-
-
-    //function below was not working as expected, just given here as reference material
-    async function getFileFromUrlV3(){
-        if (currentAudioFilesUrls!=[]){
-            for (const selectedAudioFileUrl of currentAudioFilesUrls){
-                const response = await fetch(selectedAudioFileUrl);
-                const data = await response.blob();
-                setSelectedAudioFiles(selectedAudioFiles => [...selectedAudioFiles, new File([data],data.name,{type: data.type })
-                ])
-            }}
-    }
-
-    //function below was not working as expected, just given here as reference material
-    async function getFileFromUrlV4(){
-        //based on response 47 of https://stackoverflow.com/questions/25046301/convert-url-to-file-or-blob-for-filereader-readasdataurl
-        if (currentAudioFilesUrls!=[]){
-            for (const selectedAudioFileUrl of currentAudioFilesUrls){
-                let response = await fetch(selectedAudioFileUrl);
-                let data = await response.blob();
-                let metadata = {
-                    name:data.name,
-                    type: data.type
-                };
-                let file = new File([data], data.name, metadata);
-                setSelectedAudioFiles(selectedAudioFiles => [...selectedAudioFiles, file])
-            }}
-    }
-
-
-    const cleanFileName = (fileName)  => {
-        let newFileName = "";
-        let forbiddenCharacters = " ,"
-
-        for (let i = 0; i < fileName.length; i++) {
-            let char = fileName[i];
-
-            for (let j = 0; j < forbiddenCharacters.length; j++) {
-                if (char == forbiddenCharacters.charAt(j)) {
-                    char = "_";
-                }
-            }
-            newFileName = +char;
-        }
-        return newFileName
-    }
-
 
     const deleteFile = (id) => {
         FileService.remove(id)
@@ -281,7 +151,6 @@ const EditProject = () => {
     };
 
 
-// option 2 (works well)
     const getPainting = (id) => {
         PaintingService.get(id)
             .then((response) => {
@@ -398,26 +267,13 @@ const EditProject = () => {
                 },
             }
 
-            // PaintingService.update(paintingId,formData,partial_url,config)
-            //     .then((response) => {
-            //         setPainting(response.data);
-            //         setSubmitted(true);
-            //     }).catch(e => {
-            //     console.log(e);
-            // });
-
             PaintingService.update(paintingId,formData,partial_url,config)
                 .then((response) => {
                     setPainting(response.data);
                     setSubmitted(true);
                 } ,(error) => {
-                //setMessage(JSON.stringify(error));
-                //setMessage(error.message);
-                setMessage(error.response.data);
-
-            });
-
-
+                    setMessage(error.response.data);
+                });
 
             if(selectedFiles.length>0){
                 for (const selectedFile of selectedFiles){
@@ -534,9 +390,6 @@ const EditProject = () => {
                         Placeholder={"Your text here"}
                         maxLength={100000}
                     />
-                    {/*<button className="upload-updated-painting-image-button" onClick={handleClick1}>*/}
-                    {/*    Upload painting image*/}
-                    {/*</button>*/}
 
                     <Button
                         className={`btn-basic upload-updated-painting-image-button`}
@@ -556,7 +409,7 @@ const EditProject = () => {
                     />
 
 
-                    {image && (      /*we could also do it without loading first the image*/
+                    {image && (
                         <>
                             <div className="current-painting-preview-label">
                                 Current painting
@@ -617,18 +470,17 @@ const EditProject = () => {
                             <div className="list-current-files-flex-container" >
                                 {currentAudioFiles.map((currentFileObject) => {
                                     return (
-                                            <div key={`${currentFileObject["file"].name}`} className="current-file-row-grid">
-                                                <div className="files-list-element" >
-                                                    {currentFileObject["file"].name}
-                                                    {/*<p>JSON.stringify(selectedFile):{JSON.stringify(selectedFile)}</p>*/}
-                                                </div>
-                                                <input
-                                                    type="checkbox"
-                                                    className="checkbox-files"
-                                                    onClick={(e) => {
-                                                        selectAudioFilesToDelete(e,currentFileObject);}}
-                                                />
+                                        <div key={`${currentFileObject["file"].name}`} className="current-file-row-grid">
+                                            <div className="files-list-element" >
+                                                {currentFileObject["file"].name}
                                             </div>
+                                            <input
+                                                type="checkbox"
+                                                className="checkbox-files"
+                                                onClick={(e) => {
+                                                    selectAudioFilesToDelete(e,currentFileObject);}}
+                                            />
+                                        </div>
                                     )
                                 })}
 
@@ -724,7 +576,6 @@ const EditProject = () => {
                                         <div key={`${selectedFile.name}`} className="current-file-row-grid">
                                             <div className="files-list-element" >
                                                 {selectedFile.name}
-                                                {/*<p>JSON.stringify(selectedFile):{JSON.stringify(selectedFile)}</p>*/}
                                             </div>
 
                                         </div>
