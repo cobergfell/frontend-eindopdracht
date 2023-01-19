@@ -13,14 +13,11 @@ import BoardModerator from "./pages/BoardModerator";
 import BoardAdmin from "./pages/BoardAdmin";
 import EditUser from "./components/EditUser";
 import Painting from './pages/Painting';
-import QuestionsList from './deprecated/QuestionsList';
 import DownloadFile from './components/DownloadFile';
-import AddAnswer from './deprecated/AddAnswer';
 import AuthVerify from "./common/AuthVerify";
 import Footer from "./components/Footer";
 import PaintingsList from "./components/ProjectsList";
 import ProjectsListAsTiles from "./components/ProjectsListAsTiles";
-import AddQuestion from "./deprecated/AddQuestion";
 import PlayMusicFile from "./components/PlayMusicFile";
 import EditProject from "./pages/EditProject";
 import InitiateProject from "./pages/InitiateProject";
@@ -118,8 +115,6 @@ const App = () => {
           <Route exact path="/edit/user/:userId" component={EditUser} />
           <Route exact path="/files/:fileId" component={DownloadFile} />
           <Route exact path="/musicFiles/:fileId" component={PlayMusicFile} />
-          <Route exact path="/add-question/:id" component={AddQuestion} />
-          <Route exact path="/add-answer/:id" component={AddAnswer} />
           <Route exact path="/add-reaction/:id" component={AddReaction} />
           <Route exact path="/paintingsListAsTilesWithPagination" component={ProjectsListAsTiles} />
           <Route exact path="/mod" component={BoardModerator} />
@@ -127,10 +122,6 @@ const App = () => {
           <Route exact path={["/user"]}
                render={() => <BoardUser isModerator={isModerator}/>
                }/>
-
-          <Route exact path={["/", "/questionsList/users"]}
-                 render={() => <QuestionsList isModerator={isModerator}/>
-                 }/>
           <Route exact path={"/paintingsList/users"}
                  render={() => <PaintingsList isModerator={isModerator}/>
                  }/>
