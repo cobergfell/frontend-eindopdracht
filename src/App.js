@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from "react";
-import {Switch, Route, Link, useHistory, NavLink} from "react-router-dom";
+import {Switch, Route, NavLink} from "react-router-dom";
 import "./App.css";
-import "./components.styling/nav-bar-styling-grid.css";
-import "./components.styling/footer-styling-grid.css";
+import "./pages/Footer/footer.css";
 import AuthService from "./services/auth.service";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Home from "./pages/Home";
-import Profile from "./pages/Profile";
-import BoardUser from "./pages/BoardUser";
-import BoardModerator from "./pages/BoardModerator";
-import BoardAdmin from "./pages/BoardAdmin";
-import EditUser from "./components/EditUser";
-import Painting from './pages/Painting';
-import DownloadFile from './components/DownloadFile';
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
+import Home from "./pages/Home/Home";
+import Profile from "./pages/Profile/Profile";
+import BoardUser from "./pages/Boarduser/BoardUser";
+import BoardModerator from "./pages/BoardModerator/BoardModerator";
+import BoardAdmin from "./pages/BoardAdmin/BoardAdmin";
+import EditUser from "./pages/EditUser/EditUser";
+import Painting from './pages/Painting/Painting';
+import DownloadFile from './components/DownloadFile/DownloadFile';
 import AuthVerify from "./common/AuthVerify";
-import Footer from "./components/Footer";
-import PaintingsList from "./components/ProjectsList";
-import ProjectsListAsTiles from "./components/ProjectsListAsTiles";
-import PlayMusicFile from "./components/PlayMusicFile";
-import EditProject from "./pages/EditProject";
-import InitiateProject from "./pages/InitiateProject";
-import AddReaction from "./components/AddReaction";
+import Footer from "./pages/Footer/Footer";
+import PaintingsList from "./pages/ProjectsList/ProjectsList";
+import ProjectsListAsTiles from "./pages/ProjectListAsTiles/ProjectsListAsTiles";
+import PlayMusicFile from "./components/PlayMusicFile/PlayMusicFile";
+import EditProject from "./pages/EditProject/EditProject";
+import InitiateProject from "./pages/InitiateProject/InitiateProject";
+import AddReaction from "./components/AddReaction/AddReaction";
 
 const App = () => {
   const [isModerator, setIsModerator] = useState(false);
@@ -36,8 +35,7 @@ const App = () => {
       setIsModerator(user.roles.includes("ROLE_MODERATOR"));
       setIsAdministrator(user.roles.includes("ROLE_ADMIN"));
     }
-    // EventBus.on("logout", () => {logOut();});
-    // return () => {EventBus.remove("logout");};
+
 
   }, []);
 

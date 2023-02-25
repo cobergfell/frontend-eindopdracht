@@ -15,6 +15,7 @@ const get = (reactionType,id) => {
 //create reaction is either question related to painting or answer related to answer
 const create = (id,formData,partial_url,config) => {
     const url=`${API_URL+partial_url}/${id}`
+    console.log('18 url',url)
     return axios.post(url, formData,config);
 };
 

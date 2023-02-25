@@ -35,20 +35,10 @@ const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
 
-
-// const addAuthority = (username, authority) => {
-//   return axios.post(API_URL + `authorities/add/${username}/${authority}`);
-// };
-//
-// const removeAuthority = (username, authority) => {
-//   return axios.post(API_URL + `authorities/delete/${username}/${authority}`);
-// };
-
 export default {
   register,
   login,
   logout,
   getCurrentUser,
-  // addAuthority,
-  // removeAuthority,
+
 };

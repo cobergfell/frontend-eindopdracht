@@ -1,0 +1,35 @@
+/*https://gridbyexample.com/examples/example5/*/
+
+.search-button {
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+    border-style: solid;
+    border-width: thin;
+    border-color: grey;
+
+}
+
+
+td, th {
+    padding: 0.5rem;
+    text-align: left;
+    color: var(--drk-grey);
+    background-color: var(--milky-white);
+}
+
+
+
+table.display-paintings-list {
+    font-size: var(--default-font-size);
+    width: 100%;
+    color: var(--drk-grey);
+    background-color: var(--milky-white);
+    font-family: var(--font-family);
+    table-layout: fixed;
+}
+
+
+
+.actions:hover{
+    cursor:pointer;
+}

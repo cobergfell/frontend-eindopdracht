@@ -20,9 +20,6 @@ const update = (username, formData) => {
     return axios.put(API_URL +`users/${username}`, formData,config);
 };
 
-/*const remove = (userId) => {
-    return axios.delete(API_URL +`users/${userId}`, { headers: authHeader()});
-};*/
 
 const remove = (username) => {
     return axios.delete(API_URL +`users/${username}`, { headers: authHeader()});

@@ -1,0 +1,160 @@
+/*https://gridbyexample.com/examples/example5/*/
+
+
+
+.register-container-grid {
+    /*margin-top: var(--navbar-height);*/
+    font-family: var(--font-family);/*Helvetica Neue, Arial, sans-serif;*/
+    display: grid;
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
+    grid-gap: 0px;
+    width: var(--project-width);
+    height: calc(var(--project-height) - var(--navbar-height));
+    grid-template-columns: repeat(100, 1fr);
+    grid-template-rows: repeat(100, 1fr);
+    /*border-style: solid;*/
+    /*border-color: red;*/
+}
+
+
+
+.register-error-message {
+    grid-column-start: 14;
+    grid-column-end: 38;
+    grid-row-start: 60;
+    grid-row-end: 65;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+    color: red;
+}
+
+
+.succes-message {
+    grid-column-start: 1;
+    grid-column-end: 50;
+    grid-row-start: 1;
+    grid-row-end: 10;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+}
+
+
+.form {
+    grid-column-start: 40;
+    grid-column-end: 90;
+    grid-row-start: 25;
+    grid-row-end: 75;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+    font-family: var(--font-family);/*Helvetica Neue, Arial, sans-serif;*/
+    display: grid;
+    color: var(--drk-grey);
+    background-color:var(--milky-white);
+    grid-gap: 0px;
+    /*width: 400px;*/
+    /*height: 400px;*/
+    grid-template-columns: repeat(100, 1fr);
+    grid-template-rows: repeat(100, 1fr);
+    /*border-style: solid;*/
+    /*border-color: blue;*/
+}
+
+
+.label-input-username {
+    grid-column-start: 1;
+    grid-column-end: 50;
+    grid-row-start: 1;
+    grid-row-end: 5;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+}
+
+.input-username {
+    grid-column-start: 1;
+    grid-column-end: 50;
+    grid-row-start: 5;
+    grid-row-end: 10;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+}
+
+
+.label-input-email {
+    grid-column-start: 1;
+    grid-column-end: 50;
+    grid-row-start: 16;
+    grid-row-end: 20;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+}
+
+
+.input-email {
+    grid-column-start: 1;
+    grid-column-end: 50;
+    grid-row-start: 21;
+    grid-row-end: 25;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+}
+
+.label-input-password {
+    grid-column-start: 1;
+    grid-column-end: 50;
+    grid-row-start: 30;
+    grid-row-end: 35;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+}
+
+
+.input-password {
+    grid-column-start: 1;
+    grid-column-end: 50;
+    grid-row-start: 35;
+    grid-row-end: 40;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+}
+
+
+.signup-btn {
+    grid-column-start: 20;
+    grid-column-end: 30;
+    grid-row-start: 45;
+    grid-row-end: 50;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+    border-style: solid;
+    border-width: thin;
+    border-color: grey;
+}
+
+.on-success-new-login-button {
+    grid-column-start: 15;
+    grid-column-end: 25;
+    grid-row-start: 25;
+    grid-row-end: 30;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+    border-style: solid;
+    border-width: thin;
+    border-color: grey;
+}
+
+
+.filling-form-error-message {
+    grid-column-start: 15;
+    grid-column-end: 25;
+    grid-row-start: 25;
+    grid-row-end: 30;
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+    border-style: solid;
+    border-width: thin;
+    border-color: grey;
+}
+
