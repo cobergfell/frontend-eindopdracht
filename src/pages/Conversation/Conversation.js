@@ -100,16 +100,16 @@ function Conversation() {
         assembleConversation(questions,answers);
     },[answers,questions]);
     return (
-        <div className="conversation-container-flex">
+        <main className="conversation-container-flex">
             {conversation && conversation.map((questionAnswerObject)=> {return (
                 <>
-                    <div className="question-section-title-wrapping">
-                        <div className="question-section-title">
+                    <p className="question-section-title-wrapping">
+                        <h1 className="question-section-title">
                             question
-                        </div>
-                    </div>
+                        </h1>
+                    </p>
 
-                    <div className="one-question-with-corresponding-answers-container"
+                    <section className="one-question-with-corresponding-answers-container"
                          key={questionAnswerObject["questionAnswerId"]}
                     >
                         <ul className="question-meta-data">
@@ -118,15 +118,15 @@ function Conversation() {
                             <li className="list--item"><strong>Date sent&nbsp;:&nbsp;</strong>{questionAnswerObject["question"][0]["dateTimePosted"]}</li>
                             <li className="list-item"><strong>Title&nbsp;:&nbsp;</strong>{questionAnswerObject["question"][0]["title"]}</li>
                         </ul>
-                        <div className="question-box">
+                        <article className="question-box">
                             {questionAnswerObject["question"][0]["content"]}
-                        </div>
-                        <div className="question-supplemental-material-box">
+                        </article>
+                        <section className="question-supplemental-material-box">
                             {questionAnswerObject["question"][0] && sortDataBy(questionAnswerObject["question"][0].attachedFiles, "Id").map((attachedFile)=> {return (
                                 <>
-                                    <div className="conversation-question-title-list-supplemental-material">
-                                        <strong>Supplemental files attached to question</strong>
-                                    </div>
+                                    <h3 className="conversation-question-title-list-supplemental-material">
+                                        <strong>Supplemental file attached to question</strong>
+                                    </h3>
                                     <ul className="conversation-question-list-supplemental-material">
                                         <li className="list-item">Id&nbsp;:&nbsp;{attachedFile["id"]}</li>
                                         <li className="list-item">Type&nbsp;&nbsp;:&nbsp;{attachedFile.type}</li>
@@ -145,15 +145,15 @@ function Conversation() {
                                     </ul>
                                 </>
                             )})}
-                        </div>
+                        </section>
 
 
 
                         {questionAnswerObject["question"][0] && sortDataBy(questionAnswerObject["question"][0].attachedMusicFiles, "Id").map((attachedFile)=> {return (
                             <>
-                                <div className="conversation-question-title-list-audio-material">
-                                    <strong>Audio files attached to question</strong>
-                                </div>
+                                <h3 className="conversation-question-title-list-audio-material">
+                                    <strong>Audio file attached to question</strong>
+                                </h3>
                                 <ul className="conversation-question-list-audio-material">
                                     <li className="list-item">Music sample title&nbsp;:&nbsp;{attachedFile.name}</li>
                                     <li className="list-item">
@@ -170,35 +170,35 @@ function Conversation() {
                             </>
                         )})}
 
-                        <div className="answers-section-title-wrapping">
-                            <div className="answers-section-title">
+                        <p className="answers-section-title-wrapping">
+                            <h1 className="answers-section-title">
                                 Answers
-                            </div>
-                        </div>
+                            </h1>
+                        </p>
 
-                        <div className="answers">
+                        <section className="answers">
                             {questionAnswerObject["answers"] && questionAnswerObject["answers"].map((answer)=> {return (
-                                <div>
+                                <section>
                                     <div className="space-in-between">
                                         <br/>
                                         <br/>
                                     </div>
-                                    <ul className="answer-meta-data">
-                                        <li className="list-item"><strong>Answer</strong></li>
-                                        <li className="list-item"><strong>Id&nbsp;:&nbsp;</strong>{answer["answerId"]}</li>
-                                        <li className="list-item"><strong>Sent by&nbsp;:&nbsp;</strong>{answer["username"]}</li>
-                                        <li className="list--item"><strong>Date sent&nbsp;:&nbsp;</strong>{answer["dateTimePosted"]}</li>
-                                        <li className="list-item"><strong>Title&nbsp;:&nbsp;</strong>{answer["title"]}</li>
-                                    </ul>
-                                    <div className="answer-box">
+                                        <ul className="answer-meta-data">
+                                            <li className="list-item"><strong>Answer</strong></li>
+                                            <li className="list-item"><strong>Id&nbsp;:&nbsp;</strong>{answer["answerId"]}</li>
+                                            <li className="list-item"><strong>Sent by&nbsp;:&nbsp;</strong>{answer["username"]}</li>
+                                            <li className="list--item"><strong>Date sent&nbsp;:&nbsp;</strong>{answer["dateTimePosted"]}</li>
+                                            <li className="list-item"><strong>Title&nbsp;:&nbsp;</strong>{answer["title"]}</li>
+                                        </ul>
+                                    <article className="answer-box">
                                         {answer["content"]}
-                                    </div>
-                                    <div className="answer-supplemental-material-box">
+                                    </article>
+                                    <section className="answer-supplemental-material-box">
                                         {answer && sortDataBy(answer.attachedFiles, "Id").map((attachedFile)=> {return (
                                             <>
-                                                <div className="conversation-answer-title-list-supplemental-material">
-                                                    <strong>Supplemental files attached to answer</strong>
-                                                </div>
+                                                <h3 className="conversation-answer-title-list-supplemental-material">
+                                                    <strong>Supplemental file attached to answer</strong>
+                                                </h3>
                                                 <ul className="conversation-answer-list-supplemental-material">
                                                     <li className="list-item">Id&nbsp;:&nbsp;{attachedFile["id"]}</li>
                                                     <li className="list-item">Type&nbsp;&nbsp;:&nbsp;{attachedFile.type}</li>
@@ -217,16 +217,16 @@ function Conversation() {
                                                 </ul>
                                             </>
                                         )})}
-                                    </div>
+                                    </section>
 
 
 
                                     {answer && sortDataBy(answer.attachedMusicFiles, "Id").map((attachedFile)=> {return (
                                         <>
 
-                                            <div className="conversation-question-title-list-audio-material">
-                                                <strong>Audio files attached to answer</strong>
-                                            </div>
+                                            <h1 className="conversation-question-title-list-audio-material">
+                                                <strong>Audio file attached to answer</strong>
+                                            </h1>
 
                                             <ul className="conversation-answer-list-audio-material">
                                                 <li className="list-item">Music sample title&nbsp;:&nbsp;{attachedFile.name}</li>
@@ -246,9 +246,9 @@ function Conversation() {
                                     )})}
 
 
-                                </div>
+                                </section>
                             )})}
-                        </div>
+                        </section>
 
                         <div className="react-to-question-button-container">
 
@@ -267,7 +267,7 @@ function Conversation() {
                                 label={`Add a reaction to this question`}
                             />
                         </div>
-                    </div>
+                    </section>
                 </>
             )})}
 
@@ -276,7 +276,7 @@ function Conversation() {
                           No conversation available
                         </span>
             )}
-        </div>
+        </main>
     );
 
 }

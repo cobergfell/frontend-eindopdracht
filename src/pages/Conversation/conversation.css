@@ -1,4 +1,24 @@
 
+h1 {
+    font-family: var(--font-family);
+    font-size: 20px;
+    color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
+    background-color: rgba(255,255,255, 0.9);
+    padding: 2px;
+}
+
+h2 {
+    font-family: var(--font-family);
+    font-size: 15px;
+    color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
+}
+
+h3 {
+    font-family: var(--font-family);
+    font-size: 12px;
+    color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
+}
+
 .conversation-container-flex {
     margin-top: 10px;
     list-style-type: none; /* Remove bullets */
@@ -26,15 +46,9 @@
     border-color: var(--milky-white);
     color: var(--drk-grey);
     min-height: 15px;
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 .answers {
-    /*grid-column-start: 3;*/
-    /*grid-column-end: 6;*/
-    /*grid-row-start: 6;*/
-    /*grid-row-end: 7;*/
     list-style-type: none; /* Remove bullets */
     font-size: var(--default-font-size);
     display: flex;
@@ -46,8 +60,6 @@
     border-color: var(--milky-white);
     color: var(--drk-grey);
     min-height: 15px;
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 .conversation-metadata-container {
@@ -91,7 +103,6 @@
     font-size: var(--default-font-size);
     list-style-type: none; /* Remove bullets */
     border-style: solid;
-    /*overflow-x: scroll;*/
     overflow-y: scroll;
     border-width: thin;
     border-color: grey;
@@ -245,12 +256,9 @@
     font-size: var(--default-font-size);
     list-style-type: none; /* Remove bullets */
     border-style: solid;
-    /*overflow-x: scroll;*/
     overflow-y: scroll;
     border-width: thin;
     border-color: grey;
-    /*border-width: thick;*/
-    /*border-color: yellow;*/
 }
 
 
@@ -288,8 +296,6 @@
     border-style: solid;
     border-width: thin;
     border-color: grey;
-    /*border-width: thick;*/
-    /*border-color: yellow;*/
 }
 
 .conversation-answer-list-supplemental-material {

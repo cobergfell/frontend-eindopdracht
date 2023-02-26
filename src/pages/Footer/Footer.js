@@ -3,13 +3,13 @@ import "./footer.css";
 
 const Footer = () => {
     return (
-        <div className="footer-wrapper">
-            <div className="footer-title">
+        <footer className="footer-wrapper">
+            <h2 className="footer-title">
                 <strong>Painting Music: explore the  common grounds of painting evolution and music evolution</strong>
-            </div>
+            </h2>
 
-            <div className="footer-column-container-1">
-                <div className="footer-column-items">
+            <section className="footer-column-container-1">
+                <ul className="footer-column-items">
 
                     <li >
                         <a href={`/home/#our-history`}  className="footer-link">Our vision</a>
@@ -22,10 +22,10 @@ const Footer = () => {
 
                     </li>
 
-                </div>
-            </div>
-            <div className="footer-column-container-2">
-                <div className="footer-column-items">
+                </ul>
+            </section>
+            <address className="footer-column-container-2">
+                <ul className="footer-column-items">
                     <li >
                         Visit us
                     </li>
@@ -39,12 +39,12 @@ const Footer = () => {
                     <li >
                          1000 Brussel, België
                     </li>
-                </div>
+                </ul>
 
-            </div>
+            </address>
 
-            <div className="footer-column-container-3">
-                <div className="footer-column-items">
+            <address className="footer-column-container-3">
+                <ul className="footer-column-items">
                     <li >
                         Contact us
                     </li>
@@ -54,11 +54,11 @@ const Footer = () => {
                     <li >
                         <a href="mailto:Christophe.Obergfell@novi-education.nl" className="footer-link">Email Us: Christophe.Obergfell@novi-education.nl</a>
                     </li>
-                </div>
+                </ul>
 
-            </div>
+            </address>
 
-        </div>
+        </footer>
     );
 };
 export default Footer;

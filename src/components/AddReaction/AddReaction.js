@@ -136,7 +136,7 @@ const AddReaction = () => {
     };
 
     return (
-        <div className="send-reaction-container-grid">
+        <main className="send-reaction-container-grid">
             {submitted ? (
                 <>
                     <Button
@@ -152,16 +152,16 @@ const AddReaction = () => {
                         label={`Back to user board`}
                     />
 
-                    <div className="successfully-submitted-message">
+                    <h3 className="successfully-submitted-message">
                         {reactionType=="questions" ? ("Question successfully submitted!"):("Answer successfully submitted!")}
-                    </div>
+                    </h3>
 
                 </>
             ) : (
                 <>
-                    <div className="submit-a-new-reaction-title">
+                    <h1 className="submit-a-new-reaction-title">
                         {reactionType=="questions" ? (`Submit a question`):("Submit an answer")}
-                    </div>
+                    </h1>
                     <label htmlFor="title" className="label-input-title">Title</label>
                     <input
                         type="text"
@@ -193,14 +193,14 @@ const AddReaction = () => {
                     />
 
                     {selectedPaintingImage && (
-                        <div className="painting-preview">
+                        <picture className="painting-preview">
                             <img
                                 className="image"
                                 alt="image place holder"
                                 src={preview}
                                 //src={`http://localhost:8080/api/user/paintings/image/${paintingId}`}/*this works as well*/
                             />
-                        </div>
+                        </picture>
                     )}
 
                     <Button
@@ -235,16 +235,16 @@ const AddReaction = () => {
                     />
 
                     {selectedMusicFiles.length > 0 &&(
-                        <div className="list-selected-music-files">
-                            <p>Selected music files:</p>
+                        <section className="list-selected-music-files">
+                            <h3>Selected music files:</h3>
                             {selectedMusicFiles.map((selectedFile) => {
                                 return (
-                                    <div key={`${selectedFile.name}`} className="selected-music-file-item">
+                                    <h4 key={`${selectedFile.name}`} className="selected-music-file-item">
                                         {selectedFile.name}
-                                    </div>
+                                    </h4>
                                 )
                             })}
-                        </div>
+                        </section>
                     )}
 
                     <Button
@@ -265,16 +265,16 @@ const AddReaction = () => {
 
 
                     {selectedFiles.length > 0 &&(
-                        <div className="list-supplementary-files">
-                            <p>Attached files:</p>
+                        <section className="list-supplementary-files">
+                            <h3>Attached files:</h3>
                             {selectedFiles.map((selectedFile) => {
                                 return (
-                                    <div key={`${selectedFile.name}`} className="supplementary-file-item">
+                                    <h4 key={`${selectedFile.name}`} className="supplementary-file-item">
                                         {selectedFile.name}
-                                    </div>
+                                    </h4>
                                 )
                             })}
-                        </div>
+                        </section>
                     )}
 
 
@@ -288,11 +288,11 @@ const AddReaction = () => {
                 </>
             )}
             {message && (
-                <div className={"error-message"}>
+                <h3 className={"error-message"}>
                     {message}
-                </div>
+                </h3>
             )}
-        </div>
+        </main>
     );
 };
 

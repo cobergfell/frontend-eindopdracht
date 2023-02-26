@@ -14,7 +14,7 @@ const Home = () => {
 
     >
         <article id="our-vision" className="our-vision">
-            <div className="our-vision-title"><strong>Our vision</strong></div>
+            <h2 className="our-vision-title"><strong>Our vision</strong></h2>
             This website is about combining visual art and 'classic' music, following
             an idea championed by Vassily Kandinsky, one of the first abstract painters at the begin of the twentieth century.
             A good introduction to the fascination of Kandinsky for music is to be found in an article of British music composer Gerad Mc Burney
@@ -26,7 +26,7 @@ const Home = () => {
 
 
         <article id="about-us" className="about-us">
-            <div className=">About us-title"><strong>About us</strong></div>
+            <h2 className=">About us-title"><strong>About us</strong></h2>
             We are a collective of visual artists and musicians investigating the synergy of these two approaches to art.
             We share the same passion for music, visual arts and cultural history.
             The project has been instigated in 2021 at the Art School of s'Hertogenbosh and involves now several Art Schools and conservatoria in the Netherlands and in Flanders
@@ -35,14 +35,14 @@ const Home = () => {
 
 
 
-        <div id="welcome" className="welcome">
+        <h1 id="welcome" className="welcome">
               <strong>Welcome to Painting Music</strong>
-        </div>
+        </h1>
 
 
 
         <article id="what-is-it-all-about" className="what-is-it-all-about">
-            <div className=">what-is-it-all-about-title"><strong>What is it all about</strong></div>
+            <h2 className=">what-is-it-all-about-title"><strong>What is it all about</strong></h2>
             Did you ever wonder if atonality in music could be related one way or the other with abstract painting? If you are curious about the question, this website is for you.
             Here we explore the parallels and synergy between visual art and music.
             We do this in first instance from an art historical perspective. Trying to draw evolutionary parallels such as atonality and abstraction in painting.

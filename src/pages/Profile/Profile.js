@@ -16,15 +16,13 @@ const Profile = () => {
     if (currentUser.roles.includes("ROLE_MODERATOR")) {
         setIsModerator(true)
     }
-    console.log("75 isModerator", isModerator);
-    console.log("76 isAdministrator", isAdministrator);
 
     return (
-        <div className="profile-container-grid">
-            <div className="page-title">
+        <main className="profile-container-grid">
+            <h1 className="page-title">
                 <strong>User profile of</strong>  {currentUser.username}
-            </div>
-            <div className="user-profile-display-box">
+            </h1>
+            <section className="user-profile-display-box">
                 {currentUser && (
                     <ul className="profile-list">
                         <li className="list-item"><strong>Username:</strong> {currentUser.username}</li>
@@ -40,9 +38,9 @@ const Profile = () => {
                     </ul>
                 )}
 
-            </div>
+            </section>
 
-        </div>
+        </main>
     );
 }
 export default Profile;

@@ -95,12 +95,12 @@ const Register = (props) => {
   };
 
   return (
-    <div className="register-container-grid">
+    <main className="register-container-grid">
 
         <Form className="form" onSubmit={handleRegister} ref={form}>
           {!successful && (
             <>
-              <div  className="label-input-username">Username</div>
+              <h3  className="label-input-username">Username</h3>
               <input
                   type="text"
                   className="input-username"
@@ -111,7 +111,7 @@ const Register = (props) => {
               />
 
 
-              <div className="label-input-email">Email</div>
+              <h3 className="label-input-email">Email</h3>
               <input
                   type="text"
                   className="input-email"
@@ -121,7 +121,7 @@ const Register = (props) => {
                   validations={[required, validEmail]}
               />
 
-              <div className="label-input-password">Password</div>
+              <h3 className="label-input-password">Password </h3>
               <input
                   type="password"
                   className="input-password"
@@ -136,9 +136,9 @@ const Register = (props) => {
           )}
           {successful && (
               <>
-                <div className="succes-message">
+                <h3 className="succes-message">
                   You are registered, welcome to Painting Music !
-                </div>
+                </h3>
                 <button
                 type="button"
                 className="on-success-new-login-button"
@@ -150,18 +150,18 @@ const Register = (props) => {
           )}
 
          {message && (
-             <div
+             <h3
                  className={
                    successful ? "extra-succes-message" : "register-error-message"
                  }
              >
                {message}
-             </div>
+             </h3>
           )}
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
 
-    </div>
+    </main>
   );
 };
 

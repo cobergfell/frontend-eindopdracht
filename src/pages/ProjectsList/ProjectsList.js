@@ -39,7 +39,7 @@ const ProjectsList = () => {
 
 
     return (
-        <div >
+        <main >
 
             <table className="display-paintings-list">
                 <thead>
@@ -95,7 +95,7 @@ const ProjectsList = () => {
             </table>
 
 
-        </div>);
+        </main>);
 
 
 };

@@ -1,4 +1,38 @@
-/*https://gridbyexample.com/examples/example5/*/
+/*for grid styling examples, see https://gridbyexample.com/examples/example5/*/
+
+h1 {
+    font-family: var(--font-family);
+    font-size: 20px;
+    color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
+    background-color: rgba(255,255,255, 0.9);
+    padding: 2px;
+}
+
+h2 {
+    font-family: var(--font-family);
+    font-size: 15px;
+    color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
+}
+
+h3 {
+    font-family: var(--font-family);
+    font-size: 12px;
+    color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
+}
+
+
+h4 {
+    font-family: var(--font-family);
+    font-size: 10px;
+    color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
+}
+
+
+p {
+    font-family: var(--font-family);
+    font-size: 10px;
+    color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
+}
 
 body {
     margin: 40px;
@@ -21,12 +55,10 @@ body {
 
 
 .edit-project-form-title {
-    grid-column-start: 43;
-    grid-column-end: 62;
+    grid-column-start: 39;
+    grid-column-end: 70;
     grid-row-start: 2;
     grid-row-end: 5;
-    font-family: var(--font-family);
-    font-size: 12px;
 }
 
 
@@ -35,8 +67,7 @@ body {
     grid-column-end: 34;
     grid-row-start: 15;
     grid-row-end: 18;
-    font-family: var(--font-family);
-    font-size: var(--default-font-size);
+
 }
 
 .label-input-updated-title {
@@ -91,11 +122,9 @@ body {
 
 .current-painting-preview-label {
     grid-column-start: 43;
-    grid-column-end: 53;
+    grid-column-end: 63;
     grid-row-start: 18;
     grid-row-end: 19;
-    font-family: var(--font-family);
-    font-size: var(--default-font-size);
 }
 
 .current-painting-preview {
@@ -103,8 +132,6 @@ body {
     grid-column-end: 55;
     grid-row-start: 19;
     grid-row-end: 49;
-    font-family: var(--font-family);
-    font-size: var(--default-font-size);
 }
 
 .new-painting-preview-label {
@@ -112,10 +139,6 @@ body {
     grid-column-end: 53;
     grid-row-start: 51;
     grid-row-end: 52;
-    font-family: var(--font-family);
-    font-size: var(--default-font-size);
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 .new-painting-preview {
     grid-column-start: 40;
@@ -160,7 +183,6 @@ body {
     border-style: solid;
     border-width: thin;
     border-color: grey;
-
 }
 
 
@@ -176,8 +198,6 @@ body {
     border-width: thin;
     border-color: var(--milky-white);
     color: var(--drk-grey);
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
 }
 
 .list-supplemental-material {
@@ -206,7 +226,6 @@ body {
     grid-template-rows: repeat(20, 1fr);
     border-style: solid;
     border-width: thin;
-    /*overflow-x: scroll;*/
     overflow-y: scroll;
 }
 
@@ -223,7 +242,6 @@ body {
     grid-template-rows: repeat(20, 1fr);
     border-style: solid;
     border-width: thin;
-    /*overflow-x: scroll;*/
     overflow-y: scroll;
 }
 
@@ -239,7 +257,6 @@ body {
     grid-template-rows: repeat(20, 1fr);
     border-style: solid;
     border-width: thin;
-    /*overflow-x: scroll;*/
     overflow-y: scroll;
 }
 
@@ -256,9 +273,7 @@ body {
     grid-template-rows: repeat(20, 1fr);
     border-style: solid;
     border-width: thin;
-    /*overflow-x: scroll;*/
     overflow-y: scroll;
-    /*scrollbar-width: thin;*/
 }
 
 .list-current-files-flex-container {
@@ -294,20 +309,16 @@ body {
     grid-column-end: 100;
     grid-row-start: 2;
     grid-row-end: 10;
-    font-family: var(--font-family);
-    font-size: var(--default-font-size);
-    color: var(--drk-grey);
     border-style: solid;
     border-width: thin;
     overflow-x: scroll;
-    /*overflow-y: scroll;*/
 }
 
 
 
 .current-files-box-title {
     grid-column-start: 2;
-    grid-column-end: 20;
+    grid-column-end: 40;
     grid-row-start: 1;
     grid-row-end: 2;
 }

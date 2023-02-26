@@ -20,11 +20,11 @@ const BoardModerator = () => {
 
 
   return (
-      <div className="board-moderator-container-grid">
+      <main className="board-moderator-container-grid">
 
-          <div className="paintings-data-box">
+          <section className="paintings-data-box">
               <ProjectsList/>
-          </div>
+          </section>
 
           <Button
               className={`btn-basic board-moderator-home-button`}
@@ -37,12 +37,11 @@ const BoardModerator = () => {
               className={`btn-basic board-moderator-remove-all-paintings-button`}
               disabled={false}
               clickHandler={removeAllPaintings}
-              label={`Remove all paintings`}
+              label={`Remove all`}
           />
 
 
-
-      </div>
+      </main>
 
 
   );

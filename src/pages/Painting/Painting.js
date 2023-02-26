@@ -4,7 +4,6 @@ import {Link, useHistory, useLocation, useParams} from 'react-router-dom';
 import {sortDataBy} from "../../services/utilities";
 import AuthService from "../../services/auth.service";
 import "./painting.css";
-//import sound from "C:\\Users\\Gebruiker\\Test\\rachmaninov.mp3";
 import Conversation from "../Conversation/Conversation";
 import sound from "../../assets/Do_Diese_Mineur_lento.mp3";
 import Button from "../../components/Button/Button";
@@ -136,7 +135,7 @@ function Painting() {
 
 
     return (
-        <div className="painting-container-grid">
+        <main className="painting-container-grid">
 
             {painting &&
             <>
@@ -179,17 +178,17 @@ function Painting() {
 
                 )}
 
-                <div className="image-container-grid">
+                <picture className="image-container-grid">
                     <img
                         className="image"
                         alt="myImage"
                         src={`http://localhost:8080/paintings/${paintingId}/image`}/*this works*/
                     />
-                </div>
+                </picture>
 
-                <div className="title-painting-data-box">
+                <h3 className="title-painting-data-box">
                     <strong>Painting data</strong>
-                </div>
+                </h3>
 
                 <ul className="list-painting-data">
                     <li className="list-item"><strong>Painting Id: </strong>{paintingId}</li>
@@ -201,10 +200,10 @@ function Painting() {
 
 
 
-                <div className="painting-supplemental-material-box">
-                    <div className="title-supplemental-material-box">
+                <section className="painting-supplemental-material-box">
+                    <h3 className="title-supplemental-material-box">
                         <strong>Supplemental files</strong>
-                    </div>
+                    </h3>
                     {painting && sortDataBy(painting.attachedFiles, "Id").map((attachedFile)=> {return (
                         <>
                             <ul className="list-supplemental-material">
@@ -225,12 +224,12 @@ function Painting() {
                             </ul>
                         </>
                     )})}
-                </div>
+                </section>
 
-                <div className="audio-material">
-                    <div className="title-audio-material-box">
+                <section className="audio-material">
+                    <h3 className="title-audio-material-box">
                         <strong>Audio files</strong>
-                    </div>
+                    </h3>
                     {audioFiles && audioFiles.map((audioFile)=> {return (
                         <>
                             <ul className="list-audio-data">
@@ -249,20 +248,20 @@ function Painting() {
                             </ul>
                         </>
                     )})}
-                </div>
+                </section>
 
-                <div className="title-blog-box">
+                <h2 className="title-blog-box">
                     <strong>Blog</strong>
-                </div>
+                </h2>
 
-                <div className="blog-box">
-                    <div className="initial-description">
+                <section className="blog-box">
+                    <article className="initial-description">
                         {painting.description}
-                    </div>
+                    </article>
                     <Conversation
                         paintingId={painting.paintingId}
                     />
-                </div>
+                </section>
 
             </>
             }
@@ -273,7 +272,7 @@ function Painting() {
                 </span>
             )}
             {loading && (<span>Loading...</span>)}
-        </div>
+        </main>
 
 
     );

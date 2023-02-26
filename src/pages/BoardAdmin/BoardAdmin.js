@@ -23,10 +23,10 @@ const BoardAdmin = () => {
 
   return (
       <>
-      <div className="board-administrator-container-grid">
-        <div className="page-titel">
+      <main className="board-administrator-container-grid">
+        <h1 className="page-titel">
           <strong>{currentUser.username}</strong> Administration board
-        </div>
+        </h1>
 
         <Button
             className={`btn-basic board-admin-home-button`}
@@ -42,11 +42,11 @@ const BoardAdmin = () => {
             label={`Remove All`}
         />
 
-        <div className="users-data-box">
+        <section className="users-data-box">
           <UsersList/>
-        </div>
+        </section>
 
-      </div>
+      </main>
 
   </>
   );

@@ -4,6 +4,39 @@ body {
     margin: 40px;
 }
 
+h1 {
+    font-family: var(--font-family);
+    font-size: 20px;
+    color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
+    background-color: rgba(255,255,255, 0.9);
+    padding: 2px;
+}
+
+h2 {
+    font-family: var(--font-family);
+    font-size: 15px;
+    color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
+}
+
+h3 {
+    font-family: var(--font-family);
+    font-size: 12px;
+    color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
+}
+
+
+h4 {
+    font-family: var(--font-family);
+    font-size: 10px;
+    color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
+}
+
+
+p {
+    font-family: var(--font-family);
+    font-size: 10px;
+    color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
+}
 
 .painting-container-grid {
     /*margin-top: var(--navbar-height);*/

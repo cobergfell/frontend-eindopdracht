@@ -1,4 +1,19 @@
-/*https://gridbyexample.com/examples/example5/*/
+/*for grid styling examples, see https://gridbyexample.com/examples/example5/*/
+
+h1 {
+    font-family: var(--font-family);
+    font-size: 20px;
+    color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
+    background-color: rgba(255,255,255, 0.9);
+    padding: 2px;
+}
+
+h2 {
+    font-family: var(--font-family);
+    font-size: 15px;
+    color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
+}
+
 
 
 .home-container-grid {
@@ -36,7 +51,6 @@
     padding-right: 7px;
 }
 
-
 .about-us {
     grid-column-start: 10;
     grid-column-end: 30;
@@ -55,11 +69,7 @@
     grid-column-end: 62;
     grid-row-start: 45;
     grid-row-end: 51;
-    font-family: var(--font-family);
-    font-size: 20px;
-    color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
-    background-color: rgba(255,255,255, 0.9);
-    padding: 7px;
+
 }
 
 .painting {

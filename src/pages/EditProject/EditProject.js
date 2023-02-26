@@ -231,28 +231,18 @@ const EditProject = () => {
             formData.append('description', painting.description)
 
             if (selectedPaintingImage!=null){
-                console.log('236')
                 formData.append('image',selectedPaintingImage,selectedPaintingImage.name);
             }
-            // else{
-            //     console.log('240')
-            //     formData.append('image',currentPaintingImage);
-            //     console.log('241')
-            //     //formData.append('image',currentPaintingImage,painting.title);
-            //     console.log('242')
-            // }
-            console.log('244')
+
 
             if (selectedFiles!=[]){
                 for (const selectedFile of selectedFiles){
-                    //first clean file name
                     formData.append('files',selectedFile,selectedFile.name);
                 }
             }
 
             if (selectedAudioFiles!=[]){
                 for (const selectedAudioFile of selectedAudioFiles){
-                    //first clean file name
                     formData.append('audioFiles',selectedAudioFile,selectedAudioFile.name);
                 }
             }
@@ -343,7 +333,7 @@ const EditProject = () => {
 
 
     return (
-        <div className="edit-container-grid">
+        <main className="edit-container-grid">
 
             {submitted ? (
                 <>
@@ -354,15 +344,15 @@ const EditProject = () => {
                         label={`Back`}
                     />
 
-                    <div className="successfully-submitted-message">
+                    <h3 className="successfully-submitted-message">
                         Project successfully updated!
-                    </div>
+                    </h3>
                 </>
             ) : (
                 <>
-                    <div className="edit-project-form-title">
+                    <h1 className="edit-project-form-title">
                         Edit project initial data
-                    </div>
+                    </h1>
 
                     <label htmlFor="title" className="label-input-updated-title">Title</label>
                     <input
@@ -420,33 +410,33 @@ const EditProject = () => {
 
                     {image && (
                         <>
-                            <div className="current-painting-preview-label">
+                            <h3 className="current-painting-preview-label">
                                 Current painting
-                            </div>
-                            <div className="current-painting-preview">
+                            </h3>
+                            <picture className="current-painting-preview">
                                 <img
                                     className="image"
                                     alt="image place holder"
                                     //src={preview}
                                     src={`http://localhost:8080/paintings/${paintingId}/image`}/*this works*/
                                 />
-                            </div>
+                            </picture>
                         </>
                     )}
 
                     {selectedPaintingImage && (
                         <>
-                            <div className="new-painting-preview-label">
+                            <h3 className="new-painting-preview-label">
                                 New painting
-                            </div>
-                            <div className="new-painting-preview">
+                            </h3>
+                            <picture className="new-painting-preview">
                                 <img
                                     className="image"
                                     alt="image place holder"
                                     src={preview}
                                     //src={`http://localhost:8080/api/user/paintings/image/${paintingId}`}/*this would work*/
                                 />
-                            </div>
+                            </picture>
                         </>
                     )}
 
@@ -466,35 +456,35 @@ const EditProject = () => {
                     />
 
                     {currentAudioFiles.length > 0 &&(
-                        <div className="list-current-audio-files-container-grid">
-                            <div className="current-files-box-title" >
+                        <section className="list-current-audio-files-container-grid">
+                            <h3 className="current-files-box-title" >
                                 Current audio files:
-                            </div>
-                            <div className="current-files-box-header-column-1" >
+                            </h3>
+                            <h4 className="current-files-box-header-column-1" >
                                 File name:
-                            </div>
-                            <div className="current-files-box-header-column-2" >
+                            </h4>
+                            <h4 className="current-files-box-header-column-2" >
                                 Remove
-                            </div>
-                            <div className="list-current-files-flex-container" >
+                            </h4>
+                            <section className="list-current-files-flex-container" >
                                 {currentAudioFiles.map((currentFileObject) => {
                                     return (
-                                        <div key={`${currentFileObject["file"].name}`} className="current-file-row-grid">
-                                            <div className="files-list-element" >
+                                        <section key={`${currentFileObject["file"].name}`} className="current-file-row-grid">
+                                            <h4 className="files-list-element" >
                                                 {currentFileObject["file"].name}
-                                            </div>
+                                            </h4>
                                             <input
                                                 type="checkbox"
                                                 className="checkbox-files"
                                                 onClick={(e) => {
                                                     selectAudioFilesToDelete(e,currentFileObject);}}
                                             />
-                                        </div>
+                                        </section>
                                     )
                                 })}
 
-                            </div>
-                        </div>
+                            </section>
+                        </section>
                     )}
 
 
@@ -508,23 +498,23 @@ const EditProject = () => {
 
 
                     {currentFiles.length > 0 &&(
-                        <div className="list-current-files-container-grid">
-                            <div className="current-files-box-title" >
+                        <section className="list-current-files-container-grid">
+                            <h3 className="current-files-box-title" >
                                 Current files:
-                            </div>
-                            <div className="current-files-box-header-column-1" >
+                            </h3>
+                            <h4 className="current-files-box-header-column-1" >
                                 File name:
-                            </div>
-                            <div className="current-files-box-header-column-2" >
+                            </h4>
+                            <h4 className="current-files-box-header-column-2" >
                                 Remove
-                            </div>
-                            <div className="list-current-files-flex-container" >
+                            </h4>
+                            <section className="list-current-files-flex-container" >
                                 {currentFiles.map((currentFileObject) => {
                                     return (
-                                        <div key={`${currentFileObject["file"].name}`} className="current-file-row-grid">
-                                            <div className="files-list-element" >
+                                        <section key={`${currentFileObject["file"].name}`} className="current-file-row-grid">
+                                            <h3 className="files-list-element" >
                                                 {currentFileObject["file"].name}
-                                            </div>
+                                            </h3>
                                             <input
                                                 type="checkbox"
                                                 className="checkbox-files"
@@ -532,68 +522,68 @@ const EditProject = () => {
                                                     selectFilesToDelete(e,currentFileObject);}}
                                             />
 
-                                        </div>
+                                        </section>
                                     )
                                 })}
 
-                            </div>
-                        </div>
+                            </section>
+                        </section>
                     )}
 
                     {selectedAudioFiles.length > 0 &&(
-                        <div className="list-selected-audio-files-container-grid">
-                            <div className="current-files-box-title" >
+                        <section className="list-selected-audio-files-container-grid">
+                            <h3 className="current-files-box-title" >
                                 Selected additional audio files:
-                            </div>
-                            <div className="current-files-box-header-column-1" >
+                            </h3>
+                            <h4 className="current-files-box-header-column-1" >
                                 File name:
-                            </div>
-                            <div className="list-current-files-flex-container" >
+                            </h4>
+                            <section className="list-current-files-flex-container" >
                                 {selectedAudioFiles.map((selectedFile) => {
                                     return (
-                                        <div key={`${selectedFile.name}`} className="current-file-row-grid" >
-                                            <div className="files-list-element" >
+                                        <section key={`${selectedFile.name}`} className="current-file-row-grid" >
+                                            <h3 className="files-list-element" >
                                                 {selectedFile.name}
-                                            </div>
-                                            <div className="deselect-file" onClick={(e) => {deselectAudioFiles_v2(e,selectedFile);}}>
+                                            </h3>
+                                            <h4 className="deselect-file" onClick={(e) => {deselectAudioFiles_v2(e,selectedFile);}}>
                                                 <FontAwesomeIcon icon={faTrash} />
                                                 <span>remove</span>
-                                            </div>
+                                            </h4>
 
 
-                                        </div>
+                                        </section>
                                     )
                                 })}
 
 
-                            </div>
-                        </div>
+                            </section>
+                        </section>
                     )}
 
 
                     {selectedFiles.length > 0 &&(
-                        <div className="list-selected-files-container-grid">
-                            <div className="current-files-box-title" >
+                        <section className="list-selected-files-container-grid">
+                            <h3 className="current-files-box-title" >
                                 Selected additional files:
-                            </div>
-                            <div className="current-files-box-header-column-1" >
+                            </h3>
+                            <h4 className="current-files-box-header-column-1" >
                                 File name:
-                            </div>
-                            <div className="list-current-files-flex-container" >
+                            </h4>
+                            <section className="list-current-files-flex-container" >
                                 {selectedFiles.map((selectedFile) => {
                                     return (
-                                        <div key={`${selectedFile.name}`} className="current-file-row-grid">
-                                            <div className="files-list-element" >
+                                        <section key={`${selectedFile.name}`} className="current-file-row-grid">
+                                            <h4 className="files-list-element" >
                                                 {selectedFile.name}
-                                            </div>
+                                            </h4>
 
-                                        </div>
+                                        </section>
                                     )
                                 })}
 
 
-                            </div>
-                        </div>
+                            </section>
+                        </section>
                     )}
 
 
@@ -614,33 +604,33 @@ const EditProject = () => {
 
 
                     {selectedFiles.length > 0 &&(
-                        <div className="list-selected-files-container-grid">
-                            <div className="current-files-box-title" >
+                        <section className="list-selected-files-container-grid">
+                            <h3 className="current-files-box-title" >
                                 Selected additional files:
-                            </div>
-                            <div className="current-files-box-header-column-1" >
+                            </h3>
+                            <h4 className="current-files-box-header-column-1" >
                                 File name:
-                            </div>
+                            </h4>
 
-                            <div className="list-current-files-flex-container" >
+                            <section className="list-current-files-flex-container" >
                                 {selectedFiles.map((selectedFile) => {
                                     return (
-                                        <div key={`${selectedFile.name}`} className="current-file-row-grid">
-                                            <div className="files-list-element" >
+                                        <section key={`${selectedFile.name}`} className="current-file-row-grid">
+                                            <h3 className="files-list-element" >
                                                 {selectedFile.name}
-                                            </div>
-                                            <div className="deselect-file" onClick={(e) => {deselectFiles_v2(e,selectedFile);}}>
+                                            </h3>
+                                            <h4 className="deselect-file" onClick={(e) => {deselectFiles_v2(e,selectedFile);}}>
                                                 <FontAwesomeIcon icon={faTrash} />
                                                 <span>remove</span>
-                                            </div>
+                                            </h4>
 
-                                        </div>
+                                        </section>
 
                                     )
                                 })}
 
-                            </div>
-                        </div>
+                            </section>
+                        </section>
                     )}
 
                     <Button
@@ -656,9 +646,9 @@ const EditProject = () => {
 
             {missingInput && submitButtonClicked &&(
                 <>
-                    <div  className="edit-project-missingInput-message">
+                    <h3  className="edit-project-missingInput-message">
                         Failed sending data: enter at least, title, artist name, description and select an image
-                    </div>
+                    </h3>
 
                     <Button
                         className={`btn-basic edit-project-retry-button`}
@@ -670,12 +660,12 @@ const EditProject = () => {
             )}
 
             {message && (
-                <div className={"edit-project-error-message"}>
+                <h3 className={"edit-project-error-message"}>
                     {message}
-                </div>
+                </h3>
             )}
 
-        </div>
+        </main>
 
     );
 };

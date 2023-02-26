@@ -180,7 +180,7 @@ const InitiateProject = () => {
 
 
     return (
-        <div className="initiate-project-container-grid">
+        <main className="initiate-project-container-grid">
 
             {submitted ? (
                 <>
@@ -197,9 +197,9 @@ const InitiateProject = () => {
                         label={`Back to user board`}
                     />
 
-                    <div className="successfully-submitted-message">
+                    <h3 className="successfully-submitted-message">
                         Project successfully submitted!
-                    </div>
+                    </h3>
 
                 </>
             ) : (
@@ -242,14 +242,14 @@ const InitiateProject = () => {
                         maxLength={100000}
                     />
                     {selectedPaintingImage && (
-                        <div className="painting-preview">
+                        <picture className="painting-preview">
                             <img
                                 className="image"
                                 alt="image place holder"
                                 src={preview}
                                 //src={`http://localhost:8080/api/user/paintings/image/${paintingId}`}/*this works*/
                             />
-                        </div>
+                        </picture>
                     )}
 
                     <Button
@@ -283,8 +283,8 @@ const InitiateProject = () => {
                     />
 
                     {selectedAudioFiles.length > 0 &&(
-                        <div className="list-selected-music-files">
-                            <p>Selected music files:</p>
+                        <section className="list-selected-music-files">
+                            <h3>Selected music files:</h3>
                             {selectedAudioFiles.map((selectedFile) => {
                                 return (
                                     <div key={`${selectedFile.name}`} className="selected-music-file-item">
@@ -292,7 +292,7 @@ const InitiateProject = () => {
                                     </div>
                                 )
                             })}
-                        </div>
+                        </section>
                     )}
 
                     <Button
@@ -311,16 +311,16 @@ const InitiateProject = () => {
 
 
                     {selectedFiles.length > 0 &&(
-                        <div className="list-supplementary-files">
-                            <p>Attached files:</p>
+                        <section className="list-supplementary-files">
+                            <h3>Attached files:</h3>
                             {selectedFiles.map((selectedFile) => {
                                 return (
-                                    <div key={`${selectedFile.name}`} className="supplementary-file-item">
+                                    <h4 key={`${selectedFile.name}`} className="supplementary-file-item">
                                         {selectedFile.name}
-                                    </div>
+                                    </h4>
                                 )
                             })}
-                        </div>
+                        </section>
                     )}
 
 
@@ -336,9 +336,9 @@ const InitiateProject = () => {
             )}
             {retry &&(
                 <>
-                    <div  className="missingInput-message">
+                    <h3  className="missingInput-message">
                         Failed sending data: enter at least, title, artist name, description and select an image
-                    </div>
+                    </h3>
 
                     <Button
                         className={`btn-basic initiate-project-retry-button`}
@@ -350,7 +350,7 @@ const InitiateProject = () => {
 
                 </>
             )}
-        </div>
+        </main>
     );
 
 

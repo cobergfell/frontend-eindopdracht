@@ -1,9 +1,27 @@
-/*https://gridbyexample.com/examples/example5/*/
+
+h1 {
+    font-family: var(--font-family);
+    font-size: 20px;
+    color: rgba(0,0,0, 1.0) /*var(--drk-grey)*/;
+    background-color: rgba(255,255,255, 0.9);
+    padding: 2px;
+}
+
+h2 {
+    font-family: var(--font-family);
+    font-size: 15px;
+    color: rgba(0,0,0, 1.0) ;
+}
+
+h3 {
+    font-family: var(--font-family);
+    font-size: 12px;
+    color: rgba(0,0,0, 1.0) ;
+}
 
 
 
 .register-container-grid {
-    /*margin-top: var(--navbar-height);*/
     font-family: var(--font-family);/*Helvetica Neue, Arial, sans-serif;*/
     display: grid;
     color: var(--drk-grey);
@@ -13,8 +31,7 @@
     height: calc(var(--project-height) - var(--navbar-height));
     grid-template-columns: repeat(100, 1fr);
     grid-template-rows: repeat(100, 1fr);
-    /*border-style: solid;*/
-    /*border-color: red;*/
+
 }
 
 
@@ -47,19 +64,13 @@
     grid-row-end: 75;
     font-family: var(--font-family);
     font-size: var(--default-font-size);
-    /*overflow-x: scroll;*/
-    /*overflow-y: scroll;*/
     font-family: var(--font-family);/*Helvetica Neue, Arial, sans-serif;*/
     display: grid;
     color: var(--drk-grey);
     background-color:var(--milky-white);
     grid-gap: 0px;
-    /*width: 400px;*/
-    /*height: 400px;*/
     grid-template-columns: repeat(100, 1fr);
     grid-template-rows: repeat(100, 1fr);
-    /*border-style: solid;*/
-    /*border-color: blue;*/
 }
 
 

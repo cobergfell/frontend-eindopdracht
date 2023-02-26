@@ -109,21 +109,6 @@ a.navbar-link, a.navbar-link:link, a.navbar-link:visited, a.navbar-link:focus, a
 }
 
 
-/*
-a.navbar-link-brand, a.navbar-link-brand:link, a.navbar-link-brand:visited, a.navbar-link-brand:focus,
-a.navbar-link-brand:hover, a.navbar-link-brand:active{
-    color: var(--drk-grey);!*var(--milky-white);*!
-    text-decoration:none;
-    cursor: pointer;
-}
-
-a.navbar-link-home, a.navbar-link-home:link, a.navbar-link-home:visited, a.navbar-link-home:focus,
-a.navbar-link-home:hover, a.navbar-link-home:active{
-    color: var(--milky-white);
-    text-decoration:none;
-    cursor: pointer;
-}
-*/
 
 
 .brand {

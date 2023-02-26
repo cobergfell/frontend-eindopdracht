@@ -79,12 +79,12 @@ const Login = (props) => {
   };
 
   return (
-      <div className="login-container-grid">
+      <main className="login-container-grid">
 
         <Form className="form" onSubmit={handleLogin} ref={form}>
 
           <>
-            <div  className="label-input-username">Username</div>
+            <h3  className="label-input-username">Username</h3>
             <input
                 type="text"
                 className="input-username"
@@ -97,7 +97,7 @@ const Login = (props) => {
             />
 
 
-            <div className="label-input-password">Password</div>
+            <h3 className="label-input-password">Password</h3>
             <input
                 type="text"
                 className="input-password"
@@ -123,7 +123,7 @@ const Login = (props) => {
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
 
-      </div>
+      </main>
   );
 };
 

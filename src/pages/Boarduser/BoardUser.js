@@ -26,19 +26,20 @@ const BoardUser = () => {
 
     return (
 
-        <div className="board-user-container-grid">
+        <main className="board-user-container-grid">
+
 
             <Button
-                className={`btn-basic board-user-new-project-button`}
+                className={`btn-basic new-project-button`}
                 disabled={false}
                 clickHandler={()  => {history.push('/initiateProject')  }}
                 label={`New Project`}
             />
 
-            <div className="container-pages">
+            <section className="container-pages">
                 <ProjectsListAsTiles/>
-            </div>
-        </div>
+            </section>
+        </main>
     )
 }
 

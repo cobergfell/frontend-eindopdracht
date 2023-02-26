@@ -22,13 +22,11 @@ function Pagination({ data, RenderComponent, pageLimit, dataLimit}) {
     function changePage(event) {
         const pageNumber = Number(event.target.textContent);
         setCurrentPage(pageNumber);
-        console.log('28 currentPage',currentPage);
     }
 
     const getPaginatedData = () => {
         const startIndex = currentPage * dataLimit - dataLimit;
         const endIndex = startIndex + dataLimit;
-        console.log('34 data.slice(startIndex, endIndex);',data.slice(startIndex, endIndex))
         return data.slice(startIndex, endIndex);
     };
 
